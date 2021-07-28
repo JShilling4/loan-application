@@ -3,7 +3,7 @@ import _ from "lodash";
 export default {
     install(app) {
         const baseComponents = require.context(
-            "../components/base/",
+            "../components/global/",
             false,
             /[A-Za-z0-9-_,\s]+\.vue$/i
         );
@@ -15,7 +15,7 @@ export default {
             );
 
             // export default
-            app.component(`App${componentName}`, componentConfig.default || componentConfig);
+            app.component(`${componentName}`, componentConfig.default || componentConfig);
         });
     },
 };
