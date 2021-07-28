@@ -120,7 +120,7 @@ export default {
     }
 }
 
-::v-deep .submitButton {
+:deep(.submitButton) {
     margin: 2rem 0;
 }
 </style>
