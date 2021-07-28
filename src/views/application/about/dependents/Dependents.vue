@@ -94,14 +94,11 @@
 
 <script>
 import about from "@/mixins/about";
-import TextField from "@/components/shared/inputs/TextField.vue";
 
 export default {
 	name: "Dependents",
 	mixins: [about],
-	components: {
-		"text-field": TextField
-	},
+	components: {},
 	methods: {
 		selectIfHasDependents(choice) {
 			if (choice == "yes") {

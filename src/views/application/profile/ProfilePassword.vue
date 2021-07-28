@@ -33,14 +33,11 @@
 
 <script>
 import profile from "@/mixins/profile";
-import TextField from "@/components/shared/inputs/TextField.vue";
 
 export default {
 	name: "ProfilePassword",
 	mixins: [profile],
-	components: {
-		"text-field": TextField
-	},
+	components: {},
 	data() {
 		return {
 			confirmPassword: null

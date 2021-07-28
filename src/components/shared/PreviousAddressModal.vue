@@ -140,17 +140,10 @@
 
 <script>
 import { mapState } from "vuex";
-import AppModal from "@/components/shared/AppModal.vue";
-import TextField from "@/components/shared/inputs/TextField.vue";
-import RadioButton from "@/components/shared/inputs/RadioButton.vue";
 
 export default {
 	name: "PreviousAddressModal",
-	components: {
-		"app-modal": AppModal,
-		"text-field": TextField,
-		"radio-button": RadioButton,
-	},
+	components: {},
 	props: {
 		isShowing: {
 			type: Boolean

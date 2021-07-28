@@ -115,14 +115,11 @@
 
 <script>
 import about from "@/mixins/about";
-import TextField from "@/components/shared/inputs/TextField.vue";
 
 export default {
 	name: "CoborrowerInfo",
 	mixins: [about],
-	components: {
-		"text-field": TextField
-	},
+	components: {},
 
 	methods: {
 		async submitPage() {

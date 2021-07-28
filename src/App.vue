@@ -100,7 +100,6 @@ export default {
 @import "@/design/scss/_layout.scss";
 @import "@/design/scss/_buttons.scss";
 @import "@/design/scss/_forms.scss";
-@import "vue-select/src/scss/vue-select.scss";
 
 * {
 	box-sizing: border-box;

@@ -109,13 +109,11 @@
 
 <script>
 import { vueVimeoPlayer } from "vue-vimeo-player";
-import AppModal from "@/components/shared/AppModal.vue";
 import LearnMoreLink from "@/components/shared/LearnMoreLink.vue";
 
 export default {
     name: "Index",
     components: {
-        "app-modal": AppModal,
         "learn-more-link": LearnMoreLink,
         "vimeo-player": vueVimeoPlayer,
     },

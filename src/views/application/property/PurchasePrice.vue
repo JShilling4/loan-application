@@ -78,11 +78,7 @@ import property from "@/mixins/property";
 export default {
 	name: "PurchasePrice",
 	mixins: [property],
-	components: {
-		"radio-button": () =>
-			import("@/components/shared/inputs/RadioButton.vue"),
-		"text-field": () => import("@/components/shared/inputs/TextField.vue")
-	},
+	components: {},
 	data() {
 		return {
 			downPaymentType: "$"

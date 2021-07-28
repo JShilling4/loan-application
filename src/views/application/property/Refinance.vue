@@ -84,10 +84,7 @@ import property from "@/mixins/property";
 export default {
 	name: "Refinance",
 	mixins: [property],
-	components: {
-		"radio-button": () =>
-			import("@/components/shared/inputs/RadioButton.vue")
-	},
+	components: {},
 	data() {
 		return {};
 	},

@@ -40,7 +40,6 @@ import property from "@/mixins/property";
 export default {
 	name: "LoanType",
 	mixins: [property],
-
 	methods: {
 		selectType(type) {
 			type == "purchase"

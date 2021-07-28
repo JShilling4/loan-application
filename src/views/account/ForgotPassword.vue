@@ -39,13 +39,10 @@
 </template>
 
 <script>
-import TextField from "@/components/shared/inputs/TextField.vue";
 
 export default {
     name: "ForgotPassword",
-    components: {
-        "text-field": TextField,
-    },
+    components: {},
     data() {
         return {
             email: "",

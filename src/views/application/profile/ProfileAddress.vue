@@ -79,14 +79,11 @@
 
 <script>
 import profile from "@/mixins/profile";
-import TextField from "@/components/shared/inputs/TextField.vue";
 
 export default {
 	name: "ProfileAddress",
 	mixins: [profile],
-	components: {
-		"text-field": TextField
-	},
+	components: {},
 	methods: {
 		async submitPage() {
 			if (this.localDataIsPosting == false) {

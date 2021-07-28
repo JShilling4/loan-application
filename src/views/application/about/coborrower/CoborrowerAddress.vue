@@ -82,14 +82,11 @@
 
 <script>
 import about from "@/mixins/about";
-import TextField from "@/components/shared/inputs/TextField.vue";
 
 export default {
 	name: "CoborrowerAddress",
 	mixins: [about],
-	components: {
-		"text-field": TextField
-	},
+	components: {},
 
 	methods: {
 		async submitPage() {

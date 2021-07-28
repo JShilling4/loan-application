@@ -1,42 +1,44 @@
 <template>
     <div class="login">
         <h1 class="appHeading">Log In</h1>
-        <div class="input-group">
-            <app-label
-                label-for="email"
-                class-list="dark"
-            >Email</app-label>
-            <text-field
-                name="email"
-                id="email"
-                v-model="credentials.email"
-                @keyup.enter="postCredentials()"
-                class-list="dark"
-            />
-        </div>
+        <form>
+            <div class="input-group">
+                <app-label
+                    label-for="email"
+                    class-list="dark"
+                >Email</app-label>
+                <text-field
+                    name="email"
+                    id="email"
+                    v-model="credentials.email"
+                    @keyup.enter="postCredentials()"
+                    class-list="dark"
+                />
+            </div>
 
-        <div class="input-group">
-            <app-label
-                label-for="password"
-                class-list="dark"
-            >Password</app-label>
-            <text-field
-                name="password"
-                id="password"
-                class-list="dark"
-                v-model="credentials.password"
-                @keyup.enter="postCredentials()"
-            />
-        </div>
+            <div class="input-group">
+                <app-label
+                    label-for="password"
+                    class-list="dark"
+                >Password</app-label>
+                <text-field
+                    name="password"
+                    id="password"
+                    class-list="dark"
+                    v-model="credentials.password"
+                    @keyup.enter="postCredentials()"
+                />
+            </div>
 
-        <app-button
-            type="button"
-            ref="loginButton"
-            @click="postCredentials()"
-            class-list="orange-fill submitButton"
-        >
-            Submit
-        </app-button>
+            <app-button
+                type="button"
+                ref="loginButton"
+                @click="postCredentials()"
+                class-list="orange-fill submitButton"
+            >
+                Submit
+            </app-button>
+        </form>
 
         <router-link to="/create-account">Create an account</router-link>
         <router-link to="/forgot-password">
@@ -52,13 +54,11 @@
 </template>
 
 <script>
-import TextField from "@/components/shared/inputs/TextField.vue";
 import ExternalFooter from "@/components/layout/ExternalFooter.vue";
 
 export default {
     name: "Login",
     components: {
-        "text-field": TextField,
         "external-footer": ExternalFooter,
     },
     data() {

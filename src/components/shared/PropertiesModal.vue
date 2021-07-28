@@ -201,15 +201,10 @@
 
 <script>
 import { mapState } from "vuex";
-import AppModal from "@/components/shared/AppModal.vue";
-import TextField from "@/components/shared/inputs/TextField.vue";
 
 export default {
 	name: "PropertiesModal",
-	components: {
-		"app-modal": AppModal,
-        "text-field": TextField,
-	},
+	components: {},
 	props: {
 		isShowing: {
 			type: Boolean
