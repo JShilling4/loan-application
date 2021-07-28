@@ -1,0 +1,84 @@
+<template>
+	<div class="incomeHistory">
+		<h1 class="appHeading">Income History</h1>
+		<form class="pageForm">
+			<p class="pageCopy">
+				{{ borrowerData.profile.firstName }}, once you've entered at
+				least two years of income history you will be able to move onto
+				the next section of the application
+			</p>
+
+			<app-table
+				v-if="
+					localIncome.incomeHistory !== null &&
+						localIncome.incomeHistory.length > 0
+				"
+				:columns="tableColumns"
+				:rows="borrowerData.income.incomeHistory"
+			/>
+
+			<add-button text="Add Income" />
+
+			<view-controls @next-view="submitPage()" />
+		</form>
+	</div>
+</template>
+
+<script>
+import income from "@/mixins/income";
+
+export default {
+	name: "IncomeHistory",
+	mixins: [income],
+	components: {
+		"add-button": () => import("@/components/shared/AddButton.vue"),
+		"app-table": () => import("@/components/shared/AppTable.vue")
+	},
+	data() {
+		return {
+			tableColumns: [
+				{
+					label: "Income Type",
+					field: "incomeType"
+				},
+				{
+					label: "Description",
+					field: "description"
+				},
+				{
+					label: "Start Date",
+					field: "startDate"
+				},
+				{
+					label: "End Date",
+					field: "endDate"
+				},
+				{
+					label: "Edit",
+					field: "edit"
+				},
+				{
+					label: "Delete",
+					field: "delete"
+				}
+			]
+		};
+	},
+
+	methods: {
+		submitPage() {
+			this.editSectionProgress(1);
+			this.$router.push("/income/coborrower-income-history");
+		}
+	}
+};
+</script>
+
+<style lang="scss" scoped>
+.incomeHistory {
+	.pageCopy {
+		width: 80%;
+		margin: 0 auto 3rem;
+	}
+}
+</style>

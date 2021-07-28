@@ -1,0 +1,389 @@
+{
+	"topics": [
+		{
+			"id": 0,
+			"name": "All",
+			"nameES": "Todo"
+		},
+		{
+			"id": 1,
+			"name": "Basics",
+			"nameES": "Esenciales"
+		},
+		{
+			"id": 2,
+			"name": "Login/Password Issues",
+			"nameES": "Problemas Iniciando Sesión/De Contraseña"
+		},
+		{
+			"id": 3,
+			"name": "Support",
+			"nameES": "Soporte"
+		},
+		{
+			"id": 4,
+			"name": "Using the Loan Butler Online Application",
+			"nameES": "Uso de la aplicación en línea de Loan Butler"
+		},
+		{
+			"id": 5,
+			"name": "Loan Butler Portal",
+			"nameES": "Portal de Loan Butler"
+		}
+	],
+
+	"faqs": [
+		{
+			"id": 1,
+			"topicId": 1,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "How do I check the current status of my loan?",
+			"questionTextES": "¿Cómo verifico el estado actual de mi préstamo?",
+			"answerText": "Visit <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> and log in. After logging in, you’ll see your milestone timeline at the top of the screen, which will show you the current status of your loan.",
+			"answerTextES": "Visite <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> e inicie sesión. Después de iniciar sesión, verá su historial de hitos en la parte superior de la pantalla, que le mostrará el estado actual de su préstamo."
+		},
+		{
+			"id": 2,
+			"topicId": 1,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "How do I know what status my file is in, or what comes next?",
+			"questionTextES": "¿Cómo sé el estado actual de mi prestamo o qué sigue?",
+			"answerText": "Visit <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> and log in. After logging in, you’ll see your milestone timeline at the top of the screen, which will show you the current status of your loan. You will also be able to see the milestones that have yet to be completed.",
+			"answerTextES": "Visite <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> e inicie sesión. Después de iniciar sesión, verá su historial de hitos en la parte superior de la pantalla, que le mostrará el estado actual de su préstamo. También podrá ver los hitos que aún no se han completado."
+		},
+		{
+			"id": 3,
+			"topicId": 1,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "When do I find out if I’m approved?",
+			"questionTextES": "¿Cuándo me entero si estoy aprobado?",
+			"answerText": "After applying with Ruoff Mortgage, you will be sent emails from your loan officer on your loan status. You can also visit <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> to log in and see the current status of your mortgage approval.",
+			"answerTextES": "Después de presentar la solicitud con Ruoff Mortgage, su oficial de préstamos le enviará correos electrónicos con el estado de su préstamo. También puede visitar <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> para iniciar sesión y ver el estado actual de la aprobación de su hipoteca."
+		},
+		{
+			"id": 4,
+			"topicId": 1,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "How do I obtain a pre-approval letter?",
+			"questionTextES": "¿Cómo obtengo una carta de preaprobación?",
+			"answerText": "To obtain a pre-approval letter from a loan officer, you will need to complete a mortgage application. You can apply online at <a href='https://apply.ruoff.com' target='_blank'>https://apply.ruoff.com</a> to complete an application, or you can apply directly with a loan officer. Once your Ruoff Mortgage loan officer reviews your file, the loan officer can issue you a pre-approval letter.",
+			"answerTextES": "Para obtener una carta de preaprobación de un oficial de préstamos, deberá completar una solicitud de hipoteca. Puede presentar la solicitud en línea en <a href='https://apply.ruoff.com' target='_blank'>https://apply.ruoff.com</a> para completar una solicitud, o puede solicitarla directamente con un oficial de préstamos. Una vez que su oficial de préstamos de Ruoff Mortgage revise su archivo, el oficial de préstamos puede emitirle una carta de preaprobación."
+		},
+		{
+			"id": 5,
+			"topicId": 1,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "What will my interest rate be?",
+			"questionTextES": "¿Cuál será mi tasa de interés?",
+			"answerText": "To obtain a defined interest rate on your loan, you’ll need to connect with a Ruoff Mortgage loan officer to complete a mortgage application. You can apply online at <a href='https://apply.ruoff.com' target='_blank'>https://apply.ruoff.com</a> to complete an application, or you can apply directly with a loan officer. Once your Ruoff Mortgage loan officer reviews your file, the loan officer can identify available interest rates for you. Interest rates are specific to you and your credit history and loan type. Available interest rates can be determined the same day you apply for a mortgage.",
+			"answerTextES": "Para obtener una tasa de interés definida en su préstamo, deberá comunicarse con un oficial de préstamos de Ruoff Mortgage para completar una solicitud de hipoteca. Puede presentar su solicitud en línea en <a href='https://apply.ruoff.com' target='_blank'>https://apply.ruoff.com</a>, o puede solicitarla directamente con un oficial de préstamos. Una vez que su oficial de préstamos de Ruoff Mortgage revise su archivo, el oficial de préstamos puede identificar las tasas de interés disponibles para usted. Las tasas de interés son específicas para usted y su historial crediticio y tipo de préstamo. Las tasas de interés disponibles se pueden determinar el mismo día que solicita una hipoteca."
+		},
+		{
+			"id": 6,
+			"topicId": 1,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "Where can I find out what my credit score is?",
+			"questionTextES": "¿Dónde puedo averiguar cuál es mi puntaje crediticio?",
+			"answerText": "If you have applied online via Loan Butler and authorized a credit check, your credit scores are shown to you in a Credit Score Disclosure. This is visible in the Documents section of the Loan Butler portal. If you did not apply online, your loan officer could help run a credit check and identify your credit score.",
+			"answerTextES": "Si ha aplicado en línea a través de Loan Butler y ha autorizado una verificación de crédito, sus puntajes de crédito se le mostrara en una Declaracion de Puntaje de Crédito. Esto es visible en la sección Documentos del portal de Loan Butler. Si no aplicó en línea, su oficial de préstamos podría ayudarlo a realizar una verificación de crédito e identificar su puntaje crediticio."
+		},
+		{
+			"id": 7,
+			"topicId": 1,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "Is Loan Butler my loan officer?",
+			"questionTextES": "¿Loan Butler es mi oficial de préstamos?",
+			"answerText": "No. Loan Butler is the online solution to help you apply or interact with your current or past loan. Once your application is completed, you’ll have a Ruoff Mortgage employee as your assigned loan officer who will work to achieve your mortgage goals and approval.",
+			"answerTextES": "No. Loan Butler es la solución en línea para ayudarlo a solicitar o interactuar con su préstamo actual o pasado. Una vez que se complete su solicitud usted tendrá un empleado de Ruoff Mortgage como su oficial de préstamos quien trabajará para lograr sus objetivos y aprobación hipotecarios."
+		},
+		{
+			"id": 8,
+			"topicId": 1,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "Can I use Loan Butler in a language other than English?",
+			"questionTextES": "¿Puedo usar Loan Butler en un idioma que no sea español?",
+			"answerText": "At the top of the Loan Butler home screens, you can select English or Spanish as your preferred language. Choosing Spanish will convert the text on all screens to Spanish and keep Spanish as your preferred language. No other languages are presently available.",
+			"answerTextES": "En la parte superior de las pantallas de inicio de Loan Butler, puede seleccionar inglés o español como su idioma preferido. Si elige español, convertirá el texto en todas las pantallas a ingles y mantendrá ingles como su idioma preferido. Actualmente no hay otros idiomas disponibles."
+		},
+		{
+			"id": 9,
+			"topicId": 1,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "What is a milestone?",
+			"questionTextES": "¿Qué es un hito?",
+			"answerText": "We use the term milestone to define significant moves in your mortgage transaction. You will see these inside the Loan Butler Portal as well as in your email. They are there to help you see what stage your file is presently in and what stages are left to complete on your loan.",
+			"answerTextES": "Usamos el término hito para definir movimientos significantes en su transacción hipotecaria. Los verá dentro de Loan Butler, así como en su correo electrónico. Están ahí para ayudarlo a ver en qué etapa se encuentra actualmente su prestamo y qué etapas quedan por completar."
+		},
+		{
+			"id": 10,
+			"topicId": 1,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "What is a co-borrower?",
+			"questionTextES": "¿Qué es un co-prestatario?",
+			"answerText": "A co-borrower is a joint applicant on your mortgage loan.",
+			"answerTextES": "Un coprestatario es un solicitante conjunto de su préstamo hipotecario."
+		},
+		{
+			"id": 11,
+			"topicId": 2,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "Can I log into Loan Butler from my phone or tablet?",
+			"questionTextES": "¿Puedo acceder a Loan Butler desde mi teléfono o tableta?",
+			"answerText": "Yes! Any page of Loan Butler is fully accessible from your phone or tablet. The screens of Loan Butler will instantly adapt to the screen size of your device.",
+			"answerTextES": "¡Sí! Cualquier página de Loan Butler es completamente accesible desde su teléfono o tableta. Las pantallas de Loan Butler se adaptarán instantáneamente al tamaño de pantalla de su dispositivo."
+		},
+		{
+			"id": 12,
+			"topicId": 2,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "What is my login to Loan Butler?",
+			"questionTextES": "¿Cuáles son mis credenciales de acceso a Loan Butler?",
+			"answerText": "Your login to Loan Butler will be the email address that you provided. This email address is added on the first page of the Loan Butler application page. If you did not apply online, the email address you provided to your loan officer directly during the application will serve as your login.",
+			"answerTextES": "Su credencial de acceso Loan Butler será la dirección de correo electrónico que proporcionó. Esta dirección de correo electrónico se agrega en la primera página de la página de solicitud de Loan Butler. Si no presentó la solicitud en línea, la dirección de correo electrónico que proporcionó a su oficial de préstamos directamente durante la solicitud servirá como su inicio de sesión."
+		},
+		{
+			"id": 13,
+			"topicId": 2,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "Can I change my login email address after I have applied with Ruoff Mortgage?",
+			"questionTextES": "¿Puedo cambiar mi dirección de correo electrónico después de haber aplicado con Ruoff Mortgage?",
+			"answerText": "Yes, but not instantly. You will need to use the chat feature (orange circle at the bottom of the Loan Butler screens) to have a Ruoff Mortgage team member modify your preferred email address.",
+			"answerTextES": "Sí, pero no instantáneamente. Deberá usar la función de chat (círculo naranja en la parte inferior de las pantallas de Loan Butler) para que un miembro del equipo de Ruoff Mortgage modifique su dirección de correo electrónico."
+		},
+		{
+			"id": 14,
+			"topicId": 2,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "I did not apply online. What is my password to get into loanbutler.ruoff.com?",
+			"questionTextES": "No apliqué en línea. ¿Cuál es mi contraseña para ingresar a loanbutler.ruoff.com?",
+			"answerText": "If you have never logged into Loan Butler, you can use the Create an Account or Forgot Password link on the <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> page to create or change your password.",
+			"answerTextES": "Si nunca ha iniciado sesión en Loan Butler, puede utilizar el enlace 'Crear una cuenta' u 'Olvidar contraseña' en la página <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> para crear o cambiar su contraseña."
+		},
+		{
+			"id": 15,
+			"topicId": 2,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "I deleted an email from my loan officer. How can I find where to go to log in?",
+			"questionTextES": "Eliminé un correo electrónico de mi oficial de préstamos. ¿Cómo puedo encontrar dónde ir para iniciar sesión?",
+			"answerText": "You can go to <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> to log into the Loan Butler portal once you’ve applied. Your login will be the email address you supplied, and your password will be the unique password you’ve created. If you do not remember your password, you can click the Create An Account or Forgot Password link on this page.",
+			"answerTextES": "Puede ir a <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> para iniciar sesión en el portal de Loan Butler una vez que haya presentado su solicitud. Su nombre de usuario será la dirección de correo electrónico que proporcionó y su contraseña será la contraseña única que haya creado. Si no recuerda su contraseña, puede hacer clic en el enlace 'Crear Una Cuenta' u 'Olvidar Contraseña' en esta página."
+		},
+		{
+			"id": 16,
+			"topicId": 2,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "My spouse and I are co-borrowers on a loan, and we both use the same email address. Is this ok?",
+			"questionTextES": "¿Esta bien si mi cónyuge y yo somos coprestatarios de un préstamo y ambos usamos la misma dirección de correo electrónico.",
+			"answerText": "Yes, two borrowers can share an email address and password. Either party can log into Loan Butler using that email address and password combination.",
+			"answerTextES": "Si, dos prestatarios pueden compartir un correo electrónico y una contraseña. Cualquiera de las partes puede iniciar sesión en Loan Butler utilizando esa combinación de dirección de correo electrónico y contraseña."
+		},
+		{
+			"id": 17,
+			"topicId": 3,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "When applying, what is the orange circle at the bottom of the screen?",
+			"questionTextES": "Al aplicar, ¿qué es el círculo naranja en la parte inferior de la pantalla?",
+			"answerText": "The orange circle in the bottom corner of the Loan Butler screen is a chat feature. You can click this to begin a conversation with a live representative from Ruoff Mortgage. You can use this any time you have a question or need support. Our chat team is available from 9 am to 7 pm EST.",
+			"answerTextES": "El círculo naranja en la esquina inferior de la pantalla de Loan Butler es una función de chat. Puede hacer clic aquí para comenzar una conversación con un representante de Ruoff Mortgage. Puede usar esto en cualquier momento que tenga una pregunta o necesite ayuda. Nuestro equipo de chat está disponible de 9 am a 7 pm EST."
+		},
+		{
+			"id": 18,
+			"topicId": 3,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "How can I get in touch with my loan officer?",
+			"questionTextES": "¿Cómo puedo ponerme en contacto con mi oficial de préstamos?",
+			"answerText": "After logging into <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a>, you can click the contact buttons at the top of the screen to connect with your assigned loan officer via phone or email.",
+			"answerTextES": "Despues de iniciar sesión en <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a>, puede hacer clic en 'Contacto' en la parte superior de la pantalla para conectarse con su oficial de préstamos asignado por teléfono o correo electrónico."
+		},
+		{
+			"id": 19,
+			"topicId": 3,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "I’m stuck. Where do I turn for help?",
+			"questionTextES": "Estoy atascado. ¿A dónde voy en busca de ayuda?",
+			"answerText": "There are a few solutions here. Feel free to use the orange circle at the bottom of the Loan Butler screen to start a live chat with a Ruoff Mortgage employee who can help you with any screen or question that’s causing you trouble. You can also click the contact buttons at the top of the screen to connect with your assigned loan officer via phone or email.",
+			"answerTextES": "Aquí hay algunas soluciones. Siéntase libre de usar el círculo naranja en la parte inferior de la pantalla de Loan Butler para iniciar un chat en vivo con un empleado de Ruoff Mortgage que puede ayudarlo con cualquier pantalla o pregunta que le cause problemas. También puede hacer clic en los botones de contacto en la parte superior de la pantalla para conectarse con su oficial de préstamos asignado por teléfono o correo electrónico."
+		},
+		{
+			"id": 20,
+			"topicId": 4,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "How do I start a new application with Ruoff Mortgage using Loan Butler?",
+			"questionTextES": "¿Cómo inicio una nueva aplicación con Ruoff Mortgage usando Loan Butler?",
+			"answerText": "Visit <a href='https://apply.ruoff.com' target='_blank'>https://apply.ruoff.com</a> and click the Let’s Begin button.",
+			"answerTextES": "Visite <a href='https://apply.ruoff.com' target='_blank'>https://apply.ruoff.com</a> y haga clic en 'Comencemos'"
+		},
+		{
+			"id": 21,
+			"topicId": 4,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "What does it mean when Loan Butler asks if I want a loan officer assigned to me?",
+			"questionTextES": "¿Qué significa cuando Loan Butler me pregunta si quiero que me asignen un oficial de préstamos?",
+			"answerText": "When applying with Ruoff Mortgage via Loan Butler, you will need to be linked to a Ruoff Mortgage Loan Officer who will work closely with you to complete your mortgage needs. You have the option to select a preferred loan officer from a search in Loan Butler, but if you’re unfamiliar with the Ruoff loan officer team, you can elect to have a loan officer local to you (based on geographic availability) assigned to work with you.",
+			"answerTextES": "Usted deberá ser conectado a un oficial de préstamos hipotecarios de Ruoff Mortgage al presentar su aplicación a través de Loan Butler. Este oficial de préstamos trabajará con usted personalmente para completar sus necesidades hipotecarias. Usted tiene la opción de buscar y seleccionar un oficial de préstamos preferido en Loan Butler, pero si no está familiarizado con el equipo de oficiales de préstamos de Ruoff, puede optar por tener un oficial de préstamos local asignado automaticamente a usted (según la disponibilidad geográfica)."
+		},
+		{
+			"id": 22,
+			"topicId": 4,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "When applying at Loan Butler, there is a question asking me for my dependents’ ages. We have a child under the age of 1. What should I put in that field?",
+			"questionTextES": "Al llenar mi solicitud en Loan Butler, hay una pregunta sobre las edades de mis dependientes. Tenemos un hijo menor de 1 año. ¿Qué debo poner en ese campo?",
+			"answerText": "You would enter 1 for any dependent under the age of 1.",
+			"answerTextES": "Ingrese 1 para cualquier dependiente menor de 1 año."
+		},
+		{
+			"id": 23,
+			"topicId": 4,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "Why can’t I get past the income history section of my Loan Butler application?",
+			"questionTextES": "¿Por qué no puedo pasar la sección de historial de ingresos de mi solicitud en Loan Butler?",
+			"answerText": "Likely, you have yet to identify a full two-year work history for all applicants on the loan. You will need to enter income history records to make up a full two-year history. If you have a gap in employment during this period, you will enter the gap timeline as unemployed to make up the two-year history.",
+			"answerTextES": "Es probable que aún no haya identificado un historial laboral completo de dos años para todos los solicitantes del préstamo. Deberá ingresar informacion laboral para completal un historial de dos años completos. Si tiene una brecha en el empleo durante este período Si tiene una brecha en empleo durante este período, ingresará a la brecha en la línea de tiempo como desempleado para completar el historial de dos años."
+		},
+		{
+			"id": 24,
+			"topicId": 4,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "I do not want to authorize a credit check in my online application. Do I have to?",
+			"questionTextES": "No deseo autorizar una verificación de crédito en mi solicitud en línea. ¿Tengo que hacerlo?",
+			"answerText": "No, you can leave the credit check authorization unchecked on the Credit Check page. You will still be able to apply and connect with an assigned loan officer regarding your credit.",
+			"answerTextES": "No, puede dejar la autorización de verificación de crédito sin marcar en la página 'Verificación de Crédito'. Eso no le impedirá aplicar o conectarse con su oficial de préstamos con respecto a su crédito."
+		},
+		{
+			"id": 25,
+			"topicId": 4,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "On the Loan Butler application’s Assets page, what does it mean to automatically verify my assets?",
+			"questionTextES": "¿qué significa verificar automáticamente mis activos en la página Activos Financieros en Loan Butler?",
+			"answerText": "Using the Finicity service, you can electronically link your required bank statements to Ruoff Mortgage. This prevents you from having to download and send full statements from your various banking providers. Fincity is a secure banking service that allows you to log in directly to financial institutions and transmit your chosen banking information to Ruoff Mortgage electronically for use in your mortgage application.",
+			"answerTextES": "Con el servicio Finicity, usted puede vincular electrónicamente sus extractos bancarios requeridos a Ruoff Mortgage. Esto evita que tenga que descargar y enviar extractos completos de sus distintos proveedores bancarios. Fincity es un servicio bancario seguro que le permite iniciar sesión directamente en instituciones financieras y transmitir la información bancaria elegida a Ruoff Mortgage electrónicamente para usarla en su solicitud de hipoteca."
+		},
+		{
+			"id": 26,
+			"topicId": 4,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "On the Assets page of the Loan Butler application, what is Finicity?",
+			"questionTextES": "¿qué es Finicity en la página 'Activos Financieros' de la aplicación Loan Butler?",
+			"answerText": "Finicity is a service that allows you to link your required bank statements to Ruoff Mortgage electronically. This prevents you from having to download and send full statements from your various banking providers. Fincity is a secure banking service that allows you to log in directly to financial institutions and transmit your chosen banking information to Ruoff Mortgage electronically for use in your mortgage application. For more information on the Finicity service, visit <a href='https://www.finicity.com/privacy/#:~:text=You%20may%20review%20and%20update,chat%20function%20within%20the%20Services' target='_blank'>https://www.finicity.com/privacy/#:~:text=You%20may%20review%20and%20update,chat%20function%20within%20the%20Services</a>.",
+			"answerTextES": "Finicity es un servicio que le permite vincular electrónicamente sus extractos bancarios requeridos a Ruoff Mortgage. Esto evita que tenga que descargar y enviar extractos completos de sus distintos proveedores bancarios. Fincity es un servicio bancario seguro que le permite iniciar sesión directamente en instituciones financieras y transmitir la información bancaria elegida a Ruoff Mortgage electrónicamente para usarla en su solicitud de hipoteca. Para obtener más información sobre el servicio Finicity, visite <a href='https://www.finicity.com/privacy/#:~:text=You%20may%20review%20and%20update,chat%20function%20within%20the%20Services' target='_blank'>https://www.finicity.com/privacy/#:~:text=You%20may%20review%20and%20update,chat%20function%20within%20the%20Services</a>."
+		},
+		{
+			"id": 27,
+			"topicId": 4,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "I got an email about a Ruoff Mortgage Loan Butler Mobile App recommending that I go to an application store and download it. Is this required?",
+			"questionTextES": "Recibí un correo electrónico sobre una aplicación móvil Ruoff Mortgage Loan Butler que me recomendaba que fuera a una tienda de aplicaciones y la descargara. ¿Es esto necesario?",
+			"answerText": "You can have full access to the Ruoff Mortgage Loan Butler platform from any device, including your phone. However, the mobile Loan Butler App gives you the benefit of instant access without entering your login and password, as well as push notifications for updates on your mortgage loan.",
+			"answerTextES": "Puede tener acceso completo a la plataforma Loan Butler de Ruoff Mortgage desde cualquier dispositivo, incluido su teléfono. Sin embargo, Loan Butler para dispositivos móviles le brinda el beneficio de acceso instantáneo sin ingresar su nombre de usuario y contraseña, así como notificaciones automáticas para actualizaciones de su préstamo hipotecario."
+		},
+		{
+			"id": 28,
+			"topicId": 5,
+			"videoUrl": "https://player.vimeo.com/video/361401228",
+			"videoCaption": "Electronically Signing Documents",
+			"videoCaptionES": "Documentos Firmados Electronicamente",
+			"questionText": "My loan officer wants me to sign documents electronically. How do I do that?",
+			"questionTextES": "Mi oficial de préstamos quiere que firme documentos electrónicamente. ¿Cómo puedo hacer eso?",
+			"answerText": "If you have been asked to sign documents electronically, we will send an email to you with a link. You can also go to <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> to login and find the link to sign documents. This video can assist you with the document signing process:",
+			"answerTextES": "Si se le ha pedido que firme documentos electrónicamente, le enviaremos un correo electrónico con un enlace. También puede ir a <a href='https://apply.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> para iniciar sesión y encontrar el enlace para firmar documentos. Este video puede ayudarlo con el proceso de firma de documentos:"
+		},
+		{
+			"id": 29,
+			"topicId": 5,
+			"videoUrl": "https://player.vimeo.com/video/361401269",
+			"videoCaption": "Uploading Documents",
+			"videoCaptionES": "Carga de Documentos",
+			"questionText": "My loan officer wants me to upload documents to Loan Butler. How do I do that?",
+			"questionTextES": "Mi oficial de préstamos quiere que cargue documentos a Loan Butler ¿Cómo puedo hacer eso?",
+			"answerText": "If you have been asked to upload documents an email, you can go to <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> to login and find the link to upload documents. This video can assist you with the process for uploading documents:",
+			"answerTextES": "Puede ir a <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a> para iniciar sesión y encontrar el enlace para cargar documentos si se le ha pedido que cargue documentos por correo electrónico. Este video puede ayudarlo con el proceso de carga de documentos:"
+		},
+		{
+			"id": 30,
+			"topicId": 5,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "I want to get copies of documents I have electronically signed. Where do I obtain these?",
+			"questionTextES": "¿Donde puedo obtener copias de los documentos que he firmado electrónicamente?",
+			"answerText": "To see documents that you’ve completed, you can visit <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a>. Once you log in, you will visit the Completed Disclosures section to review or download those documents.",
+			"answerTextES": "Para ver los documentos que completó, puede visitar <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a>. Una vez que inicie sesión, visitará la sección 'Declaraciones Completas' para revisar o descargar esos documentos."
+		},
+		{
+			"id": 31,
+			"topicId": 5,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "How do I know if I have signed documents correctly?",
+			"questionTextES": "¿Cómo sé si he firmado los documentos correctamente?",
+			"answerText": "After all parties/signors have completed the signing process, you will see the completed documents appear in the Completed Disclosures section of the Loan Butler portal. These documents will not be made available until all parties/signors have completed the signing process.",
+			"answerTextES": "Una vez que todas las partes/firmantes hayan completado el proceso de firma, verá que los documentos completos aparecen en la sección 'Declaraciones Completas' del portal de Loan Butler. Estos documentos no estarán disponibles hasta que todas las partes/firmantes hayan completado el proceso de firma."
+		},
+		{
+			"id": 32,
+			"topicId": 5,
+			"videoUrl": null,
+			"videoCaption": null,
+			"videoCaptionES": null,
+			"questionText": "There was a document I was asked to download, sign and upload. I do not remember what it was or where it is. How can I find it?",
+			"questionTextES": "Había un documento que me pidieron que descargara, firmara y cargara. No recuerdo qué era ni dónde está ¿Cómo puedo encontrarlo?",
+			"answerText": "To see these documents, you can visit <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a>. Once you log in, you will visit the Completed Disclosures section to review or download those documents.",
+			"answerTextES": "Para ver estos documentos, puede visitar <a href='https://loanbutler.ruoff.com' target='_blank'>https://loanbutler.ruoff.com</a>. Una vez que inicie sesión, visitará la sección 'Declaraciones Completas' para revisar o descargar esos documentos."
+		}
+	]
+}

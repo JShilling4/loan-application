@@ -1,0 +1,93 @@
+.inline-form-group {
+	display: flex;
+
+	.input-group:not(:last-child) {
+		margin-right: 2rem;
+	}
+	.btn {
+		margin-top: 2rem;
+	}
+}
+
+.input-group {
+	width: 100%;
+	margin-bottom: 1.5rem;
+	&.short {
+		max-width: 10rem;
+		min-width: 10rem;
+	}
+}
+
+.inline-group {
+	display: flex;
+}
+
+.radioButton-container {
+	height: $input-height;
+	width: 100%;
+	&:not(:last-child) {
+		margin-right: 2rem;
+	}
+}
+
+.validationError {
+	// display: inline-block;
+	margin-top: 5px;
+	padding: 4px 1.2rem;
+	color: #fff;
+	background-color: $red-error;
+	border-radius: 2rem;
+	font-size: 12px;
+}
+
+.formQuestion {
+	font-size: $label-font-size;
+	margin-bottom: calc(#{$label-margin-bottom} + 5px);
+	margin-left: $label-margin-left;
+	&.dark {
+		color: #fff;
+		&.fade {
+			color: $label-opacity;
+		}
+	}
+}
+
+.label-outside {
+	text-align: center;
+	margin-bottom: 1rem !important;
+}
+
+$vs-state-active-bg: $teal-hc;
+$vs-component-line-height: 1.7;
+.v-select {
+	border: 1px solid #fff;
+	border-radius: 2rem;
+    width: 100%;
+
+	.vs__open-indicator {
+		fill: #fff;
+	}
+
+	.vs__selected {
+		color: #fff;
+		font-family: Helvetica, sans-serif;
+	}
+
+	.vs__dropdown-toggle {
+		border: none;
+	}
+
+	.vs__actions {
+		padding-right: 12px;
+	}
+
+	&.light {
+		border: 1px solid $blue-green;
+		.vs__open-indicator {
+			fill: $blue-green;
+		}
+		.vs__selected {
+			color: $blue-green;
+		}
+	}
+}

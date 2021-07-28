@@ -1,0 +1,28 @@
+// colors
+$orange: #e7730d;
+$teal: #16c297;
+$teal-hc: #12a581;
+$teal-dark: #149171;
+$blue-dark: #142f42;
+$blue-green: #08485c;
+$red-error: #e23737;
+$gray-ui: #c7c7c7;
+
+$app-background: linear-gradient(90deg, $blue-dark, $blue-green);
+$gray-background: #ececec;
+
+// layout related
+$input-height: 38px;
+$label-font-size: 14px;
+$label-margin-bottom: 5px;
+$label-margin-left: 5px;
+
+// fades
+$input-background-opacity: rgba(255, 255, 255, 0.03);
+$input-border-opacity: rgba(255, 255, 255, 0.4);
+$label-opacity: rgba(255, 255, 255, 0.8);
+$navitem-opacity: rgba(255, 255, 255, 0.6);
+$placeholder-opacity: rgba(255, 255, 255, 0.5);
+
+// shadows
+$input-focused-border-shadow: 0 0 3px $teal;
