@@ -7,12 +7,11 @@
 				<app-label class-list="dark" for="referralSource"
 					>Loan Officer</app-label
 				>
-				<!-- <v-select
+				<multi-select
 					:options="sourceOptions"
-					:clearable="false"
-					:reduce="loanOfficer => loanOfficer.value"
+					:can-clear="false"
 					v-model="localAbout.loanOfficer"
-				></v-select> -->
+				/>
 			</div>
 			<view-controls
 				@next-view="submitPage()"

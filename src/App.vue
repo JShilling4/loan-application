@@ -1,22 +1,34 @@
 <template>
-	<div id="app" :class="appBackgroundClass">
-		<application-header
-			v-if="currentView == 'application' || currentView == 'external'"
-			:current-view="currentView"
-			key="1"
-		/>
-		<external-header v-else-if="currentView == 'index'" key="2" />
-		<portal-header v-else-if="currentView == 'portal'" key="3" />
+    <div
+        id="app"
+        :class="appBackgroundClass"
+    >
+        <application-header
+            v-if="currentView == 'application' || currentView == 'external'"
+            :current-view="currentView"
+            key="1"
+        />
+        <external-header
+            v-else-if="currentView == 'index'"
+            key="2"
+        />
+        <portal-header
+            v-else-if="currentView == 'portal'"
+            key="3"
+        />
 
-		<progress-bar v-if="applicationData && currentNavItem !== null" />
+        <progress-bar v-if="applicationData && currentNavItem !== null" />
 
-		<router-view class="child-view"></router-view>
+        <router-view class="child-view"></router-view>
 
-		<div class="intercomIcon-container">
-			<img src="@/assets/images/intercom_icon.png" alt="" />
-			<span>Chat</span>
-		</div>
-	</div>
+        <div class="intercomIcon-container">
+            <img
+                src="@/assets/images/intercom_icon.png"
+                alt=""
+            />
+            <span>Chat</span>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -27,244 +39,260 @@ import ExternalHeader from "@/components/layout/ExternalHeader.vue";
 import ProgressBar from "@/components/layout/ProgressBar.vue";
 
 export default {
-	name: "App",
-	components: {
-		"application-header": ApplicationHeader,
-		"portal-header": PortalHeader,
-		"external-header": ExternalHeader,
-		"progress-bar": ProgressBar
-	},
+    name: "App",
+    components: {
+        "application-header": ApplicationHeader,
+        "portal-header": PortalHeader,
+        "external-header": ExternalHeader,
+        "progress-bar": ProgressBar,
+    },
 
-	computed: {
-		...mapState(["application"]),
+    computed: {
+        ...mapState(["application"]),
 
-		applicationData() {
-			return this.application.application;
-		},
-		shouldShowAppHeader() {
-			return this.$route.path != "/";
-		},
-		currentNavItem() {
-			return this.$route.meta.navItem;
-		},
-		currentView() {
-			if (this.$route.path == "/") {
-				return "index";
-			} else if (this.$route.path == "/login") {
-				return "external";
-			} else if (this.$route.path == "/portal") {
-				return "portal";
-			} else if (this.$route.path == "/create-account") {
-				return "external";
-			} else if (this.$route.path == "/forgot-password") {
-				return "external";
-			} else if (this.$route.path == "/faq") {
-				return "faq";
-			}
-			return "application";
-		},
-		appBackgroundClass() {
-			if (
-				this.currentView == "application" ||
-				this.currentView == "external" ||
-				this.currentView == "index"
-			) {
-				return "application";
-			} else if (this.currentView == "portal") {
-				return "portal";
-			} else if (this.currentView == "faq") {
-				return "faq";
-			}
-			return "";
-		}
-	},
+        applicationData() {
+            return this.application.application;
+        },
+        shouldShowAppHeader() {
+            return this.$route.path != "/";
+        },
+        currentNavItem() {
+            return this.$route.meta.navItem;
+        },
+        currentView() {
+            if (this.$route.path == "/") {
+                return "index";
+            } else if (this.$route.path == "/login") {
+                return "external";
+            } else if (this.$route.path == "/portal") {
+                return "portal";
+            } else if (this.$route.path == "/create-account") {
+                return "external";
+            } else if (this.$route.path == "/forgot-password") {
+                return "external";
+            } else if (this.$route.path == "/faq") {
+                return "faq";
+            }
+            return "application";
+        },
+        appBackgroundClass() {
+            if (
+                this.currentView == "application" ||
+                this.currentView == "external" ||
+                this.currentView == "index"
+            ) {
+                return "application";
+            } else if (this.currentView == "portal") {
+                return "portal";
+            } else if (this.currentView == "faq") {
+                return "faq";
+            }
+            return "";
+        },
+    },
 
-	methods: {
-		...mapActions([
-			"updateApplication",
-			"updateBorrowerProfile",
-			"updateCoborrowerProfile"
-		])
-	},
-	mounted() {
-		// DATA NEEDED TO LOAD PAGE
-		this.updateApplication();
-		this.updateBorrowerProfile();
-		this.updateCoborrowerProfile();
-	}
+    methods: {
+        ...mapActions([
+            "updateApplication",
+            "updateBorrowerProfile",
+            "updateCoborrowerProfile",
+        ]),
+    },
+    mounted() {
+        // DATA NEEDED TO LOAD PAGE
+        this.updateApplication();
+        this.updateBorrowerProfile();
+        this.updateCoborrowerProfile();
+    },
 };
 </script>
 
+<style src="@vueform/multiselect/themes/default.css"></style>
 <style lang="scss">
 @import "@/design/scss/_typography.scss";
 @import "@/design/scss/_layout.scss";
 @import "@/design/scss/_buttons.scss";
 @import "@/design/scss/_forms.scss";
 
+:root {
+    --ms-bg: transparent;
+    --ms-radius: 5px;
+    --ms-border-color: #fff;
+    --ms-caret-color: #fff;
+}
+
+.multiselect {
+    min-height: 38px !important;
+    .multiselect-single-label {
+        color: #fff;
+        font-size: 16px;
+    }
+}
+
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-	min-height: 100vh;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-	&::-webkit-scrollbar {
-		width: 10px;
-	}
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
 
-	&::-webkit-scrollbar-track {
-		box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-	}
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
 
-	&::-webkit-scrollbar-thumb {
-		background-color: darkgrey;
-		border-radius: 25px;
-	}
+    &::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        border-radius: 25px;
+    }
 }
 
 h1,
 h2,
 h3 {
-	color: $blue-green;
-	color: #fff;
-	text-align: center;
+    color: $blue-green;
+    color: #fff;
+    text-align: center;
 }
 
 a {
-	// color: $teal-dark;
-	text-decoration: none;
-	transition: color 0.3s;
-	&:hover {
-		color: $orange;
-	}
+    // color: $teal-dark;
+    text-decoration: none;
+    transition: color 0.3s;
+    &:hover {
+        color: $orange;
+    }
 }
 
 ul {
-	list-style: none;
+    list-style: none;
 }
 
 fieldset {
-	border: none;
+    border: none;
 }
 
 input,
 select {
-	font-family: Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
 }
 
 #app {
-	background-size: cover;
-	min-height: 100vh;
-	&.application {
-		background: rgb(8, 72, 92);
-		background: radial-gradient(
-			circle,
-			rgba(8, 72, 92, 1) 0%,
-			rgba(20, 47, 66, 1) 95%
-		);
-		// background-attachment: fixed;
-	}
-	&.faq {
-		background: linear-gradient(to right, #0f6957, $blue-green);
-	}
+    background-size: cover;
+    min-height: 100vh;
+    &.application {
+        background: rgb(8, 72, 92);
+        background: radial-gradient(
+            circle,
+            rgba(8, 72, 92, 1) 0%,
+            rgba(20, 47, 66, 1) 95%
+        );
+        // background-attachment: fixed;
+    }
+    &.faq {
+        background: linear-gradient(to right, #0f6957, $blue-green);
+    }
 }
 
 .child-view {
-	transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+    transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
 .appHeading {
-	margin: 10rem 0 4rem;
-	font-weight: 500;
-	font-size: 2.4rem;
+    margin: 10rem 0 4rem;
+    font-weight: 500;
+    font-size: 2.4rem;
 }
 
 .pageCopy {
-	color: #fff;
-	text-align: center;
-	line-height: 1.5;
-	font-size: 18px;
+    color: #fff;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 18px;
 }
 
 .pageForm {
-	max-width: 72rem;
-	margin: 0 auto;
+    max-width: 72rem;
+    margin: 0 auto;
 }
 
 .pageSubmit {
-	display: block;
-	margin: 4rem auto;
+    display: block;
+    margin: 4rem auto;
 }
 
 .intercomIcon-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	position: fixed;
-	z-index: 9999;
-	bottom: 5rem;
-	right: 6.5rem;
-	img {
-		width: 50px;
-		margin-bottom: 4px;
-	}
-	span {
-		color: #fff;
-		font-size: 12px;
-	}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    z-index: 9999;
+    bottom: 5rem;
+    right: 6.5rem;
+    img {
+        width: 50px;
+        margin-bottom: 4px;
+    }
+    span {
+        color: #fff;
+        font-size: 12px;
+    }
 }
 
 .loading-wrapper {
-	position: relative;
-	top: 4rem;
+    position: relative;
+    top: 4rem;
 }
 
 // TRANSITIONS
 
 .fade-enter-active,
 .fade-leave-active {
-	transition-duration: 0.3s;
-	transition-property: opacity;
-	transition-timing-function: ease;
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease;
 }
 
 .fade-enter,
 .fade-leave-active {
-	opacity: 0 !important;
+    opacity: 0 !important;
 }
 
 .fadeIn-enter-active {
-	transition-duration: 0.3s;
-	transition-property: opacity;
-	transition-timing-function: ease;
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    transition-timing-function: ease;
 }
 
 .fadeIn-enter {
-	opacity: 0 !important;
+    opacity: 0 !important;
 }
 .fadeIn-leave-active {
-	display: none;
+    display: none;
 }
 
 .slideVertical-enter-active,
 .slideVertical-leave-active {
-	transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
 }
 
 .slideVertical-enter,
 .slideVertical-leave-active {
-	opacity: 0 !important;
+    opacity: 0 !important;
 }
 
 .slideVertical-enter {
-	transform: translateY(3rem) !important;
+    transform: translateY(3rem) !important;
 }
 
 .slideVertical-leave-active {
-	transform: translateY(-3rem) !important;
+    transform: translateY(-3rem) !important;
 }
 </style>

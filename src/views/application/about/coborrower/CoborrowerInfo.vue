@@ -54,12 +54,11 @@
 				<!-- Suffix -->
 				<div class="input-group short">
 					<app-label class-list="dark" for="suffix">Suffix</app-label>
-					<!-- <v-select
+					<multi-select
 						:options="suffixes"
-						:clearable="false"
-						:reduce="suffix => suffix.value"
+						:can-clear="false"
 						v-model="localCoborrowerProfile.suffix"
-					></v-select> -->
+					/>
 				</div>
 			</div>
 
@@ -93,16 +92,15 @@
 				<app-label class-list="dark" for="maritalStatus"
 					>Marital Status</app-label
 				>
-				<!-- <v-select
+				<multi-select
 					:options="[
 						{ value: 'Single', label: 'Single' },
 						{ value: 'Married', label: 'Married' },
 						{ value: 'Separated', label: 'Separated' }
 					]"
-					:clearble="false"
-					:reduce="maritalStatus => maritalStatus.value"
+					:can-clear="false"
 					v-model="localCoborrowerProfile.maritalStatus"
-				></v-select> -->
+				/>
 			</div>
 
 			<view-controls

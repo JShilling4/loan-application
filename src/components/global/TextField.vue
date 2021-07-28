@@ -23,7 +23,7 @@ export default {
 	props: {
 		borderRadius: {
 			type: String,
-			default: "2rem"
+			default: "5px"
 		},
 		modelValue: {
 			type: [String],

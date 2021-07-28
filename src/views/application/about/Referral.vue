@@ -7,12 +7,11 @@
 				<app-label class-list="dark" for="referralSource"
 					>Referral Source</app-label
 				>
-				<!-- <v-select
+				<multi-select
 					:options="sourceOptions"
-					:clearable="false"
-					:reduce="referralSource => referralSource.value"
+					:can-clear="false"
 					v-model="localAbout.referralSource"
-				></v-select> -->
+				/>
 			</div>
 
 			<view-controls

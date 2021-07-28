@@ -50,12 +50,11 @@
 			<!-- State -->
 			<div class="input-group">
 				<app-label class-list="dark">State</app-label>
-				<!-- <v-select
+				<multi-select
 					:options="states"
-					:clearble="false"
-					:reduce="state => state.value"
+					:can-clear="false"
 					v-model="localProfile.state"
-				/> -->
+				/>
 			</div>
 
 			<!-- Zip Code -->

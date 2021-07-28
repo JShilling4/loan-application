@@ -59,10 +59,10 @@
                     for="suffix"
                 >Suffix</app-label>
                 <multi-select
-					:options="suffixes"
+                    :options="suffixes"
                     :can-clear="false"
-					v-model="localProfile.suffix"
-				/>
+                    v-model="localProfile.suffix"
+                />
             </div>
         </div>
 
@@ -99,16 +99,15 @@
                 class-list="dark"
                 for="maritalStatus"
             >Marital Status</app-label>
-            <!-- <v-select
-				:options="[
+            <multi-select
+                :options="[
 					{ value: 'Single', label: 'Single' },
 					{ value: 'Married', label: 'Married' },
 					{ value: 'Separated', label: 'Separated' }
 				]"
-				:clearable="false"
-				:reduce="maritalStatus => maritalStatus.value"
-				v-model="localProfile.maritalStatus"
-			></v-select> -->
+                :can-clear="false"
+                v-model="localProfile.maritalStatus"
+            />
         </div>
 
         <app-button
@@ -125,14 +124,11 @@
 
 <script>
 import profile from "@/mixins/profile";
-  import Multiselect from '@vueform/multiselect'
 
 export default {
     name: "ProfileGeneral",
     mixins: [profile],
-    components: {
-        "multi-select": Multiselect,
-    },
+    components: {},
     methods: {
         async submitPage() {
             if (this.localDataIsPosting == false) {
@@ -153,5 +149,4 @@ export default {
 };
 </script>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
 <style lang="scss" scoped></style>
