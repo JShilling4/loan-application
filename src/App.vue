@@ -21,10 +21,10 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import ApplicationHeader from "@/components/layout/headers/ApplicationHeader.vue";
-import PortalHeader from "@/components/layout/headers/PortalHeader.vue";
-import ExternalHeader from "@/components/layout/headers/ExternalHeader.vue";
-import ProgressBar from "@/components/layout/progress/ProgressBar.vue";
+import ApplicationHeader from "@/components/layout/ApplicationHeader.vue";
+import PortalHeader from "@/components/layout/PortalHeader.vue";
+import ExternalHeader from "@/components/layout/ExternalHeader.vue";
+import ProgressBar from "@/components/layout/ProgressBar.vue";
 
 export default {
 	name: "App",
