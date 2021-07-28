@@ -1,6 +1,5 @@
 <template>
     <app-modal
-        class="currentAddressModal"
         width="65rem"
         :show="isShowing"
         :show-close-button="true"
@@ -290,9 +289,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/design/scss/_modalContent.scss";
 
-.currentAddressModal {
-    .checkbox-container {
-        align-items: center;
-    }
+.checkbox-container {
+    align-items: center;
 }
 </style>
