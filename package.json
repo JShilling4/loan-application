@@ -1,5 +1,5 @@
 {
-    "name": "vue3-website-starter",
+    "name": "loan-butler",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -17,13 +17,13 @@
         "@fortawesome/pro-light-svg-icons": "^5.15.3",
         "@fortawesome/pro-regular-svg-icons": "^5.15.3",
         "@fortawesome/vue-fontawesome": "^3.0.0-4",
+        "@vueform/multiselect": "^2.1.0",
         "axios": "^0.21.1",
         "core-js": "^3.15.2",
         "vee-validate": "^3.4.5",
         "vue": "^3.1.5",
         "vue-router": "^4.0.10",
-        "vue-select": "^3.11.2",
-        "vue-vimeo-player": "^0.2.0",
+        "vue-vimeo-player": "^1.1.1",
         "vuex": "^4.0.2"
     },
     "devDependencies": {
