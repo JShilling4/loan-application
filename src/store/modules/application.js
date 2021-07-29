@@ -1,4 +1,4 @@
-import api from "@/api";
+import { applicationApi } from "@/api";
 
 export default {
 	state: {
@@ -13,14 +13,14 @@ export default {
 
 	actions: {
 		updateApplication({ commit }) {
-			return api.application.fetchApplicationData().then(response => {
-				commit("SAVE_APPLICATION_DATA", response.data);
-			});
+			return applicationApi.fetchApplicationData().then((response) => {
+                commit("SAVE_APPLICATION_DATA", response.data);
+            });
 		},
 		postApplicationData({ commit }, payload) {
-			return api.application.postApplicationData(payload).then(() => {
-				commit("SAVE_APPLICATION_DATA", payload);
-			});
+			return applicationApi.postApplicationData(payload).then(() => {
+                commit("SAVE_APPLICATION_DATA", payload);
+            });
 		}
 	},
 
