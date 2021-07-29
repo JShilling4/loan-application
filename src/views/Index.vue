@@ -77,7 +77,7 @@
         </div>
 
         <app-modal
-            width="70rem"
+            width="75rem"
             :show="vimeoModalShowing"
             :show-close-button="true"
             :clickaway="true"
@@ -88,7 +88,7 @@
                 <vimeo-player
                     ref="player"
                     video-url="https://player.vimeo.com/video/424805015"
-                    height="500"
+                    width="500"
                     @ready="onReady"
                     :events-to-emit="['play', 'pause']"
                 ></vimeo-player>
