@@ -1,0 +1,17 @@
+{
+    "global": {
+        "learnMore": "Aprende más"
+    },
+    "index": {
+        "welcome": "Bienvenido a nuestro Loan Butler digital!",
+        "welcomeSubtext": "Hemos incorporado velocidad, excelencia y un enfoque en las relaciones con los clientes en nuestra aplicación simple y fácil de usar.",
+        "letsBegin": "Vamos a empezar",
+        "logIn": "Iniciar sesión",
+        "quick": "Rápido",
+        "quickSubtext": "Nuestra tecnología exclusiva de préstamos en línea le brinda acceso para solicitar financiamiento para la vivienda con unos pocos clics y lo mantiene informado a lo largo del camino.",
+        "convenient": "Conveniente",
+        "convenientSubtext": "Inicie una verificación de crédito, revise sus puntajes, verifique digitalmente su información de empleo y cargue documentos sin problemas desde cualquier computadora o dispositivo móvil.",
+        "secure": "Seguro",
+        "secureSubtext": "Nuestra plataforma personalizada está encriptada, certificada y segura, lo que significa que su información importante está segura con nosotros."
+    }
+}

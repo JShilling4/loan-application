@@ -7,13 +7,14 @@ import GlobalComponents from "./includes/_globals";
 import FontAwesome from  "./includes/fontAwesome";
 import { clickOutside } from "./includes/directives";
 import Multiselect from "@vueform/multiselect";
+import i18n from './i18n'
 
 // Initiate mock API
 // if (process.env.NODE_ENV === "development") {
 makeServer();
 // }
 
-const app = createApp(App);
+const app = createApp(App).use(i18n);
 
 // Custom Vue directives
 app.directive("click-outside", clickOutside);

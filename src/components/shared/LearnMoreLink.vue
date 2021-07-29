@@ -3,7 +3,7 @@
 		<span class="circle" aria-hidden="true">
 			<span class="icon arrow"></span>
 		</span>
-		<span class="text">Learn More</span>
+		<span class="text">{{ $t('global.learnMore') }}</span>
 	</div>
 </template>
 

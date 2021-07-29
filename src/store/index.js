@@ -290,8 +290,16 @@ export default createStore({
             selectedLanguage: "English",
         };
     },
-    mutations: {},
-    actions: {},
+    mutations: {
+        CHANGE_LANGUAGE(state, language) {
+            state.selectedLanguage = language;
+        }
+    },
+    actions: {
+        changeLanguage({ commit }, language) {
+            commit("CHANGE_LANGUAGE", language);
+        },
+    },
     modules: {
         application,
         borrower,

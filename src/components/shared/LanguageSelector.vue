@@ -47,8 +47,10 @@ export default {
         toggleLanguage() {
             if (this.selectedLanguage == "English") {
                 this.changeLanguage("Spanish");
+                this.$i18n.locale = "es";
             } else {
                 this.changeLanguage("English");
+                this.$i18n.locale = "en";
             }
             this.showDropdown = false;
         },

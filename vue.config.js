@@ -2,6 +2,7 @@ module.exports = {
     configureWebpack: (config) => {
         config.devtool = "source-map";
     },
+
     css: {
         loaderOptions: {
             sass: {
@@ -18,4 +19,16 @@ module.exports = {
     devServer: {
         host: "localhost",
     },
+
+    pluginOptions: {
+      i18n: {
+        locale: 'en',
+        fallbackLocale: 'en',
+        localeDir: 'locales',
+        enableLegacy: false,
+        runtimeOnly: false,
+        compositionOnly: false,
+        fullInstall: true
+      }
+    }
 };

@@ -1,0 +1,17 @@
+{
+    "global": {
+        "learnMore": "Learn More"
+    },
+    "index": {
+        "welcome": "Welcome to our digital Loan Butler!",
+        "welcomeSubtext": "We have incorporated speed, excellence, and a focus on customer relationships into our simple and easy-to-use application.",
+        "letsBegin": "Let's Begin",
+        "logIn": "Log In",
+        "quick": "Quick",
+        "quickSubtext": "Our exclusive online loan technology gives you access to apply for home financing with a few simple clicks and keeps you in the loop along the way.",
+        "convenient": "Convenient",
+        "convenientSubtext": "Initiate a credit check, review your scores, digitally verify your employment information, and seamlessly upload documents from any computer or mobile device.",
+        "secure": "Secure",
+        "secureSubtext": "Our custom platform is encrypted, certified, and secure – which means your important information is safe with us!"
+    }
+}

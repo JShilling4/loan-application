@@ -3,12 +3,10 @@
         <div class="login-half">
             <div class="main-content">
                 <h1 class="heading">
-                    Welcome to our digital Loan Butler!
+                    {{ $t('index.welcome') }}
                 </h1>
                 <p class="copy">
-                    We have incorporated speed, excellence, and a focus on
-                    customer relationships into our simple and easy-to-use
-                    application.
+                    {{ $t('index.welcomeSubtext') }}
                 </p>
 
                 <learn-more-link @click="vimeoModalShowing = true" />
@@ -19,14 +17,14 @@
                         @click="$router.push('/profile')"
                         class-list="orange-fill beginButton"
                     >
-                        Let's Begin
+                        {{ $t('index.letsBegin') }}
                     </app-button>
 
                     <app-button
                         @click="$router.push('/login')"
                         class-list="blueGreen-outline loginButton"
                     >
-                        Log In
+                        {{ $t('index.logIn') }}
                     </app-button>
                 </div>
             </div>
@@ -41,11 +39,9 @@
                         alt="stopwatch icon"
                     />
                     <div class="feature-text">
-                        <h3 class="heading">Quick</h3>
+                        <h3 class="heading">{{ $t('index.quick') }}</h3>
                         <p class="copy">
-                            Our exclusive online loan technology gives you
-                            access to apply for home financing with a few simple
-                            clicks and keeps you in the loop along the way.
+                            {{ $t('index.quickSubtext') }}
                         </p>
                     </div>
                 </div>
@@ -57,12 +53,9 @@
                         alt="document icon"
                     />
                     <div class="feature-text">
-                        <h3 class="heading">Convenient</h3>
+                        <h3 class="heading">{{ $t('index.convenient') }}</h3>
                         <p class="copy">
-                            Initiate a credit check, review your scores,
-                            digitally verify your employment information, and
-                            seamlessly upload documents from any computer or
-                            mobile device.
+                            {{ $t('index.convenientSubtext') }}
                         </p>
                     </div>
                 </div>
@@ -74,11 +67,9 @@
                         alt="lock icon"
                     />
                     <div class="feature-text">
-                        <h3 class="heading">Secure</h3>
+                        <h3 class="heading">{{ $t('index.secure') }}</h3>
                         <p class="copy">
-                            Our custom platform is encrypted, certified, and
-                            secure – which means your important information is
-                            safe with us!
+                            {{ $t('index.secureSubtext') }}
                         </p>
                     </div>
                 </div>
@@ -86,7 +77,6 @@
         </div>
 
         <app-modal
-            class="vimeoModal"
             width="70rem"
             :show="vimeoModalShowing"
             :show-close-button="true"
