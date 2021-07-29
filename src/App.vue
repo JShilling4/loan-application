@@ -109,6 +109,7 @@ export default {
 
 <style src="@vueform/multiselect/themes/default.css"></style>
 <style lang="scss">
+@import "@/design/scss/_base.scss";
 @import "@/design/scss/_typography.scss";
 @import "@/design/scss/_layout.scss";
 @import "@/design/scss/_buttons.scss";
@@ -119,6 +120,9 @@ export default {
     --ms-radius: 5px;
     --ms-border-color: #fff;
     --ms-caret-color: #fff;
+    --ms-option-font-size: 14px;
+    --ms-ring-color: #16c297;
+    --ms-ring-width: 0;
 }
 
 .multiselect {
@@ -127,12 +131,10 @@ export default {
         color: #fff;
         font-size: 16px;
     }
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    &.is-open {
+        border-color: #16c297;
+        box-shadow: 0 0 3px #16c297;
+    }
 }
 
 body {
@@ -154,14 +156,6 @@ body {
     }
 }
 
-h1,
-h2,
-h3 {
-    color: $blue-green;
-    color: #fff;
-    text-align: center;
-}
-
 a {
     // color: $teal-dark;
     text-decoration: none;
@@ -177,11 +171,6 @@ ul {
 
 fieldset {
     border: none;
-}
-
-input,
-select {
-    font-family: Helvetica, sans-serif;
 }
 
 #app {
