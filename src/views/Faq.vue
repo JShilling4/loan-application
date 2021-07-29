@@ -61,7 +61,7 @@
         </header>
         <section class="faqSection">
             <div class="container">
-                <h2 class="faqHeading">{{ this.selectedTopicName }}</h2>
+                <h2 class="faqHeading">{{ selectedTopicName }}</h2>
                 <div class="faq-container">
                     <div
                         v-for="(faq, index) in faqList"
@@ -184,11 +184,11 @@ export default {
         openFaq(index) {
             if (this.faqList[index].isOpen) {
                 this.faqList[index].isOpen = false;
-                this.$refs[`answerContainer${index}`][0].style.height = 0;
+                this.$refs[`answerContainer${index}`].style.height = 0;
             } else {
                 this.faqList[index].isOpen = true;
-                this.$refs[`answerContainer${index}`][0].style.height =
-                    this.$refs[`answer${index}`][0].offsetHeight + 20 + "px";
+                this.$refs[`answerContainer${index}`].style.height =
+                    this.$refs[`answer${index}`].offsetHeight + 20 + "px";
             }
         },
         closeAllFaqs() {
@@ -232,12 +232,6 @@ export default {
     max-width: 1200px;
     margin: 0 auto;
 }
-
-// .page-wrapper {
-// 	.container {
-// 		padding: 0 2rem;
-// 	}
-// }
 
 .pageHeading {
     color: #fff;

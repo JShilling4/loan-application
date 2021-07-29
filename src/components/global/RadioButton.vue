@@ -73,7 +73,7 @@ label span {
 	display: inline-block;
 	width: 11rem;
 	height: var(--input-height);
-	line-height: 2.2;
+	line-height: 2;
 	font-size: 18.7px;
 	border-radius: 2rem;
 	border: 1px solid #fff;

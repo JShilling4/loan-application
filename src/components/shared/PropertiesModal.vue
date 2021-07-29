@@ -1,6 +1,5 @@
 <template>
 	<app-modal
-		class="propertiesModal"
 		width="65rem"
 		:show="isShowing"
 		:show-close-button="true"
@@ -53,14 +52,12 @@
 						<app-label theme="light">
 							State
 						</app-label>
-						<!-- <v-select
+						<multi-select
 							:options="states"
-							:clearable="false"
+							:can-clear="false"
 							class="light"
-							:append-to-body="true"
-							:reduce="state => state.value"
 							v-model="localOtherProperty.state"
-						/> -->
+						/>
 					</div>
 
 					<div class="gutter-20"></div>
@@ -83,7 +80,7 @@
 						Type of Mortgage
 					</app-label>
 
-					<!-- <v-select
+					<multi-select
 						:options="[
 							{
 								value: 'Conventional',
@@ -106,11 +103,10 @@
 								label: 'None'
 							}
 						]"
-						:clearable="false"
+						:can-clear="false"
 						class="light"
-						:reduce="mortgageType => mortgageType.value"
 						v-model="localOtherProperty.mortgageType"
-					/> -->
+					/>
 				</div>
 
 				<!-- Property Plan -->
@@ -119,7 +115,7 @@
 						Plan for property
 					</app-label>
 
-					<!-- <v-select
+					<multi-select
 						:options="[
 							{
 								value: 'Pending Sale',
@@ -138,11 +134,10 @@
 								label: 'None'
 							}
 						]"
-						:clearable="false"
+						:can-clear="false"
 						class="light"
-						:reduce="propertyPlan => propertyPlan.value"
 						v-model="localOtherProperty.propertyPlan"
-					/> -->
+					/>
 				</div>
 			</div>
 
@@ -154,7 +149,7 @@
 						Current Usage
 					</app-label>
 
-					<!-- <v-select
+					<multi-select
 						:options="[
 							{
 								value: 'Primary Residence',
@@ -169,11 +164,10 @@
 								label: 'Investment Property'
 							}
 						]"
-						:clearable="false"
+						:can-clear="false"
 						class="light"
-						:reduce="currentUse => currentUse.value"
 						v-model="localOtherProperty.currentUse"
-					/> -->
+					/>
 				</div>
 
 				<!-- Approximate Value -->

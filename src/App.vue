@@ -131,6 +131,13 @@ export default {
         color: #fff;
         font-size: 16px;
     }
+    &.light {
+        --ms-border-color: var(--blue-dark);
+        --ms-caret-color: var(--blue-dark);
+        .multiselect-single-label {
+            color: var(--blue-dark);
+        }
+    }
     &.is-open {
         border-color: #16c297;
         box-shadow: 0 0 3px #16c297;

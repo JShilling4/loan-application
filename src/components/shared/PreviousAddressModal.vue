@@ -70,15 +70,12 @@
                         <app-label theme="light">
                             State
                         </app-label>
-                        <!-- <v-select
+                        <multi-select
 							:options="states"
-							theme="light"
-							:clearable="false"
+							:can-clear="false"
 							class="light"
-							:append-to-body="true"
-							:reduce="state => state.value"
 							v-model="localPreviousAddress.state"
-						/> -->
+						/>
                     </div>
 
                     <div class="gutter-20"></div>

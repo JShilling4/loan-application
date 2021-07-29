@@ -62,15 +62,11 @@
 					</div>
 
 					<div class="inline-input-container">
-						<!-- <v-select
+						<multi-select
 							:options="states"
-							:clearable="false"
-							:reduce="
-								propertyLocationState =>
-									propertyLocationState.value
-							"
+							:can-clear="false"
 							v-model="localProperty.propertyLocationState"
-						/> -->
+						/>
 					</div>
 				</div>
 			</div>
@@ -104,14 +100,11 @@
 					</div>
 
 					<div class="inline-input-container">
-						<!-- <v-select
+						<multi-select
 							:options="states"
-							:clearable="false"
-							:reduce="
-								whereLookingState => whereLookingState.value
-							"
+							:can-clear="false"
 							v-model="localProperty.whereLookingState"
-						/> -->
+						/>
 					</div>
 				</div>
 			</div>
@@ -125,7 +118,7 @@
 				</div>
 
 				<div class="inline-input-container">
-					<!-- <v-select
+					<multi-select
 						:options="[
 							{ value: 'primary', label: 'Primary Residence' },
 							{
@@ -134,10 +127,9 @@
 							},
 							{ value: 'notApplicable', label: 'Not Applicable' }
 						]"
-						:clearable="false"
-						:reduce="propertyUse => propertyUse.value"
+						:can-clear="false"
 						v-model="localProperty.propertyUse"
-					/> -->
+					/>
 				</div>
 			</div>
 

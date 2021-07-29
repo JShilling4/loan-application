@@ -8,7 +8,7 @@
 				>How do you plan to use this property?</app-label
 			>
 			<div class="input-group">
-				<!-- <v-select
+				<multi-select
 					:options="[
 						{ value: 'Primary', label: 'Primary Residence' },
 						{
@@ -17,10 +17,9 @@
 						},
 						{ value: 'NotApplicable', label: 'Not Applicable' }
 					]"
-					:clearble="false"
-					:reduce="propertyPlan => propertyPlan.value"
+					:can-clear="false"
 					v-model="localProperty.propertyPlan"
-				/> -->
+				/>
 			</div>
 
 			<!-- Cash Out Refinance -->

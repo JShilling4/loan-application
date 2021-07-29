@@ -43,15 +43,17 @@
 <script>
 import property from "@/mixins/property";
 import otherProperties from "@/mixins/otherProperties";
+import AddButton from "@/components/shared/AddButton.vue";
+import AppTable from "@/components/shared/AppTable.vue";
+import PropertiesModal from "@/components/shared/PropertiesModal.vue";
 
 export default {
 	name: "CoborrowerAddOtherProperties",
 	mixins: [property, otherProperties],
 	components: {
-		"add-button": () => import("@/components/shared/AddButton.vue"),
-		"app-table": () => import("@/components/shared/AppTable.vue"),
-		"properties-modal": () =>
-			import("@/components/shared/PropertiesModal.vue")
+		"add-button": AddButton,
+		"app-table": AppTable,
+		"properties-modal": PropertiesModal
 	},
 	data() {
 		return {

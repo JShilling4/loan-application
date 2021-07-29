@@ -140,7 +140,7 @@ export default {
         padding: 2rem 3rem;
         display: flex;
         flex-direction: column;
-        z-index: 2;
+        z-index: 100;
         @include breakpoint(mobile) {
             width: 95% !important;
         }

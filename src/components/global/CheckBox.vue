@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 .checkbox-container {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 
 	&.light {
 		.mark {

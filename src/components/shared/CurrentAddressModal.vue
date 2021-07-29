@@ -88,14 +88,12 @@
                         <app-label theme="light">
                             State
                         </app-label>
-                        <!-- <v-select
+                        <multi-select
 							:options="states"
-							:clearable="false"
+							:can-clear="false"
 							class="light"
-							:append-to-body="true"
-							:reduce="state2 => state2.value"
 							v-model="localProfile.state2"
-						/> -->
+						/>
                     </div>
 
                     <div class="gutter-20"></div>
@@ -150,7 +148,7 @@
                     </div>
 
                     <div class="inline-input-container col2">
-                        <!-- <v-select
+                        <multi-select
 							:options="[
 								{
 									value: 'primary',
@@ -173,13 +171,10 @@
 									label: 'Move Out'
 								}
 							]"
-							:clearable="false"
-							class="light"
-							:reduce="propertyPlan => propertyPlan.value"
-							v-model="
-								localProperty.currentAddressInfo.propertyPlan
-							"
-						/> -->
+							:can-clear="false"
+							class="multiselect light"
+							v-model="localProperty.currentAddressInfo.propertyPlan"
+						/>
                     </div>
                 </div>
 

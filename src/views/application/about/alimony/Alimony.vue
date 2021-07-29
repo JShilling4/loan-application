@@ -8,16 +8,15 @@
 		</app-label>
 		<div class="body-wrapper">
 			<div class="input-group">
-				<!-- <v-select
+				<multi-select
 					:options="[
 						{ value: 'Pay', label: 'Pay' },
 						{ value: 'Receive', label: 'Receive' },
 						{ value: 'NotApplicable', label: 'Not Applicable' }
 					]"
-					:clearable="false"
-					:reduce="payOrReceiveSupport => payOrReceiveSupport.value"
+					:can-clear="false"
 					v-model="localAbout.payOrReceiveSupport"
-				></v-select> -->
+				/>
 			</div>
 
 			<view-controls
