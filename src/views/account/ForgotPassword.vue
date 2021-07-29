@@ -65,7 +65,7 @@ export default {
         margin-top: 2rem;
         &:hover .icon,
         &:hover a {
-            color: $orange;
+            color: var(--orange);
         }
         .icon {
             color: #fff;

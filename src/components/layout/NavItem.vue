@@ -86,7 +86,7 @@ export default {
 		text-align: center;
 		color: rgba(255, 255, 255, 0.781);
 		.icon {
-			color: $teal-hc;
+			color: var(--teal-hc);
 		}
 	}
 
@@ -105,20 +105,20 @@ export default {
 			border-radius: 50%;
 			width: 2.5rem;
 			height: 2.5rem;
-			border: 1px solid $input-border-opacity;
+			border: 1px solid var(--input-border-opacity);
 			// background-color: $input-background-opacity;
 			transition: border-color 0.3s, background-color 0.3s;
 
 			.icon {
 				display: none;
-				color: $teal-dark;
+				color: var(--teal-dark);
 				font-size: 16px;
 			}
 		}
 	}
 
 	.label {
-		color: $navitem-opacity;
+		color: var(--navitem-opacity);
 		transition: color 0.3s;
 		margin-top: 3px;
 	}
@@ -155,18 +155,18 @@ export default {
 		background-color: #fff;
 		.percentageComplete {
 			// margin-right: 6px;
-			color: $blue-green;
+			color: var(--blue-green);
 			font-weight: 500;
 		}
 		.dot {
 			height: 1.5rem;
 			width: 1.5rem;
-			background-color: $orange;
+			background-color: var(--orange);
 			border-width: 1px;
-			border: 1px solid $blue-green;
+			border: 1px solid var(--blue-green);
 		}
 		.label {
-			color: $orange;
+			color: var(--orange);
 			font-weight: 600;
 		}
 	}

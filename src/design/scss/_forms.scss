@@ -23,7 +23,7 @@
 }
 
 .radioButton-container {
-	height: $input-height;
+	height: var(--input-height);
 	width: 100%;
 	&:not(:last-child) {
 		margin-right: 2rem;
@@ -35,19 +35,19 @@
 	margin-top: 5px;
 	padding: 4px 1.2rem;
 	color: #fff;
-	background-color: $red-error;
+	background-color: var(--red-error);
 	border-radius: 2rem;
 	font-size: 12px;
 }
 
 .formQuestion {
-	font-size: $label-font-size;
-	margin-bottom: calc(#{$label-margin-bottom} + 5px);
-	margin-left: $label-margin-left;
+	font-size: var(--label-font-size);
+	margin-bottom: calc(#{var(--label-margin-bottom)} + 5px);
+	margin-left: var(--label-margin-left);
 	&.dark {
 		color: #fff;
 		&.fade {
-			color: $label-opacity;
+			color: var(--label-opacity);
 		}
 	}
 }
@@ -57,7 +57,7 @@
 	margin-bottom: 1rem !important;
 }
 
-$vs-state-active-bg: $teal-hc;
+$vs-state-active-bg: var(--teal-hc);
 $vs-component-line-height: 1.7;
 .v-select {
 	border: 1px solid #fff;
@@ -82,12 +82,12 @@ $vs-component-line-height: 1.7;
 	}
 
 	&.light {
-		border: 1px solid $blue-green;
+		border: 1px solid var(--blue-green);
 		.vs__open-indicator {
-			fill: $blue-green;
+			fill: var(--blue-green);
 		}
 		.vs__selected {
-			color: $blue-green;
+			color: var(--blue-green);
 		}
 	}
 }

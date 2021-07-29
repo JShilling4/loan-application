@@ -62,7 +62,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    // color: $blue-green;
+    // color: var(--blue-green);
     color: #fff;
     font-weight: 400;
     font-size: 1.4rem;
@@ -72,7 +72,7 @@ export default {
     .link {
         color: #fff;
         &:hover {
-            color: $orange;
+            color: var(--orange);
         }
     }
     .contact-block {

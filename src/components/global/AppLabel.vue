@@ -37,13 +37,13 @@ export default {
 
 <style lang="scss" scoped>
 label {
-	// color: $blue-green;
-	color: $blue-dark;
+	// color: var(--blue-green);
+	color: var(--blue-dark);
 	margin-left: 0.5rem;
 	margin-bottom: 5px;
 	font-size: 15px;
 	&.dark {
-		color: $label-opacity;
+		color: var(--label-opacity);
 	}
 }
 </style>

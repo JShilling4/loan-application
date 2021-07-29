@@ -112,7 +112,7 @@ export default {
 		background-color: #fff;
 		border-radius: 15px;
 		.text {
-			color: $blue-green;
+			color: var(--blue-green);
 			margin-bottom: 1rem;
 		}
 	}

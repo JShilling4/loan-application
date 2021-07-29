@@ -126,7 +126,7 @@ export default {
 }
 
 .multiselect {
-    min-height: 38px !important;
+    min-height: var(--input-height) !important;
     .multiselect-single-label {
         color: #fff;
         font-size: 16px;
@@ -157,11 +157,11 @@ body {
 }
 
 a {
-    // color: $teal-dark;
+    // color: var(--teal-dark);
     text-decoration: none;
     transition: color 0.3s;
     &:hover {
-        color: $orange;
+        color: var(--orange);
     }
 }
 
@@ -186,7 +186,7 @@ fieldset {
         // background-attachment: fixed;
     }
     &.faq {
-        background: linear-gradient(to right, #0f6957, $blue-green);
+        background: linear-gradient(to right, #0f6957, var(--blue-green));
     }
 }
 

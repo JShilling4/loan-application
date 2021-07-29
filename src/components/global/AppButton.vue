@@ -97,7 +97,7 @@ button {
 	transition: color 0.3s, background-color 0.3s, border-color 0.3s;
 	cursor: pointer;
 	font-weight: bold;
-	height: $input-height;
+	height: var(--input-height);
 	width: 100%;
 	font-size: 18.7px;
 	letter-spacing: 0.75px;

@@ -84,7 +84,7 @@ export default {
 			border-radius: 25px;
 			padding: 1rem 3rem;
 			&.selected {
-				background-color: $teal-dark;
+				background-color: var(--teal-dark);
 			}
 			span {
 				display: block;

@@ -222,7 +222,7 @@ export default {
             margin-top: 2rem;
             color: #fff;
             &:hover {
-                color: $orange;
+                color: var(--orange);
             }
         }
     }
@@ -310,12 +310,12 @@ div.topics {
             }
 
             &:hover {
-                color: $orange;
+                color: var(--orange);
             }
 
             &.selected {
-                // color: $orange;
-                // text-shadow: 1px 0 0 $orange;
+                // color: var(--orange);
+                // text-shadow: 1px 0 0 var(--orange);
                 background-color: #e7730d;
                 color: #fff;
                 border-color: transparent;
@@ -335,7 +335,7 @@ section.faqSection {
     }
 
     .faqHeading {
-        color: $orange;
+        color: var(--orange);
         font-weight: 500;
         font-size: 2.7rem;
         margin-bottom: 1.5rem;
@@ -365,7 +365,7 @@ section.faqSection {
 
             .playIcon,
             .indicatorIcon {
-                color: $teal;
+                color: var(--teal);
                 transition: transform $accordion-transition-time,
                     color $accordion-transition-time;
             }
@@ -393,7 +393,7 @@ section.faqSection {
                 padding: 0 0;
             }
             .answer {
-                color: $orange;
+                color: var(--orange);
                 line-height: 1.75;
                 @include breakpoint(mobile) {
                     font-size: 15px;
@@ -404,7 +404,7 @@ section.faqSection {
                         color: #0fe6b3 !important;
                         text-decoration: underline;
                         &:hover {
-                            color: $orange;
+                            color: var(--orange);
                         }
                     }
                 }
@@ -427,7 +427,7 @@ section.faqSection {
         }
 
         &.open .question {
-            color: $orange;
+            color: var(--orange);
         }
 
         &.open .answer-container {
@@ -447,7 +447,7 @@ section.faqSection {
 
         &.open .indicatorIcon {
             transform: rotate(90deg);
-            color: $orange;
+            color: var(--orange);
         }
     }
 }
@@ -455,7 +455,7 @@ section.faqSection {
 section.unansweredQuestion-container {
     margin-top: 4rem;
     padding: 3rem 0;
-    background-color: $gray-background;
+    background-color: var(--gray-background);
     .container {
         display: flex;
         justify-content: space-between;
@@ -467,7 +467,7 @@ section.unansweredQuestion-container {
         }
     }
     .text {
-        color: $blue-green;
+        color: var(--blue-green);
         font-weight: 500;
         padding-right: 3rem;
         line-height: 1.5;
@@ -476,13 +476,13 @@ section.unansweredQuestion-container {
         display: flex;
         align-items: center;
         .icon {
-            color: $orange;
+            color: var(--orange);
             margin-right: 1rem;
             transform: scaleX(-1);
             font-size: 2rem;
         }
         span {
-            color: $blue-green;
+            color: var(--blue-green);
             font-weight: 500;
             text-decoration: underline;
         }

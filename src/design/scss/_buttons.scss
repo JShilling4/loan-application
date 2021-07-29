@@ -1,16 +1,16 @@
 .orange-outline {
-	color: $orange;
+	color: var(--orange);
 	background-color: transparent;
-	border: 1px solid $orange;
+	border: 1px solid var(--orange);
 	&:hover {
 		color: #fff;
-		background-color: $orange;
+		background-color: var(--orange);
 	}
 }
 
 .orange-fill {
 	color: #fff;
-	background-color: $orange;
+	background-color: var(--orange);
 	border: 1px solid transparent;
 	&:hover {
 		border-color: #fff;
@@ -18,12 +18,12 @@
 }
 
 .blueGreen-outline {
-	color: $blue-green;
+	color: var(--blue-green);
 	background-color: #fff;
-	border: 1px solid $blue-green;
+	border: 1px solid var(--blue-green);
 	&:hover {
 		color: #fff;
-		background-color: $blue-green;
+		background-color: var(--blue-green);
 	}
 }
 
@@ -32,23 +32,23 @@
 	background-color: transparent;
 	border: 1px solid #fff;
 	&:hover {
-		color: $teal-hc;
+		color: var(--teal-hc);
 		background-color: #fff;
 	}
 }
 
 .white-fill {
-	color: $blue-green;
+	color: var(--blue-green);
 	background-color: #fff;
 	border: 1px solid transparent;
 	&:hover {
-		border-color: $blue-green;
+		border-color: var(--blue-green);
 	}
 }
 
 .teal-fill {
 	color: #fff;
-	background-color: $teal-hc;
+	background-color: var(--teal-hc);
 	border: 1px solid transparent;
 	&:hover {
 		border-color: #fff;
@@ -62,5 +62,5 @@
 .backButton {
 	// max-width: 12rem;
 	margin-right: 2rem;
-	color: $blue-green;
+	color: var(--blue-green);
 }

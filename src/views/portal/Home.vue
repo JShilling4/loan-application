@@ -7,7 +7,7 @@
 export default {
 	name: "Portal",
   components: {
-    
+
   }
 };
 </script>
@@ -16,7 +16,7 @@ export default {
 .portal {
 	h1 {
     margin-top: 8rem;
-		color: $blue-green;
+		color: var(--blue-green);
 	}
 }
 </style>

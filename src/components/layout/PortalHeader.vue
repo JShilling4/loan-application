@@ -112,7 +112,7 @@ export default {
 		.contactInfoTrigger,
 		.faqLink {
 			margin-right: 2rem;
-			color: $teal;
+			color: var(--teal);
 			text-decoration: underline;
 
 			@include breakpoint(tablet-land) {
@@ -124,7 +124,7 @@ export default {
 			}
 
 			&:hover {
-				color: $orange;
+				color: var(--orange);
 			}
 		}
 
@@ -146,7 +146,7 @@ export default {
 				left: 50%;
 				bottom: 2.5rem;
 				transform: translateX(-50%);
-				background-color: $blue-dark;
+				background-color: var(--blue-dark);
 				padding: 1rem;
 				border-radius: 5px;
 				color: #fff;
@@ -188,7 +188,7 @@ export default {
 		.lo-info-block {
 			margin-top: 0.5rem;
 			text-align: center;
-			color: $blue-green;
+			color: var(--blue-green);
 		}
 	}
 }

@@ -154,10 +154,10 @@ export default {
         outline: none;
         width: 15px;
         height: 15px;
-        color: $gray-ui;
+        color: var(--gray-ui);
         cursor: pointer;
         &:hover {
-            color: $orange;
+            color: var(--orange);
         }
     }
     &-header {

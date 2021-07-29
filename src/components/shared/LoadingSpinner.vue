@@ -36,7 +36,7 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
-  background-color: $blue-dark;
+  background-color: var(--blue-dark);
   border: 1px solid #fff;
 }
 

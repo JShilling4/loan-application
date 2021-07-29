@@ -115,7 +115,7 @@ export default {
         text-decoration: underline;
         margin-bottom: 1rem;
         &:hover {
-            color: $orange;
+            color: var(--orange);
         }
     }
 }

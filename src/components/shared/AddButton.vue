@@ -25,7 +25,7 @@ export default {
     transition: color 0.3s;
 
     &:hover {
-        color: $orange;
+        color: var(--orange);
     }
 
     .text {

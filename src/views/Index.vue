@@ -161,7 +161,7 @@ export default {
 
         h1.heading {
             margin-top: 8rem;
-            color: $blue-green;
+            color: var(--blue-green);
         }
 
         p.copy {
@@ -169,7 +169,7 @@ export default {
             margin: 3rem 0;
             font-size: 18px;
             text-align: center;
-            color: $blue-green;
+            color: var(--blue-green);
             line-height: 1.5;
         }
 

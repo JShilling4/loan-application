@@ -63,8 +63,8 @@ label {
 
 	&.light {
 		span {
-			border-color: $blue-green;
-			color: $blue-green;
+			border-color: var(--blue-green);
+			color: var(--blue-green);
 		}
 	}
 }
@@ -72,7 +72,7 @@ label {
 label span {
 	display: inline-block;
 	width: 11rem;
-	height: $input-height;
+	height: var(--input-height);
 	line-height: 2.2;
 	font-size: 18.7px;
 	border-radius: 2rem;
@@ -81,7 +81,7 @@ label span {
 }
 
 input:checked + span {
-	background: $teal-hc;
+	background: var(--teal-hc);
 	color: #fff;
 	font-weight: bold;
 }

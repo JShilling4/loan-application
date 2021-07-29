@@ -87,7 +87,7 @@ export default {
 .dropdown {
     position: absolute;
     bottom: -3rem;
-    color: $blue-green;
+    color: var(--blue-green);
     width: 100%;
     .option {
         display: block;

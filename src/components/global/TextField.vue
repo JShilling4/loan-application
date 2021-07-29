@@ -92,25 +92,25 @@ export default {
 		top: 20%;
 	}
 	&.light {
-		color: $blue-green;
+		color: var(--blue-green);
 		.dollarSign,
 		.percentSign {
-			color: $blue-green;
+			color: var(--blue-green);
 		}
 	}
 }
 input {
-	height: $input-height;
+	height: var(--input-height);
 	outline: none;
 	padding: 0.5rem 1rem 0.5rem;
-	border: 1px solid $blue-dark;
+	border: 1px solid var(--blue-dark);
 	width: 100%;
 	font-size: 16px;
 	background-color: transparent;
-	color: $blue-dark;
+	color: var(--blue-dark);
 	&:focus {
-		border-color: $teal;
-		box-shadow: $input-focused-border-shadow;
+		border-color: var(--teal);
+		box-shadow: var(--input-focused-border-shadow);
 	}
 
 	&.dark {
@@ -118,7 +118,7 @@ input {
 		background-color: transparent;
 		color: #fff;
 		&:focus {
-			border-color: $teal;
+			border-color: var(--teal);
 		}
 	}
 
@@ -148,19 +148,19 @@ input {
 
 	&::-webkit-input-placeholder {
 		/* Chrome/Opera/Safari */
-		color: $placeholder-opacity;
+		color: var(--placeholder-opacity);
 	}
 	&::-moz-placeholder {
 		/* Firefox 19+ */
-		color: $placeholder-opacity;
+		color: var(--placeholder-opacity);
 	}
 	&:-ms-input-placeholder {
 		/* IE 10+ */
-		color: $placeholder-opacity;
+		color: var(--placeholder-opacity);
 	}
 	&:-moz-placeholder {
 		/* Firefox 18- */
-		color: $placeholder-opacity;
+		color: var(--placeholder-opacity);
 	}
 }
 </style>

@@ -265,14 +265,14 @@ export default {
         .heading {
             margin-bottom: 4rem;
             text-align: center;
-            color: $teal-hc;
+            color: var(--teal-hc);
             font-weight: 600;
             font-size: 2.2rem;
         }
         p.label {
             margin-bottom: 0.5rem;
             font-size: 15px;
-            color: $blue-dark;
+            color: var(--blue-dark);
 
             &.inline {
                 margin-bottom: 0;
@@ -291,7 +291,7 @@ export default {
             display: flex;
         }
         .currentAddress {
-            color: $teal-hc;
+            color: var(--teal-hc);
             line-height: 1.5;
             margin-right: 6rem;
         }

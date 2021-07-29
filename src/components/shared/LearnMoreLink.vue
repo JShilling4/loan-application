@@ -49,7 +49,7 @@ div.learn-more {
 
 	&:hover .circle {
 		width: 100%;
-		background-color: $blue-green;
+		background-color: var(--blue-green);
 	}
 
 	.circle {
@@ -60,7 +60,7 @@ div.learn-more {
 		width: 4.8rem;
 		height: 4.8rem;
 		background: #fff;
-		border: 1px solid $blue-green;
+		border: 1px solid var(--blue-green);
 		border-radius: 26px;
 		.icon {
 			transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -80,8 +80,8 @@ div.learn-more {
 				right: 1px;
 				width: 10px;
 				height: 10px;
-				border-top: 2px solid $blue-green;
-				border-right: 2px solid $blue-green;
+				border-top: 2px solid var(--blue-green);
+				border-right: 2px solid var(--blue-green);
 				transform: rotate(45deg);
 			}
 		}
@@ -96,7 +96,7 @@ div.learn-more {
 		bottom: 0;
 		padding: 12px 0;
 		margin: 0 0 0 26px;
-		color: $blue-green;
+		color: var(--blue-green);
 		font-size: 18px;
 		font-weight: 500;
 		line-height: 1.5;
@@ -109,16 +109,16 @@ div.learn-more {
 		}
 		&:hover {
 			.text {
-				color: $blue-green;
+				color: var(--blue-green);
 			}
 			.circle {
 				background-color: #fff;
 			}
 
 			.circle .icon.arrow {
-				background-color: $blue-green;
+				background-color: var(--blue-green);
 				&:before {
-					border-color: $blue-green;
+					border-color: var(--blue-green);
 				}
 			}
 		}

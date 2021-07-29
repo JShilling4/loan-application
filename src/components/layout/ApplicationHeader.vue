@@ -65,8 +65,8 @@ header {
     display: flex;
     align-items: center;
     padding: 2rem 6rem 0;
-    // background-color: $blue-green;
-    // background: linear-gradient(90deg, $blue-dark, $blue-green);
+    // background-color: var(--blue-green);
+    // background: linear-gradient(90deg, var(--blue-dark), var(--blue-green));
     .topBar {
         display: flex;
         justify-content: space-between;

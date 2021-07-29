@@ -43,7 +43,7 @@ export default {
 
 	&.light {
 		.mark {
-			border-color: $blue-green;
+			border-color: var(--blue-green);
 			color: #fff;
 		}
 	}
@@ -62,7 +62,7 @@ export default {
 	.icon {
 		padding: 6px;
 		border-radius: 50%;
-		background-color: $teal;
+		background-color: var(--teal);
 		font-size: 30px;
 	}
 }
@@ -86,12 +86,12 @@ export default {
 	}
 
 	// &:checked + label::before {
-	// 	background-color: $teal;
+	// 	background-color: var(--teal);
 	// }
 
 	// &:focus + label::before {
 	// 	border-color: teal;
-	// 	box-shadow: 0 0 0 3px alpha($color: $teal);
+	// 	box-shadow: 0 0 0 3px alpha($color: var(--teal));
 	// }
 }
 </style>

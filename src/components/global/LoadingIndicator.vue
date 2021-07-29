@@ -52,7 +52,7 @@ export default {
 		background-position: center;
 		background-color: rgba(255, 255, 255, 0.98);
 		border-radius: 0.9rem;
-		border: 2px solid $teal;
+		border: 2px solid var(--teal);
 	}
 
 	&.button {
@@ -75,7 +75,7 @@ export default {
 			margin: 0 auto;
 			width: 13%;
 			height: 11%;
-			background-color: $teal-dark;
+			background-color: var(--teal-dark);
 			border-radius: 100%;
 			animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
 		}
