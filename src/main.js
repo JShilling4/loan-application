@@ -7,7 +7,7 @@ import GlobalComponents from "./includes/_globals";
 import FontAwesome from  "./includes/fontAwesome";
 import { clickOutside } from "./includes/directives";
 import Multiselect from "@vueform/multiselect";
-import i18n from './i18n'
+import i18n from "./includes/i18n";
 
 // Initiate mock API
 // if (process.env.NODE_ENV === "development") {
