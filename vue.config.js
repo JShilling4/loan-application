@@ -13,7 +13,6 @@ module.exports = {
                 sourceMap: true,
             },
         },
-        sourceMap: true,
     },
 
     devServer: {
@@ -21,14 +20,14 @@ module.exports = {
     },
 
     pluginOptions: {
-      i18n: {
-        locale: 'en',
-        fallbackLocale: 'en',
-        localeDir: 'locales',
-        enableLegacy: false,
-        runtimeOnly: false,
-        compositionOnly: false,
-        fullInstall: true
-      }
-    }
+        i18n: {
+            locale: "en",
+            fallbackLocale: "en",
+            localeDir: "locales",
+            enableLegacy: false,
+            runtimeOnly: false,
+            compositionOnly: false,
+            fullInstall: true,
+        },
+    },
 };

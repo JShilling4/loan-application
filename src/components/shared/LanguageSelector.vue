@@ -1,6 +1,6 @@
 <template>
     <div
-        class="languageSelector"
+        :class="['languageSelector', { light: theme === 'light', inline: isInline }]"
         v-click-outside="closeDropdown"
     >
         <span class="label">Preferred Language:</span>
@@ -34,6 +34,16 @@ import { mapState, mapActions } from "vuex";
 
 export default {
     name: "LanguageSelector",
+    props: {
+        theme: {
+            type: String,
+            default: "dark",
+        },
+        isInline: {
+            type: Boolean,
+            default: false,
+        },
+    },
     data() {
         return {
             showDropdown: false,
@@ -71,7 +81,38 @@ export default {
         margin-bottom: 3px;
         color: #fff;
     }
+    &.light {
+        .label {
+            color: var(--blue-green);
+            font-weight: 600;
+        }
+        .selected-container {
+            border-color: var(--blue-green);
+            color: var(--blue-green);
+        }
+        .dropdown {
+            .option {
+                border: 1px solid var(--blue-green);
+            }
+        }
+    }
+
+    &.inline {
+        display: flex;
+        align-items: center;
+        .label {
+            margin-right: .5rem;
+        }
+        .selected-container {
+            width: 12rem;
+        }
+        .dropdown {
+            right: 0;
+            width: 12rem;
+        }
+    }
 }
+
 .selected-container {
     position: relative;
     border: 1px solid #fff;

@@ -3,6 +3,7 @@ import application from "./modules/application";
 import borrower from "./modules/borrower";
 import coborrower from "./modules/coborrower";
 import navigation from "./modules/navigation";
+import portal from "./modules/portal";
 
 export default createStore({
     state() {
@@ -293,7 +294,7 @@ export default createStore({
     mutations: {
         CHANGE_LANGUAGE(state, language) {
             state.selectedLanguage = language;
-        }
+        },
     },
     actions: {
         changeLanguage({ commit }, language) {
@@ -305,5 +306,6 @@ export default createStore({
         borrower,
         coborrower,
         navigation,
+        portal
     },
 });

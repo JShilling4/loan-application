@@ -75,7 +75,7 @@ export default {
 			margin: 0 auto;
 			width: 13%;
 			height: 11%;
-			background-color: var(--teal-dark);
+			background-color: var(--loading-button-color, #fff);
 			border-radius: 100%;
 			animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
 		}

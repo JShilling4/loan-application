@@ -1,195 +1,275 @@
 <template>
-	<header class="internal-header">
-		<img
-			class="logo"
-			src="@/assets/images/loanButlerColorWithStone_logo.png"
-			alt="ruoff logo"
-			@click="$router.push('/')"
-		/>
+    <header class="internal-header">
+        <div class="content-wrapper">
+            <img
+                class="logo"
+                src="@/assets/images/loanButler_logo_white.svg"
+                alt="ruoff logo"
+                @click="$router.push('/')"
+            />
 
-		<div class="AlertForUserBasedOnApp"></div>
+            <div class="AlertForUserBasedOnApp"></div>
 
-		<div class="header-controls-block">
-			<a href="/faq" class="faqLink">FAQ</a>
-			<div class="contactInfoTrigger">
-				<span class="link">Contact</span>
-				<div class="contact-tooltip">
-					<a href="" class="tooltipPhone" style="display: none"></a>
-					<a href="mailto:beth.harris@ruoff.com" class="tooltipEmail">beth.harris@ruoff.com</a>
-					<span class="tooltipNmls">NMLS: 234510 </span>
-					<span class="tooltipNmls">NMLS: 234510 </span>
-					<span class="tooltipNmls">NMLS: 234510 </span>
-					<span class="tooltipNmls">NMLS: 234510 </span>
-					<span class="tooltipNmls">NMLS: 234510 </span>
-				</div>
-			</div>
-			<a class="signOut" href="/Account/SignOut">Log Out</a>
-		</div>
+            <div class="preferredLO">
+                <div class="lo-avatar-container">
+                    <img
+                        class="avatar"
+                        src="https://a.ruoff.com/image/16a3ae081bc129a09c7be451b4e1f224/size/110/type/ShortcutIcon"
+                        alt="@Resources.LocalizedText.PortraitMessage"
+                    />
+                </div>
 
-		<div class="preferredLO">
-			<loan-officer-info
-				avatar-url="https://a.ruoff.com/image/E48AF1FFD48BFECE7B48326C40DC40E7/size/75/type/ShortcutIcon"
-				name="Clint Morgan"
-				nmls="543452"
-			/>
-		</div>
-	</header>
+                <div class="tools-menu-container">
+                    <p class="loName">More Tools</p>
+                    <font-awesome-icon
+                        :icon="['fas', 'caret-down']"
+                        class="icon"
+                    />
+
+                    <div class="tools-menu">
+                        <div class="lo-section">
+                            <div class="avatar-wrapper">
+                                <img
+                                    class="avatar"
+                                    src="https://a.ruoff.com/image/16a3ae081bc129a09c7be451b4e1f224/size/110/type/ShortcutIcon"
+                                    alt="@Resources.LocalizedText.PortraitMessage"
+                                />
+                            </div>
+                            <p class="loName">Grant Music</p>
+                            <a
+                                class="loEmail"
+                                href="mailto:${loanOfficer.email}"
+                            >grant.music@ruoff.com</a>
+                        </div>
+
+                        <div class="tool-items">
+                            <router-link
+                                to="/faq"
+                                target="_blank"
+                                class="item"
+                            >
+                                <font-awesome-icon
+                                    :icon="['far', 'question-square']"
+                                    class="icon"
+                                />
+                                <span>FAQs</span>
+                                <font-awesome-icon
+                                    :icon="['far', 'chevron-right']"
+                                    class="icon"
+                                />
+                            </router-link>
+                            <div class="item contactModalTrigger">
+                                <font-awesome-icon
+                                    :icon="['far', 'address-book']"
+                                    class="icon"
+                                />
+                                <span>Contact</span>
+                                <font-awesome-icon
+                                    :icon="['far', 'chevron-right']"
+                                    class="icon"
+                                />
+                            </div>
+                            <a class="signOut item">
+                                <font-awesome-icon
+                                    :icon="['fas', 'sign-out-alt']"
+                                    class="icon"
+                                />
+                                <span>Log Out</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 </template>
 
 <script>
-import LoanOfficerInfo from "@/components/LoanOfficerInfo.vue";
+
 
 export default {
-	name: "PortalHeader",
-	components: {
-		// "language-selector": () => import("@/components/shared/LanguageSelector.vue"),
-		"loan-officer-info": LoanOfficerInfo,
-	},
-	props: {
-		currentView: {
-			type: String,
-		},
-	},
-	computed: {
-		loAvatarShouldShow() {
-			if (this.currentView == "application" || this.currentView == "portal") {
-				return true;
-			}
-			return false;
-		},
-	},
+    name: "PortalHeader",
+    components: {},
+    props: {
+        currentView: {
+            type: String,
+        },
+    },
+    computed: {
+        loAvatarShouldShow() {
+            if (
+                this.currentView == "application" ||
+                this.currentView == "portal"
+            ) {
+                return true;
+            }
+            return false;
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 .internal-header {
-	position: fixed;
-	display: flex;
-	align-items: center;
-	width: 1240px;
-	left: 50%;
-  transform: translateX(-50%);
-	padding: 2rem 2rem 1.5rem;
+    position: relative;
+    background: linear-gradient(
+        to right,
+        var(--blue-dark),
+        var(--blue-green),
+        var(--teal-dark)
+    );
+    background-image: url("~@/assets/images/header_bg.jpg");
 
-	@include breakpoint(tablet-land) {
-		align-items: unset;
-		padding-bottom: 4.3rem;
-	}
+    .content-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
 
-	@include breakpoint(mobile) {
-		flex-wrap: wrap;
-	}
+    .logo {
+        padding: 2rem 0 1.5rem;
+        @include breakpoint(tablet-land) {
+            height: 80px;
+        }
+        @include breakpoint(tablet-port) {
+            height: 65px;
+        }
+    }
 
-	.logo {
-		height: 80px;
+    .preferredLO {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: auto;
+        padding: 2rem 0 1.5rem;
 
-		@include breakpoint(tablet-land) {
-			height: 50px;
-		}
+        @include breakpoint(mobile) {
+            top: 11.5rem;
+        }
 
-		@include breakpoint(mobile) {
-			height: 35px;
-		}
-	}
+        &:hover .icon.fa-caret-down {
+            transform: rotate(180deg);
+        }
 
-	.header-controls-block {
-		display: flex;
-		align-items: center;
-		align-self: flex-end;
-		margin: 0 0 2px auto;
-		cursor: pointer;
+        &:hover .tools-menu-container .tools-menu {
+            transform: scale(1);
+        }
+        .lo-avatar-container {
+            height: 50px;
+            img.avatar {
+                height: 50px;
+                width: 50px;
+                border: 2px solid var(--teal-dark);
+                border-radius: 50%;
+                margin-right: 0.5rem;
+            }
+        }
 
-		@include breakpoint(tablet-land) {
-			// flex-direction: column;
-			// justify-content: flex-end;
-			margin: 0 0 -3rem auto;
-		}
+        .tools-menu-container {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+            color: #fff;
+            font-weight: 500;
 
-		@include breakpoint(mobile) {
-		}
+            p {
+                cursor: default;
+            }
+            .icon.fa-caret-down {
+                margin-left: 0.5rem;
+                transition: transform 0.3s;
+            }
 
-		.signOut,
-		.contactInfoTrigger,
-		.faqLink {
-			margin-right: 2rem;
-			color: var(--teal);
-			text-decoration: underline;
+            .tools-menu {
+                position: absolute;
+                right: 0;
+                top: 11.2rem;
+                z-index: 1000;
+                border-left: 1px solid var(--container-border-color);
+                border-right: 1px solid var(--container-border-color);
+                border-bottom: 1px solid var(--container-border-color);
+                width: 25rem;
+                background-color: #fff;
+                color: #333;
+                box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+                transform: scale(0);
+                transform-origin: top right;
+                transition: transform 0.3s;
 
-			@include breakpoint(tablet-land) {
-				margin-left: auto;
-				margin-right: 0;
-				&:not(.contactInfoTrigger) {
-					margin-left: 2rem;
-				}
-			}
+                .lo-section {
+                    padding: 1rem;
+                    text-align: center;
+                    border-bottom: 1px solid var(--container-border-color);
+                    .avatar-wrapper {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 70px;
+                        height: 70px;
+                        margin: 0 auto;
+                        border-radius: 50%;
+                        background: linear-gradient(
+                            to bottom,
+                            var(--orange),
+                            var(--blue-green)
+                        );
+                        img {
+                            border-radius: 50%;
+                            width: 60px;
+                        }
+                    }
+                    .loName {
+                        color: var(--blue-green);
+                        font-weight: 700;
+                    }
+                    .loEmail {
+                        font-size: 1.2rem;
+                        color: var(--portal-gray);
+                        &:hover {
+                            color: var(--orange);
+                        }
+                    }
+                }
 
-			&:hover {
-				color: var(--orange);
-			}
-		}
-
-		.contactInfoTrigger {
-			position: relative;
-			@include breakpoint(tablet-land) {
-				position: absolute;
-				left: 2rem;
-				bottom: -11.75rem;
-			}
-
-			@include breakpoint(mobile) {
-				bottom: -11rem;
-			}
-
-			.contact-tooltip {
-				display: none;
-				position: absolute;
-				left: 50%;
-				bottom: 2.5rem;
-				transform: translateX(-50%);
-				background-color: var(--blue-dark);
-				padding: 1rem;
-				border-radius: 5px;
-				color: #fff;
-				@include breakpoint(tablet-land) {
-					left: 0;
-					transform: translateX(0);
-					z-index: 15;
-				}
-				a {
-					color: #fff;
-				}
-				span {
-					display: block;
-					&:last-child {
-						margin-top: 3px;
-					}
-				}
-			}
-		}
-	}
-
-	.preferredLO {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin-left: 1.2rem;
-
-		@include breakpoint(tablet-land) {
-			position: absolute;
-			top: 13.5rem;
-			margin-left: 0;
-			align-items: flex-start;
-		}
-
-		@include breakpoint(mobile) {
-			top: 11.5rem;
-		}
-
-		.lo-info-block {
-			margin-top: 0.5rem;
-			text-align: center;
-			color: var(--blue-green);
-		}
-	}
+                .tool-items {
+                    .item {
+                        display: flex;
+                        align-items: center;
+                        padding: 1rem 1rem 1rem 1.5rem;
+                        cursor: pointer;
+                        color: #333;
+                        font-size: 1.2rem;
+                        .icon {
+                            color: #5c5c5c;
+                            &.fa-chevron-right {
+                                margin-left: auto;
+                                font-size: 1.4rem;
+                                transition: transform 0.3s;
+                            }
+                        }
+                        span {
+                            margin-left: 1rem;
+                        }
+                        &:hover {
+                            background-color: #f7f7f7;
+                            color: var(--orange);
+                            .icon {
+                                color: var(--orange);
+                                &.fa-chevron-right {
+                                    color: var(--teal);
+                                    transform: translateX(-3px);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+
 </style>

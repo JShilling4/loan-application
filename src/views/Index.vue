@@ -182,6 +182,7 @@ export default {
     align-items: center;
     width: 50%;
     padding: 2rem 4rem;
+    background-color: var(--teal-dark);
     background-image: url("~@/assets/images/externalPage_bg.jpg");
     background-size: cover;
     background-position: center;
