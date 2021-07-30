@@ -27,7 +27,7 @@
                     <span class="value loanNumber">
                         9800000024009
                     </span>
-                    <button class="btn green-clear jumpToHistory">Jump to Loan History</button>
+                    <app-button class-list="teal-outline jumpToHistoryButton">Jump to Loan History</app-button>
                 </div>
                 <div class="info-group">
                     <label class="label">Property:</label>
@@ -44,14 +44,11 @@
             </div>
         </div>
     </div>
-    <div
-        class="start-application-container-desktop"
-        style="display: block;"
-    >
-        <button class="btn green-fill start-application-btn-desktop">
-            Start New Application
-        </button>
-    </div>
+
+    <app-button class-list="teal-fill">
+        Start New Application
+    </app-button>
+
 </template>
 
 <script>
@@ -63,7 +60,7 @@ export default {
 <style lang="scss" scoped>
 .profile-card {
     background-color: #fff;
-
+    margin-bottom: 2rem;
     .id-container {
         display: flex;
         align-items: center;
@@ -97,16 +94,18 @@ export default {
 
             .value {
                 color: var(--blue-green);
-                font-weight: 800;
+                font-weight: 700;
                 &.loanNumber {
                     color: var(--teal);
                 }
             }
         }
-        .jumpToHistory {
+        .jumpToHistoryButton {
             display: block;
             width: 18rem;
             margin-top: 0.5rem;
+            font-size: 12px;
+            height: 3rem;
         }
     }
 }

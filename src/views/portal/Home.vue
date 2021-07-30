@@ -2,7 +2,6 @@
     <div class="main-content">
         <div class="home-controls">
             <contrast-toggle />
-
             <language-selector
                 theme="light"
                 :is-inline="true"
@@ -13,34 +12,20 @@
             :milestones="milestones"
             :milestone-progress="milestoneProgress"
         />
-
-        <div class="file-update">
-            <h3 class="heading">Latest File Update:&nbsp;</h3>
-            <p class="update">
-                {{ sortedFileUpdates[0].text }}
-                <span
-                    v-if="fileUpdates.length > 1"
-                    class="previousUpdatesTrigger"
-                >Previous Updates...</span>
-            </p>
-        </div>
+        <file-updates />
 
         <section class="card-container">
-
             <div class="card-column-1">
                 <profile-card />
             </div>
 
             <div class="card-column-2">
                 <todo-list-card />
-
                 <loan-history-card />
             </div>
 
             <div class="card-column-3">
-
                 <uploaded-documents-card />
-
                 <completed-disclosures-card />
             </div>
 
@@ -62,6 +47,7 @@ import TodoListCard from "@/components/portal/TodoListCard.vue";
 import LoanHistoryCard from "@/components/portal/LoanHistoryCard.vue";
 import UploadedDocumentsCard from "@/components/portal/UploadedDocumentsCard.vue";
 import CompletedDisclosuresCard from "@/components/portal/CompletedDisclosuresCard.vue";
+import FileUpdates from '@/components/portal/fileUpdates/FileUpdates.vue';
 
 export default {
     name: "Portal",
@@ -75,6 +61,7 @@ export default {
         "loan-history-card": LoanHistoryCard,
         "uploaded-documents-card": UploadedDocumentsCard,
         "completed-disclosures-card": CompletedDisclosuresCard,
+        "file-updates": FileUpdates,
     },
     computed: {
         ...mapState(["portal"]),
@@ -83,17 +70,6 @@ export default {
         },
         milestoneProgress() {
             return this.portal.milestoneProgress;
-        },
-        fileUpdates() {
-            return this.portal.fileUpdates;
-        },
-        sortedFileUpdates() {
-            return this.portal.fileUpdates
-                .slice()
-                .sort(
-                    (a, b) =>
-                        new Date(b.loggedDatetime) - new Date(a.loggedDatetime)
-                );
         },
     },
 };
@@ -113,22 +89,15 @@ body {
     font-size: 1.4rem;
     color: #929292;
 }
-h1 {
-    margin-top: 8rem;
-    color: var(--blue-green);
-}
-h2 {
-    font-size: 1.6rem;
-}
-h3 {
-    color: var(--blue-green);
-}
 
 .card-body {
     transition: max-height 0.5s;
     @include breakpoint(tablet-land) {
         max-height: 0;
         overflow-y: hidden;
+    }
+    h3 {
+        color: var(--blue-green);
     }
     &.card-body--toDoList {
         @include breakpoint(tablet-land) {
@@ -161,7 +130,12 @@ h3 {
     display: flex;
     justify-content: space-between;
     color: #fff;
-    background: linear-gradient(to right, var(--blue-dark), var(--blue-green));
+    background: linear-gradient(
+        to right,
+        var(--blue-dark),
+        var(--blue-green),
+        var(--teal-dark)
+    );
     padding: 2rem;
     letter-spacing: 1px;
     cursor: pointer;
@@ -173,6 +147,7 @@ h3 {
 .card-column-2 .heading,
 .card-column-3 .heading {
     font-weight: 700;
+    font-size: 1.6rem;
     @include breakpoint(mobile) {
         font-size: 1.5rem;
     }
@@ -235,42 +210,6 @@ h3 {
     }
     @include breakpoint(mobile) {
         padding-top: 1rem;
-    }
-}
-
-.file-update {
-    display: flex;
-    justify-content: center;
-    margin: 3rem auto;
-    max-width: 1200px;
-    .heading {
-        white-space: nowrap;
-        font-weight: 800;
-        font-size: 1.4rem;
-    }
-    .update {
-        max-width: 100rem;
-        margin-left: 0.5rem;
-        font-weight: 600;
-        color: #00485c;
-        line-height: 1.5;
-
-        .previousUpdatesTrigger {
-            margin-left: 0.5rem;
-            color: var(--teal);
-            text-decoration: underline;
-            cursor: pointer;
-            transition: color 0.3s;
-            font-weight: 600;
-
-            @include breakpoint(tablet-land) {
-                color: #fff;
-            }
-
-            &:hover {
-                color: var(--orange);
-            }
-        }
     }
 }
 

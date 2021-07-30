@@ -153,5 +153,11 @@ export default {
     },
     mutations: {},
     actions: {},
-    getters: {},
+    getters: {
+        sortedFileUpdates: (state) => {
+            return state.fileUpdates
+                .slice()
+                .sort((a, b) => new Date(b.loggedDatetime) - new Date(a.loggedDatetime));
+        }
+    },
 };
