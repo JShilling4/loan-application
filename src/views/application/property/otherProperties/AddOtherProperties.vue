@@ -43,9 +43,9 @@
 <script>
 import property from "@/mixins/property";
 import otherProperties from "@/mixins/otherProperties";
-import AppTable from "@/components/shared/AppTable.vue";
-import AddButton from "@/components/shared/AddButton.vue";
-import PropertiesModal from "@/components/shared/PropertiesModal.vue";
+import AppTable from "@/components/AppTable.vue";
+import AddButton from "@/components/AddButton.vue";
+import PropertiesModal from "@/components/PropertiesModal.vue";
 
 export default {
 	name: "addOtherProperties",

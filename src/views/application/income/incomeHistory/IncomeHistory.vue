@@ -23,8 +23,8 @@
 
 <script>
 import income from "@/mixins/income";
-import AddButton from "@/components/shared/AddButton.vue";
-import AppTable from "@/components/shared/AppTable.vue";
+import AddButton from "@/components/AddButton.vue";
+import AppTable from "@/components/AppTable.vue";
 
 export default {
     name: "IncomeHistory",

@@ -76,6 +76,7 @@ export default {
     position: relative;
     min-width: 12rem;
     font-size: 14px;
+    z-index: 10;
     .label {
         display: inline-block;
         margin-bottom: 3px;
@@ -88,11 +89,13 @@ export default {
         }
         .selected-container {
             border-color: var(--blue-green);
-            color: var(--blue-green);
+            color: var(--teal);
         }
         .dropdown {
             .option {
                 border: 1px solid var(--blue-green);
+                color: var(--teal);
+                font-weight: 600;
             }
         }
     }

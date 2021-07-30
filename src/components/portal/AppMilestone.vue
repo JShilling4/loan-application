@@ -1,5 +1,5 @@
 <template>
-    <div class="ms complete">
+    <div :class="['ms', progress.status === 'completed' ? 'complete' : 'incomplete']">
         <div class="label-date-wrapper">
             <font-awesome-icon
                 :icon="['fal', 'info-circle']"
@@ -10,11 +10,11 @@
                 {{ milestone.tooltipText }}
             </span>
             <div class="label-wrapper ">
-                <span class="text">{{ milestone.title }}</span>
+                <span class="text">{{ englishIsSelected ? milestone.englishTitle : milestone.spanishTitle }}</span>
             </div>
             <span class="text-overflow">{{ milestone.title }}</span>
 
-            <span class="date">date here</span>
+            <span class="date">{{ progress.completedDate }}</span>
         </div>
         <span class="dot">
             <font-awesome-icon
@@ -32,7 +32,15 @@ export default {
         milestone: {
             type: Object,
         },
+        progress: {
+            type: Object,
+        }
     },
+    computed: {
+        englishIsSelected() {
+            return this.$i18n.locale === "en";
+        }
+    }
 };
 </script>
 

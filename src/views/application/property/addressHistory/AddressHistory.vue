@@ -80,10 +80,10 @@
 <script>
 import property from "@/mixins/property";
 import addressHistory from "@/mixins/addressHistory";
-import AppTable from "@/components/shared/AppTable.vue";
-import AddButton from "@/components/shared/AddButton.vue";
-import CurrentAddressModal from "@/components/shared/CurrentAddressModal.vue";
-import PreviousAddressModal from "@/components/shared/PreviousAddressModal.vue";
+import AppTable from "@/components/AppTable.vue";
+import AddButton from "@/components/AddButton.vue";
+import CurrentAddressModal from "@/components/CurrentAddressModal.vue";
+import PreviousAddressModal from "@/components/PreviousAddressModal.vue";
 
 export default {
     name: "AddressHistory",

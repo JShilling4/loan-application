@@ -99,7 +99,7 @@
 
 <script>
 import { vueVimeoPlayer } from "vue-vimeo-player";
-import LearnMoreLink from "@/components/shared/LearnMoreLink.vue";
+import LearnMoreLink from "@/components/LearnMoreLink.vue";
 
 export default {
     name: "Index",

@@ -28,8 +28,8 @@ export default {
 	name: "IncomeHistory",
 	mixins: [income],
 	components: {
-		"add-button": () => import("@/components/shared/AddButton.vue"),
-		"app-table": () => import("@/components/shared/AppTable.vue")
+		"add-button": () => import("@/components/AddButton.vue"),
+		"app-table": () => import("@/components/AppTable.vue")
 	},
 	data() {
 		return {

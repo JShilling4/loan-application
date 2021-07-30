@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import LanguageSelector from "@/components/shared/LanguageSelector.vue";
+import LanguageSelector from "@/components/LanguageSelector.vue";
 
 export default {
     name: "ApplicationHeader",

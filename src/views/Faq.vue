@@ -138,7 +138,7 @@
 
 <script>
 import faqData from "@/assets/resources/faqs.json";
-import LanguageSelector from "@/components/shared/LanguageSelector.vue";
+import LanguageSelector from "@/components/LanguageSelector.vue";
 import ExternalFooter from "@/components/layout/ExternalFooter.vue";
 
 export default {

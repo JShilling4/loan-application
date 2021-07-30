@@ -15,7 +15,12 @@
                 class="ms-container milestone-component"
                 id="ms-container"
             >
-                <app-milestone v-for="milestone in milestones" :key="milestone.id" :milestone="milestone" />
+                <app-milestone
+                    v-for="milestone in milestones"
+                    :key="milestone.id"
+                    :milestone="milestone"
+                    :progress="progress(milestone.id)"
+                />
             </div>
             <font-awesome-icon
                 :icon="['fas', 'arrow-right']"
@@ -28,19 +33,26 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import AppMilestone from "@/components/AppMilestone.vue";
+
+import AppMilestone from "@/components/portal/AppMilestone.vue";
 
 export default {
     name: "MilestoneTimeline",
     components: {
         "app-milestone": AppMilestone,
     },
-    computed: {
-        ...mapState(["portal"]),
-        milestones() {
-            return this.portal.milestones;
+    props: {
+        milestones: {
+            type: Array,
         },
+        milestoneProgress: {
+            type: Array,
+        },
+    },
+    methods: {
+        progress(milestoneId) {
+            return this.milestoneProgress.find((progress) => progress.milestoneId === milestoneId)
+        }
     }
 };
 </script>
