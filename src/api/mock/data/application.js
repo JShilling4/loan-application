@@ -1,7 +1,7 @@
 export default {
 	progress: {
-		profile: 3,
-		about: 11,
+		profile: null,
+		about: null,
 		property: null,
 		income: null,
 		assets: null,

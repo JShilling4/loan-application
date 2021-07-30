@@ -137,7 +137,6 @@ export default {
     width: 50%;
     padding: 2rem 4rem;
     background-color: #f1f1f1;
-    // background-color: #fff;
     .ruoffLogo {
         display: block;
     }

@@ -6,28 +6,28 @@
 		<div class="inline-form-group">
 			<!-- Street Address -->
 			<div class="input-group">
-				<app-label class-list="dark" for="route"
+				<app-label class-list="dark" for="address"
 					>Home Address</app-label
 				>
 				<text-field
-					id="addressAutocomplete"
+					id="address"
 					class-list="dark"
 					type="text"
-					name="HomeAddress"
+					name="address"
 					v-model="localProfile.streetAddress"
 				/>
 			</div>
 
 			<!-- Unit -->
 			<div class="input-group short">
-				<app-label class-list="dark" for="unitNumber"
+				<app-label class-list="dark" for="suite"
 					>Unit / Apt.</app-label
 				>
 				<text-field
 					class-list="dark"
-					id="unitNumber"
+					id="suite"
 					type="text"
-					name="Unit"
+					name="suite"
 					v-model="localProfile.unit"
 				/>
 			</div>
@@ -38,9 +38,9 @@
 			<app-label class-list="dark">City</app-label>
 			<text-field
 				class-list="dark"
-				id="dynamicId"
+				id="city"
 				type="text"
-				name="City"
+				name="city"
 				v-model="localProfile.city"
 			/>
 		</div>
@@ -53,6 +53,7 @@
 				<multi-select
 					:options="states"
 					:can-clear="false"
+                    name="state"
 					v-model="localProfile.state"
 				/>
 			</div>
@@ -61,8 +62,9 @@
 			<div class="input-group short">
 				<app-label class-list="dark" for="zipcode">Zip Code</app-label>
 				<text-field
-					type="tel"
+					type="number"
 					id="zipcode"
+                    name="zipcode"
 					class-list="dark"
 					v-model="localProfile.zipcode"
 				/>

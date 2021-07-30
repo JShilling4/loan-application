@@ -30,7 +30,7 @@
                     id="middleInitial"
                     type="text"
                     maxlength="1"
-                    name="MiddleInitial"
+                    name="middleInitial"
                     v-model="localProfile.middleInitial"
                 />
             </div>
@@ -42,13 +42,13 @@
             <div class="input-group">
                 <app-label
                     class-list="dark"
-                    for="lname"
+                    for="lastName"
                 >Last Name</app-label>
                 <text-field
                     class-list="dark"
-                    id="lname"
+                    id="lastName"
                     type="text"
-                    name="LastName"
+                    name="lastName"
                     v-model="localProfile.lastName"
                 />
             </div>
@@ -68,10 +68,12 @@
 
         <!-- Email -->
         <div class="input-group">
-            <app-label class-list="dark">Email Address</app-label>
+            <app-label class-list="dark" for="email">Email Address</app-label>
             <text-field
                 type="text"
                 class-list="dark"
+                id="email"
+                name="email"
                 v-model="localProfile.email"
             />
         </div>
@@ -105,6 +107,7 @@
 					{ value: 'Married', label: 'Married' },
 					{ value: 'Separated', label: 'Separated' }
 				]"
+                id="maritalStatus"
                 :can-clear="false"
                 v-model="localProfile.maritalStatus"
             />

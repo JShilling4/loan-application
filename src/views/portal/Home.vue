@@ -19,6 +19,10 @@
                 <h3 class="heading">Latest File Update:&nbsp;</h3>
                 <p class="update">
                     {{ sortedFileUpdates[0].text }}
+                    <span
+                        v-if="fileUpdates.length > 1"
+                        class="previousUpdatesTrigger"
+                    >Previous Updates...</span>
                 </p>
             </div>
         </main>
@@ -45,6 +49,9 @@ export default {
         },
         milestoneProgress() {
             return this.portal.milestoneProgress;
+        },
+        fileUpdates() {
+            return this.portal.fileUpdates;
         },
         sortedFileUpdates() {
             return this.portal.fileUpdates
@@ -120,6 +127,23 @@ body {
         font-weight: 600;
         color: #00485c;
         line-height: 1.5;
+
+        .previousUpdatesTrigger {
+			margin-left: 0.5rem;
+			color: var(--teal);
+			text-decoration: underline;
+			cursor: pointer;
+			transition: color 0.3s;
+			font-weight: 600;
+
+			@include breakpoint(tablet-land) {
+				color: #fff;
+			}
+
+			&:hover {
+				color: var(--orange);
+			}
+		}
     }
 }
 </style>

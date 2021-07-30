@@ -11,6 +11,8 @@
 			:class="[classList, { hasIcon: isCurrency || isPercentage }]"
 			:style="styleObject"
 			:value="modelValue"
+            :name="name"
+            :id="id"
 			@input="$emit('update:modelValue', $event.target.value)"
 			:tabindex="tabIndex"
 		/>
@@ -57,7 +59,13 @@ export default {
 		},
 		theme: {
 			type: String
-		}
+		},
+        name: {
+            type: String,
+        },
+        id: {
+            type: String,
+        }
 	},
 	data() {
 		return {

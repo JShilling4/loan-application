@@ -9,8 +9,10 @@
             <span class="tooltip-text">
                 {{ milestone.tooltipText }}
             </span>
-            <div class="label-wrapper ">
-                <span class="text">{{ englishIsSelected ? milestone.englishTitle : milestone.spanishTitle }}</span>
+            <div class="label-wrapper">
+                <span class="text">
+                    {{ englishIsSelected ? milestone.englishTitle : milestone.spanishTitle }}
+                </span>
             </div>
             <span class="text-overflow">{{ milestone.title }}</span>
 
@@ -34,13 +36,13 @@ export default {
         },
         progress: {
             type: Object,
-        }
+        },
     },
     computed: {
         englishIsSelected() {
             return this.$i18n.locale === "en";
-        }
-    }
+        },
+    },
 };
 </script>
 
