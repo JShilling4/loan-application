@@ -2,52 +2,58 @@
     <div class="portal">
         <main>
             <div class="home-controls">
-                <!-- Contrast Toggle -->
-                <div class="contrast-toggle-container">
-                    <span class="label">High Contrast:</span>
-                    <div class="onoffswitch">
-                        <input
-                            type="checkbox"
-                            name="onoffswitch"
-                            class="onoffswitch-checkbox"
-                            id="myonoffswitch"
-                            tabindex="0"
-                        >
-                        <label
-                            class="onoffswitch-label"
-                            for="myonoffswitch"
-                            ariahidden="true"
-                        >
-                            <span class="ada-shusher">.</span>
-                            <span class="onoffswitch-inner"></span>
-                            <span class="onoffswitch-switch"></span>
-                        </label>
-                    </div>
-                </div>
+                <contrast-toggle />
 
-                <!-- Preferred Language -->
-                <div class="languageSelector-container">
-                    <language-selector
-                        theme="light"
-                        :is-inline="true"
-                    />
-                </div>
+                <language-selector
+                    theme="light"
+                    :is-inline="true"
+                />
             </div>
 
-            <milestone-timeline />
+            <milestone-timeline
+                :milestones="milestones"
+                :milestone-progress="milestoneProgress"
+            />
+
+            <div class="file-update">
+                <h3 class="heading">Latest File Update:&nbsp;</h3>
+                <p class="update">
+                    {{ sortedFileUpdates[0].text }}
+                </p>
+            </div>
         </main>
     </div>
 </template>
 
 <script>
-import LanguageSelector from "@/components/shared/LanguageSelector.vue";
-import MilestoneTimeline from "@/components/MilestoneTimeline.vue";
+import { mapState } from "vuex";
+import LanguageSelector from "@/components/LanguageSelector.vue";
+import MilestoneTimeline from "@/components/portal/MilestoneTimeline.vue";
+import ContrastToggle from "@/components/portal/ContrastToggle.vue";
 
 export default {
     name: "Portal",
     components: {
         "language-selector": LanguageSelector,
-        "milestone-timeline": MilestoneTimeline
+        "milestone-timeline": MilestoneTimeline,
+        "contrast-toggle": ContrastToggle,
+    },
+    computed: {
+        ...mapState(["portal"]),
+        milestones() {
+            return this.portal.milestones;
+        },
+        milestoneProgress() {
+            return this.portal.milestoneProgress;
+        },
+        sortedFileUpdates() {
+            return this.portal.fileUpdates
+                .slice()
+                .sort(
+                    (a, b) =>
+                        new Date(b.loggedDatetime) - new Date(a.loggedDatetime)
+                );
+        },
     },
 };
 </script>
@@ -62,12 +68,18 @@ export default {
     --ms-timeline-width: 1200px;
     --ms-track-width: 15rem;
 }
+body {
+    font-size: 1.4rem;
+}
 </style>
 
 <style lang="scss" scoped>
 .portal {
     h1 {
         margin-top: 8rem;
+        color: var(--blue-green);
+    }
+    h3 {
         color: var(--blue-green);
     }
 }
@@ -92,100 +104,22 @@ export default {
     }
 }
 
-.contrast-toggle-container {
-	display: flex;
-	align-items: center;
-
-	@include breakpoint(mobile) {
-		top: 7rem;
-	}
-
-	.label {
-		color: var(--blue-dark);
-		margin-right: 1rem;
-	}
-}
-
-.onoffswitch {
-	position: relative;
-	width: 43px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-    user-select: none;
-}
-
-.onoffswitch-checkbox {
-	position: absolute;
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
-}
-
-.onoffswitch-label {
-	display: block;
-	overflow: hidden;
-	cursor: pointer;
-	border-radius: 50px;
-	.ada-shusher {
-		display: none;
-	}
-}
-
-.onoffswitch-inner {
-	display: block;
-	width: 200%;
-	margin-left: -100%;
-	transition: margin 0.3s ease-in 0s;
-}
-
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-	display: block;
-	float: left;
-	width: 50%;
-	height: 21px;
-	padding: 0;
-	line-height: 21px;
-	font-size: 8px;
-	color: white;
-	font-family: Trebuchet, Arial, sans-serif;
-	font-weight: bold;
-	box-sizing: border-box;
-}
-
-.onoffswitch-inner:before {
-	content: "ON";
-	padding-left: 7px;
-	background-color: var(--teal);
-	color: #FFFFFF;
-}
-
-.onoffswitch-inner:after {
-	content: "OFF";
-	padding-right: 7px;
-	background-color: var(--blue-green);
-	color: #FFFFFF;
-	text-align: right;
-}
-
-.onoffswitch-switch {
-	display: block;
-	width: 11px;
-	margin: 5px;
-	background: #FFFFFF;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 23px;
-	border-radius: 50px;
-	transition: all 0.3s ease-in 0s;
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-	margin-left: 0;
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-	right: 0px;
+.file-update {
+    display: flex;
+    justify-content: center;
+    margin: 3rem auto;
+    max-width: 1200px;
+    .heading {
+        white-space: nowrap;
+        font-weight: 800;
+        font-size: 1.4rem;
+    }
+    .update {
+        max-width: 100rem;
+        margin-left: 0.5rem;
+        font-weight: 600;
+        color: #00485c;
+        line-height: 1.5;
+    }
 }
 </style>
