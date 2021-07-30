@@ -74,7 +74,7 @@ export default {
 	align-items: center;
 	margin-bottom: 2rem;
 	background-color: transparent;
-	border-radius: 2rem;
+	border-radius: var(--app-border-radius);
 	min-width: 17rem;
 	cursor: pointer;
 	padding: 0.25rem 1rem 0.25rem;

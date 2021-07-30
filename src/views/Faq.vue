@@ -265,10 +265,10 @@ div.topics {
         .keywordSearch {
             max-width: 18rem;
             height: 2.5rem;
-            padding: 0.5rem 3rem 0.2rem 1rem;
+            padding: 0.5rem 3rem 0.5rem 1rem;
             background-color: transparent;
             border: 1px solid rgba(255, 255, 255, 0.452);
-            border-radius: 2rem;
+            border-radius: var(--app-border-radius);
             color: #fff;
             outline: none;
             &::placeholder {
@@ -286,13 +286,13 @@ div.topics {
         display: flex;
         flex-wrap: wrap;
         .topic {
-            padding: 0.75rem 1rem 0.5rem;
+            padding: 0.75rem 1rem;
             margin-bottom: 2rem;
             cursor: pointer;
             letter-spacing: 1px;
             transition: color 0.3s, background-color 0.3s;
             border: 1px solid rgba(255, 255, 255, 0.452);
-            border-radius: 2rem;
+            border-radius: var(--app-border-radius);
             @include breakpoint(tablet-port) {
                 font-size: 12px;
             }

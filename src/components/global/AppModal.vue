@@ -135,7 +135,7 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: #ffffff;
-        border-radius: 5px;
+        border-radius: var(--app-border-radius);
         margin: 10rem auto 50px;
         padding: 2rem 3rem;
         display: flex;

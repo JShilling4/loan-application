@@ -119,7 +119,7 @@ export default {
 .selected-container {
     position: relative;
     border: 1px solid #fff;
-    border-radius: 2rem;
+    border-radius: var(--app-border-radius);
     padding: 0.5rem 1rem 0.25rem;
     color: #fff;
     cursor: pointer;
@@ -139,7 +139,7 @@ export default {
         display: block;
         padding: 0.5rem 1rem 0.25rem;
         background-color: #fff;
-        border-radius: 2rem;
+        border-radius: var(--app-border-radius);
         font-weight: 500;
         cursor: pointer;
     }

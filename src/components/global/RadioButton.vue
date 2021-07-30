@@ -75,7 +75,7 @@ label span {
 	height: var(--input-height);
 	line-height: 2;
 	font-size: 18.7px;
-	border-radius: 2rem;
+	border-radius: var(--app-border-radius);
 	border: 1px solid #fff;
 	color: #fff;
 }

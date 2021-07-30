@@ -42,7 +42,7 @@ export default {
 		},
 		borderRadius: {
 			type: String,
-			default: "2rem"
+			default: "5px"
 		},
 		padding: {
 			type: String,
