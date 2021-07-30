@@ -99,7 +99,7 @@ button {
 	font-weight: bold;
 	height: var(--input-height);
 	width: 100%;
-	font-size: 18.7px;
+	font-size: 16px;
 	letter-spacing: 0.75px;
 
 	.icon {
@@ -111,8 +111,5 @@ button {
 			left: 1.5rem;
 		}
 	}
-
-	/* &.posting {
-	} */
 }
 </style>

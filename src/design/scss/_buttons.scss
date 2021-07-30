@@ -48,10 +48,19 @@
 
 .teal-fill {
 	color: #fff;
-	background-color: var(--teal-hc);
+	background-color: var(--teal-dark);
 	border: 1px solid transparent;
 	&:hover {
-		border-color: #fff;
+		background-color: var(--orange);
+	}
+}
+.teal-outline {
+	color: var(--teal-dark);
+	background-color: transparent;
+	border: 1px solid var(--teal-dark);
+	&:hover {
+        color: #fff;
+		background-color: var(--teal-dark);
 	}
 }
 
