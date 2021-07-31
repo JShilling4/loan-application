@@ -13,7 +13,7 @@
 				<font-awesome-icon :icon="['fas', 'check']" class="icon" />
 			</div>
 		</div>
-		<span class="label">{{ label }}</span>
+		<span class="label">{{ $t(`global.${label.toLowerCase()}`) }}</span>
 	</div>
 </template>
 

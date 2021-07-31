@@ -94,14 +94,14 @@ export default {
     methods: {
         ...mapActions([
             "updateApplication",
-            "updateBorrowerProfile",
+            "fetchBorrowerProfile",
             "updateCoborrowerProfile",
         ]),
     },
     mounted() {
         // DATA NEEDED TO LOAD PAGE
         this.updateApplication();
-        this.updateBorrowerProfile();
+        this.fetchBorrowerProfile();
         this.updateCoborrowerProfile();
     },
 };
@@ -130,6 +130,9 @@ export default {
     .multiselect-single-label {
         color: #fff;
         font-size: 16px;
+    }
+    .multiselect-dropdown {
+        overflow-y: auto;
     }
     &.light {
         --ms-border-color: var(--blue-dark);

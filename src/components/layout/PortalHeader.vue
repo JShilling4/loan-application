@@ -45,7 +45,6 @@
                         <div class="tool-items">
                             <router-link
                                 to="/faq"
-                                target="_blank"
                                 class="item"
                             >
                                 <font-awesome-icon
@@ -186,7 +185,7 @@ export default {
             .tools-menu {
                 position: absolute;
                 right: 0;
-                top: 11.2rem;
+                top: 10.9rem;
                 z-index: 1000;
                 border-left: 1px solid var(--container-border-color);
                 border-right: 1px solid var(--container-border-color);

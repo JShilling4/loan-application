@@ -10,8 +10,11 @@
 // not completed response
 
 export default {
-	hasDependents: null,
-	numberOfDependents: null,
-	dependentAges: null,
-	payOrReceiveSupport: null
+    hasDependents: null,
+    numberOfDependents: null,
+    dependentAges: null,
+    payOrReceiveSupport: null,
+    supportType: null,
+    supportAmount: null,
+    supportFrequency: null,
 };

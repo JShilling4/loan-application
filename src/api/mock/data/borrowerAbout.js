@@ -11,6 +11,8 @@
 // 	numberOfDependents: "2",
 // 	dependentAges: ["4", "6"],
 // 	payOrReceiveSupport: "NotApplicable"
+//  supportType: null,
+//  supportAmount: null,
 // };
 
 // not started response
@@ -25,5 +27,7 @@ export default {
 	hasDependents: null,
 	numberOfDependents: null,
 	dependentAges: null,
-	payOrReceiveSupport: null
+	payOrReceiveSupport: null,
+    supportType: null,
+    supportAmount: null,
 };

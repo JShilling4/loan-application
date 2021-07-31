@@ -76,6 +76,9 @@ export default {
 		.choice {
 			margin: 0 1rem 2rem;
 			width: 20rem;
+            &.teal-fill:hover {
+                background-color: var(--teal-dark);
+            }
 		}
 	}
 }

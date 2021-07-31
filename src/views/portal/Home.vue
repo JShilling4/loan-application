@@ -134,7 +134,7 @@ body {
         to right,
         var(--blue-dark),
         var(--blue-green),
-        var(--teal-dark)
+        var(--teal-dark) 120%
     );
     padding: 2rem;
     letter-spacing: 1px;

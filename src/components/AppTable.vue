@@ -61,7 +61,7 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
 	border: 1px solid #fff;
-	border-radius: 25px;
+	border-radius: var(--app-border-radius);
 }
 table {
 	font-size: 16px;

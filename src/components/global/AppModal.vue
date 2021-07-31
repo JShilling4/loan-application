@@ -130,7 +130,7 @@ export default {
         z-index: 100;
     }
     &-dialog {
-        position: absolute;
+        position: fixed;
         top: 35%;
         left: 50%;
         transform: translate(-50%, -50%);

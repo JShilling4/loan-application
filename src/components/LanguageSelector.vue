@@ -3,12 +3,12 @@
         :class="['languageSelector', { light: theme === 'light', inline: isInline }]"
         v-click-outside="closeDropdown"
     >
-        <span class="label">Preferred Language:</span>
+        <span class="label">{{ $t('global.preferredLanguage') }}</span>
         <div
             class="selected-container"
             @click="showDropdown = !showDropdown"
         >
-            <span class="selected">{{ selectedLanguage }}</span>
+            <span class="selected">{{ $t(`global.${selectedLanguage.toLowerCase()}`) }}</span>
             <font-awesome-icon
                 :icon="['fas', 'angle-down']"
                 class="icon"
@@ -23,7 +23,7 @@
                 class="option"
                 @click="toggleLanguage()"
             >
-                {{ selectedLanguage == "English" ? "Spanish" : "English" }}
+                {{ selectedLanguage == "English" ? $t('global.spanish') : $t('global.english') }}
             </span>
         </div>
     </div>

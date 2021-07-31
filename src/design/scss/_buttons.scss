@@ -1,75 +1,78 @@
 .orange-outline {
-	color: var(--orange);
-	background-color: transparent;
-	border: 1px solid var(--orange);
-	&:hover {
-		color: #fff;
-		background-color: var(--orange);
-	}
+    color: var(--orange);
+    background-color: transparent;
+    border: 1px solid var(--orange);
+    &:hover {
+        color: #fff;
+        background-color: var(--orange);
+    }
 }
 
 .orange-fill {
-	color: #fff;
-	background-color: var(--orange);
-	border: 1px solid transparent;
-	&:hover {
-		border-color: #fff;
-	}
+    color: #fff;
+    background-color: var(--orange);
+    border: 1px solid transparent;
+    &:hover {
+        border-color: #fff;
+    }
 }
 
 .blueGreen-outline {
-	color: var(--blue-green);
-	background-color: #fff;
-	border: 1px solid var(--blue-green);
-	&:hover {
-		color: #fff;
-		background-color: var(--blue-green);
-	}
+    color: var(--blue-green);
+    background-color: #fff;
+    border: 1px solid var(--blue-green);
+    &:hover {
+        color: #fff;
+        background-color: var(--blue-green);
+    }
 }
 
 .white-outline {
-	color: #fff;
-	background-color: transparent;
-	border: 1px solid #fff;
-	&:hover {
-		color: var(--teal-hc);
-		background-color: #fff;
-	}
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #fff;
+    &:hover {
+        color: var(--teal-hc);
+        background-color: #fff;
+    }
 }
 
 .white-fill {
-	color: var(--blue-green);
-	background-color: #fff;
-	border: 1px solid transparent;
-	&:hover {
-		border-color: var(--blue-green);
-	}
+    color: var(--blue-green);
+    background-color: #fff;
+    border: 1px solid transparent;
+    &:hover {
+        border-color: var(--blue-green);
+    }
 }
 
 .teal-fill {
-	color: #fff;
-	background-color: var(--teal-dark);
-	border: 1px solid transparent;
-	&:hover {
-		background-color: var(--orange);
-	}
+    color: #fff;
+    background-color: var(--teal-dark);
+    border: 1px solid transparent;
+    &:hover {
+        background-color: var(--orange);
+    }
+    &.choice:hover {
+        background-color: var(--teal-dark);
+    }
 }
 .teal-outline {
-	color: var(--teal-dark);
-	background-color: transparent;
-	border: 1px solid var(--teal-dark);
-	&:hover {
+    color: var(--teal-dark);
+    background-color: transparent;
+    border: 1px solid var(--teal-dark);
+    &:hover {
         color: #fff;
-		background-color: var(--teal-dark);
-	}
+        background-color: var(--teal-dark);
+    }
 }
 
 .stacked-button-container {
-	width: 25rem;
+    width: 25rem;
 }
 
 .backButton {
-	// max-width: 12rem;
-	margin-right: 2rem;
-	color: var(--blue-green);
+    // max-width: 12rem;
+    margin-right: 2rem;
+    color: var(--blue-green);
 }

@@ -8,7 +8,7 @@
 			:append-icon="true"
 			@click="$emit('next-view')"
 		>
-			{{ nextText }}
+			{{ $t(`global.${camelize(nextText.toLowerCase())}`) }}
 		</app-button>
 		<app-button
 			v-if="includeBack && !localPosting"
@@ -16,14 +16,17 @@
 			:prepend-icon="true"
 			@click="$router.go(-1)"
 		>
-			{{ backText }}
+			{{ $t(`global.${backText.toLowerCase()}`) }}
 		</app-button>
 	</div>
 </template>
 
 <script>
+import camelize from "@/includes/camelize";
+
 export default {
 	name: "ViewControls",
+    mixins: [camelize],
 	props: {
 		nextText: {
 			type: String,

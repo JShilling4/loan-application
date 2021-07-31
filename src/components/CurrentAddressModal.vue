@@ -55,30 +55,51 @@
                 <div class="inline-form-group">
                     <!-- Street Address -->
                     <div class="col col3_5-4">
-                        <app-label theme="light">
+                        <app-label
+                            theme="light"
+                            for="streetAddress"
+                        >
                             Street Address
                         </app-label>
-                        <text-field v-model="localProfile.streetAddress2" />
+                        <text-field
+                            v-model="localProfile.streetAddress2"
+                            id="streetAddress"
+                            name="streetAddress"
+                        />
                     </div>
 
                     <div class="gutter-20"></div>
 
                     <!-- Unit/Apt -->
                     <div class="col col1-4">
-                        <app-label theme="light">
+                        <app-label
+                            theme="light"
+                            for="unitNumber"
+                        >
                             Unit / Apt
                         </app-label>
-                        <text-field v-model="localProfile.apartmentNumber2" />
+                        <text-field
+                            v-model="localProfile.apartmentNumber2"
+                            id="unitNumber"
+                            name="unitNumber"
+                        />
                     </div>
                 </div>
 
                 <div class="inline-form-group">
                     <!-- City -->
                     <div class="col col2-4">
-                        <app-label theme="light">
+                        <app-label
+                            theme="light"
+                            for="city"
+                        >
                             City
                         </app-label>
-                        <text-field v-model="localProfile.city2" />
+                        <text-field
+                            v-model="localProfile.city2"
+                            id="city"
+                            name="city"
+                        />
                     </div>
 
                     <div class="gutter-20"></div>
@@ -89,21 +110,28 @@
                             State
                         </app-label>
                         <multi-select
-							:options="states"
-							:can-clear="false"
-							class="light"
-							v-model="localProfile.state2"
-						/>
+                            :options="states"
+                            :can-clear="false"
+                            class="light"
+                            v-model="localProfile.state2"
+                        />
                     </div>
 
                     <div class="gutter-20"></div>
 
                     <!-- Zip Code -->
                     <div class="col col1-4">
-                        <app-label theme="light">
+                        <app-label
+                            theme="light"
+                            for="zipcode"
+                        >
                             Zipcode
                         </app-label>
-                        <text-field v-model="localProfile.zipcode2" />
+                        <text-field
+                            v-model="localProfile.zipcode2"
+                            id="zipcode"
+                            name="zipcode"
+                        />
                     </div>
                 </div>
             </div>
@@ -149,7 +177,7 @@
 
                     <div class="inline-input-container col2">
                         <multi-select
-							:options="[
+                            :options="[
 								{
 									value: 'primary',
 									label: 'Primary Property'
@@ -171,10 +199,10 @@
 									label: 'Move Out'
 								}
 							]"
-							:can-clear="false"
-							class="multiselect light"
-							v-model="localProperty.currentAddressInfo.propertyPlan"
-						/>
+                            :can-clear="false"
+                            class="multiselect light"
+                            v-model="localProperty.currentAddressInfo.propertyPlan"
+                        />
                     </div>
                 </div>
 

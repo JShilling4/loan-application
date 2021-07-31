@@ -71,7 +71,7 @@ export default {
 
     actions: {
         // PROFILE
-        updateBorrowerProfile({ commit }) {
+        fetchBorrowerProfile({ commit }) {
             return profileApi.fetchBorrowerProfile().then((response) => {
                 commit("SAVE_BORROWER_PROFILE", response.data);
             });

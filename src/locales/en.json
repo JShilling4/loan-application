@@ -1,17 +1,46 @@
 {
+    "formLabels": {
+        "emailAddress": "Email Address",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "maritalStatus": "Marital Status",
+        "middleInitial": "Middle Initial",
+        "suffix": "Suffix",
+        "phoneNumber": "Phone Number"
+    },
     "global": {
-        "learnMore": "Learn More"
+        "about": "About",
+        "assets": "Assets",
+        "back": "Back",
+        "createProfile": "Create Profile",
+        "married": "Married",
+        "english": "English",
+        "identity": "Identity",
+        "income": "Income",
+        "learnMore": "Learn More",
+        "next": "Next",
+        "preferredLanguage": "Preferred Language:",
+        "profile": "Profile",
+        "property": "Property",
+        "review": "Review",
+        "single": "Single",
+        "separated": "Separated",
+        "spanish": "Spanish"
+    },
+    "headings": {
+        "profile1": "Tell Us About Yourself",
+        "profile2": "Address"
     },
     "index": {
-        "welcome": "Welcome to our digital Loan Butler!",
-        "welcomeSubtext": "We have incorporated speed, excellence, and a focus on customer relationships into our simple and easy-to-use application.",
+        "convenient": "Convenient",
+        "convenientSubtext": "Initiate a credit check, review your scores, digitally verify your employment information, and seamlessly upload documents from any computer or mobile device.",
         "letsBegin": "Let's Begin",
         "logIn": "Log In",
         "quick": "Quick",
         "quickSubtext": "Our exclusive online loan technology gives you access to apply for home financing with a few simple clicks and keeps you in the loop along the way.",
-        "convenient": "Convenient",
-        "convenientSubtext": "Initiate a credit check, review your scores, digitally verify your employment information, and seamlessly upload documents from any computer or mobile device.",
         "secure": "Secure",
-        "secureSubtext": "Our custom platform is encrypted, certified, and secure – which means your important information is safe with us!"
+        "secureSubtext": "Our custom platform is encrypted, certified, and secure – which means your important information is safe with us!",
+        "welcome": "Welcome to our digital Loan Butler!",
+        "welcomeSubtext": "We have incorporated speed, excellence, and a focus on customer relationships into our simple and easy-to-use application."
     }
 }

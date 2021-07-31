@@ -13,15 +13,10 @@
             </span>
 
             <ul class="updateList">
-                <li class="update">
-                    <span class="date">7/30/2021 8:58 AM</span>
+                <li v-for="update in sortedFileUpdates" :key="update.id" class="update">
+                    <span class="date">{{ update.loggedDatetime }}</span>
 
-                    <span class="text">You have securely provided requested documentation! If any items remain, please upload associated documents at your earliest convenience.</span>
-                </li>
-                <li class="update">
-                    <span class="date">2/27/2021 3:25 PM</span>
-
-                    <span class="text">Your application has been received! Please upload any applicable documents by clicking the “Upload” button under the “Document Upload” Section of Your Mortgage To-Do List. If you need guidance, reach out to your Loan Officer for assistance.</span>
+                    <span class="text">{{ update.text }}</span>
                 </li>
             </ul>
         </template>
@@ -29,8 +24,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
     name: "FileUpdatesModal",
+    props: {
+        isShowing: {
+            type: Boolean,
+        },
+    },
+    computed: {
+        ...mapGetters(["sortedFileUpdates"]),
+    },
 };
 </script>
 

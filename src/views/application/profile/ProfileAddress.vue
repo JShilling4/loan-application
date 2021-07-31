@@ -1,6 +1,6 @@
 <template>
 	<div class="profileAddress">
-		<h1 class="appHeading">Address</h1>
+		<h1 class="appHeading">{{ $t('headings.profile2') }}</h1>
 
 		<!-- State/Unit Group -->
 		<div class="inline-form-group">

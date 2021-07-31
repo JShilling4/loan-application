@@ -1,6 +1,6 @@
 <template>
     <div class="profileGeneral">
-        <h1 class="appHeading">Tell Us About Yourself</h1>
+        <h1 class="appHeading">{{ $t('headings.profile1')}}</h1>
 
         <!-- Name Input Group -->
         <div class="inline-form-group">
@@ -9,7 +9,7 @@
                 <app-label
                     class-list="dark"
                     for="fname"
-                >First Name</app-label>
+                >{{ $t('formLabels.firstName') }}</app-label>
                 <text-field
                     class-list="dark"
                     id="fname"
@@ -24,7 +24,7 @@
                 <app-label
                     class-list="dark"
                     for="middleInitial"
-                >Middle Initial</app-label>
+                >{{ $t('formLabels.middleInitial') }}</app-label>
                 <text-field
                     class-list="dark"
                     id="middleInitial"
@@ -43,7 +43,7 @@
                 <app-label
                     class-list="dark"
                     for="lastName"
-                >Last Name</app-label>
+                >{{ $t('formLabels.lastName') }}</app-label>
                 <text-field
                     class-list="dark"
                     id="lastName"
@@ -57,7 +57,7 @@
                 <app-label
                     class-list="dark"
                     for="suffix"
-                >Suffix</app-label>
+                >{{ $t('formLabels.suffix') }}</app-label>
                 <multi-select
                     :options="suffixes"
                     :can-clear="false"
@@ -68,7 +68,7 @@
 
         <!-- Email -->
         <div class="input-group">
-            <app-label class-list="dark" for="email">Email Address</app-label>
+            <app-label class-list="dark" for="email">{{ $t('formLabels.emailAddress') }}</app-label>
             <text-field
                 type="text"
                 class-list="dark"
@@ -84,7 +84,7 @@
             <app-label
                 class-list="dark"
                 for="phone"
-            >Phone Number</app-label>
+            >{{ $t('formLabels.phoneNumber') }}</app-label>
             <text-field
                 class-list="dark"
                 id="phone"
@@ -100,12 +100,12 @@
             <app-label
                 class-list="dark"
                 for="maritalStatus"
-            >Marital Status</app-label>
+            >{{ $t('formLabels.maritalStatus') }}</app-label>
             <multi-select
                 :options="[
-					{ value: 'Single', label: 'Single' },
-					{ value: 'Married', label: 'Married' },
-					{ value: 'Separated', label: 'Separated' }
+					{ value: 'Single', label: $t('global.single') },
+					{ value: 'Married', label: $t('global.married') },
+					{ value: 'Separated', label: $t('global.separated') }
 				]"
                 id="maritalStatus"
                 :can-clear="false"
@@ -120,13 +120,14 @@
             :append-icon="true"
             @click="submitPage()"
         >
-            Next
+            {{ $t('global.next') }}
         </app-button>
     </div>
 </template>
 
 <script>
 import profile from "@/mixins/profile";
+
 
 export default {
     name: "ProfileGeneral",
