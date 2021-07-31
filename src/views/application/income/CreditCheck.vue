@@ -136,7 +136,7 @@
 </template>
 
 <script>
-import income from "@/mixins/income";
+import income from "@/includes/applicationMixins/income";
 import { vueVimeoPlayer } from "vue-vimeo-player";
 import LearnMoreLink from "@/components/LearnMoreLink.vue";
 

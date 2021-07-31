@@ -81,8 +81,8 @@
 
 <script>
 // mixins
-import property from "@/mixins/property";
-import addressHistory from "@/mixins/addressHistory";
+import property from "@/includes/applicationMixins/property";
+import addressHistory from "@/includes/applicationMixins/addressHistory";
 import AppTable from "@/components/AppTable.vue";
 import AddButton from "@/components/AddButton.vue";
 import CurrentAddressModal from "@/components/CurrentAddressModal.vue";

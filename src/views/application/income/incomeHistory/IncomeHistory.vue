@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import income from "@/mixins/income";
+import income from "@/includes/applicationMixins/income";
 import AddButton from "@/components/AddButton.vue";
 import AppTable from "@/components/AppTable.vue";
 

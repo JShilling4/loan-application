@@ -196,7 +196,7 @@
 </template>
 
 <script>
-import property from "@/mixins/property";
+import property from "@/includes/applicationMixins/property";
 
 export default {
 	name: "PurchaseInfo",

@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import about from "@/mixins/about";
+import about from "@/includes/applicationMixins/about";
 
 export default {
 	name: "Dependents",

@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import property from "@/mixins/property";
-import otherProperties from "@/mixins/otherProperties";
+import property from "@/includes/applicationMixins/property";
+import otherProperties from "@/includes/applicationMixins/otherProperties";
 import AppTable from "@/components/AppTable.vue";
 import AddButton from "@/components/AddButton.vue";
 import PropertiesModal from "@/components/PropertiesModal.vue";

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import assets from "@/mixins/assets";
+import assets from "@/includes/applicationMixins/assets";
 
 export default {
 	name: "AddAssets",
