@@ -14,7 +14,25 @@
                 :rows="borrowerData.income.incomeHistory"
             />
 
-            <add-button text="Add Income" @click="loadIncomeModal()" />
+            <add-button
+                text="Add Income"
+                @click="loadIncomeModal()"
+            />
+
+            <income-modal
+                :is-showing="incomeModalShowing"
+                :is-posting="localDataIsPosting"
+                :modal-action="modalAction"
+                @close="closeIncomeModal()"
+                :profile="borrowerData.profile"
+                :income="borrowerData.income"
+                @save-income="saveIncome($event)"
+            />
+
+            <div class="inline-group">
+                <app-label class-list="dark">{{ $t('formLabels.currentWorkYears') }}</app-label>
+                <text-field v-model="localIncome.currentWorkYears" />
+            </div>
 
             <view-controls @next-view="submitPage()" />
         </form>
@@ -22,9 +40,10 @@
 </template>
 
 <script>
-import income from "@/includes/applicationMixins/income";
+import income from "@/includes/mixins/application/income";
 import AddButton from "@/components/AddButton.vue";
 import AppTable from "@/components/AppTable.vue";
+import IncomeModal from "@/components/IncomeModal.vue";
 
 export default {
     name: "IncomeHistory",
@@ -32,6 +51,7 @@ export default {
     components: {
         "add-button": AddButton,
         "app-table": AppTable,
+        "income-modal": IncomeModal,
     },
     data() {
         return {
@@ -61,33 +81,40 @@ export default {
                     field: "delete",
                 },
             ],
+            incomeModalShowing: false,
+            modalAction: "Add",
+            localDataIsPosting: false,
         };
     },
 
     computed: {
         computedIncomeHistory() {
-            return this.localIncome.incomeHistory !== null ? this.localIncome.incomeHistory : []
+            return this.localIncome.incomeHistory !== null
+                ? this.localIncome.incomeHistory
+                : [];
         },
     },
 
     methods: {
-        loadAddressModal(income = null) {
-            console.log(income);
-            // if (income !== null) {
-            //     this.modalAction = "Edit";
-            //     this.openIncomeModal();
-            // }
-            // if (income == null) {
-            //     this.modalAction = "Add";
-            //     this.openIncomeModal();
-            // }
+        loadIncomeModal(income = null) {
+            if (income !== null) {
+                this.modalAction = "Edit";
+            }
+            if (income == null) {
+                this.modalAction = "Add";
+            }
+            this.incomeModalShowing = true;
+        },
+
+        closeIncomeModal() {
+            this.incomeModalShowing = false;
         },
 
         async saveIncome(income) {
             console.log(income);
             // this.localDataIsPosting = true;
             // this.postBorrowerIncome(income).then(() => {
-            //     this.localProperty = income;
+            //     this.localIncome = income;
             //     this.incomeModalShowing = false;
             //     this.localDataIsPosting = false;
             // });
@@ -110,6 +137,18 @@ export default {
     .pageCopy {
         width: 80%;
         margin: 0 auto 3rem;
+    }
+
+    .inline-group {
+        align-items: center;
+        margin-top: 4rem;
+        label {
+            word-wrap: nowrap;
+            margin-right: 1.5rem;
+        }
+        .input-wrapper {
+            width: 8rem;
+        }
     }
 }
 </style>

@@ -1,5 +1,6 @@
 {
     "formLabels": {
+        "currentWorkYears": "Años En línea de Trabajo Actual",
         "emailAddress": "Correo electrónico",
         "firstName": "Nombre",
         "lastName": "Apellido(s)",

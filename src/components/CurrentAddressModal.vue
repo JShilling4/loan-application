@@ -259,10 +259,12 @@
 
 <script>
 import { mapState } from "vuex";
+import { deepClone } from "@/includes/mixins/helpers";
 
 export default {
     name: "CurrentAddressModal",
     components: {},
+    mixins: [deepClone],
     props: {
         isShowing: {
             type: Boolean,
@@ -292,12 +294,10 @@ export default {
     },
     watch: {
         property() {
-            this.localProperty = JSON.parse(
-                JSON.stringify({ ...this.property })
-            );
+            this.localProperty = this.deepClone(this.property);
         },
         profile() {
-            this.localProfile = JSON.parse(JSON.stringify({ ...this.profile }));
+            this.localProfile = this.deepClone(this.profile);
         },
     },
     methods: {

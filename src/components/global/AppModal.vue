@@ -133,6 +133,8 @@ export default {
         position: fixed;
         top: 35%;
         left: 50%;
+        max-height: 99%;
+        overflow-y: auto;
         transform: translate(-50%, -50%);
         background-color: #ffffff;
         border-radius: var(--app-border-radius);
@@ -167,7 +169,6 @@ export default {
         // padding: 20px 20px 10px;
     }
     &-body {
-        overflow-y: auto;
         display: flex;
         flex-direction: column;
         align-items: stretch;
