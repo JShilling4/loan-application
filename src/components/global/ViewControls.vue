@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import camelize from "@/includes/camelize";
+import { camelize } from "@/includes/mixins/helpers";
 
 export default {
 	name: "ViewControls",
