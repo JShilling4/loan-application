@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import income from "@/includes/applicationMixins/income";
+import income from "@/includes/mixins/application/income";
 
 export default {
 	name: "IncomeHistory",

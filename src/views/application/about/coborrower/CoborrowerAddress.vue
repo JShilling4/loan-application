@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import about from "@/includes/applicationMixins/about";
+import about from "@/includes/mixins/application/about";
 
 export default {
 	name: "CoborrowerAddress",

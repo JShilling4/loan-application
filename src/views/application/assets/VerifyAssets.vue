@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import assets from "@/includes/applicationMixins/assets";
+import assets from "@/includes/mixins/application/assets";
 
 export default {
 	name: "VerifyAssets",

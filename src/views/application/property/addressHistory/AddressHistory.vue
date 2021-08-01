@@ -78,8 +78,8 @@
 </template>
 
 <script>
-import property from "@/includes/applicationMixins/property";
-import addressHistory from "@/includes/applicationMixins/addressHistory";
+import property from "@/includes/mixins/application/property";
+import addressHistory from "@/includes/mixins/application/addressHistory";
 import AppTable from "@/components/AppTable.vue";
 import AddButton from "@/components/AddButton.vue";
 import CurrentAddressModal from "@/components/CurrentAddressModal.vue";

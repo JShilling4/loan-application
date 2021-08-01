@@ -1,6 +1,8 @@
 import { mapState, mapActions } from "vuex";
+import { deepClone } from "@/includes/mixins/helpers";
 
 export default {
+    mixins: [deepClone],
     data() {
         return {
             localProfile: {},
@@ -22,13 +24,11 @@ export default {
     },
     watch: {
         borrowerProfile() {
-            this.localProfile = JSON.parse(JSON.stringify({ ...this.borrowerProfile }));
+            this.localProfile = this.deepClone(this.borrowerProfile);
         },
         applicationData: {
             handler() {
-                this.localApplicationData = JSON.parse(
-                    JSON.stringify({ ...this.localApplicationData })
-                );
+                this.localApplicationData = this.deepClone(this.localApplicationData);
             },
             deep: true,
         },
@@ -41,8 +41,8 @@ export default {
             "updateApplication",
         ]),
         syncProfileWithStore() {
-            this.localProfile = JSON.parse(JSON.stringify({ ...this.borrowerData.profile }));
-            this.localApplicationData = JSON.parse(JSON.stringify({ ...this.applicationData }));
+            this.localProfile = this.deepClone(this.borrowerData.profile);
+            this.localApplicationData = this.deepClone(this.applicationData);
         },
     },
     mounted() {

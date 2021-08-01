@@ -20,5 +20,6 @@ export default {
 	creditCheckAuthorized: null,
 	incomeHistory: null,
 	ssn: null,
-	birthDate: null
+	birthDate: null,
+    currentWorkYears: null,
 };

@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import profile from "@/includes/applicationMixins/profile";
+import profile from "@/includes/mixins/application/profile";
 
 export default {
 	name: "ProfileAddress",

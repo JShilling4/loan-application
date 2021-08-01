@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import property from "@/includes/applicationMixins/property";
+import property from "@/includes/mixins/application/property";
 
 export default {
 	name: "Refinance",
