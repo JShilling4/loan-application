@@ -110,10 +110,10 @@ export default {
                 await this.postBorrowerAbout(this.localAbout);
 
                 if (this.localAbout.hasCoborrower) {
-                    this.editSectionProgress(10);
+                    this.editSectionProgress(8);
                     this.$router.push("/about/coborrower-alimony");
                 } else {
-                    this.editSectionProgress(6);
+                    this.editSectionProgress(4);
                     this.$router.push("/property/loan-type");
                 }
             }

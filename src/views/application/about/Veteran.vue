@@ -54,7 +54,7 @@ export default {
 			if (this.localDataIsPosting !== true) {
 				this.localDataIsPosting = true;
 				await this.postBorrowerAbout(this.localAbout);
-				this.editSectionProgress(3);
+				this.editSectionProgress(1);
 				this.$router.push("/about/coborrower");
 			}
 		}

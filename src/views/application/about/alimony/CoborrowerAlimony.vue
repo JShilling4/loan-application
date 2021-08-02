@@ -109,7 +109,7 @@ export default {
 
                 await this.postCoborrowerAbout(this.localCoborrowerAbout);
 
-                this.editSectionProgress(11);
+                this.editSectionProgress(9);
                 this.$router.push("/property/loan-type");
             }
         },

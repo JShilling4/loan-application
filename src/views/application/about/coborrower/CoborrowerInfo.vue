@@ -2,7 +2,7 @@
 	<div v-if="localCoborrowerProfile" class="coborrowerInfo">
 		<h1 class="appHeading">Please provide coborrower information.</h1>
 
-		<div class="body-wrapper">
+		<div class="pageWrapper">
 			<!-- Name Input Group -->
 			<div class="inline-form-group">
 				<!-- First Name -->
@@ -124,7 +124,7 @@ export default {
 			if (this.localDataIsPosting !== true) {
 				this.localDataIsPosting = true;
 				await this.postCoborrowerProfile(this.localCoborrowerProfile);
-				this.editSectionProgress(5);
+				this.editSectionProgress(3);
 				this.$router.push("/about/coborrower/address");
 			}
 		}
@@ -133,8 +133,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.body-wrapper {
-	max-width: 440px;
+.pageWrapper {
+	max-width: 350px;
 	margin: 0 auto;
 }
 </style>

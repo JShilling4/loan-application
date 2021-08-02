@@ -131,10 +131,10 @@ export default {
                 await this.postBorrowerAbout(this.localAbout);
 
                 if (this.localAbout.hasCoborrower) {
-                    this.editSectionProgress(8);
+                    this.editSectionProgress(6);
                     this.$router.push("/about/coborrower-dependents");
                 } else {
-                    this.editSectionProgress(5);
+                    this.editSectionProgress(3);
                     this.$router.push("/about/alimony");
                 }
             }

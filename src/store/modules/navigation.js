@@ -11,8 +11,8 @@ export default {
 			{
 				id: "about",
 				label: "About",
-				sectionCount: 11,
-				destinationUrl: "/about/referral",
+				sectionCount: 9,
+				destinationUrl: "/about/veteran",
 				status: ""
 			},
 			{

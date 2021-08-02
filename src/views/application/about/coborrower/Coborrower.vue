@@ -60,18 +60,20 @@ export default {
 					this.localAbout.hasCoborrower;
 
 				if (this.localAbout.hasCoborrower == true) {
+                    // coborrower exists, so adjust section count to include those questions
 					this.editNavigationSectionCount({
 						section: "about",
 						count: 11
 					});
-					this.editSectionProgress(4, { force: shouldForce });
+					this.editSectionProgress(2, { force: shouldForce });
 					this.$router.push("/about/coborrower/info");
 				} else {
+                    // coborrower doesnt exist, so adjust section count to exclude those questions
 					this.editNavigationSectionCount({
 						section: "about",
 						count: 6
 					});
-					this.editSectionProgress(4, { force: shouldForce });
+					this.editSectionProgress(2, { force: shouldForce });
 					this.$router.push("/about/dependents");
 				}
 			}
@@ -87,7 +89,7 @@ export default {
 		flex-wrap: wrap;
 		justify-content: center;
 		width: 600px;
-		margin: 4rem auto 0;
+		margin: 0 auto;
 		.choice {
 			margin: 0 1rem 2rem;
 			width: 20rem;

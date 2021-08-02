@@ -64,7 +64,7 @@ export default {
 
 				await this.postBorrowerAbout(this.localAbout);
 
-				this.editSectionProgress(7);
+				this.editSectionProgress(5);
 				this.$router.push("/about/dependents");
 			}
 		}

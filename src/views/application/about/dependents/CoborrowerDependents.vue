@@ -130,7 +130,7 @@ export default {
 			if (this.localDataIsPosting !== true) {
 				this.localDataIsPosting = true;
 				await this.postCoborrowerAbout(this.localCoborrowerAbout);
-				this.editSectionProgress(9);
+				this.editSectionProgress(7);
 				this.$router.push("/about/alimony");
 			}
 		}
