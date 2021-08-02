@@ -21,27 +21,27 @@
                 <multi-select
                     :options="[
                         {
-                            value: 'employed',
+                            value: 'Employed',
                             label: 'Employed'
                         },
                         {
-                            value: 'selfEmployed',
+                            value: 'Self Employed',
                             label: 'Self Employed'
                         },
                         {
-                            value: 'military',
+                            value: 'Military',
                             label: 'Military'
                         },
                         {
-                            value: 'socialSecurity',
+                            value: 'Social Security',
                             label: 'Social Security'
                         },
                         {
-                            value: 'pension',
+                            value: 'Pension',
                             label: 'Pension'
                         },
                         {
-                            value: 'other',
+                            value: 'Other',
                             label: 'Other'
                         }
                     ]"
@@ -54,123 +54,135 @@
             <div v-if="supportingInputsShouldShow">
                 <v-spacer height="2rem" />
 
-                <!-- Employer Name / Job Title -->
-                <div class="inline-form-group">
-                    <!-- Employer Name -->
-                    <div class="col col2-4">
+                <div v-if="localIncomeDetails.incomeType !== 'Social Security'
+                        && localIncomeDetails.incomeType !== 'Other'">
+                    <!-- Employer Name / Job Title -->
+                    <div class="inline-form-group">
+                        <!-- Employer Name -->
+                        <div class="col col2-4">
+                            <app-label class-list="light">
+                                Employer Name
+                            </app-label>
+
+                            <text-field
+                                theme="light"
+                                v-model="localIncomeDetails.employerName"
+                            />
+                        </div>
+
+                        <h-spacer width="2rem" />
+
+                        <!-- Job Title -->
+                        <div class="col col2-4">
+                            <app-label class-list="light">
+                                Job Title
+                            </app-label>
+
+                            <text-field
+                                theme="light"
+                                v-model="localIncomeDetails.jobTitle"
+                            />
+                        </div>
+                    </div>
+
+                    <v-spacer height="2rem" />
+
+                    <!-- Employer Address -->
+                    <div class="input-group">
                         <app-label class-list="light">
-                            Employer Name
+                            Employer Address (optional)
                         </app-label>
 
                         <text-field
                             theme="light"
-                            v-model="localIncomeDetails.employerName"
+                            v-model="localIncomeDetails.employerAddress"
                         />
                     </div>
 
-                    <h-spacer width="2rem" />
+                    <v-spacer height="2rem" />
 
-                    <!-- Job Title -->
-                    <div class="col col2-4">
-                        <app-label class-list="light">
-                            Job Title
-                        </app-label>
+                    <div v-if="localIncomeDetails.incomeType !== 'Pension'">
+                        <!-- Employer City / Employer State -->
+                        <div class="inline-form-group">
+                            <!-- City -->
+                            <div class="col col2-4">
+                                <app-label
+                                    theme="light"
+                                    for="city"
+                                >
+                                    Employer City
+                                </app-label>
+                                <text-field
+                                    theme="light"
+                                    v-model="localIncomeDetails.employerCity"
+                                    id="city"
+                                    name="city"
+                                />
+                            </div>
 
-                        <text-field
-                            theme="light"
-                            v-model="localIncomeDetails.jobTitle"
-                        />
+                            <h-spacer width="2rem" />
+
+                            <!-- State -->
+                            <div class="col col2-4">
+                                <app-label theme="light">
+                                    Employer State
+                                </app-label>
+                                <multi-select
+                                    :options="states"
+                                    :can-clear="false"
+                                    class="multiselect light"
+                                    v-model="localIncomeDetails.employerState"
+                                />
+                            </div>
+                        </div>
+
+                        <v-spacer height="2rem" />
+
+                        <!-- Employer Zipcode / Employer Phone -->
+                        <div class="inline-form-group">
+                            <!-- Employer Zipcode -->
+                            <div class="col col2-4">
+                                <app-label
+                                    theme="light"
+                                    for="city"
+                                >
+                                    Employer Zip Code
+                                </app-label>
+                                <text-field
+                                    theme="light"
+                                    v-model="localIncomeDetails.employerZipcode"
+                                    id="city"
+                                    name="city"
+                                />
+                            </div>
+
+                            <h-spacer width="2rem" />
+
+                            <!-- Employer Phone -->
+                            <div class="col col2-4">
+                                <app-label theme="light">
+                                    Employer Phone
+                                </app-label>
+                                <text-field
+                                    theme="light"
+                                    v-model="localIncomeDetails.employerPhone"
+                                />
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <v-spacer height="2rem" />
-
-                <!-- Employer Address -->
-                <div class="input-group">
-                    <app-label class-list="light">
-                        Employer Address (optional)
-                    </app-label>
-
-                    <text-field
-                        theme="light"
-                        v-model="localIncomeDetails.employerAddress"
+                    <v-spacer
+                        v-if="localIncomeDetails.incomeType !== 'Pension'"
+                        height="3rem"
                     />
                 </div>
 
-                <v-spacer height="2rem" />
-
-                <!-- Employer City / Employer State -->
-                <div class="inline-form-group">
-                    <!-- City -->
-                    <div class="col col2-4">
-                        <app-label
-                            theme="light"
-                            for="city"
-                        >
-                            Employer City
-                        </app-label>
-                        <text-field
-                            theme="light"
-                            v-model="localIncomeDetails.employerCity"
-                            id="city"
-                            name="city"
-                        />
-                    </div>
-
-                    <h-spacer width="2rem" />
-
-                    <!-- State -->
-                    <div class="col col2-4">
-                        <app-label theme="light">
-                            Employer State
-                        </app-label>
-                        <multi-select
-                            :options="states"
-                            :can-clear="false"
-                            class="multiselect light"
-                            v-model="localIncomeDetails.employerState"
-                        />
-                    </div>
-                </div>
-
-                <v-spacer height="2rem" />
-
-                <!-- Employer Zipcode / Employer Phone -->
-                <div class="inline-form-group">
-                    <!-- Employer Zipcode -->
-                    <div class="col col2-4">
-                        <app-label
-                            theme="light"
-                            for="city"
-                        >
-                            Employer Zip Code
-                        </app-label>
-                        <text-field
-                            theme="light"
-                            v-model="localIncomeDetails.employerZipcode"
-                            id="city"
-                            name="city"
-                        />
-                    </div>
-
-                    <h-spacer width="2rem" />
-
-                    <!-- Employer Phone -->
-                    <div class="col col2-4">
-                        <app-label theme="light">
-                            Employer Phone
-                        </app-label>
-                        <text-field
-                            theme="light"
-                            v-model="localIncomeDetails.employerPhone"
-                        />
-                    </div>
-                </div>
-
-                <v-spacer height="3rem" />
-
                 <!-- Current Or Prior Employer -->
-                <div class="inline-form-group">
+                <div
+                    v-if="localIncomeDetails.incomeType !== 'Social Security'
+                        && localIncomeDetails.incomeType !== 'Pension'"
+                    class="inline-form-group"
+                >
                     <app-label class="label inline col1">
                         This employer is:
                     </app-label>
@@ -198,17 +210,27 @@
                             />
                         </div>
                     </div>
+
                 </div>
 
-                <v-spacer height="2rem" />
+                <v-spacer
+                    v-if="localIncomeDetails.incomeType !== 'Social Security'
+                        && localIncomeDetails.incomeType !== 'Pension'"
+                    height="2rem"
+                />
 
                 <!-- Employment Start / End  -->
                 <div
-                    v-if="localIncomeDetails.currentOrPriorEmployer !== null"
+                    v-if="localIncomeDetails.currentOrPriorEmployer !== null
+                        || localIncomeDetails.incomeType === 'Social Security'
+                        || localIncomeDetails.incomeType === 'Pension'"
                     class="inline-form-group"
                 >
                     <!-- Employment Start -->
-                    <div class="col col2-4">
+                    <app-column
+                        :c-assign="2"
+                        :c-total="4"
+                    >
                         <app-label for="employmentStartDate">Start Date</app-label>
                         <text-field
                             theme="light"
@@ -216,13 +238,15 @@
                             id="employmentStartDate"
                             name="employmentStartDate"
                         />
-                    </div>
+                    </app-column>
 
                     <h-spacer width="2rem" />
 
                     <!-- Employment End -->
                     <app-column
-                        v-if="localIncomeDetails.currentOrPriorEmployer !== 'Current'"
+                        v-if="localIncomeDetails.currentOrPriorEmployer !== 'Current'
+                            && localIncomeDetails.incomeType !== 'Social Security'
+                            && localIncomeDetails.incomeType === 'Other'"
                         :c-assign="2"
                         :c-total="4"
                     >
@@ -238,14 +262,16 @@
                 </div>
 
                 <v-spacer
-                    v-if="localIncomeDetails.currentOrPriorEmployer !== null"
-                    height="3rem"
+                    v-if="localIncomeDetails.currentOrPriorEmployer !== null
+                        || localIncomeDetails.incomeType === 'Social Security'
+                        || localIncomeDetails.incomeType === 'Pension'"
+                    height="2rem"
                 />
 
                 <!-- Compensation Type -->
                 <div
-                    v-if="localIncomeDetails.incomeType === 'employed'
-                        || localIncomeDetails.incomeType === 'military'"
+                    v-if="localIncomeDetails.incomeType === 'Employed'
+                        || localIncomeDetails.incomeType === 'Military'"
                     class="input-group"
                 >
                     <app-label>How are you paid? (Check all that apply)</app-label>
@@ -256,10 +282,10 @@
                                 value: 'salary',
                                 label: 'Salary'
                             },
-                            {
+                            ...(localIncomeDetails.incomeType !== 'Military' ? [{
                                 value: 'hourly',
                                 label: 'Hourly'
-                            },
+                            },] : []),
                             {
                                 value: 'commission',
                                 label: 'Commission'
@@ -328,7 +354,7 @@
                             <app-label for="weeklyHours">Average Hours Per Week</app-label>
                             <text-field
                                 theme="light"
-                                v-model="localIncomeDetails.weeklyHours"
+                                v-model="localIncomeDetails.averageWeeklyHours"
                                 id="weeklyHours"
                                 name="weeklyHours"
                             />
@@ -389,8 +415,8 @@
 
                 <!-- Monthly Income -->
                 <app-column
-                    v-if="localIncomeDetails.incomeType !== 'employed'
-                        && localIncomeDetails.incomeType !== 'military'"
+                    v-if="localIncomeDetails.incomeType !== 'Employed'
+                        && localIncomeDetails.incomeType !== 'Military'"
                     :c-assign="2"
                     :c-total="4"
                 >
@@ -403,9 +429,37 @@
                         name="monthlyIncome"
                     />
                 </app-column>
+
+                <v-spacer
+                    v-if="localIncomeDetails.incomeType !== 'Employed'
+                        && localIncomeDetails.incomeType !== 'Military'"
+                    height="2rem"
+                />
+
+                <!-- Income Description -->
+                <div
+                    v-if="localIncomeDetails.incomeType === 'Other'"
+                    class="input-group"
+                >
+                    <app-label for="incomeDescription">Income Description</app-label>
+                    <text-field
+                        theme="light"
+                        v-model="localIncomeDetails.incomeDescription"
+                        id="incomeDescription"
+                        name="incomeDescription"
+                    />
+                </div>
+
+                <v-spacer
+                    v-if="localIncomeDetails.incomeType === 'Other'"
+                    height="2rem"
+                />
             </div>
 
-            <v-spacer height="4rem" />
+            <v-spacer
+                v-if="localIncomeDetails.incomeType === null"
+                height="3rem"
+            />
 
             <div class="button-wrapper">
                 <app-button

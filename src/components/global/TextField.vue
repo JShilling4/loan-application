@@ -39,26 +39,11 @@ export default {
             type: String,
             default: "5px",
         },
-        modelValue: {
-            type: [String],
-            validator: (prop) => typeof prop === "string" || prop === null,
-        },
-        type: {
-            type: String,
-            default: "text",
-        },
-        tabIndex: {
-            type: String,
-            default: "0",
-        },
         classList: {
             type: String,
             default: "",
         },
-        width: {
-            type: String,
-        },
-        textAlign: {
+        id: {
             type: String,
         },
         isCurrency: {
@@ -69,15 +54,30 @@ export default {
             type: Boolean,
             default: false,
         },
-        theme: {
-            type: String,
-            default: "dark",
+        modelValue: {
+            type: [String],
+            validator: (prop) => typeof prop === "string" || prop === null,
         },
         name: {
             type: String,
         },
-        id: {
+        type: {
             type: String,
+            default: "text",
+        },
+        tabIndex: {
+            type: String,
+            default: "0",
+        },
+        width: {
+            type: String,
+        },
+        textAlign: {
+            type: String,
+        },
+        theme: {
+            type: String,
+            default: "dark",
         },
     },
     data() {

@@ -4,7 +4,7 @@
 
         <div class="body-wrapper">
             <!-- Pay/Recieve Support -->
-            <div class="inline-group">
+            <div class="input-group">
                 <app-label
                     class-list="dark"
                     for="payReceiveSupport"
@@ -26,7 +26,7 @@
             <!-- Support Type -->
             <div
                 v-if="compInputsShouldShow"
-                class="inline-group"
+                class="input-group"
             >
                 <app-label
                     class-list="dark"
@@ -45,25 +45,34 @@
             </div>
 
             <!-- Support Amount/Frequency -->
-            <div v-if="compInputsShouldShow" class="inline-group">
+            <div
+                v-if="compInputsShouldShow"
+                class="input-group"
+            >
                 <app-label
                     class-list="dark"
                     for="payReceiveSupport"
                 >
                     How much do you pay?
                 </app-label>
-                <text-field v-model="localAbout.supportAmount" :is-currency="true" class="supportAmount" />
+                <div class="inline-group">
+                    <text-field
+                        v-model="localAbout.supportAmount"
+                        :is-currency="true"
+                        class="supportAmount"
+                    />
 
-                <!-- Payment Frequency -->
-                <multi-select
-                    :options="[
-						{ value: 'month', label: 'Month' },
-						{ value: 'week', label: 'Week' },
-					]"
-                    :can-clear="false"
-                    v-model="supportFrequency"
-                    class="supportFrequency"
-                />
+                    <!-- Payment Frequency -->
+                    <multi-select
+                        :options="[
+                            { value: 'month', label: 'Month' },
+                            { value: 'week', label: 'Week' },
+                        ]"
+                        :can-clear="false"
+                        v-model="supportFrequency"
+                        class="supportFrequency"
+                    />
+                </div>
             </div>
 
             <view-controls
@@ -82,7 +91,7 @@ export default {
     mixins: [about],
     data() {
         return {
-            supportFrequency: "month"
+            supportFrequency: "month",
         };
     },
     computed: {
@@ -116,23 +125,19 @@ export default {
 <style lang="scss" scoped>
 .alimony {
     .body-wrapper {
-        max-width: 450px;
+        max-width: 300px;
         margin: 0 auto;
     }
     .inline-group {
         align-items: center;
         margin-bottom: 2rem;
-        label {
-            min-width: 20rem;
-            text-align: left;
-        }
     }
     .supportAmount {
         margin-right: 1rem;
     }
 
     .supportFrequency {
-        width: 25rem;
+        width: 22rem;
     }
 }
 </style>

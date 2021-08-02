@@ -1,45 +1,66 @@
 <template>
     <div class="incomeHistory">
         <h1 class="appHeading">Income History</h1>
-        <form class="pageForm">
-            <p class="pageCopy">
-                {{ borrowerData.profile.firstName }}, once you've entered at
-                least two years of income history you will be able to move onto
-                the next section of the application
-            </p>
 
-            <transition name="fade">
-                <app-table
-                    v-if="tableShouldShow"
-                    :columns="tableColumns"
-                    :rows="computedIncomeHistory"
-                    @edit="loadIncomeModal"
+        <transition name="fade">
+            <div
+                v-if="!localDataIsLoading"
+                class="pageWrapper"
+            >
+                <p class="pageCopy">
+                    {{ borrowerData.profile.firstName }}, once you've entered at
+                    least two years of income history you will be able to move onto
+                    the next section of the application
+                </p>
+
+                <!-- Table -->
+                <transition name="fade">
+                    <app-table
+                        v-if="tableShouldShow"
+                        :columns="tableColumns"
+                        :rows="computedIncomeHistory"
+                        @edit="loadIncomeModal"
+                    />
+                </transition>
+
+                <!-- Add New Button -->
+                <add-button
+                    text="Add Income"
+                    @click="loadIncomeModal()"
                 />
-            </transition>
 
-            <add-button
-                text="Add Income"
-                @click="loadIncomeModal()"
-            />
+                <!-- Current Work Years -->
+                <div class="inline-group">
+                    <app-label class-list="dark">{{ $t('formLabels.currentWorkYears') }}</app-label>
+                    <text-field
+                        v-model="localIncome.currentWorkYears"
+                        text-align="center"
+                    />
+                </div>
 
-            <income-modal
-                :is-showing="incomeDetailsModalShowing"
-                :is-posting="localDataIsPosting"
-                :modal-action="modalAction"
-                @close="closeIncomeModal()"
-                :profile="borrowerData.profile"
-                :income="borrowerData.income"
-                :income-details="selectedIncomeDetails"
-                @save-income="saveIncomeDetails($event)"
-            />
-
-            <div class="inline-group">
-                <app-label class-list="dark">{{ $t('formLabels.currentWorkYears') }}</app-label>
-                <text-field v-model="localIncome.currentWorkYears" />
+                <view-controls @next-view="submitPage()" />
             </div>
+        </transition>
 
-            <view-controls @next-view="submitPage()" />
-        </form>
+        <transition name="fadeIn">
+            <div
+                v-if="localDataIsLoading"
+                class="loading-wrapper"
+            >
+                <loading-indicator />
+            </div>
+        </transition>
+
+        <income-modal
+            :is-showing="incomeDetailsModalShowing"
+            :is-posting="localDataIsPosting"
+            :modal-action="modalAction"
+            @close="closeIncomeModal()"
+            :profile="borrowerData.profile"
+            :income="borrowerData.income"
+            :income-details="selectedIncomeDetails"
+            @save-income="saveIncomeDetails($event)"
+        />
     </div>
 </template>
 
@@ -64,7 +85,7 @@ export default {
                 {
                     label: "Income Type",
                     field: "incomeType",
-                    tdClass: "incomeType"
+                    tdClass: "incomeType",
                 },
                 {
                     label: "Description",
@@ -81,12 +102,12 @@ export default {
                 {
                     label: "Edit",
                     field: "edit",
-                    tdClass: "center"
+                    tdClass: "center",
                 },
                 {
                     label: "Delete",
                     field: "delete",
-                    tdClass: "center"
+                    tdClass: "center",
                 },
             ],
         };
@@ -99,7 +120,7 @@ export default {
                 : null;
         },
         tableShouldShow() {
-            if(!this.computedIncomeHistory) {
+            if (!this.computedIncomeHistory) {
                 return false;
             } else if (
                 this.computedIncomeHistory.length > 0 &&
@@ -154,8 +175,9 @@ export default {
 
 <style lang="scss" scoped>
 .incomeHistory {
-    .pageForm {
+    .pageWrapper {
         max-width: 80rem;
+        margin: 0 auto;
     }
     .pageCopy {
         width: 80%;
@@ -170,7 +192,7 @@ export default {
             margin-right: 1.5rem;
         }
         .input-wrapper {
-            width: 8rem;
+            width: 6rem;
         }
     }
 }

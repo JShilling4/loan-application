@@ -109,6 +109,7 @@ export default {
 
 <style src="@vueform/multiselect/themes/default.css"></style>
 <style lang="scss">
+@import "@/design/scss/_utility.scss";
 @import "@/design/scss/_base.scss";
 @import "@/design/scss/_typography.scss";
 @import "@/design/scss/_layout.scss";

@@ -52,7 +52,6 @@
             </div>
         </transition>
 
-        <!-- Current Address Modal -->
         <current-address-modal
             :is-showing="currentAddressModalShowing"
             :is-posting="localDataIsPosting"
@@ -63,7 +62,6 @@
             @save-property="saveCurrentAddress($event)"
         />
 
-        <!-- Previous Address Modal -->
         <previous-address-modal
             :is-showing="previousAddressModalShowing"
             :is-posting="localDataIsPosting"
