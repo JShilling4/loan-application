@@ -15,10 +15,5 @@ export default {
 <style lang="scss" scoped>
 .profile {
 	@include app-background();
-
-	.viewWrapper {
-		width: 350px;
-		margin: 0 auto;
-	}
 }
 </style>

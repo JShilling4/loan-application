@@ -1,6 +1,6 @@
 export default {
 	progress: {
-		profile: 3,  // 3 max
+		profile: 5,  // 5 (new account) or 4 (existing account)
 		about: 11, // 11 (with coborrower)
 		property: null,
 		income: null,

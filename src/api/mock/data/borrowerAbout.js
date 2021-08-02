@@ -3,8 +3,6 @@
 export default {
 	hasCoborrower: true,
 	hasCoborrowerAuthorization: true,
-	referralSource: "Radio",
-	loanOfficer: "clintmorgan",
 	isVeteran: true,
 	loanType: "purchase",
 	hasDependents: true,
@@ -20,8 +18,6 @@ export default {
 // export default {
 // 	hasCoborrower: null,
 // 	hasCoborrowerAuthorization: null,
-// 	referralSource: null,
-// 	loanOfficer: null,
 // 	isVeteran: null,
 // 	loanType: null,
 // 	hasDependents: null,

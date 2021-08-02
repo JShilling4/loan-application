@@ -5,7 +5,7 @@ export default {
 				id: "profile",
 				label: "Profile",
 				destinationUrl: "/profile",
-				sectionCount: 3,
+				sectionCount: 5,
 				status: "active"
 			},
 			{

@@ -6,8 +6,8 @@ import ProfileGeneral from "../views/application/profile/ProfileGeneral.vue";
 import ProfileAddress from "../views/application/profile/ProfileAddress.vue";
 import ProfilePassword from "../views/application/profile/ProfilePassword.vue";
 // About
-import Referral from "../views/application/about/Referral.vue";
-import SelectLoanOfficer from "../views/application/about/SelectLoanOfficer.vue";
+import Referral from "../views/application/profile/Referral.vue";
+import SelectLoanOfficer from "../views/application/profile/SelectLoanOfficer.vue";
 import Veteran from "../views/application/about/Veteran.vue";
 import Coborrower from "../views/application/about/coborrower/Coborrower.vue";
 import CoborrowerInfo from "../views/application/about/coborrower/CoborrowerInfo.vue";
@@ -125,8 +125,6 @@ const routes = [
                 path: "",
                 meta: {
                     navItem: "profile",
-                    section: 1,
-                    sectionProgress: "33",
                 },
                 component: ProfileGeneral,
             },
@@ -135,18 +133,30 @@ const routes = [
                 path: "address",
                 meta: {
                     navItem: "profile",
-                    section: 2,
-                    sectionProgress: "66",
                 },
                 component: ProfileAddress,
+            },
+            // Referral
+            {
+                path: "referral",
+                meta: {
+                    navItem: "profile",
+                },
+                component: Referral,
+            },
+            // Select Loan Officer
+            {
+                path: "select-loan-officer",
+                meta: {
+                    navItem: "profile",
+                },
+                component: SelectLoanOfficer,
             },
             // profile create password
             {
                 path: "create-password",
                 meta: {
                     navItem: "profile",
-                    section: 3,
-                    sectionProgress: "100",
                 },
                 component: ProfilePassword,
             },
@@ -163,22 +173,6 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/application/about/About.vue"),
         children: [
-            // Referral
-            {
-                path: "referral",
-                meta: {
-                    navItem: "about",
-                },
-                component: Referral,
-            },
-            // Select Loan Officer
-            {
-                path: "select-loan-officer",
-                meta: {
-                    navItem: "about",
-                },
-                component: SelectLoanOfficer,
-            },
             // Veteran
             {
                 path: "veteran",
