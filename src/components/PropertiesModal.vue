@@ -14,41 +14,43 @@
 			<div class="mailingAddress">
 				<div class="inline-form-group">
 					<!-- Street Address -->
-					<div class="col col3_5-4">
+					<app-column :c-assign="3.15" :c-total="4">
 						<app-label theme="light">
 							Street Address
 						</app-label>
 						<text-field
+                            theme="light"
 							v-model="localOtherProperty.streetAddress"
 						/>
-					</div>
+					</app-column>
 
-					<div class="gutter-20"></div>
+					<h-spacer width="2rem" />
 
 					<!-- Unit/Apt -->
-					<div class="col col1-4">
+					<app-column :c-assign=".85" :c-total="4">
 						<app-label theme="light">
 							Unit / Apt
 						</app-label>
 						<text-field
+                            theme="light"
 							v-model="localOtherProperty.apartmentNumber"
 						/>
-					</div>
+					</app-column>
 				</div>
 
 				<div class="inline-form-group">
 					<!-- City -->
-					<div class="col col2-4">
+					<app-column :c-assign="2" :c-total="4">
 						<app-label theme="light">
 							City
 						</app-label>
-						<text-field v-model="localOtherProperty.city" />
-					</div>
+						<text-field theme="light" v-model="localOtherProperty.city" />
+					</app-column>
 
-					<div class="gutter-20"></div>
+					<h-spacer width="2rem" />
 
 					<!-- State -->
-					<div class="col col1_5-4">
+					<app-column :c-assign="1.5" :c-total="4">
 						<app-label theme="light">
 							State
 						</app-label>
@@ -58,17 +60,17 @@
 							class="light"
 							v-model="localOtherProperty.state"
 						/>
-					</div>
+					</app-column>
 
-					<div class="gutter-20"></div>
+					<h-spacer width="2rem" />
 
 					<!-- Zip Code -->
-					<div class="col col1-4">
+					<app-column :c-assign="1" :c-total="4">
 						<app-label theme="light">
 							Zipcode
 						</app-label>
-						<text-field v-model="localOtherProperty.zipcode" />
-					</div>
+						<text-field theme="light" v-model="localOtherProperty.zipcode" />
+					</app-column>
 				</div>
 			</div>
 
@@ -198,7 +200,6 @@ import { mapState } from "vuex";
 
 export default {
 	name: "PropertiesModal",
-	components: {},
 	props: {
 		isShowing: {
 			type: Boolean

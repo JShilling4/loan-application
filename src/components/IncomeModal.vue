@@ -221,7 +221,11 @@
                     <h-spacer width="2rem" />
 
                     <!-- Employment End -->
-                    <div class="col col2-4">
+                    <app-column
+                        v-if="localIncomeDetails.currentOrPriorEmployer !== 'Current'"
+                        :c-assign="2"
+                        :c-total="4"
+                    >
                         <app-label for="employmentEndDate">End Date</app-label>
                         <text-field
                             theme="light"
@@ -229,13 +233,21 @@
                             id="employmentEndDate"
                             name="employmentEndDate"
                         />
-                    </div>
+                    </app-column>
+
                 </div>
 
-                <v-spacer height="3rem" />
+                <v-spacer
+                    v-if="localIncomeDetails.currentOrPriorEmployer !== null"
+                    height="3rem"
+                />
 
                 <!-- Compensation Type -->
-                <div class="input-group">
+                <div
+                    v-if="localIncomeDetails.incomeType === 'employed'
+                        || localIncomeDetails.incomeType === 'military'"
+                    class="input-group"
+                >
                     <app-label>How are you paid? (Check all that apply)</app-label>
                     <multi-select
                         mode="tags"
@@ -262,9 +274,8 @@
                         v-model="localIncomeDetails.compensationType"
                         @select="onCompensationTypeSelected"
                     />
+                    <v-spacer height="3rem" />
                 </div>
-
-                <v-spacer height="3rem" />
 
                 <div v-if="localIncomeDetails.compensationType.length !== 0">
                     <!-- Monthly Salary / Hourly Pay / Hours Weekly -->
@@ -277,16 +288,13 @@
                             <app-label for="monthlySalary">Monthly Salary</app-label>
                             <text-field
                                 theme="light"
+                                :is-currency="true"
                                 v-model="localIncomeDetails.monthlySalary"
                                 id="monthlySalary"
                                 name="monthlySalary"
                             />
                         </div>
 
-                        <!-- <h-spacer
-                            v-if="localIncomeDetails.compensationType.includes('salary')"
-                            width="2rem"
-                        /> -->
                         <app-column
                             v-if="localIncomeDetails.compensationType.includes('salary')"
                             :c-assign="2"
@@ -302,6 +310,7 @@
                             <app-label for="hourlyPayRate">Hourly Pay Rate</app-label>
                             <text-field
                                 theme="light"
+                                :is-currency="true"
                                 v-model="localIncomeDetails.hourlyPayRate"
                                 id="hourlyPayRate"
                                 name="hourlyPayRate"
@@ -326,7 +335,11 @@
                         </app-column>
                     </div>
 
-                    <v-spacer height="3rem" />
+                    <v-spacer
+                        v-if="localIncomeDetails.compensationType.includes('salary')
+                            || localIncomeDetails.compensationType.includes('hourly')"
+                        height="3rem"
+                    />
 
                     <!-- Commission / Bonus Amounts -->
                     <div
@@ -343,10 +356,12 @@
                             <app-label for="monthlyCommission">Monthly Commission</app-label>
                             <text-field
                                 theme="light"
+                                :is-currency="true"
                                 v-model="localIncomeDetails.monthlyCommission"
                                 id="monthlyCommission"
                                 name="monthlyCommission"
                             />
+
                         </app-column>
 
                         <h-spacer
@@ -363,6 +378,7 @@
                             <app-label for="weeklyHours">Monthly Bonus</app-label>
                             <text-field
                                 theme="light"
+                                :is-currency="true"
                                 v-model="localIncomeDetails.monthlyBonus"
                                 id="monthlyBonus"
                                 name="monthlyBonus"
@@ -370,6 +386,23 @@
                         </app-column>
                     </div>
                 </div>
+
+                <!-- Monthly Income -->
+                <app-column
+                    v-if="localIncomeDetails.incomeType !== 'employed'
+                        && localIncomeDetails.incomeType !== 'military'"
+                    :c-assign="2"
+                    :c-total="4"
+                >
+                    <app-label for="monthlyIncome">Monthly Income</app-label>
+                    <text-field
+                        theme="light"
+                        :is-currency="true"
+                        v-model="localIncomeDetails.monthlyIncome"
+                        id="monthlyIncome"
+                        name="monthlyIncome"
+                    />
+                </app-column>
             </div>
 
             <v-spacer height="4rem" />

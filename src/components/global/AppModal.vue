@@ -132,6 +132,8 @@ export default {
     &-dialog {
         position: fixed;
         top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
         max-height: 85%;
         overflow-y: auto;
         background-color: #ffffff;
@@ -190,6 +192,6 @@ export default {
 .slide-vertical-enter-from,
 .slide-vertical-leave-to {
     opacity: 0;
-    top: 30%;
+    top: 0;
 }
 </style>

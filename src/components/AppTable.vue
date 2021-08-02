@@ -30,7 +30,7 @@
 							<font-awesome-icon :icon="['fal', 'edit']" />
 						</span>
 						<span
-							v-else-if="column.field == 'delete' && index !== 0"
+							v-else-if="column.field == 'delete'"
 							class="icon"
 							@click="$emit('delete', row)"
 						>
