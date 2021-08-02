@@ -212,7 +212,7 @@
                         <app-label for="employmentStartDate">Start Date</app-label>
                         <text-field
                             theme="light"
-                            v-model="localIncomeDetails.employmentStartDate"
+                            v-model="localIncomeDetails.startDate"
                             id="employmentStartDate"
                             name="employmentStartDate"
                         />

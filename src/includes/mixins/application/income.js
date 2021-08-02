@@ -5,10 +5,12 @@ export default {
     mixins: [deepClone],
 	data() {
 		return {
-			localIncome: {},
-			localCoborrowerIncome: {},
-			localApplicationData: {}
-		};
+            localIncome: {},
+            localCoborrowerIncome: {},
+            localApplicationData: {},
+            localDataIsLoading: true,
+            localDataIsPosting: false,
+        };
 	},
 	computed: {
 		...mapState(["borrower", "coborrower", "application", "states"]),
@@ -66,6 +68,7 @@ export default {
 			this.updateCoborrowerIncome()
 		]).then(() => {
 			this.syncProfileWithStore(); // async load data to hydrate
+            this.localDataIsLoading = false;
 		});
 	}
 };

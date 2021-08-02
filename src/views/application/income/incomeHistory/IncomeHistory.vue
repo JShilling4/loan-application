@@ -8,12 +8,14 @@
                 the next section of the application
             </p>
 
-            <app-table
-                v-if="computedIncomeHistory > 0"
-                :columns="tableColumns"
-                :rows="borrowerData.income.incomeHistory"
-                @edit="loadIncomeModal"
-            />
+            <transition name="fade">
+                <app-table
+                    v-if="tableShouldShow"
+                    :columns="tableColumns"
+                    :rows="computedIncomeHistory"
+                    @edit="loadIncomeModal"
+                />
+            </transition>
 
             <add-button
                 text="Add Income"
@@ -62,6 +64,7 @@ export default {
                 {
                     label: "Income Type",
                     field: "incomeType",
+                    tdClass: "incomeType"
                 },
                 {
                     label: "Description",
@@ -78,10 +81,12 @@ export default {
                 {
                     label: "Edit",
                     field: "edit",
+                    tdClass: "center"
                 },
                 {
                     label: "Delete",
                     field: "delete",
+                    tdClass: "center"
                 },
             ],
         };
@@ -91,7 +96,18 @@ export default {
         computedIncomeHistory() {
             return this.localIncome.incomeHistory !== null
                 ? this.localIncome.incomeHistory
-                : [];
+                : null;
+        },
+        tableShouldShow() {
+            if(!this.computedIncomeHistory) {
+                return false;
+            } else if (
+                this.computedIncomeHistory.length > 0 &&
+                !this.localDataIsLoading
+            ) {
+                return true;
+            }
+            return false;
         },
     },
 
@@ -138,6 +154,9 @@ export default {
 
 <style lang="scss" scoped>
 .incomeHistory {
+    .pageForm {
+        max-width: 80rem;
+    }
     .pageCopy {
         width: 80%;
         margin: 0 auto 3rem;
@@ -154,5 +173,9 @@ export default {
             width: 8rem;
         }
     }
+}
+
+:deep(td.incomeType span) {
+    text-transform: capitalize;
 }
 </style>

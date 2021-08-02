@@ -1,6 +1,8 @@
 import { mapState, mapActions } from "vuex";
+import { deepClone } from "../helpers";
 
 export default {
+    mixins: [deepClone],
 	data() {
 		return {
 			localDataIsLoading: true,
@@ -38,21 +40,11 @@ export default {
 			"editNavigationSectionCount"
 		]),
 		syncProfileWithStore() {
-			this.localProperty = JSON.parse(
-				JSON.stringify({ ...this.borrowerData.property })
-			);
-			this.localProfile = JSON.parse(
-				JSON.stringify({ ...this.borrowerData.profile })
-			);
-			this.localCoborrowerProfile = JSON.parse(
-				JSON.stringify({ ...this.coborrowerData.profile })
-			);
-			this.localCoborrowerProperty = JSON.parse(
-				JSON.stringify({ ...this.coborrowerData.property })
-			);
-			this.localApplicationData = JSON.parse(
-				JSON.stringify({ ...this.applicationData })
-			);
+			this.localProperty = this.deepClone(this.borrowerData.property);
+			this.localProfile = this.deepClone(this.borrowerData.profile);
+			this.localCoborrowerProfile = this.deepClone(this.coborrowerData.profile);
+			this.localCoborrowerProperty = this.deepClone(this.coborrowerData.property);
+			this.localApplicationData = this.deepClone(this.applicationData);
 		},
 
 		editSectionProgress(part, config = { force: false }) {

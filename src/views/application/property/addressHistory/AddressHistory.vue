@@ -177,7 +177,7 @@ export default {
 
         tableShouldShow() {
             if (
-                this.computedAddressHistory.length > 0 &&
+                this.computedAddressHistory?.length > 0 &&
                 !this.localDataIsLoading
             ) {
                 return true;
