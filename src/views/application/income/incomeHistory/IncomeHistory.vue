@@ -12,6 +12,7 @@
                 v-if="computedIncomeHistory > 0"
                 :columns="tableColumns"
                 :rows="borrowerData.income.incomeHistory"
+                @edit="loadIncomeModal"
             />
 
             <add-button
@@ -20,13 +21,14 @@
             />
 
             <income-modal
-                :is-showing="incomeModalShowing"
+                :is-showing="incomeDetailsModalShowing"
                 :is-posting="localDataIsPosting"
                 :modal-action="modalAction"
                 @close="closeIncomeModal()"
                 :profile="borrowerData.profile"
                 :income="borrowerData.income"
-                @save-income="saveIncome($event)"
+                :income-details="selectedIncomeDetails"
+                @save-income="saveIncomeDetails($event)"
             />
 
             <div class="inline-group">
@@ -41,13 +43,14 @@
 
 <script>
 import income from "@/includes/mixins/application/income";
+import incomeHistory from "@/includes/mixins/application/incomeHistory";
 import AddButton from "@/components/AddButton.vue";
 import AppTable from "@/components/AppTable.vue";
 import IncomeModal from "@/components/IncomeModal.vue";
 
 export default {
     name: "IncomeHistory",
-    mixins: [income],
+    mixins: [income, incomeHistory],
     components: {
         "add-button": AddButton,
         "app-table": AppTable,
@@ -81,9 +84,6 @@ export default {
                     field: "delete",
                 },
             ],
-            incomeModalShowing: false,
-            modalAction: "Add",
-            localDataIsPosting: false,
         };
     },
 
@@ -99,31 +99,35 @@ export default {
         loadIncomeModal(income = null) {
             if (income !== null) {
                 this.modalAction = "Edit";
+                this.selectedIncomeDetails = this.deepClone(income);
+                this.openIncomeModal();
             }
+
             if (income == null) {
                 this.modalAction = "Add";
+                this.selectedIncomeDetails = {
+                    incomeType: null,
+                    currentOrPriorEmployer: null,
+                    compensationType: [],
+                };
+                this.openIncomeModal();
             }
-            this.incomeModalShowing = true;
         },
 
-        closeIncomeModal() {
-            this.incomeModalShowing = false;
-        },
-
-        async saveIncome(income) {
-            console.log(income);
-            // this.localDataIsPosting = true;
-            // this.postBorrowerIncome(income).then(() => {
-            //     this.localIncome = income;
-            //     this.incomeModalShowing = false;
-            //     this.localDataIsPosting = false;
-            // });
+        async saveIncomeDetails(income) {
+            this.localDataIsPosting = true;
+            this.postBorrowerIncome(income).then(() => {
+                this.localIncome = income;
+                this.incomeDetailsModalShowing = false;
+                this.localDataIsPosting = false;
+            });
         },
 
         removeIncome(income) {
             console.log(income);
             // TODO: delete address
         },
+
         submitPage() {
             this.editSectionProgress(1);
             this.$router.push("/income/coborrower-income-history");

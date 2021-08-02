@@ -4,7 +4,8 @@ export default {
 			currentAddressModalShowing: false,
 			previousAddressModalShowing: false,
 			selectedPreviousAddress: {},
-			modalAction: "Add"
+			modalAction: "Add",
+            localDataIsPosting: false,
 		};
 	},
 	methods: {

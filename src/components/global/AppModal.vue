@@ -131,14 +131,12 @@ export default {
     }
     &-dialog {
         position: fixed;
-        top: 35%;
-        left: 50%;
-        max-height: 99%;
+        top: 10%;
+        max-height: 85%;
         overflow-y: auto;
-        transform: translate(-50%, -50%);
         background-color: #ffffff;
         border-radius: var(--app-border-radius);
-        margin: 10rem auto 50px;
+        margin: 0 auto;
         padding: 2rem 3rem;
         display: flex;
         flex-direction: column;

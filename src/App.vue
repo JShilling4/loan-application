@@ -123,6 +123,9 @@ export default {
     --ms-option-font-size: 14px;
     --ms-ring-color: #16c297;
     --ms-ring-width: 0;
+    --ms-tag-bg: var(--teal-dark);
+    --ms-tag-py: .5rem;
+    --ms-tag-font-size: 13px;
 }
 
 .multiselect {

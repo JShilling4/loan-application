@@ -31,6 +31,7 @@
                     <text-field
                         type="text"
                         id="moveInDate"
+                        theme="light"
                         placeholder="MM/YYYY"
                         maxlength="7"
                         name="moveInDate"
@@ -54,58 +55,64 @@
             >
                 <div class="inline-form-group">
                     <!-- Street Address -->
-                    <div class="col col3_5-4">
-                        <app-label
-                            theme="light"
-                            for="streetAddress"
-                        >
+                    <app-column
+                        :c-assign="3.25"
+                        :c-total="4"
+                    >
+                        <app-label for="streetAddress">
                             Street Address
                         </app-label>
                         <text-field
+                            theme="light"
                             v-model="localProfile.streetAddress2"
                             id="streetAddress"
                             name="streetAddress"
                         />
-                    </div>
+                    </app-column>
 
-                    <div class="gutter-20"></div>
+                    <h-spacer width="2rem" />
 
                     <!-- Unit/Apt -->
-                    <div class="col col1-4">
-                        <app-label
-                            theme="light"
-                            for="unitNumber"
-                        >
+                    <app-column
+                        :c-assign="0.75"
+                        :c-total="4"
+                    >
+                        <app-label for="unitNumber">
                             Unit / Apt
                         </app-label>
                         <text-field
+                            theme="light"
                             v-model="localProfile.apartmentNumber2"
                             id="unitNumber"
                             name="unitNumber"
                         />
-                    </div>
+                    </app-column>
                 </div>
 
                 <div class="inline-form-group">
                     <!-- City -->
-                    <div class="col col2-4">
-                        <app-label
-                            theme="light"
-                            for="city"
-                        >
+                    <app-column
+                        :c-assign="1.86"
+                        :c-total="4"
+                    >
+                        <app-label for="city">
                             City
                         </app-label>
                         <text-field
+                            theme="light"
                             v-model="localProfile.city2"
                             id="city"
                             name="city"
                         />
-                    </div>
+                    </app-column>
 
-                    <div class="gutter-20"></div>
+                    <h-spacer width="2rem" />
 
                     <!-- State -->
-                    <div class="col col1_5-4">
+                    <app-column
+                        :c-assign="1.35"
+                        :c-total="4"
+                    >
                         <app-label theme="light">
                             State
                         </app-label>
@@ -115,24 +122,25 @@
                             class="light"
                             v-model="localProfile.state2"
                         />
-                    </div>
+                    </app-column>
 
-                    <div class="gutter-20"></div>
+                    <h-spacer width="2rem" />
 
                     <!-- Zip Code -->
-                    <div class="col col1-4">
-                        <app-label
-                            theme="light"
-                            for="zipcode"
-                        >
+                    <app-column
+                        :c-assign="0.79"
+                        :c-total="4"
+                    >
+                        <app-label for="zipcode">
                             Zipcode
                         </app-label>
                         <text-field
+                            theme="light"
                             v-model="localProfile.zipcode2"
                             id="zipcode"
                             name="zipcode"
                         />
-                    </div>
+                    </app-column>
                 </div>
             </div>
 

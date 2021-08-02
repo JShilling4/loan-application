@@ -3,10 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { makeServer } from "@/api/mock/server";
-import GlobalComponents from "./includes/_globals";
-import FontAwesome from  "./includes/fontAwesome";
-import { clickOutside } from "./includes/directives";
-import Multiselect from "@vueform/multiselect";
+import { globalComponents, globalDirectives } from "./includes/_globals";
 import i18n from "./includes/i18n";
 
 // Initiate mock API
@@ -14,18 +11,16 @@ import i18n from "./includes/i18n";
 makeServer();
 // }
 
-const app = createApp(App).use(i18n);
+const app = createApp(App);
 
 // Custom Vue directives
-app.directive("click-outside", clickOutside);
 
-// Third-party global components
-app.component("multi-select", Multiselect);
 
 // Plugins
 app.use(store);
 app.use(router);
-app.use(GlobalComponents);
-app.use(FontAwesome);
+app.use(i18n);
+app.use(globalComponents);
+app.use(globalDirectives);
 
 app.mount("#app");

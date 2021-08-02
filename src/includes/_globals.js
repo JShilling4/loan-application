@@ -1,7 +1,14 @@
 import _ from "lodash";
+import HSpacer from "../components/layout/HSpacer.vue";
+import VSpacer from "../components/layout/VSpacer.vue";
+import AppColumn from "../components/layout/AppColumn.vue";
+import Multiselect from "@vueform/multiselect";
+import FontAwesome from "../includes/fontAwesome";
+import { clickOutside } from "../includes/directives";
 
-export default {
+export const globalComponents = {
     install(app) {
+        // globally register any components placed in the global folder
         const baseComponents = require.context(
             "../components/global/",
             false,
@@ -17,5 +24,18 @@ export default {
             // export default
             app.component(`${componentName}`, componentConfig.default || componentConfig);
         });
+
+        // register components globally from other any folder
+        app.component("h-spacer", HSpacer);
+        app.component("v-spacer", VSpacer);
+        app.component("app-column", AppColumn);
+        app.component("multi-select", Multiselect);
+        app.use(FontAwesome);
     },
 };
+
+export const globalDirectives = {
+    install(app) {
+        app.directive("click-outside", clickOutside);
+    }
+}

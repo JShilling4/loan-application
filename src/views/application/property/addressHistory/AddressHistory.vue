@@ -60,7 +60,7 @@
             @close="closeCurrentAddressModal()"
             :profile="borrowerData.profile"
             :property="borrowerData.property"
-            @save-property="saveCurrentAddress"
+            @save-property="saveCurrentAddress($event)"
         />
 
         <!-- Previous Address Modal -->
@@ -72,7 +72,7 @@
             :profile="borrowerData.profile"
             :property="borrowerData.property"
             :previous-address="selectedPreviousAddress"
-            @save-address="savePreviousAddress"
+            @save-address="savePreviousAddress($event)"
         />
     </div>
 </template>
@@ -80,6 +80,7 @@
 <script>
 import property from "@/includes/mixins/application/property";
 import addressHistory from "@/includes/mixins/application/addressHistory";
+import { deepClone } from "@/includes/mixins/helpers";
 import AppTable from "@/components/AppTable.vue";
 import AddButton from "@/components/AddButton.vue";
 import CurrentAddressModal from "@/components/CurrentAddressModal.vue";
@@ -87,7 +88,7 @@ import PreviousAddressModal from "@/components/PreviousAddressModal.vue";
 
 export default {
     name: "AddressHistory",
-    mixins: [property, addressHistory],
+    mixins: [property, addressHistory, deepClone],
     components: {
         "app-table": AppTable,
         "add-button": AddButton,
@@ -200,9 +201,7 @@ export default {
                 if (address.moveOutDate === "Present") {
                     this.openCurrentAddressModal();
                 } else {
-                    this.selectedPreviousAddress = JSON.parse(
-                        JSON.stringify({ ...address })
-                    );
+                    this.selectedPreviousAddress = this.deepClone(address);
                     this.openPreviousAddressModal();
                 }
             }

@@ -20,7 +20,7 @@
                         <app-label theme="light">
                             Move In Date
                         </app-label>
-                        <text-field v-model="localPreviousAddress.moveInDate" />
+                        <text-field theme="light" v-model="localPreviousAddress.moveInDate" />
                     </div>
 
                     <!-- Move Out Date -->
@@ -28,65 +28,65 @@
                         <app-label theme="light">
                             Move Out Date
                         </app-label>
-                        <text-field v-model="localPreviousAddress.moveOutDate" />
+                        <text-field theme="light" v-model="localPreviousAddress.moveOutDate" />
                     </div>
                 </div>
 
                 <!-- Streed Address / Unit Number -->
                 <div class="inline-form-group">
                     <!-- Street Address -->
-                    <div class="col col3_5-4">
+                    <app-column :c-assign="3.5" :c-total="4">
                         <app-label theme="light">
                             Street Address
                         </app-label>
-                        <text-field v-model="localPreviousAddress.streetAddress" />
-                    </div>
+                        <text-field theme="light" v-model="localPreviousAddress.streetAddress" />
+                    </app-column>
 
-                    <div class="gutter-20"></div>
+                    <h-spacer width="2rem" />
 
                     <!-- Unit/Apt -->
-                    <div class="col col1-4">
+                    <app-column :c-assign="0.75" :c-total="4">
                         <app-label theme="light">
                             Unit / Apt
                         </app-label>
-                        <text-field v-model="localPreviousAddress.apartmentNumber" />
-                    </div>
+                        <text-field theme="light" v-model="localPreviousAddress.apartmentNumber" />
+                    </app-column>
                 </div>
 
                 <!-- City / State / Zipcode -->
                 <div class="inline-form-group">
                     <!-- City -->
-                    <div class="col col2-4">
+                    <app-column :c-assign="1.75" :c-total="4">
                         <app-label theme="light">
                             City
                         </app-label>
-                        <text-field v-model="localPreviousAddress.city" />
-                    </div>
+                        <text-field theme="light" v-model="localPreviousAddress.city" />
+                    </app-column>
 
-                    <div class="gutter-20"></div>
+                    <h-spacer width="2rem" />
 
                     <!-- State -->
-                    <div class="col col1_5-4">
+                    <app-column :c-assign="1.5" :c-total="4">
                         <app-label theme="light">
                             State
                         </app-label>
                         <multi-select
-							:options="states"
-							:can-clear="false"
-							class="light"
-							v-model="localPreviousAddress.state"
-						/>
-                    </div>
+                            :options="states"
+                            :can-clear="false"
+                            class="light"
+                            v-model="localPreviousAddress.state"
+                        />
+                    </app-column>
 
-                    <div class="gutter-20"></div>
+                    <h-spacer width="2rem" />
 
                     <!-- Zip Code -->
-                    <div class="col col1-4">
+                    <app-column :c-assign="0.75" :c-total="4">
                         <app-label theme="light">
                             Zipcode
                         </app-label>
-                        <text-field v-model="localPreviousAddress.zipcode" />
-                    </div>
+                        <text-field theme="light" v-model="localPreviousAddress.zipcode" />
+                    </app-column>
                 </div>
             </div>
 
@@ -120,7 +120,11 @@
             </div>
 
             <div class="button-wrapper">
-                <app-button @click="saveLocalData()">
+                <app-button
+                    :is-posting="isPosting"
+                    indicator-type="button"
+                    @click="saveLocalData()"
+                >
                     {{ modalAction }}
                 </app-button>
             </div>
@@ -130,12 +134,17 @@
 
 <script>
 import { mapState } from "vuex";
+import { deepClone } from "@/includes/mixins/helpers";
 
 export default {
     name: "PreviousAddressModal",
     components: {},
+    mixins: [deepClone],
     props: {
         isShowing: {
+            type: Boolean,
+        },
+        isPosting: {
             type: Boolean,
         },
         modalAction: {
@@ -162,14 +171,10 @@ export default {
     },
     watch: {
         property() {
-            this.localProperty = JSON.parse(
-                JSON.stringify({ ...this.property })
-            );
+            this.localProperty = this.deepClone(this.property);
         },
         previousAddress() {
-            this.localPreviousAddress = JSON.parse(
-                JSON.stringify({ ...this.previousAddress })
-            );
+            this.localPreviousAddress = this.deepClone(this.previousAddress);
         },
     },
     methods: {
