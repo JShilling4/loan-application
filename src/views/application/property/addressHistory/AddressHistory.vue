@@ -130,7 +130,6 @@ export default {
                 this.borrowerData.property?.currentAddressInfo?.moveInDate !==
                 null
             ) {
-                debugger;
                 const currentAddressObj = {
                     streetAddress:
                         this.borrowerData.profile.streetAddress2 !== null

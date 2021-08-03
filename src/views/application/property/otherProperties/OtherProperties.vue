@@ -52,8 +52,11 @@ export default {
 				this.localProperty.hasOtherProperties
 			);
 		},
+        hasCoborrower() {
+            return this.borrowerData.about.hasCoborrower == true;
+        },
 		sectionCount() {
-			if (this.borrowerData.about.hasCoborrower == true) {
+			if (this.hasCoborrower) {
 				if (this.localProperty.hasOtherProperties !== true) {
 					return 7;
 				}
@@ -83,7 +86,7 @@ export default {
 					count: this.sectionCount
 				});
 				// update section progress
-				this.editSectionProgress(this.sectionCount, {
+				this.editSectionProgress(this.hasCoborrower ? 4 : 3, {
 					force: this.shouldForceSectionCountUpdate
 				});
 				// route to next section
