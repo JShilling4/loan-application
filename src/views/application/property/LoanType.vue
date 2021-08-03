@@ -56,8 +56,6 @@ export default {
 
 				if (this.localProperty.loanType == "refinance") {
 					this.$router.push("/property/refinance");
-				} else if (this.localProperty.loanType == "purchase") {
-					this.$router.push("/property/address-history");
 				} else {
 					this.$router.push("/property/address-history");
 				}

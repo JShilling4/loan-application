@@ -26,7 +26,6 @@
 
             <view-controls
                 @next-view="submitPage()"
-                :include-back="false"
                 :local-posting="localDataIsPosting"
             />
         </div>
@@ -81,7 +80,10 @@ export default {
                 // post data
                 await this.postBorrowerProfile(this.localProfile);
                 // post progress
-                if (this.applicationData.progress.profile === null) {
+                if (
+                    this.applicationData.progress.profile === null ||
+                    this.applicationData.progress.profile < 3
+                ) {
                     this.localApplicationData.progress.profile = 3;
                     this.postApplicationData(this.localApplicationData);
                 }

@@ -30,14 +30,12 @@
 							coborrowerData.property.currentAddressInfo
 								.moveInDate == null
 								? 'Add Current Address Info'
-								: 'Add Previous Address'
-						"
+								: 'Add Previous Address'"
                         @click="
 							coborrowerData.property.currentAddressInfo
 								.moveInDate == null
 								? loadAddressModal()
-								: loadAddressModal()
-						"
+								: loadAddressModal()"
                     />
                 </div>
 
@@ -175,7 +173,6 @@ export default {
                     }
                 );
             }
-
             return addresses;
         },
 

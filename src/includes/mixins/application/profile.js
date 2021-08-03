@@ -28,7 +28,7 @@ export default {
         },
         applicationData: {
             handler() {
-                this.localApplicationData = this.deepClone(this.localApplicationData);
+                this.localApplicationData = this.deepClone(this.applicationData);
             },
             deep: true,
         },

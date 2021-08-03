@@ -130,6 +130,7 @@ export default {
                 this.borrowerData.property?.currentAddressInfo?.moveInDate !==
                 null
             ) {
+                debugger;
                 const currentAddressObj = {
                     streetAddress:
                         this.borrowerData.profile.streetAddress2 !== null
@@ -184,15 +185,6 @@ export default {
         },
     },
     methods: {
-        submitPage() {
-            this.editSectionProgress(2);
-            if (this.borrowerData.about.hasCoborrower == true) {
-                this.$router.push("/property/coborrower-address-history");
-            } else {
-                this.$router.push("/property/other-properties");
-            }
-        },
-
         loadAddressModal(address = null) {
             if (address !== null) {
                 this.modalAction = "Edit";
@@ -239,6 +231,15 @@ export default {
         removeAddress(address) {
             console.log(address);
             // TODO: delete address
+        },
+
+        submitPage() {
+            this.editSectionProgress(2);
+            if (this.borrowerData.about.hasCoborrower == true) {
+                this.$router.push("/property/coborrower-address-history");
+            } else {
+                this.$router.push("/property/other-properties");
+            }
         },
     },
 };

@@ -24,6 +24,6 @@ export default {
 // 	numberOfDependents: null,
 // 	dependentAges: null,
 // 	payOrReceiveSupport: null,
-//  supportType: null,
-//  supportAmount: null,
+//     supportType: null,
+//     supportAmount: null,
 // };

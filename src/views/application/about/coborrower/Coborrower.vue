@@ -63,7 +63,7 @@ export default {
                     // coborrower exists, so adjust section count to include those questions
 					this.editNavigationSectionCount({
 						section: "about",
-						count: 11
+						count: 9
 					});
 					this.editSectionProgress(2, { force: shouldForce });
 					this.$router.push("/about/coborrower/info");
@@ -71,7 +71,7 @@ export default {
                     // coborrower doesnt exist, so adjust section count to exclude those questions
 					this.editNavigationSectionCount({
 						section: "about",
-						count: 6
+						count: 4
 					});
 					this.editSectionProgress(2, { force: shouldForce });
 					this.$router.push("/about/dependents");

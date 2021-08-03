@@ -78,7 +78,7 @@
 			<div class="inline-form-group">
 				<!-- Mortgage Type -->
 				<div class="input-group">
-					<app-label class-list="light">
+					<app-label theme="light">
 						Type of Mortgage
 					</app-label>
 
@@ -113,7 +113,7 @@
 
 				<!-- Property Plan -->
 				<div class="input-group">
-					<app-label class-list="light">
+					<app-label theme="light">
 						Plan for property
 					</app-label>
 
@@ -147,7 +147,7 @@
 			<div class="inline-form-group">
 				<!-- Current Usage -->
 				<div class="input-group">
-					<app-label class-list="light">
+					<app-label theme="light">
 						Current Usage
 					</app-label>
 
@@ -174,7 +174,7 @@
 
 				<!-- Approximate Value -->
 				<div class="input-group">
-					<app-label class-list="light">
+					<app-label theme="light">
 						Approximate Value?
 					</app-label>
 

@@ -27,7 +27,10 @@
                 </div>
 
                 <div class="input-group moveInDate col2">
-                    <app-label for="moveInDate">Move In Date</app-label>
+                    <app-label
+                        theme="light"
+                        for="moveInDate"
+                    >Move In Date</app-label>
                     <text-field
                         type="text"
                         id="moveInDate"
@@ -59,7 +62,10 @@
                         :c-assign="3.25"
                         :c-total="4"
                     >
-                        <app-label for="streetAddress">
+                        <app-label
+                            theme="light"
+                            for="streetAddress"
+                        >
                             Street Address
                         </app-label>
                         <text-field
@@ -77,7 +83,10 @@
                         :c-assign="0.75"
                         :c-total="4"
                     >
-                        <app-label for="unitNumber">
+                        <app-label
+                            theme="light"
+                            for="unitNumber"
+                        >
                             Unit / Apt
                         </app-label>
                         <text-field
@@ -95,7 +104,10 @@
                         :c-assign="1.86"
                         :c-total="4"
                     >
-                        <app-label for="city">
+                        <app-label
+                            theme="light"
+                            for="city"
+                        >
                             City
                         </app-label>
                         <text-field
@@ -131,7 +143,10 @@
                         :c-assign="0.79"
                         :c-total="4"
                     >
-                        <app-label for="zipcode">
+                        <app-label
+                            theme="light"
+                            for="zipcode"
+                        >
                             Zipcode
                         </app-label>
                         <text-field
@@ -177,13 +192,19 @@
             <div v-if="localProperty.currentAddressInfo.propertyOwner == 'Yes'">
                 <!-- Property Plan -->
                 <div class="inline-form-group">
-                    <div class="label-container col1">
-                        <app-label class-list="light">
+                    <app-column
+                        :c-assign="2"
+                        :c-total="4"
+                    >
+                        <app-label theme="light">
                             Plan for property after this transaction?
                         </app-label>
-                    </div>
-
-                    <div class="inline-input-container col2">
+                    </app-column>
+                    <h-spacer width="2rem" />
+                    <app-column
+                        :c-assign="2"
+                        :c-total="4"
+                    >
                         <multi-select
                             :options="[
 								{
@@ -211,24 +232,30 @@
                             class="multiselect light"
                             v-model="localProperty.currentAddressInfo.propertyPlan"
                         />
-                    </div>
+                    </app-column>
                 </div>
 
                 <!-- Approx Value -->
                 <div class="inline-form-group">
-                    <div class="label-container col1">
-                        <app-label class-list="light">
+                    <app-column
+                        :c-assign="2"
+                        :c-total="4"
+                    >
+                        <app-label theme="light">
                             Approximate property value?
                         </app-label>
-                    </div>
-
-                    <div class="col2">
+                    </app-column>
+                    <h-spacer width="2rem" />
+                    <app-column
+                        :c-assign="2"
+                        :c-total="4"
+                    >
                         <text-field
                             :is-currency="true"
                             theme="light"
                             v-model="localProperty.currentAddressInfo.propertyValue"
                         />
-                    </div>
+                    </app-column>
                 </div>
             </div>
 
@@ -237,19 +264,18 @@
                 v-if="localProperty.currentAddressInfo.propertyOwner == 'No'"
                 class="inline-form-group"
             >
-                <div class="label-container col1">
-                    <app-label class-list="light">
+                <app-column :c-assign="2" :c-total="4">
+                    <app-label theme="light">
                         What is your monthly rent amount?
                     </app-label>
-                </div>
-
-                <div class="col2">
+                </app-column>
+                <app-column :c-assign="2" :c-total="4">
                     <text-field
                         :is-currency="true"
                         theme="light"
                         v-model="localProperty.currentAddressInfo.monthlyRent"
                     />
-                </div>
+                </app-column>
             </div>
 
             <div class="button-wrapper">

@@ -38,8 +38,8 @@ export default {
 // 	apartmentNumber: null,
 // 	city: null,
 // 	state: null,
-// 	zipcode: null
-//  referralSource: null,
-//  referralSourceName: null,
-//  loanOfficer: "clintmorgan",
+// 	zipcode: null,
+//     referralSource: null,
+//     referralSourceName: null,
+//     loanOfficer: null,
 // };

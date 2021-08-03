@@ -136,7 +136,6 @@ import profile from "@/includes/mixins/application/profile";
 export default {
     name: "ProfileGeneral",
     mixins: [profile],
-    components: {},
     methods: {
         async submitPage() {
             if (this.localDataIsPosting == false) {

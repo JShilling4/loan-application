@@ -51,12 +51,19 @@ export default {
                 // post data
                 await this.postBorrowerProfile(this.localProfile);
                 // post progress
-                if (this.applicationData.progress.profile === null) {
+                if (
+                    this.applicationData.progress.profile === null ||
+                    this.applicationData.progress.profile < 4
+                ) {
                     this.localApplicationData.progress.profile = 4;
                     this.postApplicationData(this.localApplicationData);
                 }
                 // next route
-                this.$router.push("/about/veteran");
+                if (this.borrowerData.profile.password === null) {
+					this.$router.push("/profile/create-password");
+				} else {
+					this.$router.push("/about/veteran");
+				}
             }
         },
     },

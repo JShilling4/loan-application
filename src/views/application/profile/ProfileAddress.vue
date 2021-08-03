@@ -91,7 +91,6 @@ import profile from "@/includes/mixins/application/profile";
 export default {
     name: "ProfileAddress",
     mixins: [profile],
-    components: {},
     methods: {
         async submitPage() {
             if (this.localDataIsPosting == false) {
