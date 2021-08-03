@@ -7,7 +7,7 @@ export default {
             about: {},
             property: {},
             income: {},
-            assets: {},
+            assets: [],
         },
     },
 
@@ -38,10 +38,7 @@ export default {
         },
 
         SAVE_COBORROWER_ASSETS(state, payload) {
-            state.coborrower.assets = {
-                ...state.coborrower.assets,
-                ...payload,
-            };
+            state.coborrower.assets = state.coborrower.assets.concat(payload);
         },
     },
 

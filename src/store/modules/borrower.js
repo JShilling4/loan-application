@@ -7,7 +7,7 @@ export default {
             about: {},
             property: {},
             income: {},
-            assets: {},
+            assets: [],
             declarations: {
                 citizenshipStatus: null,
                 propertyIsPrimary: null,
@@ -62,10 +62,7 @@ export default {
         },
 
         SAVE_BORROWER_ASSETS(state, payload) {
-            state.borrower.assets = {
-                ...state.borrower.assets,
-                ...payload,
-            };
+            state.borrower.assets = payload;
         },
     },
 

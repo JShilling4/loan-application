@@ -102,11 +102,13 @@ export default {
                 {
                     label: "Edit",
                     field: "edit",
+                    thClass: "center",
                     tdClass: "center",
                 },
                 {
                     label: "Delete",
                     field: "delete",
+                    thClass: "center",
                     tdClass: "center",
                 },
             ],

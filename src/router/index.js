@@ -380,6 +380,7 @@ const routes = [
         children: [
             {
                 path: "entry-options",
+                name: "assetEntryOptions",
                 meta: {
                     navItem: "assets",
                 },

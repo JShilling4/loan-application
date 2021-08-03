@@ -6,7 +6,7 @@
 			:is-posting="localPosting"
 			indicator-type="button"
 			:append-icon="true"
-			@click="$emit('next-view')"
+			@click="onClick($event)"
 		>
 			{{ $t(`global.${camelize(nextText.toLowerCase())}`) }}
 		</app-button>
@@ -27,6 +27,7 @@ import { camelize } from "@/includes/mixins/helpers";
 export default {
 	name: "ViewControls",
     mixins: [camelize],
+    emits: ["nextView"],
 	props: {
 		nextText: {
 			type: String,
@@ -48,7 +49,12 @@ export default {
 			type: Boolean,
 			default: false
 		}
-	}
+	},
+    methods: {
+        onClick() {
+            this.$emit('next-view');
+        }
+    }
 };
 </script>
 

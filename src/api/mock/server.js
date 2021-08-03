@@ -203,7 +203,7 @@ export function makeServer() {
 			this.get(
 				"/borrowerAssets",
 				schema => {
-					return schema.db.borrowerAssets[0];
+					return schema.db.borrowerAssets;
 				},
 				{ timing }
 			);

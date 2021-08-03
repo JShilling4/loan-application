@@ -113,7 +113,6 @@
 
         <app-modal
             ref="vimeoModal"
-            class="vimeoModal"
             width="70rem"
             :show="vimeoModalShowing"
             :show-close-button="true"
