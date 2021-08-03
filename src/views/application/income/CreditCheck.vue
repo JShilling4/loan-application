@@ -89,7 +89,6 @@
                     <text-field
                         type="text"
                         id="dob"
-                        class-list="dark"
                         v-model="localCoborrowerIncome.birthDate"
                         placeholder="MM/DD/YYYY"
                     />
@@ -104,7 +103,7 @@
 						your current credit scores from the three major credit bureaus, as well
 						as view the information about your employment including an income
 						history."
-                    v-model="localIncome.creditCheckAuthorized"
+                    v-model:checked="localIncome.creditCheckAuthorized"
                     id="creditCheckAuth"
                 />
             </div>

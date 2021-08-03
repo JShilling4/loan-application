@@ -1,7 +1,6 @@
 // standard response
 
 export default {
-    creditCheckAuthorized: true,
     incomeHistory: [
         {
             incomeType: "Employed",
@@ -70,6 +69,7 @@ export default {
     ssn: "XXX-XX-0000",
     birthDate: "12/12/1980",
     currentWorkYears: "8",
+    creditCheckAuthorized: true,
 };
 
 // not completed response

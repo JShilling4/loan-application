@@ -14,7 +14,7 @@
 
             <!-- Income Type -->
             <div class="input-group">
-                <app-label class-list="light">
+                <app-label theme="light">
                     Choose your income type
                 </app-label>
 
@@ -60,7 +60,7 @@
                     <div class="inline-form-group">
                         <!-- Employer Name -->
                         <div class="col col2-4">
-                            <app-label class-list="light">
+                            <app-label theme="light">
                                 Employer Name
                             </app-label>
 
@@ -74,7 +74,7 @@
 
                         <!-- Job Title -->
                         <div class="col col2-4">
-                            <app-label class-list="light">
+                            <app-label theme="light">
                                 Job Title
                             </app-label>
 
@@ -89,7 +89,7 @@
 
                     <!-- Employer Address -->
                     <div class="input-group">
-                        <app-label class-list="light">
+                        <app-label theme="light">
                             Employer Address (optional)
                         </app-label>
 
@@ -183,7 +183,7 @@
                         && localIncomeDetails.incomeType !== 'Pension'"
                     class="inline-form-group"
                 >
-                    <app-label class="label inline col1">
+                    <app-label theme="light">
                         This employer is:
                     </app-label>
 
@@ -231,7 +231,10 @@
                         :c-assign="2"
                         :c-total="4"
                     >
-                        <app-label for="employmentStartDate">Start Date</app-label>
+                        <app-label
+                            theme="light"
+                            for="employmentStartDate"
+                        >Start Date</app-label>
                         <text-field
                             theme="light"
                             v-model="localIncomeDetails.startDate"
@@ -250,7 +253,10 @@
                         :c-assign="2"
                         :c-total="4"
                     >
-                        <app-label for="employmentEndDate">End Date</app-label>
+                        <app-label
+                            theme="light"
+                            for="employmentEndDate"
+                        >End Date</app-label>
                         <text-field
                             theme="light"
                             v-model="localIncomeDetails.employmentEndDate"
@@ -274,7 +280,7 @@
                         || localIncomeDetails.incomeType === 'Military'"
                     class="input-group"
                 >
-                    <app-label>How are you paid? (Check all that apply)</app-label>
+                    <app-label theme="light">How are you paid? (Check all that apply)</app-label>
                     <multi-select
                         mode="tags"
                         :options="[
@@ -300,7 +306,7 @@
                         v-model="localIncomeDetails.compensationType"
                         @select="onCompensationTypeSelected"
                     />
-                    <v-spacer height="3rem" />
+                    <v-spacer height="2rem" />
                 </div>
 
                 <div v-if="localIncomeDetails.compensationType.length !== 0">
@@ -311,7 +317,10 @@
                             v-if="localIncomeDetails.compensationType.includes('salary')"
                             class="col col2-4"
                         >
-                            <app-label for="monthlySalary">Monthly Salary</app-label>
+                            <app-label
+                                theme="light"
+                                for="monthlySalary"
+                            >Monthly Salary</app-label>
                             <text-field
                                 theme="light"
                                 :is-currency="true"
@@ -333,7 +342,10 @@
                             :c-assign="2"
                             :c-total="4"
                         >
-                            <app-label for="hourlyPayRate">Hourly Pay Rate</app-label>
+                            <app-label
+                                theme="light"
+                                for="hourlyPayRate"
+                            >Hourly Pay Rate</app-label>
                             <text-field
                                 theme="light"
                                 :is-currency="true"
@@ -351,7 +363,10 @@
                             :c-assign="2"
                             :c-total="4"
                         >
-                            <app-label for="weeklyHours">Average Hours Per Week</app-label>
+                            <app-label
+                                theme="light"
+                                for="weeklyHours"
+                            >Average Hours Per Week</app-label>
                             <text-field
                                 theme="light"
                                 v-model="localIncomeDetails.averageWeeklyHours"
@@ -364,7 +379,7 @@
                     <v-spacer
                         v-if="localIncomeDetails.compensationType.includes('salary')
                             || localIncomeDetails.compensationType.includes('hourly')"
-                        height="3rem"
+                        height="2rem"
                     />
 
                     <!-- Commission / Bonus Amounts -->
@@ -379,7 +394,10 @@
                             :c-assign="2"
                             :c-total="4"
                         >
-                            <app-label for="monthlyCommission">Monthly Commission</app-label>
+                            <app-label
+                                theme="light"
+                                for="monthlyCommission"
+                            >Monthly Commission</app-label>
                             <text-field
                                 theme="light"
                                 :is-currency="true"
@@ -401,7 +419,10 @@
                             :c-assign="2"
                             :c-total="4"
                         >
-                            <app-label for="weeklyHours">Monthly Bonus</app-label>
+                            <app-label
+                                theme="light"
+                                for="weeklyHours"
+                            >Monthly Bonus</app-label>
                             <text-field
                                 theme="light"
                                 :is-currency="true"
@@ -413,6 +434,12 @@
                     </div>
                 </div>
 
+                <v-spacer
+                    v-if="localIncomeDetails.compensationType.includes('commission')
+                        || localIncomeDetails.compensationType.includes('bonus')"
+                    height="2rem"
+                />
+
                 <!-- Monthly Income -->
                 <app-column
                     v-if="localIncomeDetails.incomeType !== 'Employed'
@@ -420,7 +447,10 @@
                     :c-assign="2"
                     :c-total="4"
                 >
-                    <app-label for="monthlyIncome">Monthly Income</app-label>
+                    <app-label
+                        theme="light"
+                        for="monthlyIncome"
+                    >Monthly Income</app-label>
                     <text-field
                         theme="light"
                         :is-currency="true"
@@ -441,7 +471,10 @@
                     v-if="localIncomeDetails.incomeType === 'Other'"
                     class="input-group"
                 >
-                    <app-label for="incomeDescription">Income Description</app-label>
+                    <app-label
+                        theme="light"
+                        for="incomeDescription"
+                    >Income Description</app-label>
                     <text-field
                         theme="light"
                         v-model="localIncomeDetails.incomeDescription"
