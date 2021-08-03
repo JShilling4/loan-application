@@ -94,6 +94,9 @@ table {
 		text-align: left;
 		vertical-align: bottom;
 		border-bottom: 1px solid #fff;
+        &.center {
+            text-align: center;
+        }
 		&:not(:last-child) {
 			border-right: 1px solid #fff;
 		}
