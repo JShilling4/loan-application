@@ -191,9 +191,7 @@ fieldset {
 #app {
     position: relative;
     min-height: 100vh;
-    &.faq {
-        background: linear-gradient(to right, #0f6957, var(--blue-green));
-    }
+
 }
 
 .appBackground {
@@ -210,11 +208,14 @@ fieldset {
             rgba(8, 72, 92, 1) 0%,
             rgba(20, 47, 66, 1) 95%
         );
-        // background-attachment: fixed;
+    }
+    &.faq {
+        background: linear-gradient(to right, #0f6957, var(--blue-green));
     }
 }
 
 .child-view {
+    position: relative;
     transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 

@@ -23,7 +23,8 @@
         </div>
 
         <view-controls
-            @next-view="submitPage()"
+            @advance-app="submitPage()"
+            @retreat-app="$router.go(-1)"
             next-text="Create Profile"
             :local-posting="localDataIsPosting"
         />

@@ -38,7 +38,7 @@
                     />
                 </div>
 
-                <view-controls @next-view="submitPage()" />
+                <view-controls @advance-app="submitPage()" @retreat-app="$router.go(-1)" />
             </div>
         </transition>
 

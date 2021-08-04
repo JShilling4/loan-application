@@ -6,7 +6,7 @@
 			:is-posting="localPosting"
 			indicator-type="button"
 			:append-icon="true"
-			@click="onClick($event)"
+			@click="onForwardClick($event)"
 		>
 			{{ $t(`global.${camelize(nextText.toLowerCase())}`) }}
 		</app-button>
@@ -14,7 +14,7 @@
 			v-if="includeBack && !localPosting"
 			class-list="white-fill backButton"
 			:prepend-icon="true"
-			@click="$router.go(-1)"
+			@click="onBackClick($event)"
 		>
 			{{ $t(`global.${backText.toLowerCase()}`) }}
 		</app-button>
@@ -51,8 +51,11 @@ export default {
 		}
 	},
     methods: {
-        onClick() {
-            this.$emit('next-view');
+        onForwardClick() {
+            this.$emit('advance-app');
+        },
+        onBackClick() {
+            this.$emit('retreat-app')
         }
     }
 };

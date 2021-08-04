@@ -3,13 +3,16 @@
         <h1 class="appHeading">Declarations</h1>
         <div class="pageWrapper">
             <p class="pageCopy">
-                The federal government requires us to ask the questions below.
+                The federal government requires us to ask the following questions.
             </p>
 
             <div class="questionBox">
                 <div class="questionSlider">
                     <!-- Citizenship Status -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet === 1"
+                        class="input-group"
+                    >
                         <p class="question">What is your citizenship status?</p>
                         <!-- Borrower -->
                         <app-label>{{borrowerProfile.firstName}}</app-label>
@@ -57,7 +60,10 @@
                     </div>
 
                     <!-- Primary Residence -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet === 2"
+                        class="input-group"
+                    >
                         <p class="question">Will you occupy the property as your primary residence?</p>
                         <!-- Borrower -->
                         <app-label>{{ borrowerProfile.firstName }}</app-label>
@@ -105,7 +111,10 @@
                     </div>
 
                     <!-- Relation to Seller -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet === 3"
+                        class="input-group"
+                    >v-if="activeSet == 1"
                         <p class="question">Do you have a family relationship or business affiliation with the seller of the property?</p>
                         <!-- Borrower -->
                         <app-label>{{ borrowerProfile.firstName }}</app-label>
@@ -153,7 +162,10 @@
                     </div>
 
                     <!-- Borrowing Money -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 4"
+                        class="input-group"
+                    >
                         <p class="question">Are you borrowing any money for this real estate transaction (e.g., money for your
                             closing costs or down payment) or obtaining any money from another party, such as the
                             seller or realtor, that you have not disclosed on this loan application?
@@ -204,7 +216,10 @@
                     </div>
 
                     <!-- Undisclosed Additional Loan -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 5"
+                        class="input-group"
+                    >
                         <p class="question">Have you or will you be applying for a mortgage loan on another property (not the
                             property securing this loan) on or before closing this transaction that is not disclosed
                             on this loan application?
@@ -255,7 +270,10 @@
                     </div>
 
                     <!-- Undisclosed New Credit -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 6"
+                        class="input-group"
+                    >
                         <p class="question">
                             Have you or will you be applying for any new credit (e.g., installment loan, credit card, etc.)
                             on or before closing this loan that is not disclosed on this application?
@@ -307,7 +325,10 @@
                     </div>
 
                     <!-- Additional Lien -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 7"
+                        class="input-group"
+                    >
                         <p class="question">
                             Will this property be subject to a lien that could take priority over the first mortgage
                             lien, such as a clean energy lien paid through your property taxes (e.g., the Property
@@ -359,7 +380,10 @@
                     </div>
 
                     <!-- Undisclosed Debt -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 8"
+                        class="input-group"
+                    >
                         <p class="question">
                             Are you a co-signer or guarantor on any debt or loan that is not disclosed on this application?
                         </p>
@@ -410,7 +434,10 @@
                     </div>
 
                     <!-- Outstanding Judgements -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 9"
+                        class="input-group"
+                    >
                         <p class="question">
                             Do you currently have any outstanding judgements?
                         </p>
@@ -461,7 +488,10 @@
                     </div>
 
                     <!-- Delinquent Debt -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 10"
+                        class="input-group"
+                    >
                         <p class="question">
                             Are you currently delinquent on any federal debt or any other loans?
                         </p>
@@ -512,7 +542,10 @@
                     </div>
 
                     <!-- Lawsuit Liability -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 11"
+                        class="input-group"
+                    >
                         <p class="question">
                             Are you a party to a lawsuit in which you potentially have any personal financial liability?
                         </p>
@@ -563,7 +596,10 @@
                     </div>
 
                     <!-- Conveyed Title -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 12"
+                        class="input-group"
+                    >
                         <p class="question">
                             Have you conveyed title to any property in lieu of foreclosure in the past 7 years?
                         </p>
@@ -614,7 +650,10 @@
                     </div>
 
                     <!-- Pre-foreclosure or Short Sale -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 13"
+                        class="input-group"
+                    >
                         <p class="question">
                             Within the past 7 years, have you completed a pre-foreclosure sale or short sale, whereby
                             the property was sold to a third party and the Lender agreed to accept less than the
@@ -666,7 +705,10 @@
                     </div>
 
                     <!-- Recent Foreclosure -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 14"
+                        class="input-group"
+                    >
                         <p class="question">
                             Have you held ownership in a property that has resulted in foreclosure in the last seven years?
                         </p>
@@ -717,7 +759,10 @@
                     </div>
 
                     <!-- Bankruptcy -->
-                    <div class="input-group">
+                    <div
+                        v-if="activeSet == 15"
+                        class="input-group"
+                    >
                         <p class="question">
                             Have you been declared bankrupt in the last seven years?
                         </p>
@@ -769,7 +814,10 @@
                 </div>
             </div>
 
-            <view-controls @next-view="$router.push('/identity/coborrower-declarations')" />
+            <view-controls
+                @advance-app="submitPage()"
+                @retreat-app="$router.go(-1)"
+            />
         </div>
     </div>
 </template>
@@ -783,6 +831,8 @@ export default {
         return {
             localDeclarations: {},
             localCoborrowerDeclarations: {},
+            activeSet: 1,
+            questionSets: 15,
         };
     },
     computed: {
@@ -792,6 +842,11 @@ export default {
         },
         coborrowerProfile() {
             return this.coborrower.coborrower.profile;
+        },
+    },
+    methods: {
+        submitPage() {
+            this.$router.push("/identity/coborrower-declarations");
         },
     },
 };

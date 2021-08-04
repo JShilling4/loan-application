@@ -37,7 +37,8 @@
 				</div>
 
 				<view-controls
-					@next-view="submitPage()"
+					@advance-app="submitPage()"
+                    @retreat-app="$router.go(-1)"
 					:local-posting="localDataIsPosting"
 				/>
 			</div>

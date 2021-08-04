@@ -29,7 +29,10 @@
                 />
             </div>
 
-            <view-controls @next-view="$router.push('/identity/coborrower-demographics')" />
+            <view-controls
+                @advance-app="submitPage()"
+                @retreat-app="$router.go(-1)"
+            />
         </form>
     </div>
 </template>
@@ -42,6 +45,11 @@ export default {
         return {
             optOut: false,
         };
+    },
+    methods: {
+        submitPage() {
+            this.$router.push("/identity/coborrower-demographics");
+        },
     },
 };
 </script>

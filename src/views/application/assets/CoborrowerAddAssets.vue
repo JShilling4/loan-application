@@ -22,7 +22,10 @@
                     @click="loadAssetModal()"
                 />
 
-                <view-controls @next-view="submitPage()" />
+                <view-controls
+                    @advance-app="submitPage()"
+                    @retreat-app="$router.go(-1)"
+                />
             </div>
         </transition>
 
@@ -96,9 +99,7 @@ export default {
 
     computed: {
         computedAssets() {
-            return this.localAssets !== null
-                ? this.localAssets
-                : null;
+            return this.localAssets !== null ? this.localAssets : null;
         },
         tableShouldShow() {
             if (!this.computedAssets) {
@@ -160,7 +161,7 @@ export default {
     color: #fff;
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     text-decoration: underline;
 }
 </style>
