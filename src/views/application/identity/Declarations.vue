@@ -59,13 +59,13 @@
                         />
                     </div>
 
-                    <!-- Primary Residence -->
+                    <!-- Primary Residence Set -->
                     <div
                         v-if="activeSet === 2"
                         class="input-group"
                     >
                         <p class="question">Will you occupy the property as your primary residence?</p>
-                        <!-- Borrower -->
+                        <!-- Borrower Primary Residence-->
                         <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
@@ -86,8 +86,85 @@
                                 />
                             </div>
                         </div>
-                        <v-spacer height="1.5rem" />
-                        <!-- Coborrower -->
+                        <v-spacer height="2rem" />
+
+                        <!-- Borrower Ownership Interest -->
+                        <div v-if="localDeclarations.primaryResidence === 'Yes'">
+                            <app-label>Have you had ownership interest in another property in the last three years?</app-label>
+                            <div class="inline-group">
+                                <div class="radioButton-container">
+                                    <radio-button
+                                        label="Yes"
+                                        name="hadOwnershipInterest"
+                                        width="100%"
+                                        v-model="localDeclarations.hadOwnershipInterest"
+                                    />
+                                </div>
+
+                                <div class="radioButton-container">
+                                    <radio-button
+                                        label="No"
+                                        name="hadOwnershipInterest"
+                                        width="100%"
+                                        v-model="localDeclarations.hadOwnershipInterest"
+                                    />
+                                </div>
+                            </div>
+                            <v-spacer height="2rem" />
+                        </div>
+
+                        <!-- Borrower Property Type / How Title Held -->
+                        <div v-if="localDeclarations.hadOwnershipInterest === 'Yes'">
+                            <app-label>What type of property did you own?</app-label>
+                            <multi-select
+                                :options="[
+                                    {
+                                        value: 'Primary Residence',
+                                        label: 'Primary Residence'
+                                    },
+                                    {
+                                        value: 'Second Home',
+                                        label: 'Second Home'
+                                    },
+                                    {
+                                        value: 'FHA Secondary Residence',
+                                        label: 'FHA Secondary Residence'
+                                    },
+                                    {
+                                        value: 'Investment Property',
+                                        label: 'Investment Property'
+                                    },
+                                ]"
+                                :can-clear="false"
+                                class="multiselect"
+                                v-model="localDeclarations.propertyType"
+                            />
+                            <v-spacer height="2rem" />
+                            <!-- Borrower How Title Held -->
+                            <app-label>How did you hold title to the property?</app-label>
+                            <multi-select
+                                :options="[
+                                    {
+                                        value: 'Sole Ownership',
+                                        label: 'Sole Ownership'
+                                    },
+                                    {
+                                        value: 'Joint With Spouse',
+                                        label: 'Joint With Spouse'
+                                    },
+                                    {
+                                        value: 'Joint With Other Than Spouse',
+                                        label: 'Joint With Other Than Spouse'
+                                    }
+                                ]"
+                                :can-clear="false"
+                                class="multiselect"
+                                v-model="localDeclarations.howTitleHeld"
+                            />
+                            <v-spacer height="2rem" />
+                        </div>
+
+                        <!-- Coborrower Primary Residence -->
                         <app-label>{{ coborrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
@@ -108,13 +185,90 @@
                                 />
                             </div>
                         </div>
+
+                        <!-- Coborrower Ownership Interest -->
+                        <div v-if="localCoborrowerDeclarations.primaryResidence === 'Yes'">
+                            <v-spacer height="2rem" />
+                            <app-label>Have you had ownership interest in another property in the last three years?</app-label>
+                            <div class="inline-group">
+                                <div class="radioButton-container">
+                                    <radio-button
+                                        label="Yes"
+                                        name="coHadOwnershipInterest"
+                                        width="100%"
+                                        v-model="localCoborrowerDeclarations.hadOwnershipInterest"
+                                    />
+                                </div>
+
+                                <div class="radioButton-container">
+                                    <radio-button
+                                        label="No"
+                                        name="coHadOwnershipInterest"
+                                        width="100%"
+                                        v-model="localCoborrowerDeclarations.hadOwnershipInterest"
+                                    />
+                                </div>
+                            </div>
+                            <v-spacer height="2rem" />
+                        </div>
+
+                        <!-- Coborrower Property Type / How Title Held -->
+                        <div v-if="localCoborrowerDeclarations.hadOwnershipInterest === 'Yes'">
+                            <app-label>What type of property did you own?</app-label>
+                            <multi-select
+                                :options="[
+                                    {
+                                        value: 'Primary Residence',
+                                        label: 'Primary Residence'
+                                    },
+                                    {
+                                        value: 'Second Home',
+                                        label: 'Second Home'
+                                    },
+                                    {
+                                        value: 'FHA Secondary Residence',
+                                        label: 'FHA Secondary Residence'
+                                    },
+                                    {
+                                        value: 'Investment Property',
+                                        label: 'Investment Property'
+                                    },
+                                ]"
+                                :can-clear="false"
+                                class="multiselect"
+                                v-model="localCoborrowerDeclarations.propertyType"
+                            />
+                            <v-spacer height="2rem" />
+                            <!-- How Title Held -->
+                            <app-label>How did you hold title to the property?</app-label>
+                            <multi-select
+                                :options="[
+                                    {
+                                        value: 'Sole Ownership',
+                                        label: 'Sole Ownership'
+                                    },
+                                    {
+                                        value: 'Joint With Spouse',
+                                        label: 'Joint With Spouse'
+                                    },
+                                    {
+                                        value: 'Joint With Other Than Spouse',
+                                        label: 'Joint With Other Than Spouse'
+                                    }
+                                ]"
+                                :can-clear="false"
+                                class="multiselect"
+                                v-model="localCoborrowerDeclarations.howTitleHeld"
+                            />
+                            <v-spacer height="2rem" />
+                        </div>
                     </div>
 
                     <!-- Relation to Seller -->
                     <div
                         v-if="activeSet === 3"
                         class="input-group"
-                    >v-if="activeSet == 1"
+                    >
                         <p class="question">Do you have a family relationship or business affiliation with the seller of the property?</p>
                         <!-- Borrower -->
                         <app-label>{{ borrowerProfile.firstName }}</app-label>
@@ -170,7 +324,7 @@
                             closing costs or down payment) or obtaining any money from another party, such as the
                             seller or realtor, that you have not disclosed on this loan application?
                         </p>
-                        <!-- Borrower -->
+                        <!-- Borrower - Borrowing Money-->
                         <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
@@ -191,7 +345,16 @@
                                 />
                             </div>
                         </div>
-                        <!-- Coborrower -->
+
+
+                        <!-- Borrower - Borrowed Amount -->
+                        <div v-if="localDeclarations.isBorrowingMoney === 'Yes'" class="input-group restrict-width">
+                            <v-spacer height="2rem" />
+                            <app-label>What is the amount of this money?</app-label>
+                            <text-field :is-currency="true" v-model="localDeclarations.borrowedAmount" />
+                        </div>
+
+                        <!-- Coborrower - Borrowing Money -->
                         <v-spacer height="1.5rem" />
                         <app-label>{{ coborrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
@@ -212,6 +375,13 @@
                                     v-model="localCoborrowerDeclarations.isBorrowingMoney"
                                 />
                             </div>
+                        </div>
+
+                        <!-- Coborrower - Borrowed Amount -->
+                        <div v-if="localCoborrowerDeclarations.isBorrowingMoney === 'Yes'" class="input-group restrict-width">
+                            <v-spacer height="2rem" />
+                            <app-label>What is the amount of this money?</app-label>
+                            <text-field :is-currency="true" v-model="localCoborrowerDeclarations.borrowedAmount" />
                         </div>
                     </div>
 
@@ -815,8 +985,8 @@
             </div>
 
             <view-controls
-                @advance-app="submitPage()"
-                @retreat-app="$router.go(-1)"
+                @advance-app="submitQuestion()"
+                @retreat-app="goToPrevious()"
             />
         </div>
     </div>
@@ -832,7 +1002,7 @@ export default {
             localDeclarations: {},
             localCoborrowerDeclarations: {},
             activeSet: 1,
-            questionSets: 15,
+            setTotal: 15,
         };
     },
     computed: {
@@ -845,8 +1015,19 @@ export default {
         },
     },
     methods: {
-        submitPage() {
-            this.$router.push("/identity/coborrower-declarations");
+        submitQuestion() {
+            if (this.activeSet + 1 > 15) {
+                this.$router.push("/identity/coborrower-declarations");
+            } else {
+                this.activeSet += 1;
+            }
+        },
+        goToPrevious() {
+            if (this.activeSet - 1 < 1) {
+                this.$router.go(-1);
+            } else {
+                this.activeSet -= 1;
+            }
         },
     },
 };
@@ -860,9 +1041,9 @@ export default {
 .questionBox {
     width: 600px;
     margin: 4rem auto;
-    /* padding: 2rem 8rem; */
-    /* border: 1px solid #fff; */
-    /* border-radius: 5px; */
+    padding: 2rem 2rem;
+    border: 1px solid #fff;
+    border-radius: 5px;
 
     .questionSlider {
         text-align: center;
@@ -876,9 +1057,11 @@ export default {
         margin-bottom: 1rem;
     }
 }
-
 .input-group {
-    margin-bottom: 3rem;
+    &.restrict-width {
+        width: 28rem;
+        margin: 0 auto;
+    }
 }
 .inline-group {
     justify-content: center;

@@ -27,7 +27,7 @@ import { camelize } from "@/includes/mixins/helpers";
 export default {
 	name: "ViewControls",
     mixins: [camelize],
-    emits: ["nextView"],
+    emits: ["advance-app", "retreat-app"],
 	props: {
 		nextText: {
 			type: String,
