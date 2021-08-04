@@ -15,6 +15,7 @@
                     >
                         <p class="question">What is your citizenship status?</p>
                         <!-- Borrower -->
+                        <app-label>{{borrowerProfile.firstName}}</app-label>
                         <multi-select
                             :options="[
                                 {
@@ -34,6 +35,28 @@
                             class="multiselect"
                             v-model="localDeclarations.citizenshipStatus"
                         />
+                        <v-spacer height="1.5rem" />
+                        <!-- Coborrower -->
+                        <app-label>{{coborrowerProfile.firstName}}</app-label>
+                        <multi-select
+                            :options="[
+                                {
+                                    value: 'US Citizen',
+                                    label: 'U.S. Citizen'
+                                },
+                                {
+                                    value: 'Permanent Resident Alien',
+                                    label: 'Permanent Resident Alien'
+                                },
+                                {
+                                    value: 'Non Permanent Resident Alien',
+                                    label: 'Non Permanent Resident Alien'
+                                },
+                            ]"
+                            :can-clear="false"
+                            class="multiselect"
+                            v-model="localCoborrowerDeclarations.citizenshipStatus"
+                        />
                     </div>
 
                     <!-- Primary Residence Set -->
@@ -43,6 +66,7 @@
                     >
                         <p class="question">Will you occupy the property as your primary residence?</p>
                         <!-- Borrower Primary Residence-->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -62,11 +86,10 @@
                                 />
                             </div>
                         </div>
-
+                        <v-spacer height="2rem" />
 
                         <!-- Borrower Ownership Interest -->
                         <div v-if="localDeclarations.primaryResidence === 'Yes'">
-                            <v-spacer height="2rem" />
                             <app-label>Have you had ownership interest in another property in the last three years?</app-label>
                             <div class="inline-group">
                                 <div class="radioButton-container">
@@ -138,6 +161,106 @@
                                 class="multiselect"
                                 v-model="localDeclarations.howTitleHeld"
                             />
+                            <v-spacer height="2rem" />
+                        </div>
+
+                        <!-- Coborrower Primary Residence -->
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coPrimaryResidence"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.primaryResidence"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coPrimaryResidence"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.primaryResidence"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Coborrower Ownership Interest -->
+                        <div v-if="localCoborrowerDeclarations.primaryResidence === 'Yes'">
+                            <v-spacer height="2rem" />
+                            <app-label>Have you had ownership interest in another property in the last three years?</app-label>
+                            <div class="inline-group">
+                                <div class="radioButton-container">
+                                    <radio-button
+                                        label="Yes"
+                                        name="coHadOwnershipInterest"
+                                        width="100%"
+                                        v-model="localCoborrowerDeclarations.hadOwnershipInterest"
+                                    />
+                                </div>
+
+                                <div class="radioButton-container">
+                                    <radio-button
+                                        label="No"
+                                        name="coHadOwnershipInterest"
+                                        width="100%"
+                                        v-model="localCoborrowerDeclarations.hadOwnershipInterest"
+                                    />
+                                </div>
+                            </div>
+                            <v-spacer height="2rem" />
+                        </div>
+
+                        <!-- Coborrower Property Type / How Title Held -->
+                        <div v-if="localCoborrowerDeclarations.hadOwnershipInterest === 'Yes'">
+                            <app-label>What type of property did you own?</app-label>
+                            <multi-select
+                                :options="[
+                                    {
+                                        value: 'Primary Residence',
+                                        label: 'Primary Residence'
+                                    },
+                                    {
+                                        value: 'Second Home',
+                                        label: 'Second Home'
+                                    },
+                                    {
+                                        value: 'FHA Secondary Residence',
+                                        label: 'FHA Secondary Residence'
+                                    },
+                                    {
+                                        value: 'Investment Property',
+                                        label: 'Investment Property'
+                                    },
+                                ]"
+                                :can-clear="false"
+                                class="multiselect"
+                                v-model="localCoborrowerDeclarations.propertyType"
+                            />
+                            <v-spacer height="2rem" />
+                            <!-- How Title Held -->
+                            <app-label>How did you hold title to the property?</app-label>
+                            <multi-select
+                                :options="[
+                                    {
+                                        value: 'Sole Ownership',
+                                        label: 'Sole Ownership'
+                                    },
+                                    {
+                                        value: 'Joint With Spouse',
+                                        label: 'Joint With Spouse'
+                                    },
+                                    {
+                                        value: 'Joint With Other Than Spouse',
+                                        label: 'Joint With Other Than Spouse'
+                                    }
+                                ]"
+                                :can-clear="false"
+                                class="multiselect"
+                                v-model="localCoborrowerDeclarations.howTitleHeld"
+                            />
+                            <v-spacer height="2rem" />
                         </div>
                     </div>
 
@@ -148,6 +271,7 @@
                     >
                         <p class="question">Do you have a family relationship or business affiliation with the seller of the property?</p>
                         <!-- Borrower -->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -164,6 +288,28 @@
                                     name="hasRelationToSeller"
                                     width="100%"
                                     v-model="localDeclarations.hasRelationToSeller"
+                                />
+                            </div>
+                        </div>
+                        <v-spacer height="1.5rem" />
+                        <!-- Coborrower -->
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHasRelationToSeller"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasRelationToSeller"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHasRelationToSeller"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasRelationToSeller"
                                 />
                             </div>
                         </div>
@@ -179,6 +325,7 @@
                             seller or realtor, that you have not disclosed on this loan application?
                         </p>
                         <!-- Borrower - Borrowing Money-->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -199,11 +346,42 @@
                             </div>
                         </div>
 
+
                         <!-- Borrower - Borrowed Amount -->
                         <div v-if="localDeclarations.isBorrowingMoney === 'Yes'" class="input-group restrict-width">
                             <v-spacer height="2rem" />
                             <app-label>What is the amount of this money?</app-label>
                             <text-field :is-currency="true" v-model="localDeclarations.borrowedAmount" />
+                        </div>
+
+                        <!-- Coborrower - Borrowing Money -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coIsBorrowingMoney"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.isBorrowingMoney"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coIsBorrowingMoney"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.isBorrowingMoney"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Coborrower - Borrowed Amount -->
+                        <div v-if="localCoborrowerDeclarations.isBorrowingMoney === 'Yes'" class="input-group restrict-width">
+                            <v-spacer height="2rem" />
+                            <app-label>What is the amount of this money?</app-label>
+                            <text-field :is-currency="true" v-model="localCoborrowerDeclarations.borrowedAmount" />
                         </div>
                     </div>
 
@@ -217,6 +395,7 @@
                             on this loan application?
                         </p>
                         <!-- Borrower -->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -233,6 +412,28 @@
                                     name="hasUndisclosedAdditionalLoan"
                                     width="100%"
                                     v-model="localDeclarations.hasUndisclosedAdditionalLoan"
+                                />
+                            </div>
+                        </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHasUndisclosedAdditionalLoan"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasUndisclosedAdditionalLoan"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHasUndisclosedAdditionalLoan"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasUndisclosedAdditionalLoan"
                                 />
                             </div>
                         </div>
@@ -248,6 +449,7 @@
                             on or before closing this loan that is not disclosed on this application?
                         </p>
                         <!-- Borrower -->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -267,6 +469,29 @@
                                 />
                             </div>
                         </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHasUndisclosedNewCredit"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasUndisclosedNewCredit"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHasUndisclosedNewCredit"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasUndisclosedNewCredit"
+                                />
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Additional Lien -->
@@ -280,6 +505,7 @@
                             Assessed Clean Energy Program)?
                         </p>
                         <!-- Borrower -->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -296,6 +522,28 @@
                                     name="hasadditionalLien"
                                     width="100%"
                                     v-model="localDeclarations.hasadditionalLien"
+                                />
+                            </div>
+                        </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHasadditionalLien"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasadditionalLien"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHasadditionalLien"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasadditionalLien"
                                 />
                             </div>
                         </div>
@@ -310,6 +558,7 @@
                             Are you a co-signer or guarantor on any debt or loan that is not disclosed on this application?
                         </p>
                         <!-- Borrower -->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -329,6 +578,29 @@
                                 />
                             </div>
                         </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHasUndisclosedDebt"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasUndisclosedDebt"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHasUndisclosedDebt"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasUndisclosedDebt"
+                                />
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Outstanding Judgements -->
@@ -340,6 +612,7 @@
                             Do you currently have any outstanding judgements?
                         </p>
                         <!-- Borrower -->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -359,6 +632,29 @@
                                 />
                             </div>
                         </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coOutstandingJudgements"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.outstandingJudgements"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coOutstandingJudgements"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.outstandingJudgements"
+                                />
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Delinquent Debt -->
@@ -370,6 +666,7 @@
                             Are you currently delinquent on any federal debt or any other loans?
                         </p>
                         <!-- Borrower -->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -389,6 +686,29 @@
                                 />
                             </div>
                         </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHasDelinquentDebt"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasDelinquentDebt"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHasDelinquentDebt"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasDelinquentDebt"
+                                />
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Lawsuit Liability -->
@@ -400,6 +720,7 @@
                             Are you a party to a lawsuit in which you potentially have any personal financial liability?
                         </p>
                         <!-- Borrower -->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -419,6 +740,29 @@
                                 />
                             </div>
                         </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHasLawsuitLiability"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasLawsuitLiability"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHasLawsuitLiability"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasLawsuitLiability"
+                                />
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Conveyed Title -->
@@ -430,6 +774,7 @@
                             Have you conveyed title to any property in lieu of foreclosure in the past 7 years?
                         </p>
                         <!-- Borrower -->
+                        <app-label>{{ borrowerProfile.firstName }}</app-label>
                         <div class="inline-group">
                             <div class="radioButton-container">
                                 <radio-button
@@ -449,6 +794,29 @@
                                 />
                             </div>
                         </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHasConveyedTitle"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasConveyedTitle"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHasConveyedTitle"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasConveyedTitle"
+                                />
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Pre-foreclosure or Short Sale -->
@@ -479,6 +847,28 @@
                                     name="hadPreforeclosureOrShortsale"
                                     width="100%"
                                     v-model="localDeclarations.hadPreforeclosureOrShortsale"
+                                />
+                            </div>
+                        </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHadPreforeclosureOrShortsale"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hadPreforeclosureOrShortsale"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHadPreforeclosureOrShortsale"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hadPreforeclosureOrShortsale"
                                 />
                             </div>
                         </div>
@@ -513,6 +903,29 @@
                                 />
                             </div>
                         </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHadRecentForeclosure"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hadRecentForeclosure"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHasRecentForeclosure"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hadRecentForeclosure"
+                                />
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Bankruptcy -->
@@ -544,7 +957,30 @@
                                 />
                             </div>
                         </div>
+                        <!-- Coborrower -->
+                        <v-spacer height="1.5rem" />
+                        <app-label>{{ coborrowerProfile.firstName }}</app-label>
+                        <div class="inline-group">
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="Yes"
+                                    name="coHasDeclaredBankruptcy"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasDeclaredBankruptcy"
+                                />
+                            </div>
+
+                            <div class="radioButton-container">
+                                <radio-button
+                                    label="No"
+                                    name="coHasDeclaredBankruptcy"
+                                    width="100%"
+                                    v-model="localCoborrowerDeclarations.hasDeclaredBankruptcy"
+                                />
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
 

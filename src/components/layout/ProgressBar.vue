@@ -4,6 +4,7 @@
 			<nav-item
 				:label="item.label"
 				:destination-url="item.destinationUrl"
+                :theme="appTheme"
 				:current-nav-item="currentNavItem"
 				:section-count="item.sectionCount"
 				:progress="progress[item.label.toLowerCase()]"
@@ -23,7 +24,7 @@ export default {
 	},
 
 	computed: {
-		...mapState(["application", "navigation"]),
+		...mapState(["application", "navigation", "appTheme"]),
 
 		progress() {
 			return this.applicationData.progress;
@@ -45,7 +46,7 @@ export default {
 .progressBar {
 	position: fixed;
 	z-index: 5;
-	top: 22rem;
+	top: 23rem;
 	left: 6rem;
 }
 </style>

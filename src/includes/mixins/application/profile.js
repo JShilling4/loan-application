@@ -11,7 +11,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(["suffixes", "states", "borrower", "application"]),
+        ...mapState(["suffixes", "states", "borrower", "application", "appTheme"]),
         borrowerData() {
             return this.borrower.borrower;
         },

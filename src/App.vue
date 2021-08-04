@@ -2,8 +2,9 @@
     <div id="app">
         <div
             class="appBackground"
-            :class="appBackgroundClass"
+            :class="[appBackgroundClass, appTheme]"
         ></div>
+
         <application-header
             v-if="currentView == 'application' || currentView == 'external'"
             :current-view="currentView"
@@ -49,7 +50,7 @@ export default {
     },
 
     computed: {
-        ...mapState(["application"]),
+        ...mapState(["application", "appTheme"]),
 
         applicationData() {
             return this.application.application;
@@ -201,8 +202,10 @@ fieldset {
     width: 100%;
     height: 100%;
     background-size: cover;
+    transition: background-color 1s;
+    background-color: rgb(8, 72, 92);
     &.application {
-        background: rgb(8, 72, 92);
+
         background: radial-gradient(
             circle,
             rgba(8, 72, 92, 1) 0%,
@@ -211,6 +214,11 @@ fieldset {
     }
     &.faq {
         background: linear-gradient(to right, #0f6957, var(--blue-green));
+    }
+
+    &.light {
+        background-color: rgb(230, 230, 230);
+        background: none;
     }
 }
 
@@ -227,6 +235,10 @@ fieldset {
     margin: 10rem 0 4rem;
     font-weight: 500;
     font-size: 2.4rem;
+    &.light {
+        color: var(--blue-green);
+        font-weight: 600;
+    }
 }
 
 .pageCopy {

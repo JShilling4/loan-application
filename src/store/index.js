@@ -289,17 +289,24 @@ export default createStore({
                 },
             ],
             selectedLanguage: "English",
+            appTheme: "dark",
         };
     },
     mutations: {
         CHANGE_LANGUAGE(state, language) {
             state.selectedLanguage = language;
         },
+        TOGGLE_THEME(state) {
+            state.appTheme = state.appTheme === "light" ? "dark" : "light";
+        },
     },
     actions: {
         changeLanguage({ commit }, language) {
             commit("CHANGE_LANGUAGE", language);
         },
+        toggleTheme({commit}) {
+            commit("TOGGLE_THEME");
+        }
     },
     modules: {
         application,

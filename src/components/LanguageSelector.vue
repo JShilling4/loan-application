@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="['languageSelector', { light: theme === 'light', inline: isInline }]"
+        :class="['languageSelector', { light: theme === 'light' || appTheme === 'light', inline: isInline }]"
         v-click-outside="closeDropdown"
     >
         <span class="label">{{ $t('global.preferredLanguage') }}</span>
@@ -50,7 +50,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(["selectedLanguage"]),
+        ...mapState(["selectedLanguage", "appTheme"]),
     },
     methods: {
         ...mapActions(["changeLanguage"]),

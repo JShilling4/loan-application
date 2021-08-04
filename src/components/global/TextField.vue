@@ -113,7 +113,7 @@ export default {
         top: 20%;
     }
     &.light {
-        color: var(--blue-green);
+        color: var(--teal-dark);
         .dollarSign,
         .percentSign {
             color: var(--blue-green);
@@ -127,8 +127,9 @@ input {
     border: 1px solid var(--blue-dark);
     width: 100%;
     font-size: 16px;
-    background-color: transparent;
-    color: var(--blue-dark);
+    background-color: #fff;
+    color: var(--teal);
+    font-weight: 600;
     &:focus {
         border-color: var(--teal);
         box-shadow: var(--input-focused-border-shadow);

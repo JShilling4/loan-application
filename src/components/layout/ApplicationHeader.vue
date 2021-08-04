@@ -4,13 +4,16 @@
             <div class="logo-container">
                 <img
                     class="logo"
-                    src="https://webresources.ruoff.com/logo-horizontal-white-nmls/png/160/0"
+                    :src="computedLogo"
                     alt="ruoff logo"
                     @click="$router.push('/')"
                 />
 
                 <div class="languageSelector-container">
-                    <language-selector />
+                    <language-selector :theme="appTheme" />
+
+                    <v-spacer height="1rem" />
+                    <app-button @click="changeTheme()">Theme</app-button>
                 </div>
             </div>
 
@@ -27,6 +30,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 import LanguageSelector from "@/components/LanguageSelector.vue";
 import LoanOfficerInfo from "@/components/LoanOfficerInfo.vue";
 
@@ -42,6 +46,8 @@ export default {
         },
     },
     computed: {
+        ...mapState(["appTheme"]),
+
         loAvatarShouldShow() {
             if (
                 this.currentView == "application" ||
@@ -51,7 +57,20 @@ export default {
             }
             return false;
         },
+        computedLogo() {
+            if (this.appTheme === "dark") {
+                return "https://webresources.ruoff.com/logo-horizontal-white-nmls/png/160/0";
+            }
+            return "https://webresources.ruoff.com/logo-horizontal-color-nmls/png/160/0";
+        }
     },
+    methods: {
+        ...mapActions(["toggleTheme"]),
+
+        changeTheme() {
+            this.toggleTheme();
+        }
+    }
 };
 </script>
 
@@ -65,12 +84,10 @@ header {
     display: flex;
     align-items: center;
     padding: 2rem 6rem 0;
-    // background-color: var(--blue-green);
-    // background: linear-gradient(90deg, var(--blue-dark), var(--blue-green));
     .topBar {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         flex-wrap: wrap;
         width: 100%;
     }

@@ -1,6 +1,6 @@
 <template>
     <div class="profileGeneral">
-        <h1 class="appHeading">{{ $t('headings.profile1')}}</h1>
+        <h1 :class="['appHeading', { light: appTheme === 'light'}]">{{ $t('headings.profile1')}}</h1>
 
         <div class="pageWrapper">
             <!-- Name Input Group -->
@@ -8,11 +8,11 @@
                 <!-- First Name -->
                 <div class="input-group">
                     <app-label
-                        class-list="dark"
+                        :theme="appTheme"
                         for="fname"
                     >{{ $t('formLabels.firstName') }}</app-label>
                     <text-field
-                        class-list="dark"
+                        :theme="appTheme"
                         id="fname"
                         type="text"
                         name="FirstName"
@@ -23,11 +23,11 @@
                 <!-- Middle Initial -->
                 <div class="input-group short">
                     <app-label
-                        class-list="dark"
+                        :theme="appTheme"
                         for="middleInitial"
                     >{{ $t('formLabels.middleInitial') }}</app-label>
                     <text-field
-                        class-list="dark"
+                        :theme="appTheme"
                         id="middleInitial"
                         type="text"
                         maxlength="1"
@@ -42,11 +42,11 @@
                 <!-- Last Name -->
                 <div class="input-group">
                     <app-label
-                        class-list="dark"
+                        :theme="appTheme"
                         for="lastName"
                     >{{ $t('formLabels.lastName') }}</app-label>
                     <text-field
-                        class-list="dark"
+                        :theme="appTheme"
                         id="lastName"
                         type="text"
                         name="lastName"
@@ -56,12 +56,13 @@
                 <!-- Suffix -->
                 <div class="input-group short">
                     <app-label
-                        class-list="dark"
+                        :theme="appTheme"
                         for="suffix"
                     >{{ $t('formLabels.suffix') }}</app-label>
                     <multi-select
                         :options="suffixes"
                         :can-clear="false"
+                        :class="[{ light: appTheme === 'light', dark: appTheme === 'dark'}]"
                         v-model="localProfile.suffix"
                     />
                 </div>
@@ -70,27 +71,26 @@
             <!-- Email -->
             <div class="input-group">
                 <app-label
-                    class-list="dark"
+                    :theme="appTheme"
                     for="email"
                 >{{ $t('formLabels.emailAddress') }}</app-label>
                 <text-field
                     type="text"
-                    class-list="dark"
+                    :theme="appTheme"
                     id="email"
                     name="email"
                     v-model="localProfile.email"
                 />
             </div>
 
-            <!-- Phone/Maritial Status Group -->
             <!-- Phone -->
             <div class="input-group">
                 <app-label
-                    class-list="dark"
+                    :theme="appTheme"
                     for="phone"
                 >{{ $t('formLabels.phoneNumber') }}</app-label>
                 <text-field
-                    class-list="dark"
+                    :theme="appTheme"
                     id="phone"
                     type="tel"
                     name="Phone"
@@ -102,7 +102,7 @@
             <!-- Marital Status -->
             <div class="input-group">
                 <app-label
-                    class-list="dark"
+                    :theme="appTheme"
                     for="maritalStatus"
                 >{{ $t('formLabels.maritalStatus') }}</app-label>
                 <multi-select
@@ -112,6 +112,7 @@
                         { value: 'Separated', label: $t('global.separated') }
                     ]"
                     id="maritalStatus"
+                    :class="[{ light: appTheme === 'light', dark: appTheme === 'dark'}]"
                     :can-clear="false"
                     v-model="localProfile.maritalStatus"
                 />
