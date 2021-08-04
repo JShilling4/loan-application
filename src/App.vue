@@ -1,8 +1,9 @@
 <template>
-    <div
-        id="app"
-        :class="appBackgroundClass"
-    >
+    <div id="app">
+        <div
+            class="appBackground"
+            :class="appBackgroundClass"
+        ></div>
         <application-header
             v-if="currentView == 'application' || currentView == 'external'"
             :current-view="currentView"
@@ -125,7 +126,7 @@ export default {
     --ms-ring-color: #16c297;
     --ms-ring-width: 0;
     --ms-tag-bg: var(--teal-dark);
-    --ms-tag-py: .5rem;
+    --ms-tag-py: 0.5rem;
     --ms-tag-font-size: 13px;
 }
 
@@ -188,8 +189,20 @@ fieldset {
 }
 
 #app {
-    background-size: cover;
+    position: relative;
     min-height: 100vh;
+    &.faq {
+        background: linear-gradient(to right, #0f6957, var(--blue-green));
+    }
+}
+
+.appBackground {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
     &.application {
         background: rgb(8, 72, 92);
         background: radial-gradient(
@@ -199,13 +212,14 @@ fieldset {
         );
         // background-attachment: fixed;
     }
-    &.faq {
-        background: linear-gradient(to right, #0f6957, var(--blue-green));
-    }
 }
 
 .child-view {
     transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.viewWrapper {
+    position: relative;
 }
 
 .appHeading {
