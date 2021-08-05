@@ -1,4 +1,4 @@
-import { profileApi, aboutApi, propertyApi, incomeApi, assetsApi } from "@/api";
+import { profileApi, aboutApi, propertyApi, incomeApi, assetsApi, identityApi } from "@/api";
 
 export default {
     state: {
@@ -8,6 +8,15 @@ export default {
             property: {},
             income: {},
             assets: [],
+            identity: {
+                declarations: {},
+                demographics: {
+                    willProvideInformation: null,
+                    gender: null,
+                    ethnicity: null,
+                    race: null,
+                },
+            },
         },
     },
 
@@ -40,10 +49,17 @@ export default {
         SAVE_COBORROWER_ASSETS(state, payload) {
             state.coborrower.assets = state.coborrower.assets.concat(payload);
         },
+
+        SAVE_COBORROWER_IDENTITY(state, payload) {
+            state.coborrower.identity = {
+                ...state.coborrower.identity,
+                ...payload,
+            };
+        },
     },
 
     actions: {
-        //* COBORROWER PROFILE
+        // COBORROWER PROFILE
         updateCoborrowerProfile({ commit }) {
             return profileApi.fetchCoborrowerProfile().then((response) => {
                 commit("SAVE_COBORROWER_PROFILE", response.data);
@@ -56,7 +72,7 @@ export default {
             });
         },
 
-        //* COBORROWER PROPERTY
+        // COBORROWER PROPERTY
         updateCoborrowerProperty({ commit }) {
             return propertyApi.fetchCoborrowerProperty().then((response) => {
                 commit("SAVE_COBORROWER_PROPERTY", response.data);
@@ -69,7 +85,7 @@ export default {
             });
         },
 
-        //* COBORROWER ABOUT
+        // COBORROWER ABOUT
         postCoborrowerAbout({ commit }, payload) {
             return aboutApi.postCoborrowerAbout(payload).then((response) => {
                 commit("SAVE_COBORROWER_ABOUT", response.data);
@@ -82,7 +98,7 @@ export default {
             });
         },
 
-        //* COBORROWER INCOME
+        // COBORROWER INCOME
         updateCoborrowerIncome({ commit }) {
             return incomeApi.fetchCoborrowerIncome().then((response) => {
                 commit("SAVE_COBORROWER_INCOME", response.data);
@@ -95,7 +111,7 @@ export default {
             });
         },
 
-        //* COBORROWER ASSETS
+        // COBORROWER ASSETS
         updateCoborrowerAssets({ commit }) {
             return assetsApi.fetchCoborrowerAssets().then((response) => {
                 commit("SAVE_COBORROWER_ASSETS", response.data);
@@ -105,6 +121,19 @@ export default {
         postCoborrowerAssets({ commit }, payload) {
             return assetsApi.postCoborrowerAssets(payload).then((response) => {
                 commit("SAVE_COBORROWER_ASSETS", response.data);
+            });
+        },
+
+        // COBORROWER IDENTITY
+        updateCoborrowerIdentity({ commit }) {
+            return identityApi.fetchCoborrowerIdentity().then((response) => {
+                commit("SAVE_COBORROWER_IDENTITY", response.data);
+            });
+        },
+
+        postCoborrowerIdentity({ commit }, payload) {
+            return identityApi.postCoborrowerIdentity(payload).then((response) => {
+                commit("SAVE_COBORROWER_IDENTITY", response.data);
             });
         },
     },

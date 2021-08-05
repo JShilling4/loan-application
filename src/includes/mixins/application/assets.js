@@ -13,7 +13,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(["borrower", "coborrower", "application"]),
+        ...mapState(["borrower", "coborrower", "application", "appTheme"]),
 
         applicationData() {
             return this.application.application;
@@ -39,9 +39,9 @@ export default {
         ]),
 
         syncProfileWithStore() {
-            this.localAssets = JSON.parse(JSON.stringify([...this.borrowerData.assets]));
-            this.localCoborrowerAssets = JSON.parse(JSON.stringify([...this.coborrowerData.assets]));
-            this.localApplicationData = JSON.parse(JSON.stringify({ ...this.applicationData }));
+            this.localAssets = this.deepClone(this.borrowerData.assets);
+            this.localCoborrowerAssets = this.deepClone(this.coborrowerData.assets);
+            this.localApplicationData = this.deepClone(this.applicationData);
         },
 
         editSectionProgress(part, config = { force: false }) {

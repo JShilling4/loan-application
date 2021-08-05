@@ -1,4 +1,4 @@
-import { profileApi, aboutApi, propertyApi, incomeApi, assetsApi } from "@/api";
+import { profileApi, aboutApi, propertyApi, incomeApi, assetsApi, identityApi } from "@/api";
 
 export default {
     state: {
@@ -8,32 +8,14 @@ export default {
             property: {},
             income: {},
             assets: [],
-            declarations: {
-                citizenshipStatus: null,
-                propertyIsPrimary: null,
-                hasOwnershipInterest: null,
-                typeOfPropertyOwned: null,
-                timeHoldingTitle: null,
-                relationshipWithSeller: null,
-                hasUndisclosedBorrowedMoney: null,
-                hasUndisclosedMortgageApplication: null,
-                hasUndisclosedCredit: null,
-                hasPriorityLien: null,
-                isUndisclosedCosigner: null,
-                hasOutstandingJudgments: null,
-                isDelinquentOnFederalDebt: null,
-                hasLawsuitWithFinancialResponsibility: null,
-                conveyedTitle: null,
-                hadPreforeclosureOrShortSale: null,
-                hasOwnedForeclosedProperty: null,
-                hasDeclaredBankruptcy: null,
-                bankruptcyTypesFiled: null,
-            },
-            demographics: {
-                willProvideInformation: null,
-                gender: null,
-                ethnicity: null,
-                race: null,
+            identity: {
+                declarations: {},
+                demographics: {
+                    willProvideInformation: null,
+                    gender: null,
+                    ethnicity: null,
+                    race: null,
+                },
             },
         },
     },
@@ -63,6 +45,13 @@ export default {
 
         SAVE_BORROWER_ASSETS(state, payload) {
             state.borrower.assets = payload;
+        },
+
+        SAVE_BORROWER_IDENTITY(state, payload) {
+            state.borrower.identity = {
+                ...state.borrower.identity,
+                ...payload,
+            };
         },
     },
 
@@ -119,7 +108,7 @@ export default {
             });
         },
 
-        // INCOME
+        // ASSETS
         updateBorrowerAssets({ commit }) {
             return assetsApi.fetchBorrowerAssets().then((response) => {
                 commit("SAVE_BORROWER_ASSETS", response.data);
@@ -129,6 +118,19 @@ export default {
         postBorrowerAssets({ commit }, payload) {
             return assetsApi.postBorrowerAssets(payload).then((response) => {
                 commit("SAVE_BORROWER_ASSETS", response.data);
+            });
+        },
+
+        // IDENTITY
+        updateBorrowerIdentity({ commit }) {
+            return identityApi.fetchBorrowerIdentity().then((response) => {
+                commit("SAVE_BORROWER_IDENTITY", response.data);
+            });
+        },
+
+        postBorrowerIdentity({ commit }, payload) {
+            return identityApi.postBorrowerIdentity(payload).then((response) => {
+                commit("SAVE_BORROWER_IDENTITY", response.data);
             });
         },
     },

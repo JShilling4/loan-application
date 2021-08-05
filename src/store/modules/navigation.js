@@ -39,7 +39,7 @@ export default {
 			{
 				id: "identity",
 				label: "Identity",
-				sectionCount: 3,
+				sectionCount: 4,
 				destinationUrl: "/identity/declarations",
 				status: ""
 			},

@@ -104,6 +104,7 @@ button {
     width: 100%;
     font-size: 16px;
     letter-spacing: 0.75px;
+    user-select: none;
 
     .icon {
         position: absolute;
