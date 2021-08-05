@@ -299,11 +299,6 @@ fieldset {
 
 .fade-enter-from,
 .fade-leave-active {
-    /* position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%); */
     opacity: 0 !important;
 }
 </style>

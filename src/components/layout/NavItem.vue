@@ -10,7 +10,7 @@
                     class="icon"
                 />
             </span>
-            <span v-else-if="status !== 'completed' && currentNavItem !== 'review'">{{
+            <span v-else-if="status !== 'completed' && label !== 'Review'">{{
 				`${percentageComplete}%`
 			}}</span>
         </div>
