@@ -20,10 +20,6 @@
                 information, please check below.
             </p>
 
-            <div class="name">
-                {{coborrowerData.profile.firstName}}
-            </div>
-
             <div class="optOut-container">
                 <check-box
                     id="optOut"

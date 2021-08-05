@@ -20,10 +20,6 @@
                 information, please check below.
             </p>
 
-            <div class="name">
-                {{borrowerData.profile.firstName}}
-            </div>
-
             <div class="optOut-container">
                 <check-box
                     id="optOut"
