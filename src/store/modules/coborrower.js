@@ -10,12 +10,7 @@ export default {
             assets: [],
             identity: {
                 declarations: {},
-                demographics: {
-                    willProvideInformation: null,
-                    gender: null,
-                    ethnicity: null,
-                    race: null,
-                },
+                demographics: {},
             },
         },
     },

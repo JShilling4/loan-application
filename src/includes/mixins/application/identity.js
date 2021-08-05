@@ -5,8 +5,16 @@ export default {
     mixins: [deepClone],
     data() {
         return {
-            localIdentity: {},
-            localCoborrowerIdentity: {},
+            localIdentity: {
+                demographics: {
+                    isOptingOut: false,
+                },
+            },
+            localCoborrowerIdentity: {
+                demographics: {
+                    isOptingOut: false,
+                },
+            },
             localApplicationData: {},
             localDataIsPosting: false,
         };

@@ -21,4 +21,10 @@ export default {
         hasDeclaredBankruptcy: "Yes",
         bankruptciesFiled: [],
     },
+    demographics: {
+        isOptingOut: false,
+        ethnicity: "Not Hispanic or Latino",
+        gender: "Female",
+        race: ["White"],
+    },
 };
