@@ -121,3 +121,12 @@ export const assetsApi = {
         return axios.post("/api/coborrowerAssets", payload);
     },
 };
+
+export const identityApi = {
+    fetchBorrowerIdentity() {
+        return axios.get("/api/borrowerIdentity");
+    },
+    fetchCoborrowerIdentity() {
+        return axios.get("/api/coborrowerIdentity");
+    }
+}

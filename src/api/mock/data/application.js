@@ -5,7 +5,7 @@ export default {
 		property: 8,        // 8 (w/ coborrower)
 		income: 3,          // 3 (w/ coborrower) or 2 (w/o coborrower)
 		assets: 2,          // 2 (w/ coborrower)
-		identity: null,
+		identity: 2,        // 4 (w/ coborrower) or 2 (w/o coborrower)
 		review: null
 	}
 };
