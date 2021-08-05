@@ -21,7 +21,11 @@
 
         <progress-bar v-if="applicationData && currentNavItem !== null" />
 
-        <router-view class="child-view"></router-view>
+        <router-view class="child-view" v-slot="{ Component }">
+            <transition name="fade">
+                <component :is="Component" />
+            </transition>
+        </router-view>
 
         <div class="intercomIcon-container">
             <img
@@ -266,6 +270,7 @@ fieldset {
     z-index: 9999;
     bottom: 5rem;
     right: 6.5rem;
+    user-select: none;
     img {
         width: 50px;
         margin-bottom: 4px;
@@ -290,39 +295,11 @@ fieldset {
     transition-timing-function: ease;
 }
 
-.fade-enter,
+.fade-enter-from,
 .fade-leave-active {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     opacity: 0 !important;
-}
-
-.fadeIn-enter-active {
-    transition-duration: 0.3s;
-    transition-property: opacity;
-    transition-timing-function: ease;
-}
-
-.fadeIn-enter {
-    opacity: 0 !important;
-}
-.fadeIn-leave-active {
-    display: none;
-}
-
-.slideVertical-enter-active,
-.slideVertical-leave-active {
-    transition: opacity 0.3s, transform 0.3s;
-}
-
-.slideVertical-enter,
-.slideVertical-leave-active {
-    opacity: 0 !important;
-}
-
-.slideVertical-enter {
-    transform: translateY(3rem) !important;
-}
-
-.slideVertical-leave-active {
-    transform: translateY(-3rem) !important;
 }
 </style>

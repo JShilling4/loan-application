@@ -29,7 +29,7 @@
             </div>
         </transition>
 
-        <transition name="fadeIn">
+        <transition name="fade">
             <div
                 v-if="localDataIsLoading"
                 class="loading-wrapper"
