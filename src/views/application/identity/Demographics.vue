@@ -134,6 +134,15 @@
                 @retreat-app="$router.go(-1)"
             />
         </div>
+
+        <transition name="fade">
+            <div
+                v-if="localDataIsLoading"
+                class="loading-wrapper"
+            >
+                <loading-indicator />
+            </div>
+        </transition>
     </div>
 </template>
 

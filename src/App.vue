@@ -250,6 +250,7 @@ fieldset {
     text-align: center;
     line-height: 1.5;
     font-size: 18px;
+    font-weight: 200;
 }
 
 .pageForm {

@@ -83,7 +83,7 @@ import { deepClone } from "@/includes/mixins/helpers";
 export default {
     name: "AssetModal",
     components: {},
-    emits: ["saveAsset", "close"],
+    emits: ["save-asset", "close"],
     mixins: [deepClone],
     props: {
         isShowing: {
@@ -107,14 +107,14 @@ export default {
     },
     data() {
         return {
-            localAssets: {},
+            localAssets: [],
             localAsset: {},
         };
     },
     computed: {},
     watch: {
         assets() {
-            this.localAssets = this.deepClone(this.assets);
+            this.localAssets = this.assets;
         },
         asset() {
             this.localAsset = this.deepClone(this.asset);

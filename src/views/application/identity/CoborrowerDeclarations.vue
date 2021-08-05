@@ -1,13 +1,11 @@
 <template>
     <div class="declarations">
         <h1 class="appHeading">Coborrower Declarations</h1>
-        <div class="pageWrapper">
+        <div v-if="localCoborrowerIdentity.declarations" class="pageWrapper">
             <p class="pageCopy">
                 The federal government requires us to ask the following questions.
             </p>
-
             <question-slider
-                v-if="localCoborrowerIdentity.declarations"
                 :active-set="activeSet"
                 :set-total="setTotal"
                 @advance="goToNextQuestion()"
@@ -569,6 +567,15 @@
                 @retreat-app="goToPreviousPage()"
             />
         </div>
+
+        <transition name="fade">
+            <div
+                v-if="localDataIsLoading"
+                class="loading-wrapper"
+            >
+                <loading-indicator />
+            </div>
+        </transition>
     </div>
 </template>
 

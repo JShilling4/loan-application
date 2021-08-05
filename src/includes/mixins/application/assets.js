@@ -39,7 +39,7 @@ export default {
         ]),
 
         syncProfileWithStore() {
-            this.localAssets = this.deepClone(this.borrowerData.assets);
+            this.localAssets = this.borrowerData.assets;
             this.localCoborrowerAssets = this.deepClone(this.coborrowerData.assets);
             this.localApplicationData = this.deepClone(this.applicationData);
         },
@@ -73,7 +73,7 @@ export default {
             this.syncProfileWithStore(); // async load data to hydrate
             this.localDataIsLoading = false;
             if (this.$route.name === "assetEntryOptions") {
-                if (this.localAssets.length > 0) {
+                if (this.borrowerData.assets.length > 0) {
                     this.$router.replace("/assets/add-assets");
                 } else {
                     this.holdPageLoad = false;
