@@ -22,7 +22,7 @@
         <progress-bar v-if="applicationData && currentNavItem !== null" />
 
         <router-view class="child-view" v-slot="{ Component }">
-            <transition name="fade">
+            <transition name="fade" mode="out-in">
                 <component :is="Component" />
             </transition>
         </router-view>
@@ -282,8 +282,9 @@ fieldset {
 }
 
 .loading-wrapper {
-    position: relative;
-    top: 4rem;
+    position: absolute;
+    left: 50%;
+    top: 10rem;
 }
 
 // TRANSITIONS
@@ -297,9 +298,11 @@ fieldset {
 
 .fade-enter-from,
 .fade-leave-active {
-    position: absolute;
+    /* position: fixed;
+    top: 0;
+    bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
     opacity: 0 !important;
 }
 </style>
