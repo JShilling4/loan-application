@@ -16,7 +16,8 @@ import {
     faFileTimes,
     faComment,
     faPercentage,
-    faInfoCircle
+    faInfoCircle,
+    faPlus,
 } from "@fortawesome/pro-light-svg-icons";
 import {
     faDollarSign,
@@ -47,7 +48,8 @@ export default {
             faAddressBook,
             faSignOutAlt,
             faArrowRight,
-            faArrowLeft
+            faArrowLeft,
+            faPlus
         );
 
         app.component("font-awesome-icon", FontAwesomeIcon);
