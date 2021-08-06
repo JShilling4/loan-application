@@ -42,8 +42,8 @@ export const accountApi = {
     login(payload) {
         return axios.post("/api/login", payload);
     },
-    validateToken(token) {
-        return axios.post("/api/validateToken", token)
+    validateToken(payload) {
+        return axios.post("/api/validateToken", payload)
     }
 }
 

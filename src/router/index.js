@@ -1,12 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from "@/store";
+
 // Root
 import Index from "../views/Index.vue";
-// Profile
-import ProfileAddress from "../views/application/profile/ProfileAddress.vue";
-import ProfilePassword from "../views/application/profile/ProfilePassword.vue";
 // About
-import Referral from "../views/application/profile/Referral.vue";
-import SelectLoanOfficer from "../views/application/profile/SelectLoanOfficer.vue";
 import Veteran from "../views/application/about/Veteran.vue";
 import Coborrower from "../views/application/about/coborrower/Coborrower.vue";
 import CoborrowerInfo from "../views/application/about/coborrower/CoborrowerInfo.vue";
@@ -57,12 +54,12 @@ const routes = [
     // Login
     {
         path: "/login",
-        name: "Login",
+        name: "login",
         meta: {
             navItem: null,
             requiresAuth: false,
         },
-        component: () => import(/* webpackChunkName: "login" */ "../views/account/Login.vue"),
+        component: () => import(/* webpackChunkName: "Login" */ "../views/account/Login.vue"),
     },
 
     // Create Account
@@ -74,7 +71,7 @@ const routes = [
             requiresAuth: false,
         },
         component: () =>
-            import(/* webpackChunkName: "createAccount" */ "../views/account/CreateAccount.vue"),
+            import(/* webpackChunkName: "CreateAccount" */ "../views/account/CreateAccount.vue"),
     },
 
     // Forgot Password
@@ -86,7 +83,7 @@ const routes = [
             requiresAuth: false,
         },
         component: () =>
-            import(/* webpackChunkName: "forgotPassword" */ "../views/account/ForgotPassword.vue"),
+            import(/* webpackChunkName: "ForgotPassword" */ "../views/account/ForgotPassword.vue"),
     },
 
     // Faq
@@ -97,7 +94,7 @@ const routes = [
             navItem: null,
             requiresAuth: false,
         },
-        component: () => import(/* webpackChunkName: "faq" */ "../views/Faq.vue"),
+        component: () => import(/* webpackChunkName: "Faq" */ "../views/Faq.vue"),
     },
 
     //* Portal routes
@@ -123,7 +120,7 @@ const routes = [
             requiresAuth: true,
         },
         component: () =>
-            import(/* webpackChunkName: "profile" */ "../views/application/profile/Profile.vue"),
+            import(/* webpackChunkName: "Profile" */ "../views/application/profile/Profile.vue"),
         children: [
             // profile about
             {
@@ -132,9 +129,10 @@ const routes = [
                     navItem: "profile",
                     requiresAuth: true,
                 },
-                component: import(
-                    /* webpackChunkName: "profileGeneral" */ "../views/application/profile/ProfileGeneral.vue"
-                ),
+                component: () =>
+                    import(
+                        /* webpackChunkName: "ProfileGeneral" */ "../views/application/profile/ProfileGeneral.vue"
+                    ),
             },
             // profile address
             {
@@ -143,7 +141,10 @@ const routes = [
                     navItem: "profile",
                     requiresAuth: true,
                 },
-                component: ProfileAddress,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "ProfileAddress" */ "../views/application/profile/ProfileAddress.vue"
+                    ),
             },
             // Referral
             {
@@ -152,7 +153,10 @@ const routes = [
                     navItem: "profile",
                     requiresAuth: true,
                 },
-                component: Referral,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "Referral" */ "../views/application/profile/Referral.vue"
+                    ),
             },
             // Select Loan Officer
             {
@@ -161,7 +165,10 @@ const routes = [
                     navItem: "profile",
                     requiresAuth: true,
                 },
-                component: SelectLoanOfficer,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "SelectLoanOfficer" */ "../views/application/profile/SelectLoanOfficer.vue"
+                    ),
             },
             // profile create password
             {
@@ -170,7 +177,10 @@ const routes = [
                     navItem: "profile",
                     requiresAuth: true,
                 },
-                component: ProfilePassword,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "profilePassword" */ "../views/application/profile/ProfilePassword.vue"
+                    ),
             },
         ],
     },
@@ -484,9 +494,10 @@ const routes = [
                     navItem: "identity",
                     requiresAuth: true,
                 },
-                component: import(
-                    /* webpackChunkName: "demographics" */ "../views/application/identity/Demographics.vue"
-                ),
+                component: () =>
+                    import(
+                        /* webpackChunkName: "demographics" */ "../views/application/identity/Demographics.vue"
+                    ),
             },
             {
                 path: "coborrower-demographics",
@@ -543,6 +554,36 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
+});
+
+// Navigation Guards
+
+router.beforeEach((routeTo, routeFrom, next) => {
+    // Check if auth is required on this route
+    // (including nested routes).
+    const requiresAuth = routeTo.matched.some((route) => route.meta.requiresAuth);
+    // If auth isn't required for the route, just continue.
+    if (!requiresAuth) return next();
+
+    // If auth is required and the user is logged in...
+    if (store.state.auth.token) {
+        // Validate the local user token...
+        return store.dispatch("validateToken").then((validUser) => {
+            // Then continue if the token still represents a valid user,
+            // otherwise redirect to login.
+            // console.log(`returned from validate: ${validUser}`)
+            validUser ? next() : redirectToLogin();
+        });
+    }
+
+    // If auth is required and the user is NOT currently logged in,
+    // redirect to login.
+    redirectToLogin();
+
+    function redirectToLogin() {
+        // Pass the original route to the login component
+        next({ name: "login", query: { redirectFrom: routeTo.fullPath } });
+    }
 });
 
 export default router;

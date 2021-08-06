@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createServer, Response } from "miragejs";
-import borrowerProfile from "./data/borrowerProfile";
+// import borrowerProfile from "./data/borrowerProfile";
 import coborrowerProfile from "./data/coborrowerProfile";
 import { sectionProgress, completedProfile } from "./data/application";
 import borrowerAbout from "./data/borrowerAbout";
@@ -16,14 +16,14 @@ import coborrowerIdentity from "./data/coborrowerIdentity";
 
 // export function makeServer({ environment = "development" } = {}) {
 export function makeServer() {
-    let timing = 700;
+    let timing = 80;
     let server = new createServer({
         // environment,
 
         seeds(server) {
             server.db.loadData({
                 sectionProgress: sectionProgress,
-                borrowerProfile: borrowerProfile,
+                // borrowerProfile: borrowerProfile,
                 coborrowerProfile: coborrowerProfile,
                 borrowerAbout: borrowerAbout,
                 coborrowerAbout: coborrowerAbout,
@@ -48,23 +48,7 @@ export function makeServer() {
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
                     const { email, password } = data;
-                    switch(password) {
-                        case "profile": {
-                            return schema.db.completedProfile[0];
-                        }
-                        case "error400": {
-                            return new Response(400, { some: "header" }, { errors: ["Bad Request"] });
-                        }
-                    }
-                },
-                { timing }
-            );
-
-            this.post(
-                "/validateToken",
-                (schema, request) => {
-                    const token = JSON.parse(request.requestBody);
-                    switch (token) {
+                    switch (password) {
                         case "profile": {
                             return schema.db.completedProfile[0];
                         }
@@ -75,6 +59,31 @@ export function makeServer() {
                                 { errors: ["Bad Request"] }
                             );
                         }
+                    }
+                },
+                { timing }
+            );
+
+            this.post(
+                "/validateToken",
+                (schema, request) => {
+                    const { token, returnData } = JSON.parse(request.requestBody);
+                    switch (token) {
+                        case "profile": {
+                            if (returnData) {
+                                return schema.db.completedProfile[0];
+                            }
+                            return "OK";
+                        }
+                        case "error400": {
+                            return new Response(
+                                400,
+                                { some: "header" },
+                                { errors: ["Bad Request"] }
+                            );
+                        }
+                        default:
+                            return {};
                     }
                 },
                 { timing }

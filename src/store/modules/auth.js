@@ -2,18 +2,18 @@ import { accountApi } from "@/api";
 
 export default {
     state: {
-        isAuthorized: false,
+        loggedIn: false,
         token: localStorage.getItem("lb") || null,
     },
 
     mutations: {
-        AUTH_SUCCESS(state) {
-            state.isAuthorized = true;
+        SET_LOGGED_IN(state, value) {
+            state.loggedIn = value;
         },
         SAVE_TOKEN(state, token) {
             localStorage.setItem("lb", token);
             state.token = token;
-        }
+        },
     },
 
     actions: {
@@ -24,19 +24,52 @@ export default {
                     commit("SAVE_BORROWER_DATA", response.data.borrower);
                     commit("SAVE_SECTION_PROGRESS", response.data.sectionProgress);
                     commit("SAVE_TOKEN", response.data.token);
-                    commit("AUTH_SUCCESS");
+                    commit("SET_LOGGED_IN", true);
                     return response.data;
                 })
                 .catch((error) => {
                     return error;
                 });
         },
-        validateToken(token) {
-            return accountApi.validateToken(token).then((response) => {
-                console.log(response.data);
-            });
+
+        // Logs out the current user.
+        logOut({ commit }) {
+            commit("SET_LOGGED_IN", false);
+        },
+
+        // Validates the current user's token and refreshes it
+        // with new data from the API.
+        validateToken({ commit, state }) {
+            if (!state.token) return Promise.resolve(null);
+            const returnData = state.loggedIn ? false : true;
+            // console.log(`token = ${state.token}`)
+            return accountApi
+                .validateToken({ token: state.token, returnData })
+                .then((response) => {
+                    const { data } = response;
+                    if (data !== "OK") {
+                        commit("SAVE_BORROWER_DATA", data.borrower);
+                        commit("SAVE_SECTION_PROGRESS", data.sectionProgress);
+                        commit("SET_LOGGED_IN", true);
+                        return true;
+                    }
+                    return true;
+                })
+                .catch((error) => {
+                    if (error.response && error.response.status === 401) {
+                        commit("SET_LOGGED_IN", false);
+                    } else {
+                        console.warn(error);
+                    }
+                    return error;
+                });
         },
     },
 
-    getters: {},
+    getters: {
+        // Whether the user is currently logged in.
+        loggedIn(state) {
+            return state.loggedIn;
+        },
+    },
 };
