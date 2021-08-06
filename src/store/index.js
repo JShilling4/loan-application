@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import auth from "./modules/auth";
 import application from "./modules/application";
 import borrower from "./modules/borrower";
 import coborrower from "./modules/coborrower";
@@ -309,6 +310,7 @@ export default createStore({
         }
     },
     modules: {
+        auth,
         application,
         borrower,
         coborrower,

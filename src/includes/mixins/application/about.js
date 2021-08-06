@@ -34,7 +34,7 @@ export default {
     },
     methods: {
         ...mapActions([
-            "updateBorrowerAbout",
+            "fetchBorrowerAbout",
             "updateCoborrowerAbout",
             "postBorrowerAbout",
             "postSectionProgress",
@@ -68,8 +68,8 @@ export default {
     },
     mounted() {
         this.syncProfileWithStore(); // load data immediately if present in store
-        Promise.all([this.updateBorrowerAbout(), this.updateCoborrowerAbout()]).then(() => {
-            this.syncProfileWithStore(); // async load data to hydrate
-        });
+        // Promise.all([this.fetchBorrowerAbout(), this.updateCoborrowerAbout()]).then(() => {
+        //     this.syncProfileWithStore(); // async load data to hydrate
+        // });
     },
 };

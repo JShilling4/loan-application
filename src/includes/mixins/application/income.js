@@ -29,7 +29,7 @@ export default {
         ...mapActions([
             "updateBorrowerIncome",
             "updateCoborrowerIncome",
-            "updateBorrowerAbout",
+            "fetchBorrowerAbout",
             "postBorrowerIncome",
             "postCoborrowerIncome",
             "postSectionProgress",
@@ -60,7 +60,7 @@ export default {
     mounted() {
         // this.syncProfileWithStore(); // load data immediately if present in store
         Promise.all([
-            this.updateBorrowerAbout(),
+            this.fetchBorrowerAbout(),
             this.updateBorrowerIncome(),
             this.updateCoborrowerIncome(),
         ]).then(() => {

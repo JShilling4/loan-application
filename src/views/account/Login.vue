@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import ExternalFooter from "@/components/layout/ExternalFooter.vue";
 
 export default {
@@ -67,26 +68,22 @@ export default {
                 email: "",
                 password: "",
             },
-            devBypass: true,
+            devBypass: false,
         };
     },
     methods: {
+        ...mapActions(["logIn"]),
+
         postCredentials() {
             if (this.devBypass) {
                 if (this.credentials.password == "portal") {
                     this.$router.push("/portal");
                 }
-                if (this.credentials.password == "app") {
-                    this.$router.push("/profile");
-                }
             } else {
-                this.$refs.form.validate().then((success) => {
-                    if (!success) {
-                        return;
+                this.logIn(this.credentials).then((response) => {
+                    if (response.sectionProgress) {
+                        this.$router.push("/profile");
                     }
-                    this.credentials.password == "portal"
-                        ? this.$router.push("/portal")
-                        : this.$router.push("/profile");
                 });
             }
         },

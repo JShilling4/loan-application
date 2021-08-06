@@ -47,8 +47,8 @@ export default {
     },
     mounted() {
         this.syncProfileWithStore(); // load data immediately if present in store
-        Promise.all([this.fetchSectionProgress(), this.fetchBorrowerProfile()]).then(() => {
-            this.syncProfileWithStore(); // async load data to hydrate
-        });
+        // Promise.all([this.fetchSectionProgress(), this.fetchBorrowerProfile()]).then(() => {
+        //     this.syncProfileWithStore(); // async load data to hydrate
+        // });
     },
 };

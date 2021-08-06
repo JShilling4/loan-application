@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { createServer } from "miragejs";
+import { createServer, Response } from "miragejs";
 import borrowerProfile from "./data/borrowerProfile";
 import coborrowerProfile from "./data/coborrowerProfile";
-import { sectionProgress } from "./data/application";
+import { sectionProgress, completedProfile } from "./data/application";
 import borrowerAbout from "./data/borrowerAbout";
 import coborrowerAbout from "./data/coborrowerAbout";
 import borrowerProperty from "./data/borrowerProperty";
@@ -35,6 +35,7 @@ export function makeServer() {
                 coborrowerAssets: coborrowerAssets,
                 borrowerIdentity: borrowerIdentity,
                 coborrowerIdentity: coborrowerIdentity,
+                completedProfile: completedProfile,
             });
         },
 
@@ -48,9 +49,33 @@ export function makeServer() {
                     const data = JSON.parse(request.requestBody);
                     const { email, password } = data;
                     switch(password) {
-                        case "profile":
+                        case "profile": {
+                            return schema.db.completedProfile[0];
+                        }
+                        case "error400": {
+                            return new Response(400, { some: "header" }, { errors: ["Bad Request"] });
+                        }
                     }
-                    // return schema.db.applicationData.update(1, data);
+                },
+                { timing }
+            );
+
+            this.post(
+                "/validateToken",
+                (schema, request) => {
+                    const token = JSON.parse(request.requestBody);
+                    switch (token) {
+                        case "profile": {
+                            return schema.db.completedProfile[0];
+                        }
+                        case "error400": {
+                            return new Response(
+                                400,
+                                { some: "header" },
+                                { errors: ["Bad Request"] }
+                            );
+                        }
+                    }
                 },
                 { timing }
             );

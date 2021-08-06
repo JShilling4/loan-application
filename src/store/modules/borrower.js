@@ -21,6 +21,9 @@ export default {
     },
 
     mutations: {
+        SAVE_BORROWER_DATA(state, payload) {
+            state.borrower = payload;
+        },
         SAVE_BORROWER_PROFILE(state, payload) {
             state.borrower.profile = { ...state.borrower.profile, ...payload };
         },
@@ -70,7 +73,7 @@ export default {
         },
 
         // ABOUT
-        updateBorrowerAbout({ commit }) {
+        fetchBorrowerAbout({ commit }) {
             return aboutApi.fetchBorrowerAbout().then((response) => {
                 commit("SAVE_BORROWER_ABOUT", response.data);
             });

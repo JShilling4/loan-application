@@ -62,11 +62,11 @@ export default {
             return "";
         },
         percentageComplete() {
-            if (!this.progress) {
-                return "";
-            }
             if (this.progress === null) {
                 return "0%";
+            }
+            if (this.progress === undefined) {
+                return "";
             }
             return ((this.progress / this.sectionCount) * 100).toFixed(0) + "%";
         },

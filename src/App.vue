@@ -106,9 +106,9 @@ export default {
     },
     mounted() {
         // DATA NEEDED TO LOAD PAGE
-        this.fetchSectionProgress();
-        this.fetchBorrowerProfile();
-        this.updateCoborrowerProfile();
+        // this.fetchSectionProgress();
+        // this.fetchBorrowerProfile();
+        // this.updateCoborrowerProfile();
     },
 };
 </script>

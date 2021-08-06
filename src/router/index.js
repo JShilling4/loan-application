@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 // Root
 import Index from "../views/Index.vue";
 // Profile
-import ProfileGeneral from "../views/application/profile/ProfileGeneral.vue";
 import ProfileAddress from "../views/application/profile/ProfileAddress.vue";
 import ProfilePassword from "../views/application/profile/ProfilePassword.vue";
 // About
@@ -39,7 +38,6 @@ import VerifyAssets from "../views/application/assets/VerifyAssets.vue";
 // Identity
 import Declarations from "../views/application/identity/Declarations.vue";
 import CoborrowerDeclarations from "../views/application/identity/CoborrowerDeclarations.vue";
-import Demographics from "../views/application/identity/Demographics.vue";
 import CoborrowerDemographics from "../views/application/identity/CoborrowerDemographics.vue";
 
 const routes = [
@@ -51,6 +49,7 @@ const routes = [
         name: "Index",
         meta: {
             navItem: null,
+            requiresAuth: false,
         },
         component: Index,
     },
@@ -61,6 +60,7 @@ const routes = [
         name: "Login",
         meta: {
             navItem: null,
+            requiresAuth: false,
         },
         component: () => import(/* webpackChunkName: "login" */ "../views/account/Login.vue"),
     },
@@ -71,6 +71,7 @@ const routes = [
         name: "CreateAccount",
         meta: {
             navItem: null,
+            requiresAuth: false,
         },
         component: () =>
             import(/* webpackChunkName: "createAccount" */ "../views/account/CreateAccount.vue"),
@@ -82,6 +83,7 @@ const routes = [
         name: "ForgotPassword",
         meta: {
             navItem: null,
+            requiresAuth: false,
         },
         component: () =>
             import(/* webpackChunkName: "forgotPassword" */ "../views/account/ForgotPassword.vue"),
@@ -93,6 +95,7 @@ const routes = [
         name: "Faq",
         meta: {
             navItem: null,
+            requiresAuth: false,
         },
         component: () => import(/* webpackChunkName: "faq" */ "../views/Faq.vue"),
     },
@@ -105,6 +108,7 @@ const routes = [
         name: "Home",
         meta: {
             navItem: null,
+            requiresAuth: true,
         },
         component: () => import(/* webpackChunkName: "PortalHome" */ "../views/portal/Home.vue"),
     },
@@ -116,6 +120,7 @@ const routes = [
         path: "/profile",
         meta: {
             navItem: "profile",
+            requiresAuth: true,
         },
         component: () =>
             import(/* webpackChunkName: "profile" */ "../views/application/profile/Profile.vue"),
@@ -125,14 +130,18 @@ const routes = [
                 path: "",
                 meta: {
                     navItem: "profile",
+                    requiresAuth: true,
                 },
-                component: ProfileGeneral,
+                component: import(
+                    /* webpackChunkName: "profileGeneral" */ "../views/application/profile/ProfileGeneral.vue"
+                ),
             },
             // profile address
             {
                 path: "address",
                 meta: {
                     navItem: "profile",
+                    requiresAuth: true,
                 },
                 component: ProfileAddress,
             },
@@ -141,6 +150,7 @@ const routes = [
                 path: "referral",
                 meta: {
                     navItem: "profile",
+                    requiresAuth: true,
                 },
                 component: Referral,
             },
@@ -149,6 +159,7 @@ const routes = [
                 path: "select-loan-officer",
                 meta: {
                     navItem: "profile",
+                    requiresAuth: true,
                 },
                 component: SelectLoanOfficer,
             },
@@ -157,6 +168,7 @@ const routes = [
                 path: "create-password",
                 meta: {
                     navItem: "profile",
+                    requiresAuth: true,
                 },
                 component: ProfilePassword,
             },
@@ -169,6 +181,7 @@ const routes = [
         redirect: "/about/referral",
         meta: {
             navItem: "about",
+            requiresAuth: true,
         },
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/application/about/About.vue"),
@@ -178,6 +191,7 @@ const routes = [
                 path: "veteran",
                 meta: {
                     navItem: "about",
+                    requiresAuth: true,
                 },
                 component: Veteran,
             },
@@ -186,6 +200,7 @@ const routes = [
                 path: "coborrower",
                 meta: {
                     navItem: "about",
+                    requiresAuth: true,
                 },
                 component: Coborrower,
             },
@@ -194,6 +209,7 @@ const routes = [
                 path: "coborrower/info",
                 meta: {
                     navItem: "about",
+                    requiresAuth: true,
                 },
                 component: CoborrowerInfo,
             },
@@ -202,6 +218,7 @@ const routes = [
                 path: "coborrower/address",
                 meta: {
                     navItem: "about",
+                    requiresAuth: true,
                 },
                 component: CoborrowerAddress,
             },
@@ -210,6 +227,7 @@ const routes = [
                 path: "coborrower/auth",
                 meta: {
                     navItem: "about",
+                    requiresAuth: true,
                 },
                 component: CoborrowerAuth,
             },
@@ -218,6 +236,7 @@ const routes = [
                 path: "dependents",
                 meta: {
                     navItem: "about",
+                    requiresAuth: true,
                 },
                 component: Dependents,
             },
@@ -226,6 +245,7 @@ const routes = [
                 path: "coborrower-dependents",
                 meta: {
                     navItem: "about",
+                    requiresAuth: true,
                 },
                 component: CoborrowerDependents,
             },
@@ -234,6 +254,7 @@ const routes = [
                 path: "alimony",
                 meta: {
                     navItem: "about",
+                    requiresAuth: true,
                 },
                 component: Alimony,
             },
@@ -242,6 +263,7 @@ const routes = [
                 path: "coborrower-alimony",
                 meta: {
                     navItem: "about",
+                    requiresAuth: true,
                 },
                 component: CoborrowerAlimony,
             },
@@ -254,6 +276,7 @@ const routes = [
         redirect: "/property/loan-type",
         meta: {
             navItem: "property",
+            requiresAuth: true,
         },
         component: () =>
             import(/* webpackChunkName: "property" */ "../views/application/property/Property.vue"),
@@ -263,6 +286,7 @@ const routes = [
                 path: "loan-type",
                 meta: {
                     navItem: "property",
+                    requiresAuth: true,
                 },
                 component: LoanType,
             },
@@ -272,6 +296,7 @@ const routes = [
                 alias: "/refinance",
                 meta: {
                     navItem: "property",
+                    requiresAuth: true,
                 },
                 component: Refinance,
             },
@@ -280,6 +305,7 @@ const routes = [
                 path: "address-history",
                 meta: {
                     navItem: "property",
+                    requiresAuth: true,
                 },
                 component: AddressHistory,
             },
@@ -288,6 +314,7 @@ const routes = [
                 path: "coborrower-address-history",
                 meta: {
                     navItem: "property",
+                    requiresAuth: true,
                 },
                 component: CoborrowerAddressHistory,
             },
@@ -296,6 +323,7 @@ const routes = [
                 path: "other-properties",
                 meta: {
                     navItem: "property",
+                    requiresAuth: true,
                 },
                 component: OtherProperties,
             },
@@ -304,6 +332,7 @@ const routes = [
                 path: "add-properties",
                 meta: {
                     navItem: "property",
+                    requiresAuth: true,
                 },
                 component: AddOtherProperties,
             },
@@ -312,6 +341,7 @@ const routes = [
                 path: "add-coborrower-properties",
                 meta: {
                     navItem: "property",
+                    requiresAuth: true,
                 },
                 component: CoborrowerAddOtherProperties,
             },
@@ -320,6 +350,7 @@ const routes = [
                 path: "purchase-info",
                 meta: {
                     navItem: "property",
+                    requiresAuth: true,
                 },
                 component: PurchaseInfo,
             },
@@ -328,6 +359,7 @@ const routes = [
                 path: "purchase-price",
                 meta: {
                     navItem: "property",
+                    requiresAuth: true,
                 },
                 component: PurchasePrice,
             },
@@ -340,6 +372,7 @@ const routes = [
         redirect: "/income/income-history",
         meta: {
             navItem: "income",
+            requiresAuth: true,
         },
         component: () =>
             import(/* webpackChunkName: "income" */ "../views/application/income/Income.vue"),
@@ -348,6 +381,7 @@ const routes = [
                 path: "income-history",
                 meta: {
                     navItem: "income",
+                    requiresAuth: true,
                 },
                 component: IncomeHistory,
             },
@@ -355,6 +389,7 @@ const routes = [
                 path: "coborrower-income-history",
                 meta: {
                     navItem: "income",
+                    requiresAuth: true,
                 },
                 component: CoborrowerIncomeHistory,
             },
@@ -362,6 +397,7 @@ const routes = [
                 path: "credit-check",
                 meta: {
                     navItem: "income",
+                    requiresAuth: true,
                 },
                 component: CreditCheck,
             },
@@ -374,6 +410,7 @@ const routes = [
         redirect: "/assets/entry-options",
         meta: {
             navItem: "assets",
+            requiresAuth: true,
         },
         component: () =>
             import(/* webpackChunkName: "assets" */ "../views/application/assets/Assets.vue"),
@@ -383,6 +420,7 @@ const routes = [
                 name: "assetEntryOptions",
                 meta: {
                     navItem: "assets",
+                    requiresAuth: true,
                 },
                 component: AssetEntryOptions,
             },
@@ -390,6 +428,7 @@ const routes = [
                 path: "verify-assets",
                 meta: {
                     navItem: "assets",
+                    requiresAuth: true,
                 },
                 component: VerifyAssets,
             },
@@ -397,6 +436,7 @@ const routes = [
                 path: "add-assets",
                 meta: {
                     navItem: "assets",
+                    requiresAuth: true,
                 },
                 component: AddAssets,
             },
@@ -404,6 +444,7 @@ const routes = [
                 path: "coborrower-add-assets",
                 meta: {
                     navItem: "assets",
+                    requiresAuth: true,
                 },
                 component: CoborrowerAddAssets,
             },
@@ -416,6 +457,7 @@ const routes = [
         redirect: "/identity/declarations",
         meta: {
             navItem: "identity",
+            requiresAuth: true,
         },
         component: () =>
             import(/* webpackChunkName: "identity" */ "../views/application/identity/Identity.vue"),
@@ -424,6 +466,7 @@ const routes = [
                 path: "declarations",
                 meta: {
                     navItem: "identity",
+                    requiresAuth: true,
                 },
                 component: Declarations,
             },
@@ -431,6 +474,7 @@ const routes = [
                 path: "coborrower-declarations",
                 meta: {
                     navItem: "identity",
+                    requiresAuth: true,
                 },
                 component: CoborrowerDeclarations,
             },
@@ -438,30 +482,21 @@ const routes = [
                 path: "demographics",
                 meta: {
                     navItem: "identity",
+                    requiresAuth: true,
                 },
-                component: Demographics,
+                component: import(
+                    /* webpackChunkName: "demographics" */ "../views/application/identity/Demographics.vue"
+                ),
             },
             {
                 path: "coborrower-demographics",
                 meta: {
                     navItem: "identity",
+                    requiresAuth: true,
                 },
                 component: CoborrowerDemographics,
             },
         ],
-    },
-
-    // Demographics
-    {
-        path: "/demographics",
-        name: "Demographics",
-        meta: {
-            navItem: "identity",
-        },
-        component: () =>
-            import(
-                /* webpackChunkName: "demographics" */ "../views/application/identity/Demographics.vue"
-            ),
     },
 
     // Review
@@ -470,6 +505,7 @@ const routes = [
         name: "Review",
         meta: {
             navItem: "review",
+            requiresAuth: true,
         },
         component: () =>
             import(/* webpackChunkName: "review" */ "../views/application/review/Review.vue"),
@@ -481,6 +517,7 @@ const routes = [
         name: "ApplicationCompleted",
         meta: {
             navItem: null,
+            requiresAuth: true,
         },
         component: () =>
             import(
@@ -496,6 +533,7 @@ const routes = [
         name: "404",
         meta: {
             navItem: null,
+            requiresAuth: false,
         },
         component: () =>
             import(/* webpackChunkName: "findLoanOfficer" */ "../views/FindLoanOfficer.vue"),

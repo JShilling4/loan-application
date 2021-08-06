@@ -30,7 +30,7 @@ export default {
 	methods: {
 		...mapActions([
 			"updateBorrowerProperty",
-			"updateBorrowerAbout",
+			"fetchBorrowerAbout",
 			"updateCoborrowerProperty",
 			"postBorrowerProperty",
 			"postBorrowerProfile",
@@ -70,7 +70,7 @@ export default {
 		this.syncProfileWithStore(); // load data immediately if present in store
 		Promise.all([
 			this.updateBorrowerProperty(),
-			this.updateBorrowerAbout(),
+			this.fetchBorrowerAbout(),
 			this.updateCoborrowerProperty()
 		]).then(() => {
 			this.syncProfileWithStore(); // async load data to hydrate
