@@ -2,7 +2,7 @@
 import { createServer } from "miragejs";
 import borrowerProfile from "./data/borrowerProfile";
 import coborrowerProfile from "./data/coborrowerProfile";
-import applicationData from "./data/application";
+import { sectionProgress } from "./data/application";
 import borrowerAbout from "./data/borrowerAbout";
 import coborrowerAbout from "./data/coborrowerAbout";
 import borrowerProperty from "./data/borrowerProperty";
@@ -22,7 +22,7 @@ export function makeServer() {
 
         seeds(server) {
             server.db.loadData({
-                applicationData: applicationData,
+                sectionProgress: sectionProgress,
                 borrowerProfile: borrowerProfile,
                 coborrowerProfile: coborrowerProfile,
                 borrowerAbout: borrowerAbout,
@@ -41,20 +41,34 @@ export function makeServer() {
         routes() {
             this.namespace = "api";
 
+            //************************** ACCOUNT **************************
+            this.post(
+                "/login",
+                (schema, request) => {
+                    const data = JSON.parse(request.requestBody);
+                    const { email, password } = data;
+                    switch(password) {
+                        case "profile":
+                    }
+                    // return schema.db.applicationData.update(1, data);
+                },
+                { timing }
+            );
+
             //********************** APPLICATION DATA *********************
             this.get(
-                "/applicationData",
+                "/sectionProgress",
                 (schema) => {
-                    return schema.db.applicationData[0];
+                    return schema.db.sectionProgress[0];
                 },
                 { timing }
             );
 
             this.post(
-                "/applicationData",
+                "/sectionProgress",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.applicationData.update(1, data);
+                    return schema.db.sectionProgress.update(data);
                 },
                 { timing }
             );

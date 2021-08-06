@@ -99,11 +99,11 @@ export default {
                 await this.postBorrowerProfile(this.localProfile);
 
                 if (
-                    this.applicationData.progress.profile === null ||
-                    this.applicationData.progress.profile < 2
+                    this.sectionProgress.profile === null ||
+                    this.sectionProgress.profile < 2
                 ) {
-                    this.localApplicationData.progress.profile = 2;
-                    this.postApplicationData(this.localApplicationData);
+                    this.localSectionProgress.profile = 2;
+                    this.postSectionProgress(this.sectionProgress);
                 }
                 this.$router.push("/profile/referral");
             }

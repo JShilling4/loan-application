@@ -4,14 +4,14 @@
         @click="navigateTo(destinationUrl)"
     >
         <div class="percentageComplete">
-            <span v-if="status == 'active' && percentageComplete == '100'">
+            <span v-if="status == 'active' && percentageComplete == '100%'">
                 <font-awesome-icon
                     :icon="['fas', 'check']"
                     class="icon"
                 />
             </span>
             <span v-else-if="status !== 'completed' && label !== 'Review'">{{
-				`${percentageComplete}%`
+				`${percentageComplete}`
 			}}</span>
         </div>
         <div class="dot-container">
@@ -62,10 +62,13 @@ export default {
             return "";
         },
         percentageComplete() {
-            if (this.progress === null) {
-                return "0";
+            if (!this.progress) {
+                return "";
             }
-            return ((this.progress / this.sectionCount) * 100).toFixed(0);
+            if (this.progress === null) {
+                return "0%";
+            }
+            return ((this.progress / this.sectionCount) * 100).toFixed(0) + "%";
         },
     },
 

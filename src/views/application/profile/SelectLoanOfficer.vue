@@ -53,11 +53,11 @@ export default {
                 await this.postBorrowerProfile(this.localProfile);
                 // post progress
                 if (
-                    this.applicationData.progress.profile === null ||
-                    this.applicationData.progress.profile < 4
+                    this.sectionProgress.profile === null ||
+                    this.sectionProgress.profile < 4
                 ) {
-                    this.localApplicationData.progress.profile = 4;
-                    this.postApplicationData(this.localApplicationData);
+                    this.localSectionProgress.profile = 4;
+                    this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route
                 if (this.borrowerData.profile.password === null) {

@@ -1,96 +1,75 @@
 import { mapState, mapActions } from "vuex";
+import { deepClone } from "../helpers";
 
 export default {
-	data() {
-		return {
-			localAbout: {},
-			localCoborrowerProfile: {},
-			localCoborrowerAbout: {},
-			localApplicationData: {},
-			localDataIsPosting: false
-		};
-	},
-	computed: {
-		...mapState([
-			"borrower",
-			"coborrower",
-			"application",
-			"navigation",
-			"suffixes",
-			"states"
-		]),
-		applicationData() {
-			return this.application.application;
-		},
-		borrowerData() {
-			return this.borrower.borrower;
-		},
-		coborrowerData() {
-			return this.coborrower.coborrower;
-		},
-		coborrowerProfile() {
-			return this.coborrowerData.profile;
-		}
-	},
-	watch: {
-		coborrowerProfile() {
-			this.localCoborrowerProfile = JSON.parse(
-				JSON.stringify({ ...this.coborrowerProfile })
-			);
-		}
-	},
-	methods: {
-		...mapActions([
-			"updateBorrowerAbout",
-			"updateCoborrowerAbout",
-			"postBorrowerAbout",
-			"postApplicationData",
-			"postCoborrowerProfile",
-			"postCoborrowerAbout",
-			"editNavigationSectionCount"
-		]),
+    mixins: [deepClone],
+    data() {
+        return {
+            localAbout: {},
+            localCoborrowerProfile: {},
+            localCoborrowerAbout: {},
+            localSectionProgress: {},
+            localDataIsPosting: false,
+        };
+    },
+    computed: {
+        ...mapState(["borrower", "coborrower", "application", "navigation", "suffixes", "states"]),
+        sectionProgress() {
+            return this.application.sectionProgress;
+        },
+        borrowerData() {
+            return this.borrower.borrower;
+        },
+        coborrowerData() {
+            return this.coborrower.coborrower;
+        },
+        coborrowerProfile() {
+            return this.coborrowerData.profile;
+        },
+    },
+    watch: {
+        coborrowerProfile() {
+            this.localCoborrowerProfile = this.deepClone(this.coborrowerProfile);
+        },
+    },
+    methods: {
+        ...mapActions([
+            "updateBorrowerAbout",
+            "updateCoborrowerAbout",
+            "postBorrowerAbout",
+            "postSectionProgress",
+            "postCoborrowerProfile",
+            "postCoborrowerAbout",
+            "editNavigationSectionCount",
+        ]),
 
-		syncProfileWithStore() {
-			this.localAbout = JSON.parse(
-				JSON.stringify({ ...this.borrowerData.about })
-			);
-			this.localCoborrowerProfile = JSON.parse(
-				JSON.stringify({ ...this.coborrowerData.profile })
-			);
-			this.localCoborrowerAbout = JSON.parse(
-				JSON.stringify({ ...this.coborrowerData.about })
-			);
-			this.localApplicationData = JSON.parse(
-				JSON.stringify({ ...this.applicationData })
-			);
-		},
+        syncProfileWithStore() {
+            this.localAbout = this.deepClone(this.borrowerData.about);
+            this.localCoborrowerProfile = this.deepClone(this.coborrowerData.profile);
+            this.localCoborrowerAbout = this.deepClone(this.coborrowerData.about);
+            this.localSectionProgress = this.deepClone(this.sectionProgress);
+        },
 
-		editSectionProgress(part, config = { force: false }) {
-			const { force } = config;
-			if (part === 1) {
-				if (this.applicationData.progress.about === null) {
-					this.localApplicationData.progress.about = 1;
-					this.postApplicationData(this.localApplicationData);
-				}
-			} else if (force === true) {
-				this.localApplicationData.progress.about = part;
-				this.postApplicationData(this.localApplicationData);
-			} else if (
-				this.applicationData.progress.about !== null &&
-				this.applicationData.progress.about < part
-			) {
-				this.localApplicationData.progress.about = part;
-				this.postApplicationData(this.localApplicationData);
-			}
-		}
-	},
-	mounted() {
-		this.syncProfileWithStore(); // load data immediately if present in store
-		Promise.all([
-			this.updateBorrowerAbout(),
-			this.updateCoborrowerAbout()
-		]).then(() => {
-			this.syncProfileWithStore(); // async load data to hydrate
-		});
-	}
+        editSectionProgress(part, config = { force: false }) {
+            const { force } = config;
+            if (part === 1) {
+                if (this.sectionProgress.about === null) {
+                    this.localSectionProgress.about = 1;
+                    this.postSectionProgress(this.sectionProgress);
+                }
+            } else if (force === true) {
+                this.localSectionProgress.about = part;
+                this.postSectionProgress(this.sectionProgress);
+            } else if (this.sectionProgress.about !== null && this.sectionProgress.about < part) {
+                this.localSectionProgress.about = part;
+                this.postSectionProgress(this.sectionProgress);
+            }
+        },
+    },
+    mounted() {
+        this.syncProfileWithStore(); // load data immediately if present in store
+        Promise.all([this.updateBorrowerAbout(), this.updateCoborrowerAbout()]).then(() => {
+            this.syncProfileWithStore(); // async load data to hydrate
+        });
+    },
 };

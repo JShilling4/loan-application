@@ -7,7 +7,7 @@ export default {
         return {
             localAssets: [],
             localCoborrowerAssets: [],
-            localApplicationData: {},
+            localSectionProgress: {},
             localDataIsLoading: true,
             localDataIsPosting: false,
         };
@@ -15,8 +15,8 @@ export default {
     computed: {
         ...mapState(["borrower", "coborrower", "application", "appTheme"]),
 
-        applicationData() {
-            return this.application.application;
+        sectionProgress() {
+            return this.application.sectionProgress;
         },
 
         borrowerData() {
@@ -34,32 +34,29 @@ export default {
             "updateBorrowerAbout",
             "postBorrowerAssets",
             "postCoborrowerAssets",
-            "postApplicationData",
+            "postSectionProgress",
             "editNavigationSectionCount",
         ]),
 
         syncProfileWithStore() {
             this.localAssets = this.borrowerData.assets;
             this.localCoborrowerAssets = this.deepClone(this.coborrowerData.assets);
-            this.localApplicationData = this.deepClone(this.applicationData);
+            this.localSectionProgress = this.deepClone(this.sectionProgress);
         },
 
         editSectionProgress(part, config = { force: false }) {
             const { force } = config;
             if (part === 1) {
-                if (this.applicationData.progress.assets === null) {
-                    this.localApplicationData.progress.assets = 1;
-                    this.postApplicationData(this.localApplicationData);
+                if (this.sectionProgress.assets === null) {
+                    this.localSectionProgress.assets = 1;
+                    this.postSectionProgress(this.localSectionProgress);
                 }
             } else if (force === true) {
-                this.localApplicationData.progress.assets = part;
-                this.postApplicationData(this.localApplicationData);
-            } else if (
-                this.applicationData.progress.assets == null ||
-                this.applicationData.progress.assets < part
-            ) {
-                this.localApplicationData.progress.assets = part;
-                this.postApplicationData(this.localApplicationData);
+                this.localSectionProgress.assets = part;
+                this.postSectionProgress(this.localSectionProgress);
+            } else if (this.sectionProgress.assets == null || this.sectionProgress.assets < part) {
+                this.localSectionProgress.assets = part;
+                this.postSectionProgress(this.sectionProgress);
             }
         },
     },

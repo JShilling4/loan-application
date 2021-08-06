@@ -5,20 +5,20 @@ export default {
     mixins: [deepClone],
 	data() {
 		return {
-			localDataIsLoading: true,
-			localDataIsPosting: false,
-			localProperty: {},
-			localProfile: {},
-			localCoborrowerProfile: {},
-			localCoborrowerProperty: {},
-			localApplicationData: {}
-		};
+            localDataIsLoading: true,
+            localDataIsPosting: false,
+            localProperty: {},
+            localProfile: {},
+            localCoborrowerProfile: {},
+            localCoborrowerProperty: {},
+            localSectionProgress: {},
+        };
 	},
 	computed: {
 		...mapState(["borrower", "coborrower", "application", "states"]),
 
-		applicationData() {
-			return this.application.application;
+		sectionProgress() {
+			return this.application.sectionProgress;
 		},
 		borrowerData() {
 			return this.borrower.borrower;
@@ -36,7 +36,7 @@ export default {
 			"postBorrowerProfile",
 			"postCoborrowerProfile",
 			"postCoborrowerProperty",
-			"postApplicationData",
+			"postSectionProgress",
 			"editNavigationSectionCount"
 		]),
 		syncProfileWithStore() {
@@ -44,25 +44,25 @@ export default {
 			this.localProfile = this.deepClone(this.borrowerData.profile);
 			this.localCoborrowerProfile = this.deepClone(this.coborrowerData.profile);
 			this.localCoborrowerProperty = this.deepClone(this.coborrowerData.property);
-			this.localApplicationData = this.deepClone(this.applicationData);
+			this.localSectionProgress = this.deepClone(this.sectionProgress);
 		},
 
 		editSectionProgress(part, config = { force: false }) {
 			const { force } = config;
 			if (part === 1) {
-				if (this.applicationData.progress.property === null) {
-					this.localApplicationData.progress.property = 1;
-					this.postApplicationData(this.localApplicationData);
+				if (this.sectionProgress.property === null) {
+					this.localSectionProgress.property = 1;
+					this.postSectionProgress(this.localSectionProgress);
 				}
 			} else if (force === true) {
-				this.localApplicationData.progress.property = part;
-				this.postApplicationData(this.localApplicationData);
+				this.localSectionProgress.property = part;
+				this.postSectionProgress(this.localSectionProgress);
 			} else if (
-				this.applicationData.progress.property !== null &&
-				this.applicationData.progress.property < part
+				this.sectionProgress.property !== null &&
+				this.sectionProgress.property < part
 			) {
-				this.localApplicationData.progress.property = part;
-				this.postApplicationData(this.localApplicationData);
+				this.localSectionProgress.property = part;
+				this.postSectionProgress(this.sectionProgress);
 			}
 		}
 	},

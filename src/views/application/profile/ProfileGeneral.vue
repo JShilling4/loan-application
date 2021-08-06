@@ -145,9 +145,9 @@ export default {
                 // post data
                 await this.postBorrowerProfile(this.localProfile);
                 // post progress
-                if (this.applicationData.progress.profile === null) {
-                    this.localApplicationData.progress.profile = 1;
-                    this.postApplicationData(this.localApplicationData);
+                if (this.sectionProgress.profile === null) {
+                    this.localSectionProgress.profile = 1;
+                    this.postSectionProgress(this.sectionProgress);
                 }
                 // next route
                 this.$router.push("/profile/address");

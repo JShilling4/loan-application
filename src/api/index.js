@@ -38,12 +38,21 @@ import axios from "axios";
 // );
 
 // ENDPOINTS
-export const applicationApi = {
-    fetchApplicationData() {
-        return axios.get("/api/applicationData");
+export const accountApi = {
+    login(payload) {
+        return axios.post("/api/login", payload);
     },
-    postApplicationData(payload) {
-        return axios.post("/api/applicationData", payload);
+    validateToken(token) {
+        return axios.post("/api/validateToken", token)
+    }
+}
+
+export const applicationApi = {
+    fetchSectionProgress() {
+        return axios.get("/api/sectionProgress");
+    },
+    postSectionProgress(payload) {
+        return axios.post("/api/sectionProgress", payload);
     },
 };
 

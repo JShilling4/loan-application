@@ -27,13 +27,13 @@ export default {
 		...mapState(["application", "navigation", "appTheme"]),
 
 		progress() {
-			return this.applicationData.progress;
+			return this.sectionProgress;
 		},
 		navItems() {
 			return this.navigation.navigationItems;
 		},
-		applicationData() {
-			return this.application.application;
+		sectionProgress() {
+			return this.application.sectionProgress;
 		},
 		currentNavItem() {
 			return this.$route.meta.navItem;
@@ -46,7 +46,7 @@ export default {
 .progressBar {
 	position: fixed;
 	z-index: 5;
-	top: 23rem;
+	top: 25rem;
 	left: 6rem;
 }
 </style>

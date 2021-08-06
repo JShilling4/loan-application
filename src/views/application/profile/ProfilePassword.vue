@@ -49,11 +49,11 @@ export default {
                 this.localDataIsPosting = true;
                 this.postBorrowerProfile(this.localProfile).then(() => {
                     if (
-                        this.applicationData.progress.profile === null ||
-                        this.applicationData.progress.profile < 5
+                        this.sectionProgress.profile === null ||
+                        this.sectionProgress.profile < 5
                     ) {
-                        this.localApplicationData.progress.profile = 5;
-                        this.postApplicationData(this.localApplicationData);
+                        this.localSectionProgress.profile = 5;
+                        this.postSectionProgress(this.sectionProgress);
                     }
                     this.$router.push("/about/veteran");
                 });

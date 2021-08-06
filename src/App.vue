@@ -19,7 +19,7 @@
             key="3"
         />
 
-        <progress-bar v-if="applicationData && currentNavItem !== null" />
+        <progress-bar v-if="sectionProgress && currentNavItem !== null" />
 
         <router-view class="child-view" v-slot="{ Component }">
             <transition name="fade" mode="out-in">
@@ -56,8 +56,8 @@ export default {
     computed: {
         ...mapState(["application", "appTheme"]),
 
-        applicationData() {
-            return this.application.application;
+        sectionProgress() {
+            return this.application.sectionProgress;
         },
         shouldShowAppHeader() {
             return this.$route.path != "/";
@@ -99,14 +99,14 @@ export default {
 
     methods: {
         ...mapActions([
-            "updateApplication",
+            "fetchSectionProgress",
             "fetchBorrowerProfile",
             "updateCoborrowerProfile",
         ]),
     },
     mounted() {
         // DATA NEEDED TO LOAD PAGE
-        this.updateApplication();
+        this.fetchSectionProgress();
         this.fetchBorrowerProfile();
         this.updateCoborrowerProfile();
     },

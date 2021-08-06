@@ -1,28 +1,28 @@
 import { applicationApi } from "@/api";
 
 export default {
-	state: {
-		application: {}
-	},
+    state: {
+        sectionProgress: {},
+    },
 
-	mutations: {
-		SAVE_APPLICATION_DATA(state, payload) {
-			state.application = payload;
-		}
-	},
+    mutations: {
+        SAVE_SECTION_PROGRESS(state, payload) {
+            state.sectionProgress = payload;
+        },
+    },
 
-	actions: {
-		updateApplication({ commit }) {
-			return applicationApi.fetchApplicationData().then((response) => {
-                commit("SAVE_APPLICATION_DATA", response.data);
+    actions: {
+        fetchSectionProgress({ commit }) {
+            return applicationApi.fetchSectionProgress().then((response) => {
+                commit("SAVE_SECTION_PROGRESS", response.data);
             });
-		},
-		postApplicationData({ commit }, payload) {
-			return applicationApi.postApplicationData(payload).then(() => {
-                commit("SAVE_APPLICATION_DATA", payload);
+        },
+        postSectionProgress({ commit }, payload) {
+            return applicationApi.postSectionProgress(payload).then(() => {
+                commit("SAVE_SECTION_PROGRESS", payload);
             });
-		}
-	},
+        },
+    },
 
-	getters: {}
+    getters: {},
 };

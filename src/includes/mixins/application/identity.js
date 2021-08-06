@@ -7,7 +7,7 @@ export default {
         return {
             localIdentity: {},
             localCoborrowerIdentity: {},
-            localApplicationData: {},
+            localSectionProgress: {},
             localDataIsLoading: true,
             localDataIsPosting: false,
         };
@@ -20,8 +20,8 @@ export default {
         coborrowerData() {
             return this.coborrower.coborrower;
         },
-        applicationData() {
-            return this.application.application;
+        sectionProgress() {
+            return this.application.sectionProgress;
         },
     },
 
@@ -31,41 +31,38 @@ export default {
             "updateCoborrowerIdentity",
             "postBorrowerIdentity",
             "postCoborrowerIdentity",
-            "postApplicationData",
+            "postSectionProgress",
             "editNavigationSectionCount",
         ]),
 
         syncProfileWithStore() {
             this.localIdentity = this.deepClone(this.borrowerData.identity);
             this.localCoborrowerIdentity = this.deepClone(this.coborrowerData.identity);
-            this.localApplicationData = this.deepClone(this.applicationData);
+            this.localSectionProgress = this.deepClone(this.sectionProgress);
         },
 
         editSectionProgress(part, config = { force: false }) {
             const { force } = config;
             if (part === 1) {
-                if (this.applicationData.progress.identity === null) {
-                    this.localApplicationData.progress.identity = 1;
-                    this.postApplicationData(this.localApplicationData);
+                if (this.sectionProgress.identity === null) {
+                    this.localSectionProgress.identity = 1;
+                    this.postSectionProgress(this.localSectionProgress);
                 }
             } else if (force === true) {
-                this.localApplicationData.progress.identity = part;
-                this.postApplicationData(this.localApplicationData);
+                this.localSectionProgress.identity = part;
+                this.postSectionProgress(this.localSectionProgress);
             } else if (
-                this.applicationData.progress.identity == null ||
-                this.applicationData.progress.identity < part
+                this.sectionProgress.identity == null ||
+                this.sectionProgress.identity < part
             ) {
-                this.localApplicationData.progress.identity = part;
-                this.postApplicationData(this.localApplicationData);
+                this.localSectionProgress.identity = part;
+                this.postSectionProgress(this.localSectionProgress);
             }
         },
     },
     mounted() {
         // this.syncProfileWithStore(); // load data immediately if present in store
-        Promise.all([
-            this.updateBorrowerIdentity(),
-            this.updateCoborrowerIdentity(),
-        ]).then(() => {
+        Promise.all([this.updateBorrowerIdentity(), this.updateCoborrowerIdentity()]).then(() => {
             this.syncProfileWithStore(); // async load data to hydrate
             this.localDataIsLoading = false;
         });

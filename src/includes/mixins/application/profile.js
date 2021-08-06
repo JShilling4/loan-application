@@ -6,7 +6,7 @@ export default {
     data() {
         return {
             localProfile: {},
-            localApplicationData: {},
+            localSectionProgress: {},
             localDataIsPosting: false,
         };
     },
@@ -15,8 +15,8 @@ export default {
         borrowerData() {
             return this.borrower.borrower;
         },
-        applicationData() {
-            return this.application.application;
+        sectionProgress() {
+            return this.application.sectionProgress;
         },
         borrowerProfile() {
             return this.borrowerData.profile;
@@ -26,9 +26,9 @@ export default {
         borrowerProfile() {
             this.localProfile = this.deepClone(this.borrowerProfile);
         },
-        applicationData: {
+        sectionProgress: {
             handler() {
-                this.localApplicationData = this.deepClone(this.applicationData);
+                this.localSectionProgress = this.deepClone(this.sectionProgress);
             },
             deep: true,
         },
@@ -36,18 +36,18 @@ export default {
     methods: {
         ...mapActions([
             "fetchBorrowerProfile",
+            "fetchSectionProgress",
             "postBorrowerProfile",
-            "postApplicationData",
-            "updateApplication",
+            "postSectionProgress",
         ]),
         syncProfileWithStore() {
             this.localProfile = this.deepClone(this.borrowerData.profile);
-            this.localApplicationData = this.deepClone(this.applicationData);
+            this.localSectionProgress = this.deepClone(this.sectionProgress);
         },
     },
     mounted() {
         this.syncProfileWithStore(); // load data immediately if present in store
-        Promise.all([this.updateApplication(), this.fetchBorrowerProfile()]).then(() => {
+        Promise.all([this.fetchSectionProgress(), this.fetchBorrowerProfile()]).then(() => {
             this.syncProfileWithStore(); // async load data to hydrate
         });
     },
