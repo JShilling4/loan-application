@@ -17,14 +17,20 @@
                 </div>
             </div>
 
-            <transition name="fade">
+            <div class="header-controls">
+                <p
+                    v-if="auth.loggedIn"
+                    class="logoutTrigger"
+                    @click="onLogOut()"
+                >Log Out</p>
+
                 <loan-officer-info
                     v-if="loAvatarShouldShow"
                     avatar-url="https://a.ruoff.com/image/E48AF1FFD48BFECE7B48326C40DC40E7/size/75/type/ShortcutIcon"
                     name="Clint Morgan"
                     nmls="543452"
                 />
-            </transition>
+            </div>
         </div>
     </header>
 </template>
@@ -46,7 +52,7 @@ export default {
         },
     },
     computed: {
-        ...mapState(["appTheme"]),
+        ...mapState(["appTheme", "auth"]),
 
         loAvatarShouldShow() {
             if (
@@ -62,15 +68,20 @@ export default {
                 return "https://webresources.ruoff.com/logo-horizontal-white-nmls/png/160/0";
             }
             return "https://webresources.ruoff.com/logo-horizontal-color-nmls/png/160/0";
-        }
+        },
     },
     methods: {
-        ...mapActions(["toggleTheme"]),
+        ...mapActions(["toggleTheme", "logOut"]),
 
         changeTheme() {
             this.toggleTheme();
-        }
-    }
+        },
+
+        onLogOut() {
+            this.logOut();
+            this.$router.push("/login");
+        },
+    },
 };
 </script>
 
@@ -93,6 +104,16 @@ header {
     }
     .languageSelector-container {
         margin-top: 2rem;
+    }
+
+    .header-controls {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        .logoutTrigger {
+            margin-right: 2rem;
+            cursor: pointer;
+        }
     }
 }
 </style>

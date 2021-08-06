@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createServer, Response } from "miragejs";
-// import borrowerProfile from "./data/borrowerProfile";
+import borrowerProfile from "./data/borrowerProfile";
 import coborrowerProfile from "./data/coborrowerProfile";
 import { sectionProgress, completedProfile } from "./data/application";
 import borrowerAbout from "./data/borrowerAbout";
@@ -23,7 +23,7 @@ export function makeServer() {
         seeds(server) {
             server.db.loadData({
                 sectionProgress: sectionProgress,
-                // borrowerProfile: borrowerProfile,
+                borrowerProfile: borrowerProfile,
                 coborrowerProfile: coborrowerProfile,
                 borrowerAbout: borrowerAbout,
                 coborrowerAbout: coborrowerAbout,

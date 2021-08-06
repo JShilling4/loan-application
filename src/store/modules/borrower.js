@@ -24,6 +24,7 @@ export default {
         SAVE_BORROWER_DATA(state, payload) {
             state.borrower = payload;
         },
+
         SAVE_BORROWER_PROFILE(state, payload) {
             state.borrower.profile = { ...state.borrower.profile, ...payload };
         },
@@ -54,6 +55,25 @@ export default {
             state.borrower.identity = {
                 ...state.borrower.identity,
                 ...payload,
+            };
+        },
+
+        RESET_BORROWER_DATA(state) {
+            state.borrower = {
+                profile: {},
+                about: {},
+                property: {},
+                income: {},
+                assets: [],
+                identity: {
+                    declarations: {},
+                    demographics: {
+                        willProvideInformation: null,
+                        gender: null,
+                        ethnicity: null,
+                        race: null,
+                    },
+                },
             };
         },
     },

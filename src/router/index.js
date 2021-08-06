@@ -117,7 +117,7 @@ const routes = [
         path: "/profile",
         meta: {
             navItem: "profile",
-            requiresAuth: true,
+            requiresAuth: false,
         },
         component: () =>
             import(/* webpackChunkName: "Profile" */ "../views/application/profile/Profile.vue"),
@@ -127,7 +127,7 @@ const routes = [
                 path: "",
                 meta: {
                     navItem: "profile",
-                    requiresAuth: true,
+                    requiresAuth: false,
                 },
                 component: () =>
                     import(
@@ -139,7 +139,7 @@ const routes = [
                 path: "address",
                 meta: {
                     navItem: "profile",
-                    requiresAuth: true,
+                    requiresAuth: false,
                 },
                 component: () =>
                     import(
@@ -151,7 +151,7 @@ const routes = [
                 path: "referral",
                 meta: {
                     navItem: "profile",
-                    requiresAuth: true,
+                    requiresAuth: false,
                 },
                 component: () =>
                     import(
@@ -163,7 +163,7 @@ const routes = [
                 path: "select-loan-officer",
                 meta: {
                     navItem: "profile",
-                    requiresAuth: true,
+                    requiresAuth: false,
                 },
                 component: () =>
                     import(
@@ -175,7 +175,7 @@ const routes = [
                 path: "create-password",
                 meta: {
                     navItem: "profile",
-                    requiresAuth: true,
+                    requiresAuth: false,
                 },
                 component: () =>
                     import(

@@ -14,6 +14,11 @@ export default {
             localStorage.setItem("lb", token);
             state.token = token;
         },
+        LOG_OUT(state) {
+            localStorage.removeItem("lb");
+            state.token = null;
+            state.loggedIn = false;
+        }
     },
 
     actions: {
@@ -34,7 +39,8 @@ export default {
 
         // Logs out the current user.
         logOut({ commit }) {
-            commit("SET_LOGGED_IN", false);
+            commit("LOG_OUT");
+            commit("RESET_BORROWER_DATA");
         },
 
         // Validates the current user's token and refreshes it
