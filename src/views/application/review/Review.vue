@@ -4,67 +4,22 @@
         <div class="pageWrapper">
 
             <div class="review-box">
-                <div
-                    :class="['section-container', { active: profileIsExpanded}]"
-                    @click="profileIsExpanded = !profileIsExpanded"
-                >
-                    <span class="sectionName">Profile</span>
-                    <font-awesome-icon
-                        :icon="['fal', 'plus']"
-                        class="sectionIcon"
-                    />
+                <section-container
+                    v-for="(section, index) in sections"
+                    :is-expanded="section.isExpanded"
+                    :title="section.title"
+                    :key="section.name"
+                    @click="toggleSection(section)"
+                    :class="{ last: index === sections.length - 1 }"
+                />
 
-                    <transition name="data-fade">
-                        <div
-                            v-if="profileIsExpanded"
-                            class="data-view"
-                        >
-                            <h3 class="dataHeading">Profile</h3>
-                        </div>
-                    </transition>
-                </div>
-                <div class="section-container">
-                    <span class="sectionName">Address</span>
-                    <font-awesome-icon
-                        :icon="['fal', 'plus']"
-                        class="sectionIcon"
+                <transition name="data-fade">
+                    <section-data
+                        :show="dataIsShowing"
+                        :activeSection="activeSection"
+                        :data="dataViewObject"
                     />
-                </div>
-                <div class="section-container">
-                    <span class="sectionName">Property</span>
-                    <font-awesome-icon
-                        :icon="['fal', 'plus']"
-                        class="sectionIcon"
-                    />
-                </div>
-                <div class="section-container">
-                    <span class="sectionName">Income</span>
-                    <font-awesome-icon
-                        :icon="['fal', 'plus']"
-                        class="sectionIcon"
-                    />
-                </div>
-                <div class="section-container">
-                    <span class="sectionName">Assets</span>
-                    <font-awesome-icon
-                        :icon="['fal', 'plus']"
-                        class="sectionIcon"
-                    />
-                </div>
-                <div class="section-container">
-                    <span class="sectionName">Declarations</span>
-                    <font-awesome-icon
-                        :icon="['fal', 'plus']"
-                        class="sectionIcon"
-                    />
-                </div>
-                <div class="section-container">
-                    <span class="sectionName">Notes</span>
-                    <font-awesome-icon
-                        :icon="['fal', 'plus']"
-                        class="sectionIcon"
-                    />
-                </div>
+                </transition>
             </div>
 
             <view-controls
@@ -79,16 +34,104 @@
 
 <script>
 import { mapState } from "vuex";
+import ReviewSection from "@/components/ReviewSection.vue";
+import SectionDataReview from "@/components/SectionDataReview.vue";
 
 export default {
     name: "Review",
+
+    components: {
+        "section-container": ReviewSection,
+        "section-data": SectionDataReview,
+    },
+
     data() {
         return {
-            profileIsExpanded: false,
+            dataIsShowing: false,
+            sections: [
+                {
+                    title: "Profile",
+                    isExpanded: false,
+                },
+                {
+                    title: "Property",
+                    isExpanded: false,
+                },
+                {
+                    title: "Income",
+                    isExpanded: false,
+                },
+                {
+                    title: "Assets",
+                    isExpanded: false,
+                },
+                {
+                    title: "Declarations",
+                    isExpanded: false,
+                },
+                {
+                    title: "Demographics",
+                    isExpanded: false,
+                },
+                {
+                    title: "Notes",
+                    isExpanded: false,
+                },
+            ],
         };
     },
+
     computed: {
         ...mapState(["borrower", "coborrower"]),
+
+        activeSection() {
+            return this.sections.find((sec) => sec.isExpanded);
+        },
+        borrowerData() {
+            return this.borrower.borrower;
+        },
+        dataViewObject() {
+            switch(this.activeSection?.title) {
+                case "Profile": {
+                    const { profile, income, about } = this.borrowerData;
+                    return {
+                        "Full Name": `${profile.firstName} ${profile.lastName}`,
+                        "Current Address": profile.streetAddress,
+                        "Email": profile.email,
+                        "Telephone": profile.phone,
+                        "DOB": income.birthDate,
+                        "Marital Status": profile.maritalStatus,
+                        "Number of Dependents": about.numberOfDependents,
+                        "Dependent Ages": about.dependentAges
+                    }
+                }
+                case "Property": {
+                    return {
+                        "Homeownership Goal": "",
+                        "Primary Residence": "",
+                        "Property Location": "",
+                        "Real Estate Agent": "",
+                        "Purchase Price": "",
+                        "Down Payment": ""
+                    }
+                }
+                default: return {};
+            }
+        }
+    },
+
+    methods: {
+        toggleSection(clickedSection) {
+            this.sections.forEach((sec) => {
+                sec.isExpanded = false;
+            });
+            clickedSection.isExpanded = !clickedSection.isExpanded;
+            if (clickedSection.isExpanded) {
+                this.dataIsShowing = true;
+            } else {
+                this.dataIsShowing = false;
+            }
+        },
     },
 };
 </script>
@@ -106,43 +149,6 @@ export default {
     position: relative;
     border: 2px solid #fff;
     border-radius: var(--app-border-radius);
-}
-.section-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    transition: background-color 0.3s;
-    cursor: pointer;
-    &:not(:last-child) {
-        border-bottom: 2px solid #fff;
-    }
-    &:hover {
-        background-color: var(--orange);
-    }
-    &.active {
-        background-color: var(--orange);
-    }
-    .sectionName {
-        color: #fff;
-    }
-    .sectionIcon {
-        color: #fff;
-        font-size: 2.5rem;
-    }
-    .data-view {
-        position: absolute;
-        background-color: #fff;
-        top: 0;
-        left: 15rem;
-        height: 100%;
-        width: calc(100% - 15rem);
-        padding: 1rem 2rem;
-        .dataHeading {
-            color: var(--blue-green);
-            text-align: left;
-        }
-    }
 }
 
 .data-fade-enter-active,
