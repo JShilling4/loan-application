@@ -60,11 +60,7 @@ export default {
                     this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route
-                if (this.borrowerData.profile.password === null) {
-					this.$router.push("/profile/create-password");
-				} else {
-					this.$router.push("/about/veteran");
-				}
+				this.$router.push("/about/veteran");
             }
         },
     },

@@ -120,7 +120,6 @@
 
             <app-button
                 class-list="orange-fill pageSubmit"
-                :isPosting="localDataIsPosting"
                 indicator-type="button"
                 :append-icon="true"
                 @click="submitPage()"
@@ -133,27 +132,39 @@
 
 <script>
 import profile from "@/includes/mixins/application/profile";
+import { deepClone } from "@/includes/mixins/helpers";
 
 export default {
     name: "ProfileGeneral",
-    mixins: [profile],
+    mixins: [profile, deepClone],
+    props: {
+        toggleComponent: {
+            type: Function,
+        },
+        saveState: {
+            type: Function,
+        },
+        profile: {
+            type: Object,
+        }
+    },
+
+    data() {
+        return {
+            localProfile: {},
+        }
+    },
+
     methods: {
-        async submitPage() {
-            if (this.localDataIsPosting == false) {
-                // start loader
-                this.localDataIsPosting = true;
-                // post data
-                await this.postBorrowerProfile(this.localProfile);
-                // post progress
-                if (this.sectionProgress.profile === null) {
-                    this.localSectionProgress.profile = 1;
-                    this.postSectionProgress(this.sectionProgress);
-                }
-                // next route
-                this.$router.push("/profile/address");
-            }
+        submitPage() {
+            this.saveState(this.localProfile);
+            this.toggleComponent(2);
         },
     },
+
+    mounted() {
+        this.localProfile = this.deepClone(this.profile);
+    }
 };
 </script>
 

@@ -26,7 +26,7 @@ export default {
             return accountApi
                 .login(credentials)
                 .then((response) => {
-                    commit("SAVE_BORROWER_DATA", response.data.borrower);
+                    commit("SAVE_BORROWER_DATA", response.data);
                     commit("SAVE_SECTION_PROGRESS", response.data.sectionProgress);
                     commit("SAVE_TOKEN", response.data.token);
                     commit("SET_LOGGED_IN", true);
@@ -41,6 +41,7 @@ export default {
         logOut({ commit }) {
             commit("LOG_OUT");
             commit("RESET_BORROWER_DATA");
+            commit("RESET_SECTION_PROGRESS");
         },
 
         // Validates the current user's token and refreshes it
@@ -54,7 +55,7 @@ export default {
                 .then((response) => {
                     const { data } = response;
                     if (data !== "OK") {
-                        commit("SAVE_BORROWER_DATA", data.borrower);
+                        commit("SAVE_BORROWER_DATA", data);
                         commit("SAVE_SECTION_PROGRESS", data.sectionProgress);
                         commit("SET_LOGGED_IN", true);
                         return true;

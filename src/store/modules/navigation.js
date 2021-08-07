@@ -5,13 +5,13 @@ export default {
 				id: "profile",
 				label: "Profile",
 				destinationUrl: "/profile",
-				sectionCount: 5,
+				sectionCount: 3,
 				status: "active"
 			},
 			{
 				id: "about",
 				label: "About",
-				sectionCount: 9,
+				sectionCount: 11,
 				destinationUrl: "/about/veteran",
 				status: ""
 			},

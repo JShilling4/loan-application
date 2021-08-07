@@ -121,68 +121,44 @@ const routes = [
         },
         component: () =>
             import(/* webpackChunkName: "Profile" */ "../views/application/profile/Profile.vue"),
-        children: [
-            // profile about
-            {
-                path: "",
-                meta: {
-                    navItem: "profile",
-                    requiresAuth: false,
-                },
-                component: () =>
-                    import(
-                        /* webpackChunkName: "ProfileGeneral" */ "../views/application/profile/ProfileGeneral.vue"
-                    ),
-            },
-            // profile address
-            {
-                path: "address",
-                meta: {
-                    navItem: "profile",
-                    requiresAuth: false,
-                },
-                component: () =>
-                    import(
-                        /* webpackChunkName: "ProfileAddress" */ "../views/application/profile/ProfileAddress.vue"
-                    ),
-            },
-            // Referral
-            {
-                path: "referral",
-                meta: {
-                    navItem: "profile",
-                    requiresAuth: false,
-                },
-                component: () =>
-                    import(
-                        /* webpackChunkName: "Referral" */ "../views/application/profile/Referral.vue"
-                    ),
-            },
-            // Select Loan Officer
-            {
-                path: "select-loan-officer",
-                meta: {
-                    navItem: "profile",
-                    requiresAuth: false,
-                },
-                component: () =>
-                    import(
-                        /* webpackChunkName: "SelectLoanOfficer" */ "../views/application/profile/SelectLoanOfficer.vue"
-                    ),
-            },
-            // profile create password
-            {
-                path: "create-password",
-                meta: {
-                    navItem: "profile",
-                    requiresAuth: false,
-                },
-                component: () =>
-                    import(
-                        /* webpackChunkName: "profilePassword" */ "../views/application/profile/ProfilePassword.vue"
-                    ),
-            },
-        ],
+        // children: [
+        //     // profile about
+        //     {
+        //         path: "",
+        //         meta: {
+        //             navItem: "profile",
+        //             requiresAuth: false,
+        //         },
+        //         component: () =>
+        //             import(
+        //                 /* webpackChunkName: "ProfileGeneral" */ "../views/application/profile/ProfileGeneral.vue"
+        //             ),
+        //     },
+        //     // profile address
+        //     {
+        //         path: "address",
+        //         meta: {
+        //             navItem: "profile",
+        //             requiresAuth: false,
+        //         },
+        //         component: () =>
+        //             import(
+        //                 /* webpackChunkName: "ProfileAddress" */ "../views/application/profile/ProfileAddress.vue"
+        //             ),
+        //     },
+        //     // profile create password
+        //     {
+        //         path: "create-password",
+        //         meta: {
+        //             navItem: "profile",
+        //             requiresAuth: false,
+        //         },
+        //         component: () =>
+        //             import(
+        //                 /* webpackChunkName: "profilePassword" */ "../views/application/profile/ProfilePassword.vue"
+        //             ),
+        //     },
+        // ],
     },
 
     // About Routes
@@ -196,6 +172,30 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/application/about/About.vue"),
         children: [
+            // Referral
+            {
+                path: "referral",
+                meta: {
+                    navItem: "about",
+                    requiresAuth: true,
+                },
+                component: () =>
+                    import(
+                        /* webpackChunkName: "Referral" */ "../views/application/about/Referral.vue"
+                    ),
+            },
+            // Select Loan Officer
+            {
+                path: "select-loan-officer",
+                meta: {
+                    navItem: "about",
+                    requiresAuth: true,
+                },
+                component: () =>
+                    import(
+                        /* webpackChunkName: "SelectLoanOfficer" */ "../views/application/about/SelectLoanOfficer.vue"
+                    ),
+            },
             // Veteran
             {
                 path: "veteran",
@@ -562,6 +562,7 @@ router.beforeEach((routeTo, routeFrom, next) => {
     // Check if auth is required on this route
     // (including nested routes).
     const requiresAuth = routeTo.matched.some((route) => route.meta.requiresAuth);
+    // const isProfileRoute = routeTo.fullPath.includes("profile");
     // If auth isn't required for the route, just continue.
     if (!requiresAuth) return next();
 

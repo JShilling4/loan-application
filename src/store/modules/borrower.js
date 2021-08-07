@@ -2,31 +2,34 @@ import { profileApi, aboutApi, propertyApi, incomeApi, assetsApi, identityApi } 
 
 export default {
     state: {
-        borrower: {
-            profile: {},
-            about: {},
-            property: {},
-            income: {},
-            assets: [],
-            identity: {
-                declarations: {},
-                demographics: {
-                    willProvideInformation: null,
-                    gender: null,
-                    ethnicity: null,
-                    race: null,
-                },
+        profile: {},
+        about: {},
+        property: {},
+        income: {},
+        assets: [],
+        identity: {
+            declarations: {},
+            demographics: {
+                willProvideInformation: null,
+                gender: null,
+                ethnicity: null,
+                race: null,
             },
         },
     },
 
     mutations: {
         SAVE_BORROWER_DATA(state, payload) {
-            state.borrower = payload;
+            state.profile = payload.borrowerProfile;
+            state.about = payload.borrowerAbout;
+            state.property = payload.borrowerProperty;
+            state.income = payload.borrowerIncome;
+            state.assets = payload.borrowerAssets;
+            state.identity = payload.borrowerIdentity;
         },
 
         SAVE_BORROWER_PROFILE(state, payload) {
-            state.borrower.profile = { ...state.borrower.profile, ...payload };
+            state.profile = { ...state.profile, ...payload };
         },
 
         SAVE_BORROWER_ABOUT(state, payload) {
@@ -59,20 +62,18 @@ export default {
         },
 
         RESET_BORROWER_DATA(state) {
-            state.borrower = {
-                profile: {},
-                about: {},
-                property: {},
-                income: {},
-                assets: [],
-                identity: {
-                    declarations: {},
-                    demographics: {
-                        willProvideInformation: null,
-                        gender: null,
-                        ethnicity: null,
-                        race: null,
-                    },
+            state.profile = {};
+            state.about = {};
+            state.property = {};
+            state.income = {};
+            state.assets = [];
+            state.identity = {
+                declarations: {},
+                demographics: {
+                    willProvideInformation: null,
+                    gender: null,
+                    ethnicity: null,
+                    race: null,
                 },
             };
         },

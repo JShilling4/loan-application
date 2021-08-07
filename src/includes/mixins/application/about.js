@@ -17,9 +17,6 @@ export default {
         sectionProgress() {
             return this.application.sectionProgress;
         },
-        borrowerData() {
-            return this.borrower.borrower;
-        },
         coborrowerData() {
             return this.coborrower.coborrower;
         },
@@ -44,7 +41,7 @@ export default {
         ]),
 
         syncProfileWithStore() {
-            this.localAbout = this.deepClone(this.borrowerData.about);
+            this.localAbout = this.deepClone(this.borrower.about);
             this.localCoborrowerProfile = this.deepClone(this.coborrowerData.profile);
             this.localCoborrowerAbout = this.deepClone(this.coborrowerData.about);
             this.localSectionProgress = this.deepClone(this.sectionProgress);

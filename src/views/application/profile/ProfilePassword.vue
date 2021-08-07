@@ -8,7 +8,7 @@
             <text-field
                 type="password"
                 class-list="dark"
-                v-model="localProfile.password"
+                v-model="password"
             />
         </div>
 
@@ -24,7 +24,7 @@
 
         <view-controls
             @advance-app="submitPage()"
-            @retreat-app="$router.go(-1)"
+            @retreat-app="toggleComponent(2)"
             next-text="Create Profile"
             :local-posting="localDataIsPosting"
         />
@@ -32,33 +32,52 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import profile from "@/includes/mixins/application/profile";
+import { deepClone } from "@/includes/mixins/helpers";
 
 export default {
     name: "ProfilePassword",
-    mixins: [profile],
-    components: {},
+    mixins: [profile, deepClone],
+    props: {
+        toggleComponent: {
+            type: Function,
+        },
+        saveState: {
+            type: Function,
+        },
+        profile: {
+            type: Object,
+        },
+    },
     data() {
         return {
+            password: null,
             confirmPassword: null,
+            localProfile: {},
+            localDataIsPosting: false,
         };
     },
     methods: {
+        ...mapActions(["logIn", "postBorrowerProfile", "postSectionProgress"]),
+
         async submitPage() {
             if (this.localDataIsPosting == false) {
                 this.localDataIsPosting = true;
                 this.postBorrowerProfile(this.localProfile).then(() => {
-                    if (
-                        this.sectionProgress.profile === null ||
-                        this.sectionProgress.profile < 5
-                    ) {
-                        this.localSectionProgress.profile = 5;
-                        this.postSectionProgress(this.sectionProgress);
-                    }
-                    this.$router.push("/about/veteran");
+                    this.postSectionProgress({ profile: 3 });
+
+                    this.logIn({
+                        email: this.localProfile.email,
+                        password: this.password,
+                    });
+                    this.$router.push("/about/referral");
                 });
             }
         },
+    },
+    mounted() {
+        this.localProfile = this.deepClone(this.profile);
     },
 };
 </script>

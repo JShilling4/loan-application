@@ -1,0 +1,24 @@
+const graphQLSchema = `
+    type BorrowerProfile {
+        email: ID!
+        firstName: String!
+        middleInitial: String,
+        lastName: String!,
+        password: String!,
+        suffix: String,
+        phone: String!,
+        maritalStatus: String!,
+        streetAddress: String!,
+        apartmentNumber: String,
+        city: String!,
+        state: String!,
+        zipcode: String!,
+        referralSource: String!,
+        referralSourceName: String,
+        loanOfficer: String,
+    }
+
+    type Query {
+        borrowerProfile(email: ID): [BorrowerProfile]
+    }
+`

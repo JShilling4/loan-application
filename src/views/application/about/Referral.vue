@@ -11,17 +11,17 @@
                 <multi-select
                     :options="sourceOptions"
                     :can-clear="false"
-                    v-model="localProfile.referralSource"
+                    v-model="localAbout.referralSource"
                 />
             </div>
 
             <div
-                v-if="localProfile.referralSource === 'Realtor'
-                    || localProfile.referralSource === 'Other'"
+                v-if="localAbout.referralSource === 'Realtor'
+                    || localAbout.referralSource === 'Other'"
                 class="input-group"
             >
                 <app-label theme="dark">Please specify:</app-label>
-                <text-field v-model="localProfile.referralSourceName" />
+                <text-field v-model="localAbout.referralSourceName" />
             </div>
 
             <view-controls
@@ -34,11 +34,11 @@
 </template>
 
 <script>
-import profile from "@/includes/mixins/application/profile";
+import about from "@/includes/mixins/application/about";
 
 export default {
     name: "Referral",
-    mixins: [profile],
+    mixins: [about],
     data() {
         return {
             sourceOptions: [
@@ -79,17 +79,17 @@ export default {
                 // start loader
                 this.localDataIsPosting = true;
                 // post data
-                await this.postBorrowerProfile(this.localProfile);
+                await this.postBorrowerProfile(this.localAbout);
                 // post progress
                 if (
-                    this.sectionProgress.profile === null ||
-                    this.sectionProgress.profile < 3
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < 3
                 ) {
-                    this.localSectionProgress.profile = 3;
+                    this.localSectionProgress.about = 3;
                     this.postSectionProgress(this.sectionProgressa);
                 }
                 // next route
-                this.$router.push("/profile/select-loan-officer");
+                this.$router.push("/about/select-loan-officer");
             }
         },
     },

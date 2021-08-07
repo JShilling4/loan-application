@@ -7,8 +7,11 @@ export default {
 
     mutations: {
         SAVE_SECTION_PROGRESS(state, payload) {
-            state.sectionProgress = payload;
+            state.sectionProgress = { ...state.sectionProgress, ...payload };
         },
+        RESET_SECTION_PROGRESS(state) {
+            state.sectionProgress = {};
+        }
     },
 
     actions: {

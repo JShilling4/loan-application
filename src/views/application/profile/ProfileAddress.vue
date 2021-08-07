@@ -79,8 +79,7 @@
 
             <view-controls
                 @advance-app="submitPage()"
-                @retreat-app="$router.go(-1)"
-                :local-posting="localDataIsPosting"
+                @retreat-app="toggleComponent(1)"
             />
         </div>
     </div>
@@ -88,27 +87,38 @@
 
 <script>
 import profile from "@/includes/mixins/application/profile";
+import { deepClone } from "@/includes/mixins/helpers";
 
 export default {
     name: "ProfileAddress",
-    mixins: [profile],
-    methods: {
-        async submitPage() {
-            if (this.localDataIsPosting == false) {
-                this.localDataIsPosting = true;
-                await this.postBorrowerProfile(this.localProfile);
-
-                if (
-                    this.sectionProgress.profile === null ||
-                    this.sectionProgress.profile < 2
-                ) {
-                    this.localSectionProgress.profile = 2;
-                    this.postSectionProgress(this.sectionProgress);
-                }
-                this.$router.push("/profile/referral");
-            }
+    mixins: [profile, deepClone],
+    props: {
+        toggleComponent: {
+            type: Function,
         },
+        saveState: {
+            type: Function,
+        },
+        profile: {
+            type: Object,
+        }
     },
+
+    data() {
+        return {
+            localProfile: {},
+        }
+    },
+
+    methods: {
+        submitPage() {
+            this.saveState(this.localProfile);
+            this.toggleComponent(3);
+        }
+    },
+    mounted() {
+        this.localProfile = this.deepClone(this.profile);
+    }
 };
 </script>
 

@@ -1,41 +1,4 @@
 import axios from "axios";
-// import Router from "@/router";
-
-// base instance
-// const rest = axios.create({
-//   baseURL: process.env.VUE_APP_API_URL,
-// });
-
-// const ruoffApiWithKey = axios.create({
-// 	baseURL: process.env.VUE_APP_RUOFFAPI_URL,
-// 	headers: {
-// 		Authorization: process.env.VUE_APP_RUOFFAPI_KEY,
-// 	},
-// });
-
-// REST interceptors
-// rest.interceptors.request.use(
-// 	(config) => {
-// 		const token = localStorage.getItem("wlv4");
-// 		if (token) {
-// 			config.headers.Authorization = token;
-// 		}
-// 		return config;
-// 	},
-// 	(error) => {
-// 		Promise.reject(error);
-// 	}
-// );
-
-// rest.interceptors.response.use(
-// 	(response) => response,
-// 	(error) => {
-// 		if (error.response.status === 401) {
-// 			Router.push("/login");
-// 		}
-// 		return Promise.reject(error);
-// 	}
-// );
 
 // ENDPOINTS
 export const accountApi = {
@@ -43,9 +6,9 @@ export const accountApi = {
         return axios.post("/api/login", payload);
     },
     validateToken(payload) {
-        return axios.post("/api/validateToken", payload)
-    }
-}
+        return axios.post("/api/validateToken", payload);
+    },
+};
 
 export const applicationApi = {
     fetchSectionProgress() {
@@ -58,7 +21,14 @@ export const applicationApi = {
 
 export const profileApi = {
     fetchBorrowerProfile() {
-        return axios.get("/api/borrowerProfile");
+        // return axios.get("/api/borrowerProfile");
+        // return axios.post("/api/graphql", {
+        //     query: `{
+        //         borrowerProfiles(queryString: "${queryString}", employees: "${employees}"){
+
+        //         }
+        //     }`,
+        // });
     },
     fetchCoborrowerProfile() {
         return axios.get("/api/coborrowerProfile");
@@ -137,5 +107,5 @@ export const identityApi = {
     },
     fetchCoborrowerIdentity() {
         return axios.get("/api/coborrowerIdentity");
-    }
-}
+    },
+};
