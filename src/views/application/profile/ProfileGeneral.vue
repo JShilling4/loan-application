@@ -133,6 +133,8 @@
 <script>
 import profile from "@/includes/mixins/application/profile";
 import { deepClone } from "@/includes/mixins/helpers";
+import gql from "graphql-tag";
+
 
 export default {
     name: "ProfileGeneral",
@@ -164,6 +166,12 @@ export default {
 
     mounted() {
         this.localProfile = this.deepClone(this.profile);
+    },
+
+    apollo: {
+        localProfile: gql`query {
+            localProfile: borrowerProfile
+        }`
     }
 };
 </script>

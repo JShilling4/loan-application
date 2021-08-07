@@ -1,17 +1,17 @@
 /* eslint-disable no-unused-vars */
-import { createServer } from "miragejs";
-import { createGraphQLHandler } from "@miragejs/graphql";
-import graphQLSchema from "app/gql/schema.gql";
+// import { createServer } from "miragejs";
+// import { createGraphQLHandler } from "@miragejs/graphql";
+// import graphQLSchema from "app/gql/schema.gql";
 
-export function makeServer() {
-    return createServer({
-        routes() {
-            const graphQLHandler = createGraphQLHandler(graphQLSchema, this.schema);
+// export function makeServer() {
+//     return createServer({
+//         routes() {
+//             const graphQLHandler = createGraphQLHandler(graphQLSchema, this.schema);
 
-            this.post("/graphql", graphQLHandler);
-        },
-    });
-}
+//             this.post("/graphql", graphQLHandler);
+//         },
+//     });
+// }
 
 
 
