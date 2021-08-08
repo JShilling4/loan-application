@@ -1,44 +1,34 @@
 <template>
     <div class="forgotPassword">
-        <h1 class="appHeading">Forgot Password</h1>
+        <page-heading :theme="appTheme">Forgot Password</page-heading>
         <form class="pageForm">
             <!-- First Name -->
             <div class="input-group">
                 <app-label
-                    class-list="dark"
+                    :theme="appTheme"
                     for="email"
                 >Email</app-label>
                     <text-field
-                        class-list="dark"
+                        :theme="appTheme"
                         id="email"
                         type="text"
                         v-model="email"
                     />
             </div>
 
-            <app-button
-                @click="$router.push('/login')"
-                class-list="orange-fill pageSubmit"
-                :append-icon="true"
-            >
-                Recover Password
-            </app-button>
-
-            <div class="backLink-container">
-                <font-awesome-icon
-                    :icon="['fas', 'angle-left']"
-                    class="icon"
-                />
-                <router-link
-                    class="backLink"
-                    to="/login"
-                > Back to Login</router-link>
-            </div>
+            <view-controls
+				@advance-app="submitPage()"
+                @retreat-app="$router.push('/login')"
+				:local-posting="localDataIsPosting"
+                next-text="Recover Password"
+                :theme="appTheme"
+			/>
         </form>
     </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 
 export default {
     name: "ForgotPassword",
@@ -48,6 +38,9 @@ export default {
             email: "",
         };
     },
+    computed: {
+        ...mapState(["appTheme"]),
+    }
 };
 </script>
 

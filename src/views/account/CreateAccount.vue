@@ -1,44 +1,37 @@
 <template>
     <div class="createAccount">
-        <h1 class="appHeading">Create Account</h1>
+        <page-heading :theme="appTheme">
+            Create Account
+        </page-heading>
+
         <form class="pageForm">
             <!-- First Name -->
             <div class="input-group">
                 <app-label
-                    class-list="dark"
+                    :theme="appTheme"
                     for="email"
                 >Email</app-label>
                 <text-field
-                    class-list="dark"
+                    :theme="appTheme"
                     id="email"
                     type="text"
                     v-model="email"
                 />
             </div>
 
-            <app-button
-                @click="$router.push('/login')"
-                class-list="orange-fill pageSubmit"
-                :append-icon="true"
-            >
-                Create Account
-            </app-button>
-
-            <div class="backLink-container">
-                <font-awesome-icon
-                    :icon="['fas', 'angle-left']"
-                    class="icon"
-                />
-                <router-link
-                    class="backLink"
-                    to="/login"
-                > Back to Login</router-link>
-            </div>
+            <view-controls
+				@advance-app="submitPage()"
+                @retreat-app="$router.push('/login')"
+				:local-posting="localDataIsPosting"
+                next-text="Create Account"
+                :theme="appTheme"
+			/>
         </form>
     </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 
 export default {
     name: "CreateAccount",
@@ -48,6 +41,14 @@ export default {
             email: "",
         };
     },
+    computed: {
+        ...mapState(["appTheme"]),
+    },
+    methods: {
+        submitPage() {
+            this.$router.push('/login')
+        }
+    }
 };
 </script>
 
@@ -57,30 +58,6 @@ export default {
 
     form {
         width: 35rem;
-    }
-
-    .backLink-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 2rem;
-        &:hover .icon,
-        &:hover a {
-            color: var(--orange);
-        }
-        .icon {
-            color: #fff;
-            margin-right: 0.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        a {
-            display: block;
-            text-align: center;
-            color: #fff;
-            font-size: 1.6rem;
-            transition: color 0.3s;
-            text-decoration: underline;
-        }
     }
 }
 </style>
