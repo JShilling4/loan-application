@@ -4,7 +4,6 @@ import VSpacer from "../components/layout/VSpacer.vue";
 import AppColumn from "../components/layout/AppColumn.vue";
 import Multiselect from "@vueform/multiselect";
 import FontAwesome from "../includes/fontAwesome";
-import VueApollo from "../includes/apollo";
 import { clickOutside } from "../includes/directives";
 
 export const globalComponents = {
@@ -32,7 +31,6 @@ export const globalComponents = {
         app.component("app-column", AppColumn);
         app.component("multi-select", Multiselect);
         app.use(FontAwesome);
-        app.use(VueApollo);
     },
 };
 

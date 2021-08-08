@@ -2,13 +2,13 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-// import { makeServer } from "@/api/mirage/server";
+import { makeServer } from "@/api/mirage/server";
 import { globalComponents, globalDirectives } from "./includes/_globals";
 import i18n from "./includes/i18n";
 
 // Initiate mock API
 // if (process.env.NODE_ENV === "development") {
-// makeServer();
+makeServer();
 // }
 
 const app = createApp(App);

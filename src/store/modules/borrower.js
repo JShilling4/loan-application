@@ -88,8 +88,8 @@ export default {
         },
 
         postBorrowerProfile({ commit }, payload) {
-            return profileApi.postBorrowerProfile(payload).then((response) => {
-                commit("SAVE_BORROWER_PROFILE", response.data);
+            return profileApi.postBorrowerProfile(payload).then(() => {
+                commit("SAVE_BORROWER_PROFILE", payload);
             });
         },
 
