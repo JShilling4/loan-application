@@ -32,9 +32,11 @@
 
 <script>
 import { mapState } from "vuex";
+import account from "@/includes/mixins/application/account";
 
 export default {
     name: "CreateAccount",
+    mixins: [account],
     components: {},
     data() {
         return {

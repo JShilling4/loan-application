@@ -29,9 +29,11 @@
 
 <script>
 import { mapState } from "vuex";
+import account from "@/includes/mixins/application/account";
 
 export default {
     name: "ForgotPassword",
+    mixins: [account],
     components: {},
     data() {
         return {

@@ -1,6 +1,6 @@
 <template>
     <a
-        v-if="isExernal"
+        v-if="isExternal"
         :href="to"
         target="_blank"
         rel="noopener"
