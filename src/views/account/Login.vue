@@ -1,30 +1,33 @@
 <template>
     <div class="login">
-        <h1 class="appHeading">Log In</h1>
+        <page-heading :theme="appTheme">
+            Log In
+        </page-heading>
+
         <form>
             <div class="input-group">
                 <app-label
                     label-for="email"
-                    class-list="dark"
+                    :theme="appTheme"
                 >Email</app-label>
                 <text-field
                     name="email"
                     id="email"
                     v-model="credentials.email"
                     @keyup.enter="postCredentials()"
-                    class-list="dark"
+                    :theme="appTheme"
                 />
             </div>
 
             <div class="input-group">
                 <app-label
                     label-for="password"
-                    class-list="dark"
+                    :theme="appTheme"
                 >Password</app-label>
                 <text-field
                     name="password"
                     id="password"
-                    class-list="dark"
+                    :theme="appTheme"
                     v-model="credentials.password"
                     @keyup.enter="postCredentials()"
                 />
@@ -40,21 +43,25 @@
             </app-button>
         </form>
 
-        <router-link to="/create-account">Create an account</router-link>
-        <router-link to="/forgot-password">
-            Forgot Password?
-        </router-link>
+        <app-link
+            to="/create-account"
+            :theme="appTheme"
+        >Create an account</app-link>
+        <app-link
+            to="/forgot-password"
+            :theme="appTheme"
+        >Forgot Password?</app-link>
+        <app-link
+            to="/faq"
+            :theme="appTheme"
+        >FAQ</app-link>
 
-        <router-link to="/faq">
-            FAQ
-        </router-link>
-
-        <external-footer />
+        <external-footer :theme="appTheme" />
     </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import ExternalFooter from "@/components/layout/ExternalFooter.vue";
 
 export default {
@@ -71,6 +78,10 @@ export default {
             devBypass: false,
         };
     },
+    computed: {
+        ...mapState(["appTheme"]),
+    },
+
     methods: {
         ...mapActions(["logIn"]),
 
@@ -105,15 +116,6 @@ export default {
 
     .createAccount {
         color: #fff;
-    }
-
-    a {
-        color: #fff;
-        text-decoration: underline;
-        margin-bottom: 1rem;
-        &:hover {
-            color: var(--orange);
-        }
     }
 }
 

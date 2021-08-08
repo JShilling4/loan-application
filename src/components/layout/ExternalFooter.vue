@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer">
+    <footer :class="['footer', theme]">
         <p class="contact-block">
             <span class="line">1700 Magnavox Way Suite 220</span>
             <span class="line">Fort Wayne, IN 46804</span>
@@ -7,40 +7,29 @@
                 <span class="divider">|</span> 800.627.8633</span>
         </p>
         <div class="link-block">
-            <a
-                class="link"
-                href="https://ruoff.com/licenses"
-                target="_blank"
-            >
-                LICENSES
-            </a>
+            <app-link
+                    to="https://ruoff.com/licenses"
+                    :theme="theme"
+                >LICENSES</app-link>
             |
-            <a
-                class="link"
-                href="https://ruoff.com/privacy-policy"
-                target="_blank"
-            >
-                PRIVACY POLICY
-            </a>
+            <app-link
+                    to="https://ruoff.https://ruoff.com/privacy-policy/licenses"
+                    :theme="theme"
+                >PRIVACY POLICY</app-link>
         </div>
         <div class="id-block">
             <div class="line">
-                <a
-                    href="https://www.bbb.org/us/in/fort-wayne/profile/mortgage-broker/ruoff-home-mortgage-company-inc-0352-5307/complaints#371248902"
-                    target="_blank"
-                    class="link"
-                >
-                    Better Business Bureau&nbsp;
-                </a>
+                <app-link
+                    to="https://www.bbb.org/us/in/fort-wayne/profile/mortgage-broker/ruoff-home-mortgage-company-inc-0352-5307/complaints#371248902"
+                    :theme="theme"
+                >Better Business Bureau</app-link>
+
                 <span>|</span> Equal Housing Lender
                 <span class="tp-hide">|</span>
-                <a
-                    class="nca link"
-                    href="https://www.nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/141868"
-                    target="_blank"
-                >
-                    NMLS Consumer Access
-                </a>
+                <app-link
+                    to="https://www.nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/141868"
+                    :theme="theme"
+                >NMLS Consumer Access</app-link>
             </div>
             <p class="line">
                 Ruoff Mortgage Company, Inc. dba Ruoff Mortgage
@@ -54,6 +43,11 @@
 <script>
 export default {
     name: "ExternalFooter",
+    props: {
+        theme: {
+            type: String,
+        },
+    },
 };
 </script>
 
@@ -62,19 +56,16 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    // color: var(--blue-green);
     color: #fff;
     font-weight: 400;
     font-size: 1.4rem;
     margin-top: 8rem;
     padding: 0 1rem;
 
-    .link {
-        color: #fff;
-        &:hover {
-            color: var(--orange);
-        }
+    &.light {
+        color: var(--blue-green);
     }
+
     .contact-block {
         margin-bottom: 1rem;
         .line {
