@@ -1,23 +1,29 @@
 <template>
     <div class="pageWrapper">
-        <h1 class="appHeading">Create Password</h1>
+
+        <page-heading :theme="appTheme">
+            Create Password
+        </page-heading>
 
         <!-- Password -->
         <div class="input-group">
-            <app-label class-list="dark">Password</app-label>
+            <app-label class-list="dark" :theme="appTheme">Password</app-label>
             <text-field
                 type="password"
-                class-list="dark"
+                :theme="appTheme"
                 v-model="password"
             />
         </div>
 
         <!-- Confirm Password -->
         <div class="input-group">
-            <app-label class-list="dark">Re-enter Password</app-label>
+            <app-label
+                class-list="dark"
+                :theme="appTheme"
+            >Re-enter Password</app-label>
             <text-field
                 type="password"
-                class-list="dark"
+                :theme="appTheme"
                 v-model="confirmPassword"
             />
         </div>
@@ -27,17 +33,18 @@
             @retreat-app="toggleComponent(2)"
             next-text="Create Profile"
             :local-posting="localDataIsPosting"
+            :theme="appTheme"
         />
     </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import { deepClone } from "@/includes/mixins/helpers";
+import profile from "@/includes/mixins/application/profile";
 
 export default {
     name: "ProfilePassword",
-    mixins: [deepClone],
+    mixins: [profile],
     props: {
         toggleComponent: {
             type: Function,

@@ -129,7 +129,6 @@ input {
     font-size: 16px;
     background-color: #fff;
     color: var(--teal);
-    font-weight: 600;
     &:focus {
         border-color: var(--teal);
         box-shadow: var(--input-focused-border-shadow);
@@ -162,7 +161,6 @@ input {
     /* Firefox */
     &[type="number"] {
         -moz-appearance: textfield;
-        font-family: Arial, Helvetica, sans-serif;
         &.hasIcon {
             padding: 0.5rem 1rem 0.5rem 2.25rem;
         }

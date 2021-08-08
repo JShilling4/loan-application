@@ -1,6 +1,6 @@
 <template>
     <div class="profileGeneral">
-        <h1 :class="['appHeading', { light: appTheme === 'light'}]">{{ $t('headings.profile1')}}</h1>
+        <page-heading :theme="appTheme">{{ $t('headings.profile1') }}</page-heading>
 
         <div class="pageWrapper">
             <!-- Name Input Group -->
@@ -132,11 +132,11 @@
 
 <script>
 import { mapState } from "vuex";
-import { deepClone } from "@/includes/mixins/helpers";
+import profile from "@/includes/mixins/application/profile";
 
 export default {
     name: "ProfileGeneral",
-    mixins: [deepClone],
+    mixins: [profile],
     props: {
         toggleComponent: {
             type: Function,
@@ -146,23 +146,23 @@ export default {
         },
         profile: {
             type: Object,
-        }
+        },
     },
 
     data() {
         return {
             localProfile: {},
-        }
+        };
     },
 
     computed: {
-        ...mapState(["appTheme", "suffixes"]),
+        ...mapState(["suffixes"]),
     },
 
     watch: {
         profile() {
-            this.localProfile = this.deepClone(this.profile)
-        }
+            this.localProfile = this.deepClone(this.profile);
+        },
     },
 
     methods: {
@@ -183,5 +183,4 @@ export default {
     width: 350px;
     margin: 0 auto;
 }
-
 </style>

@@ -1,8 +1,9 @@
 <template>
 	<div class="veteran">
-		<h1 class="appHeading">
-			Are you interested in and eligible for a VA/Military loan?
-		</h1>
+        <page-heading :theme="appTheme">
+            Are you interested in and eligible for a VA/Military loan?
+        </page-heading>
+
 		<div class="body-wrapper">
 			<div class="choice-container">
 				<app-button
@@ -34,6 +35,7 @@
 				@advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
 				:local-posting="localDataIsPosting"
+                :theme="appTheme"
 			/>
 		</div>
 	</div>

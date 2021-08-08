@@ -13,7 +13,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(["borrower", "coborrower", "application", "navigation", "suffixes", "states"]),
+        ...mapState(["borrower", "coborrower", "application", "navigation", "suffixes", "states", "appTheme"]),
         sectionProgress() {
             return this.application.sectionProgress;
         },

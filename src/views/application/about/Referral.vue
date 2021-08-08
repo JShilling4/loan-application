@@ -1,16 +1,19 @@
 <template>
     <div class="referral">
-        <h1 class="appHeading">How did you hear about Ruoff Mortgage?</h1>
+        <page-heading :theme="appTheme">
+            How did you hear about Ruoff Mortgage?
+        </page-heading>
 
-        <div class="body-wrapper">
+        <div class="pageWrapper">
             <div class="input-group">
                 <app-label
-                    theme="dark"
+                    :theme="appTheme"
                     for="referralSource"
                 >Referral Source</app-label>
                 <multi-select
                     :options="sourceOptions"
                     :can-clear="false"
+                    :class="[appTheme]"
                     v-model="localAbout.referralSource"
                 />
             </div>
@@ -20,14 +23,18 @@
                     || localAbout.referralSource === 'Other'"
                 class="input-group"
             >
-                <app-label theme="dark">Please specify:</app-label>
-                <text-field v-model="localAbout.referralSourceName" />
+                <app-label :theme="appTheme">Please specify:</app-label>
+                <text-field
+                    :theme="appTheme"
+                    v-model="localAbout.referralSourceName"
+                />
             </div>
 
             <view-controls
                 @advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
                 :local-posting="localDataIsPosting"
+                :theme="appTheme"
             />
         </div>
     </div>
@@ -97,10 +104,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.referral {
-    .body-wrapper {
-        width: 300px;
-        margin: 0 auto;
-    }
+.pageWrapper {
+    width: 300px;
+    margin: 0 auto;
 }
 </style>

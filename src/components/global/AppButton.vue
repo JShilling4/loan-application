@@ -2,7 +2,7 @@
     <button
         :type="type"
         :style="styleObject"
-        :class="['appButton', classList, { posting: isPosting }]"
+        :class="['appButton', classList, { posting: isPosting }, theme]"
     >
         <span v-if="!isPosting">
             <slot>Button</slot>
@@ -79,6 +79,9 @@ export default {
         indicatorType: {
             type: String,
         },
+        theme: {
+            type: String,
+        }
     },
     data() {
         return {

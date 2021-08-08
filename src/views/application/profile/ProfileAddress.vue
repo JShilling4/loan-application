@@ -1,6 +1,8 @@
 <template>
     <div class="profileAddress">
-        <h1 class="appHeading">{{ $t('headings.profile2') }}</h1>
+        <page-heading :theme="appTheme">
+            {{ $t('headings.profile2') }}
+        </page-heading>
 
         <div class="pageWrapper">
             <!-- State/Unit Group -->
@@ -8,12 +10,12 @@
                 <!-- Street Address -->
                 <div class="input-group">
                     <app-label
-                        class-list="dark"
+                        :theme="appTheme"
                         for="address"
                     >Home Address</app-label>
                     <text-field
                         id="address"
-                        class-list="dark"
+                        :theme="appTheme"
                         type="text"
                         name="address"
                         v-model="localProfile.streetAddress"
@@ -23,11 +25,11 @@
                 <!-- Unit -->
                 <div class="input-group short">
                     <app-label
-                        class-list="dark"
+                        :theme="appTheme"
                         for="suite"
                     >Unit / Apt.</app-label>
                     <text-field
-                        class-list="dark"
+                        :theme="appTheme"
                         id="suite"
                         type="text"
                         name="suite"
@@ -38,9 +40,12 @@
 
             <!-- City -->
             <div class="input-group">
-                <app-label class-list="dark">City</app-label>
+                <app-label
+                    :theme="appTheme"
+                    for="city"
+                >City</app-label>
                 <text-field
-                    class-list="dark"
+                    :theme="appTheme"
                     id="city"
                     type="text"
                     name="city"
@@ -52,11 +57,12 @@
             <div class="inline-form-group">
                 <!-- State -->
                 <div class="input-group">
-                    <app-label class-list="dark">State</app-label>
+                    <app-label :theme="appTheme">State</app-label>
                     <multi-select
                         :options="states"
                         :can-clear="false"
                         name="state"
+                        :class="appTheme"
                         v-model="localProfile.state"
                     />
                 </div>
@@ -64,14 +70,14 @@
                 <!-- Zip Code -->
                 <div class="input-group short">
                     <app-label
-                        class-list="dark"
+                        :theme="appTheme"
                         for="zipcode"
                     >Zip Code</app-label>
                     <text-field
                         type="number"
                         id="zipcode"
+                        :theme="appTheme"
                         name="zipcode"
-                        class-list="dark"
                         v-model="localProfile.zipcode"
                     />
                 </div>
@@ -80,6 +86,7 @@
             <view-controls
                 @advance-app="submitPage()"
                 @retreat-app="toggleComponent(1)"
+                :theme="appTheme"
             />
         </div>
     </div>
@@ -87,11 +94,11 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import { deepClone } from "@/includes/mixins/helpers";
+import profile from "@/includes/mixins/application/profile";
 
 export default {
     name: "ProfileAddress",
-    mixins: [deepClone],
+    mixins: [profile],
     props: {
         toggleComponent: {
             type: Function,
@@ -101,17 +108,17 @@ export default {
         },
         profile: {
             type: Object,
-        }
+        },
     },
 
     data() {
         return {
             localProfile: {},
-        }
+        };
     },
 
     computed: {
-        ...mapState(["application", "appTheme", "states"]),
+        ...mapState(["application", "states"]),
     },
 
     methods: {
@@ -127,11 +134,11 @@ export default {
             } else {
                 this.toggleComponent(3);
             }
-        }
+        },
     },
     mounted() {
         this.localProfile = this.deepClone(this.profile);
-    }
+    },
 };
 </script>
 

@@ -44,6 +44,14 @@
     &:hover {
         border-color: var(--blue-green);
     }
+
+    &.light {
+        background-color: var(--blue-green);
+        color: #fff;
+        &:hover {
+            border-color: #fff;
+        }
+    }
 }
 
 .teal-fill {

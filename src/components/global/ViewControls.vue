@@ -13,6 +13,7 @@
 		<app-button
 			v-if="includeBack && !localPosting"
 			class-list="white-fill backButton"
+            :theme="theme"
 			:prepend-icon="true"
 			@click="onBackClick($event)"
 		>
@@ -48,7 +49,10 @@ export default {
 		localPosting: {
 			type: Boolean,
 			default: false
-		}
+		},
+        theme: {
+            type: String,
+        },
 	},
     methods: {
         onForwardClick() {

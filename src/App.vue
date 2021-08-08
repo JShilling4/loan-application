@@ -121,6 +121,7 @@ export default {
 @import "@/design/scss/_layout.scss";
 @import "@/design/scss/_buttons.scss";
 @import "@/design/scss/_forms.scss";
+@import "@/design/scss/_inputs.scss";
 
 :root {
     --ms-bg: transparent;
@@ -133,28 +134,6 @@ export default {
     --ms-tag-bg: var(--teal-dark);
     --ms-tag-py: 0.5rem;
     --ms-tag-font-size: 13px;
-}
-
-.multiselect {
-    min-height: var(--input-height) !important;
-    .multiselect-single-label {
-        color: #fff;
-        font-size: 16px;
-    }
-    .multiselect-dropdown {
-        overflow-y: auto;
-    }
-    &.light {
-        --ms-border-color: var(--blue-dark);
-        --ms-caret-color: var(--blue-dark);
-        .multiselect-single-label {
-            color: var(--blue-dark);
-        }
-    }
-    &.is-open {
-        border-color: #16c297;
-        box-shadow: 0 0 3px #16c297;
-    }
 }
 
 body {
@@ -235,16 +214,6 @@ fieldset {
     position: relative;
 }
 
-.appHeading {
-    margin: 10rem 0 4rem;
-    font-weight: 500;
-    font-size: 2.4rem;
-    &.light {
-        color: var(--blue-green);
-        font-weight: 600;
-    }
-}
-
 .pageCopy {
     color: #fff;
     text-align: center;
@@ -261,6 +230,29 @@ fieldset {
 .pageSubmit {
     display: block;
     margin: 4rem auto;
+}
+
+.multiselect {
+    min-height: var(--input-height) !important;
+    .multiselect-single-label {
+        color: #fff;
+        font-size: 16px;
+    }
+    .multiselect-dropdown {
+        overflow-y: auto;
+    }
+    &.light {
+        --ms-border-color: var(--blue-dark);
+        --ms-caret-color: var(--blue-dark);
+        .multiselect-single-label {
+            color: var(--teal);
+            font-weight: 700;
+        }
+    }
+    &.is-open {
+        border-color: #16c297;
+        box-shadow: 0 0 3px #16c297;
+    }
 }
 
 .intercomIcon-container {
