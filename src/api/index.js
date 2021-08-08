@@ -5,6 +5,10 @@ export const accountApi = {
     login(payload) {
         return axios.post("/api/login", payload);
     },
+    postProfileAndLogin(payload) {
+        return axios.post("/api/postProfileAndLogin", payload)
+    },
+
     validateToken(payload) {
         return axios.post("/api/validateToken", payload);
     },

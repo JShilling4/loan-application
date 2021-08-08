@@ -27,7 +27,6 @@
 <script>
 /* eslint-disable no-undef */
 import { mapState } from "vuex";
-import profile from "@/includes/mixins/application/profile";
 
 import ProfileGeneral from "@/views/application/profile/ProfileGeneral.vue";
 import ProfileAddress from "@/views/application/profile/ProfileAddress.vue";
@@ -35,7 +34,6 @@ import ProfilePassword from "@/views/application/profile/ProfilePassword.vue";
 
 export default {
     name: "Profile",
-    mixins: [profile],
     components: {
         "profile-general": ProfileGeneral,
         "profile-address": ProfileAddress,

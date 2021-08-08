@@ -1,4 +1,12 @@
-import { profileApi, aboutApi, propertyApi, incomeApi, assetsApi, identityApi } from "@/api";
+import {
+    accountApi,
+    profileApi,
+    aboutApi,
+    propertyApi,
+    incomeApi,
+    assetsApi,
+    identityApi,
+} from "@/api";
 
 export default {
     state: {
@@ -90,6 +98,14 @@ export default {
         postBorrowerProfile({ commit }, payload) {
             return profileApi.postBorrowerProfile(payload).then(() => {
                 commit("SAVE_BORROWER_PROFILE", payload);
+            });
+        },
+
+        postProfileAndLogin({ commit }, payload) {
+            return accountApi.postProfileAndLogin(payload).then((response) => {
+                commit("SAVE_BORROWER_PROFILE", response.data.borrowerProfile);
+                commit("SAVE_TOKEN", response.data.token);
+                commit("SET_LOGGED_IN", true);
             });
         },
 

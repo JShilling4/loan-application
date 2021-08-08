@@ -8,7 +8,7 @@
         "build-prod": "vue-cli-service build",
         "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\"",
         "serve-dev": "vue-cli-service serve",
-        "test-unit": "vue-cli-service test:unit",
+        "test-unit": "vue-cli-service test:unit"
     },
     "dependencies": {
         "@fortawesome/fontawesome-pro": "^5.15.4",

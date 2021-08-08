@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import profile from "@/includes/mixins/application/profile";
+import about from "@/includes/mixins/application/about";
 
 export default {
     name: "Referral",
-    mixins: [profile],
+    mixins: [about],
     data() {
         return {
             sourceOptions: [

@@ -9,7 +9,7 @@ export const sectionProgress = {
 
 export const newApplication = {
     sectionProgress: {
-        profile: 3,
+        profile: null,
         about: null,
         property: null,
         income: null,
@@ -17,7 +17,7 @@ export const newApplication = {
         identity: null,
         review: null,
     },
-    token: "profile",
+    token: "new",
     borrowerProfile: {
         firstName: null,
         middleInitial: null,
@@ -122,7 +122,7 @@ export const newApplication = {
 
 export const completedProfile = {
     sectionProgress: {
-        profile: 3,
+        profile: 1,
         about: null,
         property: null,
         income: null,

@@ -73,6 +73,17 @@ export function makeServer() {
             );
 
             this.post(
+                "/postProfileAndLogin",
+                (schema, request) => {
+                    const data = JSON.parse(request.requestBody);
+                    const { email, password, profile } = data;
+                    schema.db.newApplication.update(1, { borrowerProfile: profile });
+                    return schema.db.newApplication[0];
+                },
+                { timing }
+            );
+
+            this.post(
                 "/validateToken",
                 (schema, request) => {
                     const { token, returnData } = JSON.parse(request.requestBody);
@@ -114,7 +125,9 @@ export function makeServer() {
                     const data = JSON.parse(request.requestBody);
                     switch (activeApplication) {
                         case "profile": {
-                            schema.db.completedProfile.update(1, { sectionProgress: data });
+                            schema.db.completedProfile.update(1, {
+                                sectionProgress: data,
+                            });
                             return schema.db.completedProfile[0].sectionProgress;
                         }
                         default: {
@@ -130,7 +143,7 @@ export function makeServer() {
             // this.get(
             //     "/borrowerProfile",
             //     (schema) => {
-
+            //          return schema.db.activeApplication[0].borrowerProfile;
             //     },
             //     { timing }
             // );
@@ -141,7 +154,9 @@ export function makeServer() {
                     const data = JSON.parse(request.requestBody);
                     switch (activeApplication) {
                         case "profile": {
-                            schema.db.completedProfile.update(1, { borrowerProfile: data });
+                            schema.db.completedProfile.update(1, {
+                                borrowerProfile: data,
+                            });
                             return data;
                         }
                         default: {

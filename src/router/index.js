@@ -121,44 +121,6 @@ const routes = [
         },
         component: () =>
             import(/* webpackChunkName: "Profile" */ "../views/application/profile/Profile.vue"),
-        // children: [
-        //     // profile about
-        //     {
-        //         path: "",
-        //         meta: {
-        //             navItem: "profile",
-        //             requiresAuth: false,
-        //         },
-        //         component: () =>
-        //             import(
-        //                 /* webpackChunkName: "ProfileGeneral" */ "../views/application/profile/ProfileGeneral.vue"
-        //             ),
-        //     },
-        //     // profile address
-        //     {
-        //         path: "address",
-        //         meta: {
-        //             navItem: "profile",
-        //             requiresAuth: false,
-        //         },
-        //         component: () =>
-        //             import(
-        //                 /* webpackChunkName: "ProfileAddress" */ "../views/application/profile/ProfileAddress.vue"
-        //             ),
-        //     },
-        //     // profile create password
-        //     {
-        //         path: "create-password",
-        //         meta: {
-        //             navItem: "profile",
-        //             requiresAuth: false,
-        //         },
-        //         component: () =>
-        //             import(
-        //                 /* webpackChunkName: "profilePassword" */ "../views/application/profile/ProfilePassword.vue"
-        //             ),
-        //     },
-        // ],
     },
 
     // About Routes
@@ -564,8 +526,14 @@ router.beforeEach((routeTo, routeFrom, next) => {
     const requiresAuth = routeTo.matched.some((route) => route.meta.requiresAuth);
     // const isProfileRoute = routeTo.fullPath.includes("profile");
     // If auth isn't required for the route, just continue.
-    if (!requiresAuth) return next();
-
+    if (!requiresAuth) {
+        if (routeTo.fullPath.includes("profile")) {
+            return store.dispatch("validateToken").then(() => {
+                next()
+            });
+        }
+        return next();
+    }
     // If auth is required and the user is logged in...
     if (store.state.auth.token) {
         // Validate the local user token...

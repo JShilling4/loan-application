@@ -86,12 +86,12 @@
 </template>
 
 <script>
-import profile from "@/includes/mixins/application/profile";
+import { mapState, mapActions } from "vuex";
 import { deepClone } from "@/includes/mixins/helpers";
 
 export default {
     name: "ProfileAddress",
-    mixins: [profile, deepClone],
+    mixins: [deepClone],
     props: {
         toggleComponent: {
             type: Function,
@@ -110,10 +110,23 @@ export default {
         }
     },
 
+    computed: {
+        ...mapState(["application", "appTheme", "states"]),
+    },
+
     methods: {
+        ...mapActions(["postBorrowerProfile"]),
+
         submitPage() {
             this.saveState(this.localProfile);
-            this.toggleComponent(3);
+            if (this.application.sectionProgress.profile >= 1) {
+                this.localDataIsPosting = true;
+                this.postBorrowerProfile(this.localProfile).then(() => {
+                    this.$router.push("/about/referral");
+                });
+            } else {
+                this.toggleComponent(3);
+            }
         }
     },
     mounted() {

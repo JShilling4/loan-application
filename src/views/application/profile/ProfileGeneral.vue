@@ -131,12 +131,12 @@
 </template>
 
 <script>
-import profile from "@/includes/mixins/application/profile";
+import { mapState } from "vuex";
 import { deepClone } from "@/includes/mixins/helpers";
 
 export default {
     name: "ProfileGeneral",
-    mixins: [profile, deepClone],
+    mixins: [deepClone],
     props: {
         toggleComponent: {
             type: Function,
@@ -153,6 +153,10 @@ export default {
         return {
             localProfile: {},
         }
+    },
+
+    computed: {
+        ...mapState(["appTheme", "suffixes"]),
     },
 
     watch: {

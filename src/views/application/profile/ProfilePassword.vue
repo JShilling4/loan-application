@@ -33,12 +33,11 @@
 
 <script>
 import { mapActions } from "vuex";
-import profile from "@/includes/mixins/application/profile";
 import { deepClone } from "@/includes/mixins/helpers";
 
 export default {
     name: "ProfilePassword",
-    mixins: [profile, deepClone],
+    mixins: [deepClone],
     props: {
         toggleComponent: {
             type: Function,
@@ -59,19 +58,24 @@ export default {
         };
     },
     methods: {
-        ...mapActions(["logIn", "postBorrowerProfile", "postSectionProgress"]),
+        ...mapActions([
+            "logIn",
+            "postBorrowerProfile",
+            "postSectionProgress",
+            "postProfileAndLogin",
+        ]),
 
         async submitPage() {
             if (this.localDataIsPosting == false) {
                 this.localDataIsPosting = true;
-                this.postBorrowerProfile(this.localProfile).then(() => {
-                    this.postSectionProgress({ profile: 3 });
-
-                    this.logIn({
-                        email: this.localProfile.email,
-                        password: this.password,
+                this.postProfileAndLogin({
+                    email: this.localProfile.email,
+                    password: this.password,
+                    profile: this.localProfile,
+                }).then(() => {
+                    this.postSectionProgress({ profile: 1 }).then(() => {
+                        this.$router.push("/about/referral");
                     });
-                    this.$router.push("/about/referral");
                 });
             }
         },
