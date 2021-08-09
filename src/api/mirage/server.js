@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { createServer } from "miragejs";
 
-import borrowerProfile from "./data/borrowerProfile";
-import coborrowerProfile from "./data/coborrowerProfile";
-import { sectionProgress, newApplication, completedProfile } from "./data/application";
+import {
+    sectionProgress,
+    newApplication,
+    completedProfile,
+    completedAbout,
+} from "./data/application";
 import borrowerAbout from "./data/borrowerAbout";
 import coborrowerAbout from "./data/coborrowerAbout";
 import borrowerProperty from "./data/borrowerProperty";
@@ -25,8 +28,6 @@ export function makeServer() {
         seeds(server) {
             server.db.loadData({
                 sectionProgress: sectionProgress,
-                borrowerProfile: borrowerProfile,
-                coborrowerProfile: coborrowerProfile,
                 borrowerAbout: borrowerAbout,
                 coborrowerAbout: coborrowerAbout,
                 borrowerProperty: borrowerProperty,
@@ -39,6 +40,7 @@ export function makeServer() {
                 coborrowerIdentity: coborrowerIdentity,
                 newApplication: newApplication,
                 completedProfile: completedProfile,
+                completedAbout: completedAbout,
             });
         },
 
@@ -56,6 +58,10 @@ export function makeServer() {
                         case "profile": {
                             activeApplication = "profile";
                             return schema.db.completedProfile[0];
+                        }
+                        case "about": {
+                            activeApplication = "about";
+                            return schema.db.completedAbout[0];
                         }
                         case "error400": {
                             return new Response(
@@ -95,6 +101,13 @@ export function makeServer() {
                             }
                             return "OK";
                         }
+                        case "about": {
+                            if (returnData) {
+                                activeApplication = "about";
+                                return schema.db.completedAbout[0];
+                            }
+                            return "OK";
+                        }
                         case "error400": {
                             return new Response(
                                 400,
@@ -130,6 +143,12 @@ export function makeServer() {
                             });
                             return schema.db.completedProfile[0].sectionProgress;
                         }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                sectionProgress: data,
+                            });
+                            return schema.db.completedAbout[0].sectionProgress;
+                        }
                         default: {
                             schema.db.newApplication.update(1, { sectionProgress: data });
                             return schema.db.newApplication[0].sectionProgress;
@@ -159,6 +178,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                borrowerProfile: data,
+                            });
+                            return data;
+                        }
                         default: {
                             schema.db.newApplication.update(1, { borrowerProfile: data });
                             return data;
@@ -169,13 +194,13 @@ export function makeServer() {
             );
 
             //********************** COBORROWER PROFILE *********************
-            this.get(
-                "/coborrowerProfile",
-                (schema) => {
-                    return schema.db.coborrowerProfile[0];
-                },
-                { timing }
-            );
+            // this.get(
+            //     "/coborrowerProfile",
+            //     (schema) => {
+            //         return schema.db.coborrowerProfile[0];
+            //     },
+            //     { timing }
+            // );
 
             this.post(
                 "/coborrowerProfile",
@@ -187,13 +212,13 @@ export function makeServer() {
             );
 
             //********************** BORROWER ABOUT *********************
-            this.get(
-                "/borrowerAbout",
-                (schema) => {
-                    return schema.db.borrowerAbout[0];
-                },
-                { timing }
-            );
+            // this.get(
+            //     "/borrowerAbout",
+            //     (schema) => {
+            //         return schema.db.borrowerAbout[0];
+            //     },
+            //     { timing }
+            // );
 
             this.post(
                 "/borrowerAbout",
@@ -205,13 +230,13 @@ export function makeServer() {
             );
 
             //*********************** COBORROWER ABOUT *************************
-            this.get(
-                "/coborrowerAbout",
-                (schema) => {
-                    return schema.db.coborrowerAbout[0];
-                },
-                { timing }
-            );
+            // this.get(
+            //     "/coborrowerAbout",
+            //     (schema) => {
+            //         return schema.db.coborrowerAbout[0];
+            //     },
+            //     { timing }
+            // );
 
             this.post(
                 "/coborrowerAbout",

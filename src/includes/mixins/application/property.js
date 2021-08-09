@@ -15,7 +15,7 @@ export default {
         };
 	},
 	computed: {
-		...mapState(["borrower", "coborrower", "application", "states"]),
+		...mapState(["borrower", "coborrower", "application", "states", "appTheme"]),
 
 		sectionProgress() {
 			return this.application.sectionProgress;
@@ -40,35 +40,17 @@ export default {
 			this.localCoborrowerProperty = this.deepClone(this.coborrower.property);
 			this.localSectionProgress = this.deepClone(this.sectionProgress);
 		},
-
-		editSectionProgress(part, config = { force: false }) {
-			const { force } = config;
-			if (part === 1) {
-				if (this.sectionProgress.property === null) {
-					this.localSectionProgress.property = 1;
-					this.postSectionProgress(this.localSectionProgress);
-				}
-			} else if (force === true) {
-				this.localSectionProgress.property = part;
-				this.postSectionProgress(this.localSectionProgress);
-			} else if (
-				this.sectionProgress.property !== null &&
-				this.sectionProgress.property < part
-			) {
-				this.localSectionProgress.property = part;
-				this.postSectionProgress(this.sectionProgress);
-			}
-		}
 	},
 	mounted() {
 		this.syncProfileWithStore(); // load data immediately if present in store
-		Promise.all([
-			this.updateBorrowerProperty(),
-			this.fetchBorrowerAbout(),
-			this.updateCoborrowerProperty()
-		]).then(() => {
-			this.syncProfileWithStore(); // async load data to hydrate
-			this.localDataIsLoading = false;
-		});
+        this.localDataIsLoading = false;
+		// Promise.all([
+		// 	this.updateBorrowerProperty(),
+		// 	this.fetchBorrowerAbout(),
+		// 	this.updateCoborrowerProperty()
+		// ]).then(() => {
+		// 	this.syncProfileWithStore(); // async load data to hydrate
+		// 	this.localDataIsLoading = false;
+		// });
 	}
 };

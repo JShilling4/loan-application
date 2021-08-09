@@ -1,11 +1,7 @@
 <template>
 	<div class="addOtherProperties">
-		<h1 class="appHeading">
-			Other Properties
-		</h1>
-
 		<transition name="fade">
-			<div v-if="!localDataIsLoading" class="page-wrapper">
+			<div v-if="!localDataIsLoading" class="table-wrapper">
 				<app-table
 					v-if="borrower.property.otherProperties !== null"
 					:columns="tableColumns"
@@ -18,13 +14,6 @@
 					@click="loadPropertyModal()"
 				/>
 
-				<view-controls @advance-app="submitPage()" @retreat-app="$router.go(-1)" />
-			</div>
-		</transition>
-
-		<transition name="fade">
-			<div v-if="localDataIsLoading" class="loading-wrapper">
-				<loading-indicator />
 			</div>
 		</transition>
 
@@ -82,28 +71,7 @@ export default {
 		};
 	},
 
-	computed: {
-		sectionProgress() {
-			if (this.borrower.about.hasCoborrower == true) {
-				return 5;
-			}
-			return 4;
-		}
-	},
-
 	methods: {
-		submitPage() {
-			// update section progress
-			this.editSectionProgress(this.sectionProgress);
-
-			// route to next page
-			if (this.borrower.about.hasCoborrower == true) {
-				this.$router.push("/property/add-coborrower-properties");
-			} else {
-				this.$router.push("/property/purchase-info");
-			}
-		},
-
 		saveOtherProperty(otherProperty) {
 			this.postBorrowerProperty(otherProperty);
 			this.propertyModalShowing = false;
@@ -113,8 +81,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-wrapper {
+.table-wrapper {
 	max-width: 700px;
-	margin: 0 auto;
+	margin: 4rem auto 0;
 }
 </style>

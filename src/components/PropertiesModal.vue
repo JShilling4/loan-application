@@ -1,89 +1,111 @@
 <template>
-	<app-modal
-		width="65rem"
-		:show="isShowing"
-		:show-close-button="true"
-		:clickaway="true"
-		background-color="#fff"
-		@close="$emit('close')"
-	>
-		<template v-slot:body>
-			<span class="heading"> {{ modalAction }} Property </span>
+    <app-modal
+        width="65rem"
+        :show="isShowing"
+        :show-close-button="true"
+        :clickaway="true"
+        background-color="#fff"
+        @close="$emit('close')"
+    >
+        <template v-slot:body>
+            <span class="heading"> {{ modalAction }} Property </span>
 
-			<!-- Mailing Address -->
-			<div class="mailingAddress">
-				<div class="inline-form-group">
-					<!-- Street Address -->
-					<app-column :c-assign="3.15" :c-total="4">
-						<app-label theme="light">
-							Street Address
-						</app-label>
-						<text-field
+            <!-- Mailing Address -->
+            <div class="mailingAddress">
+                <div class="inline-form-group">
+                    <!-- Street Address -->
+                    <app-column
+                        :c-assign="3.15"
+                        :c-total="4"
+                    >
+                        <app-label theme="light">
+                            Street Address
+                        </app-label>
+                        <text-field
                             theme="light"
-							v-model="localOtherProperty.streetAddress"
-						/>
-					</app-column>
+                            name="streetAddress"
+                            v-model="localOtherProperty.streetAddress"
+                        />
+                    </app-column>
 
-					<h-spacer width="2rem" />
+                    <h-spacer width="2rem" />
 
-					<!-- Unit/Apt -->
-					<app-column :c-assign=".85" :c-total="4">
-						<app-label theme="light">
-							Unit / Apt
-						</app-label>
-						<text-field
+                    <!-- Unit/Apt -->
+                    <app-column
+                        :c-assign=".85"
+                        :c-total="4"
+                    >
+                        <app-label theme="light">
+                            Unit / Apt
+                        </app-label>
+                        <text-field
                             theme="light"
-							v-model="localOtherProperty.apartmentNumber"
-						/>
-					</app-column>
-				</div>
+                            v-model="localOtherProperty.apartmentNumber"
+                        />
+                    </app-column>
+                </div>
 
-				<div class="inline-form-group">
-					<!-- City -->
-					<app-column :c-assign="2" :c-total="4">
-						<app-label theme="light">
-							City
-						</app-label>
-						<text-field theme="light" v-model="localOtherProperty.city" />
-					</app-column>
+                <div class="inline-form-group">
+                    <!-- City -->
+                    <app-column
+                        :c-assign="2"
+                        :c-total="4"
+                    >
+                        <app-label theme="light">City</app-label>
+                        <text-field
+                            theme="light"
+                            name="city"
+                            v-model="localOtherProperty.city"
+                        />
+                    </app-column>
 
-					<h-spacer width="2rem" />
+                    <h-spacer width="2rem" />
 
-					<!-- State -->
-					<app-column :c-assign="1.5" :c-total="4">
-						<app-label theme="light">
-							State
-						</app-label>
-						<multi-select
-							:options="states"
-							:can-clear="false"
-							class="light"
-							v-model="localOtherProperty.state"
-						/>
-					</app-column>
+                    <!-- State -->
+                    <app-column
+                        :c-assign="1.5"
+                        :c-total="4"
+                    >
+                        <app-label theme="light">
+                            State
+                        </app-label>
+                        <multi-select
+                            :options="states"
+                            :can-clear="false"
+                            class="light"
+                            v-model="localOtherProperty.state"
+                        />
+                    </app-column>
 
-					<h-spacer width="2rem" />
+                    <h-spacer width="2rem" />
 
-					<!-- Zip Code -->
-					<app-column :c-assign="1" :c-total="4">
-						<app-label theme="light">
-							Zipcode
-						</app-label>
-						<text-field theme="light" v-model="localOtherProperty.zipcode" />
-					</app-column>
-				</div>
-			</div>
+                    <!-- Zip Code -->
+                    <app-column
+                        :c-assign="1"
+                        :c-total="4"
+                    >
+                        <app-label theme="light">
+                            Zipcode
+                        </app-label>
+                        <text-field
+                            theme="light"
+                            name="zipcode"
+                            v-model="localOtherProperty.zipcode"
+                        />
+                    </app-column>
+                </div>
+            </div>
 
-			<!-- Mortgage Type / Property Plan -->
-			<div class="inline-form-group">
-				<!-- Mortgage Type -->
-				<div class="input-group">
-					<app-label theme="light">
-						Type of Mortgage
-					</app-label>
+            <!-- Mortgage Type / Property Plan -->
+            <div class="inline-form-group">
+                <!-- Mortgage Type -->
+                <div class="input-group">
+                    <app-label theme="light">
+                        Type of Mortgage
+                    </app-label>
 
-					<multi-select
-						:options="[
+                    <multi-select
+                        :options="[
 							{
 								value: 'Conventional',
 								label: 'Conventional'
@@ -105,20 +127,20 @@
 								label: 'None'
 							}
 						]"
-						:can-clear="false"
-						class="light"
-						v-model="localOtherProperty.mortgageType"
-					/>
-				</div>
+                        :can-clear="false"
+                        class="light"
+                        v-model="localOtherProperty.mortgageType"
+                    />
+                </div>
 
-				<!-- Property Plan -->
-				<div class="input-group">
-					<app-label theme="light">
-						Plan for property
-					</app-label>
+                <!-- Property Plan -->
+                <div class="input-group">
+                    <app-label theme="light">
+                        Plan for property
+                    </app-label>
 
-					<multi-select
-						:options="[
+                    <multi-select
+                        :options="[
 							{
 								value: 'Pending Sale',
 								label: 'Pending Sale'
@@ -136,23 +158,23 @@
 								label: 'None'
 							}
 						]"
-						:can-clear="false"
-						class="light"
-						v-model="localOtherProperty.propertyPlan"
-					/>
-				</div>
-			</div>
+                        :can-clear="false"
+                        class="light"
+                        v-model="localOtherProperty.propertyPlan"
+                    />
+                </div>
+            </div>
 
-			<!-- Current Usage / Approx Value -->
-			<div class="inline-form-group">
-				<!-- Current Usage -->
-				<div class="input-group">
-					<app-label theme="light">
-						Current Usage
-					</app-label>
+            <!-- Current Usage / Approx Value -->
+            <div class="inline-form-group">
+                <!-- Current Usage -->
+                <div class="input-group">
+                    <app-label theme="light">
+                        Current Usage
+                    </app-label>
 
-					<multi-select
-						:options="[
+                    <multi-select
+                        :options="[
 							{
 								value: 'Primary Residence',
 								label: 'Primary Residence'
@@ -166,91 +188,93 @@
 								label: 'Investment Property'
 							}
 						]"
-						:can-clear="false"
-						class="light"
-						v-model="localOtherProperty.currentUse"
-					/>
-				</div>
+                        :can-clear="false"
+                        class="light"
+                        v-model="localOtherProperty.currentUse"
+                    />
+                </div>
 
-				<!-- Approximate Value -->
-				<div class="input-group">
-					<app-label theme="light">
-						Approximate Value?
-					</app-label>
+                <!-- Approximate Value -->
+                <div class="input-group">
+                    <app-label theme="light">
+                        Approximate Value?
+                    </app-label>
 
-					<text-field
-						:is-currency="true"
-						theme="light"
-						v-model="localOtherProperty.approximateValue"
-					/>
-				</div>
-			</div>
+                    <text-field
+                        :is-currency="true"
+                        theme="light"
+                        v-model="localOtherProperty.approximateValue"
+                    />
+                </div>
+            </div>
 
-			<div class="button-wrapper">
-				<app-button @click="saveLocalData()">
-					{{ modalAction }}
-				</app-button>
-			</div>
-		</template>
-	</app-modal>
+            <div class="button-wrapper">
+                <app-button @click="saveLocalData()">
+                    {{ modalAction }}
+                </app-button>
+            </div>
+        </template>
+    </app-modal>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { deepClone } from "@/includes/mixins/helpers";
 
 export default {
-	name: "PropertiesModal",
-	props: {
-		isShowing: {
-			type: Boolean
-		},
-		modalAction: {
-			type: String
-		},
-		profile: {
-			type: Object
-		},
-		property: {
-			type: Object
-		},
-		otherProperty: {
-			type: Object
-		}
-	},
-	data() {
-		return {
-			localProperty: {},
-			localOtherProperty: {}
-		};
-	},
-	computed: {
-		...mapState(["states"])
-	},
-	watch: {
-		property() {
-			this.localProperty = JSON.parse(
-				JSON.stringify({ ...this.property })
-			);
-		},
+    name: "PropertiesModal",
+    mixins: [deepClone],
 
-		otherProperty() {
-			this.localOtherProperty = JSON.parse(
-				JSON.stringify({ ...this.otherProperty })
-			);
-		}
-	},
-	methods: {
-		saveLocalData() {
-			if (this.localProperty.otherProperties === null) {
-				this.localProperty.otherProperties = [this.localOtherProperty];
-			} else {
-				this.localProperty.otherProperties.push(
-					this.localOtherProperty
-				);
-			}
-			this.$emit("save-property", this.localProperty);
-		}
-	}
+    props: {
+        isShowing: {
+            type: Boolean,
+        },
+        modalAction: {
+            type: String,
+        },
+        profile: {
+            type: Object,
+        },
+        property: {
+            type: Object,
+        },
+        otherProperty: {
+            type: Object,
+        },
+    },
+
+    data() {
+        return {
+            localProperty: {},
+            localOtherProperty: {},
+        };
+    },
+
+    computed: {
+        ...mapState(["states"]),
+    },
+
+    watch: {
+        property() {
+            this.localProperty = this.deepClone(this.property);
+        },
+
+        otherProperty() {
+            this.localOtherProperty = this.deepClone(this.otherProperty);
+        },
+    },
+    methods: {
+        saveLocalData() {
+            if (this.localProperty.otherProperties == null) {
+                this.localProperty.otherProperties = [this.localOtherProperty];
+            } else {
+                this.localProperty.otherProperties.push(
+                    this.localOtherProperty
+                );
+            }
+            this.$emit("save-property", this.localProperty);
+        },
+    },
 };
 </script>
 

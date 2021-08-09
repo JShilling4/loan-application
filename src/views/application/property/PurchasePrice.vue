@@ -1,6 +1,9 @@
 <template>
 	<div class="purchasePrice">
-		<h1 class="appHeading">Purchase Price</h1>
+        <page-heading :theme="appTheme">
+            Purchase Price
+        </page-heading>
+
 		<form class="pageForm">
 			<!-- Purchase price -->
 			<div class="inline-form-group">
@@ -76,6 +79,8 @@
 <script>
 import property from "@/includes/mixins/application/property";
 
+const SECTION_NUMBER = 5;
+
 export default {
 	name: "PurchasePrice",
 	mixins: [property],
@@ -86,34 +91,24 @@ export default {
 		};
 	},
 
-	computed: {
-		sectionProgress() {
-			if (this.borrower.about.hasCoborrower === true) {
-				if (this.borrower.property.hasOtherProperties === true) {
-					return 8;
-				}
-				return 6;
-			}
-			if (this.borrower.property.hasOtherProperties === true) {
-				return 6;
-			}
-			return 5;
-		}
-	},
-
 	methods: {
 		async submitPage() {
-			if (this.localDataIsPosting !== true) {
-				this.localDataIsPosting = true;
-				// post data
-				await this.postBorrowerProperty(this.localProperty);
-
-				// update section progress
-				this.editSectionProgress(this.sectionProgress);
-
-				// route to next page
-				this.$router.push("/income/income-history");
-			}
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postBorrowerProperty(this.localAbout);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                this.$router.push("/income/income-history");
+            }
 		}
 	}
 };

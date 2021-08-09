@@ -1,12 +1,14 @@
 <template>
     <div class="alimony">
-        <page-heading>Alimony/Chid Support</page-heading>
+        <page-heading :theme="appTheme">
+            Alimony/Chid Support
+        </page-heading>
 
         <div class="body-wrapper">
             <!-- Pay/Recieve Support -->
             <div class="input-group">
                 <app-label
-                    class-list="dark"
+                    :theme="appTheme"
                     for="payReceiveSupport"
                 >
                     {{ borrower.profile.firstName }}, do you pay or receive alimony
@@ -19,6 +21,7 @@
 						{ value: 'NotApplicable', label: 'Not Applicable' }
 					]"
                     :can-clear="false"
+                    :class="[appTheme]"
                     v-model="localAbout.payOrReceiveSupport"
                 />
             </div>
@@ -29,7 +32,7 @@
                 class="input-group"
             >
                 <app-label
-                    class-list="dark"
+                    :theme="appTheme"
                     for="payReceiveSupport"
                 >
                     Child support or alimony?
@@ -40,6 +43,7 @@
 						{ value: 'Alimony', label: 'Alimony' }
 					]"
                     :can-clear="false"
+                    :class="[appTheme]"
                     v-model="localAbout.supportType"
                 />
             </div>
@@ -50,7 +54,7 @@
                 class="input-group"
             >
                 <app-label
-                    class-list="dark"
+                    :theme="appTheme"
                     for="payReceiveSupport"
                 >
                     How much do you pay?
@@ -58,6 +62,7 @@
                 <div class="inline-group">
                     <text-field
                         v-model="localAbout.supportAmount"
+                        :theme="appTheme"
                         :is-currency="true"
                         class="supportAmount"
                     />
@@ -70,7 +75,7 @@
                         ]"
                         :can-clear="false"
                         v-model="supportFrequency"
-                        class="supportFrequency"
+                        :class="['supportFrequency', appTheme]"
                     />
                 </div>
             </div>
@@ -79,6 +84,7 @@
                 @advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
                 :local-posting="localDataIsPosting"
+                :theme="appTheme"
             />
         </div>
     </div>

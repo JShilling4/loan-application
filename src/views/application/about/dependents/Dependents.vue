@@ -1,6 +1,6 @@
 <template>
     <div class="dependents">
-        <page-heading>
+        <page-heading :theme="appTheme">
             {{ borrower.profile.firstName }}, do you have any dependents?
         </page-heading>
 
@@ -40,7 +40,7 @@
                 <div class="inline-form-group align-center">
                     <div class="label-container">
                         <app-label
-                            class-list="dark"
+                            :theme="appTheme"
                             for="borrowerNumberOfDependents"
                             margin="0 1rem 0 0"
                         >
@@ -50,7 +50,8 @@
 
                     <div class="inline-input-container align-center">
                         <text-field
-                            class-list="dark short"
+                            class-list="short"
+                            :theme="appTheme"
                             type="number"
                             text-align="center"
                             id="borrowerNumberOfDependents"
@@ -68,7 +69,7 @@
                 >
                     <div class="label-container">
                         <app-label
-                            class-list="dark"
+                            :theme="appTheme"
                             :for="`dependent${index + 1}Age`"
                             margin="0 1rem 0 0"
                         >
@@ -78,7 +79,8 @@
 
                     <div class="inline-input-container align-center">
                         <text-field
-                            class-list="dark short"
+                            class-list="short"
+                            :theme="appTheme"
                             type="number"
                             text-align="center"
                             :id="`dependent${index + 1}Age`"
@@ -92,6 +94,7 @@
                 @advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
                 :local-posting="localDataIsPosting"
+                :theme="appTheme"
             />
         </div>
     </div>

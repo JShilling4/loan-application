@@ -264,12 +264,18 @@
                 v-if="localProperty.currentAddressInfo.propertyOwner == 'No'"
                 class="inline-form-group"
             >
-                <app-column :c-assign="2" :c-total="4">
+                <app-column
+                    :c-assign="2"
+                    :c-total="4"
+                >
                     <app-label theme="light">
                         What is your monthly rent amount?
                     </app-label>
                 </app-column>
-                <app-column :c-assign="2" :c-total="4">
+                <app-column
+                    :c-assign="2"
+                    :c-total="4"
+                >
                     <text-field
                         :is-currency="true"
                         theme="light"
@@ -339,6 +345,9 @@ export default {
             this.$emit("save-profile", this.localProfile);
             this.$emit("save-property", this.localProperty);
         },
+    },
+    mounted() {
+        this.localProperty = this.deepClone(this.property);
     },
 };
 </script>

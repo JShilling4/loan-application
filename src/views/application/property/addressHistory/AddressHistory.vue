@@ -1,6 +1,8 @@
 <template>
     <div class="addressHistory">
-        <h1 class="appHeading">Address History</h1>
+        <page-heading :theme="appTheme">
+            Address History
+        </page-heading>
 
         <transition name="fade">
             <div
@@ -42,6 +44,8 @@
                 <view-controls
                     @advance-app="submitPage()"
                     @retreat-app="$router.go(-1)"
+                    :local-posting="localDataIsPosting"
+                    :theme="appTheme"
                 />
             </div>
         </transition>
@@ -86,6 +90,8 @@ import AppTable from "@/components/AppTable.vue";
 import AddButton from "@/components/AddButton.vue";
 import CurrentAddressModal from "@/components/CurrentAddressModal.vue";
 import PreviousAddressModal from "@/components/PreviousAddressModal.vue";
+
+const SECTION_NUMBER = 2;
 
 export default {
     name: "AddressHistory",
@@ -235,11 +241,21 @@ export default {
             // TODO: delete address
         },
 
-        submitPage() {
-            this.editSectionProgress(2);
-            if (this.borrower.about.hasCoborrower == true) {
-                this.$router.push("/property/coborrower-address-history");
-            } else {
+        async submitPage() {
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postBorrowerProperty(this.localAbout);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
                 this.$router.push("/property/other-properties");
             }
         },

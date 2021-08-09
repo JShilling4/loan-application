@@ -1,6 +1,8 @@
 <template>
 	<div class="loanType">
-		<h1 class="appHeading">What is your homeownership goal?</h1>
+        <page-heading :theme="appTheme">
+            What is your homeownership goal?
+        </page-heading>
 
 		<div class="body-wrapper">
 			<div class="choice-container">
@@ -30,6 +32,7 @@
 				@advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
 				:local-posting="localDataIsPosting"
+                :theme="appTheme"
 			/>
 		</div>
 	</div>
@@ -37,6 +40,8 @@
 
 <script>
 import property from "@/includes/mixins/application/property";
+
+const SECTION_NUMBER = 1;
 
 export default {
 	name: "LoanType",
@@ -48,19 +53,26 @@ export default {
 				: (this.localProperty.loanType = "refinance");
 		},
 		async submitPage() {
-			if (this.localDataIsPosting !== true) {
-				this.localDataIsPosting = true;
-
-				await this.postBorrowerProperty(this.localProperty);
-
-				this.editSectionProgress(1);
-
-				if (this.localProperty.loanType == "refinance") {
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postBorrowerProperty(this.localAbout);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route (progress fork -> purchase -> refinance)
+                if (this.localProperty.loanType == "refinance") {
 					this.$router.push("/property/refinance");
 				} else {
 					this.$router.push("/property/address-history");
 				}
-			}
+            }
 		}
 	}
 };

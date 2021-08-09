@@ -1,15 +1,16 @@
 <template>
     <div class="referral">
-        <page-heading>
+        <page-heading :theme="appTheme">
             Loan Officer Selection
         </page-heading>
 
         <div class="body-wrapper">
             <div class="input-group">
-                <app-label for="referralSource">Loan Officer</app-label>
+                <app-label for="referralSource" :theme="appTheme">Loan Officer</app-label>
                 <multi-select
                     :options="sourceOptions"
                     :can-clear="false"
+                    :class="[appTheme]"
                     v-model="localAbout.loanOfficer"
                 />
             </div>
@@ -17,6 +18,7 @@
                 @advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
                 :local-posting="localDataIsPosting"
+                :theme="appTheme"
             />
         </div>
     </div>

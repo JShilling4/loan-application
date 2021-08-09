@@ -1,124 +1,106 @@
 <template>
-	<div class="otherProperties">
-		<section class="introSection">
-			<h1 class="appHeading">
-				Do you own other properties?
-			</h1>
+    <div class="otherProperties">
+        <section class="introSection">
+            <page-heading :theme="appTheme">
+                Do you own other properties?
+            </page-heading>
 
-			<div class="choice-container">
-				<app-button
-					@click="selectIfHasOtherProperties('yes')"
-					:class-list="[
+            <div class="choice-container">
+                <app-button
+                    @click="selectIfHasOtherProperties('yes')"
+                    :class-list="[
 						localProperty.hasOtherProperties == true
 							? 'teal-fill'
 							: 'white-outline',
 						'choice'
 					]"
-				>
-					Yes
-				</app-button>
+                >
+                    Yes
+                </app-button>
 
-				<app-button
-					@click="selectIfHasOtherProperties('no')"
-					:class-list="[
+                <app-button
+                    @click="selectIfHasOtherProperties('no')"
+                    :class-list="[
 						localProperty.hasOtherProperties == false
 							? 'teal-fill'
 							: 'white-outline',
 						'choice'
 					]"
-				>
-					No
-				</app-button>
-			</div>
+                >
+                    No
+                </app-button>
+            </div>
 
-			<view-controls
-				@advance-app="submitPage()"
+            <add-other-properties v-if="localProperty.hasOtherProperties == true" />
+
+            <view-controls
+                @advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
-				:local-posting="localDataIsPosting"
-			/>
-		</section>
-	</div>
+                :local-posting="localDataIsPosting"
+                :theme="appTheme"
+            />
+        </section>
+    </div>
 </template>
 
 <script>
 import property from "@/includes/mixins/application/property";
+import AddOtherProperties from "./AddOtherProperties.vue";
+
+const SECTION_NUMBER = 3;
 
 export default {
-	name: "OtherProperties",
-	mixins: [property],
-	computed: {
-		shouldForceSectionCountUpdate() {
-			return (
-				this.borrower.property.hasOtherProperties !==
-				this.localProperty.hasOtherProperties
-			);
-		},
-        hasCoborrower() {
-            return this.borrower.about.hasCoborrower == true;
-        },
-		sectionCount() {
-			if (this.hasCoborrower) {
-				if (this.localProperty.hasOtherProperties !== true) {
-					return 7;
-				}
-				return 8;
-			}
-			if (this.localProperty.hasOtherProperties !== true) {
-				return 5;
-			}
-			return 6;
-		}
-	},
-	methods: {
-		selectIfHasOtherProperties(choice) {
-			choice == "yes"
-				? (this.localProperty.hasOtherProperties = true)
-				: (this.localProperty.hasOtherProperties = false);
-		},
-		async submitPage() {
-			if (this.localDataIsPosting !== true) {
-				this.localDataIsPosting = true;
+    name: "OtherProperties",
+    components: {
+        "add-other-properties": AddOtherProperties,
+    },
+    mixins: [property],
 
-				// post data
-				await this.postBorrowerProperty(this.localProperty);
-				// update section count based on application choices
-				this.editNavigationSectionCount({
-					section: "property",
-					count: this.sectionCount
-				});
-				// update section progress
-				this.editSectionProgress(this.hasCoborrower ? 4 : 3, {
-					force: this.shouldForceSectionCountUpdate
-				});
-				// route to next section
-				if (this.localProperty.hasOtherProperties == true) {
-					this.$router.push("/property/add-properties");
-				} else {
-					this.$router.push("/property/purchase-info");
-				}
-			}
-		}
-	}
+    methods: {
+        selectIfHasOtherProperties(choice) {
+            choice == "yes"
+                ? (this.localProperty.hasOtherProperties = true)
+                : (this.localProperty.hasOtherProperties = false);
+        },
+        async submitPage() {
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postBorrowerProperty(this.localAbout);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                this.$router.push("/property/purchase-info");
+            }
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 .otherProperties {
-	.choice-container {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		width: 600px;
-		margin: 4rem auto 0;
-		.choice {
-			margin: 0 1rem 2rem;
-			width: 20rem;
-		}
-	}
+    .choice-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 600px;
+        margin: 4rem auto 0;
+        .choice {
+            margin: 0 1rem 2rem;
+            width: 20rem;
+        }
+    }
 
-	.button-container {
-		max-width: 440px;
-		margin: 4rem auto 0;
-	}
+    .button-container {
+        max-width: 440px;
+        margin: 4rem auto 0;
+    }
 }
 </style>
