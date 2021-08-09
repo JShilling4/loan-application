@@ -87,7 +87,7 @@
 <script>
 import about from "@/includes/mixins/application/about";
 
-const SECTION_NUMBER = 6;
+const SECTION_NUMBER = 5;
 
 export default {
     name: "Alimony",

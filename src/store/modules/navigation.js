@@ -12,7 +12,7 @@ export default {
             {
                 id: "about",
                 label: "About",
-                sectionCount: 11,
+                sectionCount: 6,
                 coborrowerSections: 5,
                 destinationUrl: "/about/referral",
                 status: "",

@@ -44,7 +44,7 @@
 <script>
 import about from "@/includes/mixins/application/about";
 
-const SECTION_NUMBER = 7;
+const SECTION_NUMBER = 6;
 
 export default {
     name: "Coborrower",
@@ -70,17 +70,18 @@ export default {
                     this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route
+                debugger;
                 if (this.localAbout.hasCoborrower === true) {
-                    this.$router.push("/about/coborrower/info");
-                } else {
-                    // coborrower doesnt exist so remove coborrower questions from section total
-                    const { sectionCount, coborrowerSectionCount } =
+                    // coborrower exists so add coborrower questions to section total
+                    const { sectionCount, coborrowerSections } =
                         this.navSection;
 
-                    this.editNavigationSectionCount({
+                    await this.editNavigationSectionCount({
                         section: "about",
-                        count: sectionCount - coborrowerSectionCount,
+                        count: sectionCount + coborrowerSections,
                     });
+                    this.$router.push("/about/coborrower/info");
+                } else {
                     this.$router.push("/property/loan-type");
                 }
             }
