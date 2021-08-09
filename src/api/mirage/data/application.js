@@ -1,11 +1,11 @@
-export const sectionProgress = {
-    profile: 3, // 3 (new account) or 2 (existing account)
-    about: 11, // 11 (w/ coborrower)
-    property: 8, // 8 (w/ coborrower)
-    income: 3, // 3 (w/ coborrower) or 2 (w/o coborrower)
-    assets: 2, // 2 (w/ coborrower)
-    identity: 4, // 4 (w/ coborrower) or 2 (w/o coborrower)
-};
+// export const sectionProgress = {
+//     profile: 3, // 3 (new account) or 2 (existing account)
+//     about: 11, // 11 (w/ coborrower)
+//     property: 8, // 8 (w/ coborrower)
+//     income: 3, // 3 (w/ coborrower) or 2 (w/o coborrower)
+//     assets: 2, // 2 (w/ coborrower)
+//     identity: 4, // 4 (w/ coborrower) or 2 (w/o coborrower)
+// };
 
 export const newApplication = {
     sectionProgress: {
@@ -312,6 +312,181 @@ export const completedAbout = {
         realEstateAgentName: null,
         purchasePrice: null,
         downPaymentAmount: null,
+    },
+
+    borrowerIncome: {
+        creditCheckAuthorized: null,
+        incomeHistory: null,
+        ssn: null,
+        birthDate: null,
+        currentWorkYears: null,
+    },
+
+    borrowerAssets: null,
+
+    borrowerIdentity: {
+        declarations: {
+            citizenshipStatus: null,
+            primaryResidence: null,
+            hadOwnershipInterest: null,
+            propertyType: null,
+            howTitleHeld: null,
+            hasRelationToSeller: null,
+            isBorrowingMoney: null,
+            borrowedAmount: null,
+            hasUndisclosedAdditionalLoan: null,
+            hasUndisclosedNewCredit: null,
+            hasadditionalLien: null,
+            hasUndisclosedDebt: null,
+            outstandingJudgements: null,
+            hasDelinquentDebt: null,
+            hasLawsuitLiability: null,
+            hasConveyedTitle: null,
+            hadPreforeclosureOrShortsale: null,
+            hadRecentForeclosure: null,
+            hasDeclaredBankruptcy: null,
+            bankruptciesFiled: null,
+        },
+        demographics: {
+            isOptingOut: null,
+            ethnicity: null,
+            gender: null,
+            race: null,
+        },
+    },
+
+    coborrowerProfile: {
+        firstName: "Susie",
+        middleInitial: null,
+        lastName: "Queue",
+        suffix: "MD",
+        email: "susieQ@email.com",
+        phone: "4444444444",
+        maritalStatus: "Married",
+        streetAddress: "501 S First St",
+        streetAddress2: null,
+        apartmentNumber: null,
+        apartmentNumber2: null,
+        city: "South Whitley",
+        city2: null,
+        state: "IN",
+        state2: null,
+        zipcode: "43537",
+        zipcode2: null,
+    },
+
+    coborrowerAbout: {
+        hasDependents: true,
+        numberOfDependents: "1",
+        dependentAges: ["12"],
+        payOrReceiveSupport: "Pay",
+        supportType: "ChildSupport",
+        supportAmount: "750",
+    },
+};
+
+export const completedProperty = {
+    sectionProgress: {
+        profile: 1,
+        about: 6,
+        property: 5,
+        income: null,
+        assets: null,
+        identity: null,
+        review: null,
+    },
+    token: "about",
+    borrowerProfile: {
+        firstName: "Johnny",
+        middleInitial: "C",
+        lastName: "Lately",
+        suffix: null,
+        email: "johnnyC@email.com",
+        phone: "5555555555",
+        maritalStatus: "Single",
+        streetAddress: "401 E First St",
+        streetAddress2: null,
+        apartmentNumber: null,
+        apartmentNumber2: null,
+        city: "South Whitley",
+        city2: null,
+        state: "IN",
+        state2: null,
+        zipcode: "43537",
+        zipcode2: null,
+    },
+
+    borrowerAbout: {
+        hasCoborrower: false,
+        hasCoborrowerAuthorization: null,
+        referralSource: "Radio",
+        referralSourceName: null,
+        loanOfficer: null,
+        isVeteran: true,
+        loanType: "purchase",
+        hasDependents: true,
+        numberOfDependents: "2",
+        dependentAges: ["4", "6"],
+        payOrReceiveSupport: "NotApplicable",
+        supportType: null,
+        supportAmount: null,
+    },
+
+    borrowerProperty: {
+        loanType: "purchase",
+        currentAddressInfo: {
+            moveInDate: "12/2018",
+            moveOutDate: "Present",
+            propertyOwner: "Yes",
+            propertyPlan: "primary",
+            propertyValue: "185000",
+            monthlyRent: null,
+        },
+        addressHistory: [
+            {
+                streetAddress: "123 East St",
+                aprtmentNumber: null,
+                city: "Warsaw",
+                state: "IN",
+                zipcode: "46580",
+                moveInDate: "01/2015",
+                moveOutDate: "04/2018",
+                propertyOwner: "Yes",
+            },
+            {
+                streetAddress: "1405 Alabaster Blvd",
+                aprtmentNumber: null,
+                city: "Columbia City",
+                state: "IN",
+                zipcode: "46580",
+                moveInDate: "01/2015",
+                moveOutDate: "04/2018",
+                propertyOwner: "No",
+            },
+        ],
+        hasOtherProperties: true,
+        otherProperties: [
+            {
+                streetAddress: "1212 Vincent Ave, Nappanee IN, 45580",
+                currentUse: "Primary",
+                mortgageType: "Conventional",
+                propertyPlan: "Refinance",
+                approximateValue: "180000",
+            },
+        ],
+        foundHome: "Yes",
+        propertyPlan: "Primary",
+        cashOut: "Yes",
+        includeTaxesAndInsurance: "Yes",
+        propertyLocationCity: "Warsaw",
+        propertyLocationState: "IN",
+        whereLookingCity: null,
+        whereLookingState: null,
+        propertyUse: "primary",
+        hasRealEstateAgent: "Yes",
+        realEstateAgentName: "Robert Plant",
+        purchasePrice: "180000",
+        downPaymentAmount: "15000",
     },
 
     borrowerIncome: {
