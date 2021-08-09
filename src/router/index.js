@@ -341,6 +341,7 @@ const routes = [
         component: () =>
             import(/* webpackChunkName: "income" */ "../views/application/income/Income.vue"),
         children: [
+            // income history
             {
                 path: "income-history",
                 meta: {
@@ -349,14 +350,7 @@ const routes = [
                 },
                 component: IncomeHistory,
             },
-            {
-                path: "coborrower-income-history",
-                meta: {
-                    navItem: "income",
-                    requiresAuth: true,
-                },
-                component: CoborrowerIncomeHistory,
-            },
+            // credit check
             {
                 path: "credit-check",
                 meta: {
@@ -364,6 +358,15 @@ const routes = [
                     requiresAuth: true,
                 },
                 component: CreditCheck,
+            },
+            // coborrower income history
+            {
+                path: "coborrower-income-history",
+                meta: {
+                    navItem: "income",
+                    requiresAuth: true,
+                },
+                component: CoborrowerIncomeHistory,
             },
         ],
     },

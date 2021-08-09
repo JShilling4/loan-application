@@ -1,6 +1,8 @@
 <template>
     <div class="incomeHistory">
-        <h1 class="appHeading">Income History</h1>
+        <page-heading :theme="appTheme">
+            Income History
+        </page-heading>
 
         <transition name="fade">
             <div
@@ -38,7 +40,10 @@
                     />
                 </div>
 
-                <view-controls @advance-app="submitPage()" @retreat-app="$router.go(-1)" />
+                <view-controls
+                    @advance-app="submitPage()"
+                    @retreat-app="$router.go(-1)"
+                />
             </div>
         </transition>
 
@@ -57,7 +62,6 @@
             :modal-action="modalAction"
             @close="closeIncomeModal()"
             :profile="borrower.profile"
-            :income="borrower.income"
             :income-details="selectedIncomeDetails"
             @save-income="saveIncomeDetails($event)"
         />
@@ -70,6 +74,8 @@ import incomeHistory from "@/includes/mixins/application/incomeHistory";
 import AddButton from "@/components/AddButton.vue";
 import AppTable from "@/components/AppTable.vue";
 import IncomeModal from "@/components/IncomeModal.vue";
+
+const SECTION_NUMBER = 1;
 
 export default {
     name: "IncomeHistory",
@@ -155,8 +161,14 @@ export default {
 
         async saveIncomeDetails(income) {
             this.localDataIsPosting = true;
-            this.postBorrowerIncome(income).then(() => {
-                this.localIncome = income;
+
+            if (this.localIncome.incomeHistory == null) {
+                this.localIncome.incomeHistory = [income];
+            } else {
+                this.localIncome.incomeHistory.push(income);
+            }
+
+            this.postBorrowerIncome(this.localIncome).then(() => {
                 this.incomeDetailsModalShowing = false;
                 this.localDataIsPosting = false;
             });
@@ -164,12 +176,24 @@ export default {
 
         removeIncome(income) {
             console.log(income);
-            // TODO: delete address
+            // TODO: delete income
         },
 
-        submitPage() {
-            this.editSectionProgress(1);
-            this.$router.push("/income/coborrower-income-history");
+        async submitPage() {
+            if (this.localDataIsPosting !== true) {
+                this.localDataIsPosting = true;
+                await this.postBorrowerIncome(this.localIncome);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.income === null ||
+                    this.sectionProgress.income < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.income = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                this.$router.push("/income/credit-check");
+            }
         },
     },
 };

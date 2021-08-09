@@ -395,7 +395,7 @@ export const completedProperty = {
         identity: null,
         review: null,
     },
-    token: "about",
+    token: "property",
     borrowerProfile: {
         firstName: "Johnny",
         middleInitial: "C",

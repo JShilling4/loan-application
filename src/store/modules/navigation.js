@@ -28,7 +28,8 @@ export default {
             {
                 id: "income",
                 label: "Income",
-                sectionCount: 3,
+                sectionCount: 2,
+                coborrowerSections: 1,
                 destinationUrl: "/income/income-history",
                 status: "",
             },

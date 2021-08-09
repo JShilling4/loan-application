@@ -53,21 +53,14 @@ export default {
         },
     },
     mounted() {
-        // this.syncProfileWithStore(); // load data immediately if present in store
-        Promise.all([
-            this.fetchBorrowerAbout(),
-            this.updateBorrowerAssets(),
-            this.updateCoborrowerAssets(),
-        ]).then(() => {
-            this.syncProfileWithStore(); // async load data to hydrate
-            this.localDataIsLoading = false;
-            if (this.$route.name === "assetEntryOptions") {
-                if (this.borrower.assets.length > 0) {
-                    this.$router.replace("/assets/add-assets");
-                } else {
-                    this.holdPageLoad = false;
-                }
+        this.syncProfileWithStore(); // async load data to hydrate
+        this.localDataIsLoading = false;
+        if (this.$route.name === "assetEntryOptions") {
+            if (this.borrower.assets.length > 0) {
+                this.$router.replace("/assets/add-assets");
+            } else {
+                this.holdPageLoad = false;
             }
-        });
+        }
     },
 };

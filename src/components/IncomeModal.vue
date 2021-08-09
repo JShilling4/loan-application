@@ -1,6 +1,6 @@
 <template>
     <app-modal
-        width="65rem"
+        width="60rem"
         :show="isShowing"
         :show-close-button="true"
         :clickaway="true"
@@ -144,15 +144,15 @@
                             <div class="col col2-4">
                                 <app-label
                                     theme="light"
-                                    for="city"
+                                    for="zipcode"
                                 >
                                     Employer Zip Code
                                 </app-label>
                                 <text-field
                                     theme="light"
                                     v-model="localIncomeDetails.employerZipcode"
-                                    id="city"
-                                    name="city"
+                                    id="zipcode"
+                                    name="zipcode"
                                 />
                             </div>
 
@@ -514,8 +514,9 @@ import { deepClone } from "@/includes/mixins/helpers";
 export default {
     name: "IncomeModal",
     components: {},
-    emits: ["saveIncome", "close"],
+    emits: ["save-income", "close"],
     mixins: [deepClone],
+
     props: {
         isShowing: {
             type: Boolean,
@@ -529,19 +530,17 @@ export default {
         profile: {
             type: Object,
         },
-        income: {
-            type: Object,
-        },
         incomeDetails: {
             type: Object,
         },
     },
+
     data() {
         return {
-            localIncome: {},
             localIncomeDetails: {},
         };
     },
+
     computed: {
         ...mapState(["states"]),
 
@@ -550,24 +549,18 @@ export default {
             return incomeType !== null && incomeType !== undefined;
         },
     },
+
     watch: {
-        income() {
-            this.localIncome = this.deepClone(this.income);
-        },
         incomeDetails() {
             this.localIncomeDetails = this.deepClone(this.incomeDetails);
         },
     },
+
     methods: {
         saveLocalData() {
-            let { incomeHistory } = this.localIncome;
-            if (incomeHistory === null) {
-                incomeHistory = [this.localIncomeDetails];
-            } else {
-                incomeHistory.push(this.localIncomeDetails);
-            }
-            this.$emit("save-income", this.localIncome);
+            this.$emit("save-income", this.localIncomeDetails);
         },
+
         onCompensationTypeSelected(option) {
             let { compensationType } = this.localIncomeDetails;
             if (option === "salary" && compensationType.includes("hourly")) {
@@ -581,9 +574,9 @@ export default {
         },
     },
 
-    mounted() {
-        this.localIncomeDetails = this.deepClone(this.incomeDetails);
-    },
+    // mounted() {
+    //     this.localIncomeDetails = this.deepClone(this.incomeDetails);
+    // },
 };
 </script>
 

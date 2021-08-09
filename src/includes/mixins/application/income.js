@@ -13,7 +13,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(["borrower", "coborrower", "application", "states"]),
+        ...mapState(["borrower", "coborrower", "application", "states", "appTheme"]),
 
         sectionProgress() {
             return this.application.sectionProgress;
@@ -34,32 +34,9 @@ export default {
             this.localCoborrowerIncome = this.deepClone(this.coborrower.income);
             this.localSectionProgress = this.deepClone(this.sectionProgress);
         },
-
-        editSectionProgress(part, config = { force: false }) {
-            const { force } = config;
-            if (part === 1) {
-                if (this.sectionProgress.income === null) {
-                    this.localSectionProgress.income = 1;
-                    this.postSectionProgress(this.localSectionProgress);
-                }
-            } else if (force === true) {
-                this.localSectionProgress.income = part;
-                this.postSectionProgress(this.localSectionProgress);
-            } else if (this.sectionProgress.income !== null && this.sectionProgress.income < part) {
-                this.localSectionProgress.income = part;
-                this.postSectionProgress(this.localSectionProgress);
-            }
-        },
     },
     mounted() {
-        // this.syncProfileWithStore(); // load data immediately if present in store
-        Promise.all([
-            this.fetchBorrowerAbout(),
-            this.updateBorrowerIncome(),
-            this.updateCoborrowerIncome(),
-        ]).then(() => {
-            this.syncProfileWithStore(); // async load data to hydrate
-            this.localDataIsLoading = false;
-        });
+        this.syncProfileWithStore(); // async load data to hydrate
+        this.localDataIsLoading = false;
     },
 };

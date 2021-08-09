@@ -1,7 +1,10 @@
 <template>
     <div class="creditCheck">
-        <h1 class="appHeading">Credit Check</h1>
-        <form class="pageForm">
+        <page-heading :theme="appTheme">
+            Credit Check
+        </page-heading>
+
+        <div class="pageWrapper">
             <p class="pageCopy">
                 To qualify for a mortgage, we will have to check your credit.
                 This information is required for all mortgage transactions.
@@ -27,14 +30,14 @@
                 <div class="input-group">
                     <app-label
                         for="ssn"
-                        class-list="dark"
+                        :theme="appTheme"
                     >
                         Social Security Number
                     </app-label>
                     <text-field
                         type="text"
                         id="ssn"
-                        class-list="dark"
+                        :theme="appTheme"
                         v-model="localIncome.ssn"
                         placeholder="###-##-####"
                     />
@@ -43,14 +46,14 @@
                 <div class="input-group">
                     <app-label
                         for="dob"
-                        class-list="dark"
+                        :theme="appTheme"
                     >
                         Date of Birth
                     </app-label>
                     <text-field
                         type="text"
                         id="dob"
-                        class-list="dark"
+                        :theme="appTheme"
                         v-model="localIncome.birthDate"
                         placeholder="MM/DD/YYYY"
                     />
@@ -58,42 +61,45 @@
             </fieldset>
 
             <!-- Coborrower Inputs -->
-            <p class="formCopy">
-                {{ coborrower.profile.firstName }}, please provide your
-                social security number and date of birth.
-            </p>
+            <div v-if="borrower.about.hasCoborrower === true">
+                <p class="formCopy">
+                    {{ coborrower.profile.firstName }}, please provide your
+                    social security number and date of birth.
+                </p>
 
-            <fieldset class="inline-form-group">
-                <!-- SSN -->
-                <div class="input-group">
-                    <app-label
-                        for="ssn"
-                        class-list="dark"
-                    >
-                        Social Security Number
-                    </app-label>
-                    <text-field
-                        type="text"
-                        id="ssn"
-                        class-list="dark"
-                        v-model="localCoborrowerIncome.ssn"
-                        placeholder="###-##-####"
-                    />
-                </div>
-                <!-- DOB -->
-                <div class="input-group">
-                    <app-label
-                        for="dob"
-                        class-list="dark"
-                    >Date of Birth</app-label>
-                    <text-field
-                        type="text"
-                        id="dob"
-                        v-model="localCoborrowerIncome.birthDate"
-                        placeholder="MM/DD/YYYY"
-                    />
-                </div>
-            </fieldset>
+                <fieldset class="inline-form-group">
+                    <!-- SSN -->
+                    <div class="input-group">
+                        <app-label
+                            for="ssn"
+                            :theme="appTheme"
+                        >
+                            Social Security Number
+                        </app-label>
+                        <text-field
+                            type="text"
+                            id="ssn"
+                            :theme="appTheme"
+                            v-model="localCoborrowerIncome.ssn"
+                            placeholder="###-##-####"
+                        />
+                    </div>
+                    <!-- DOB -->
+                    <div class="input-group">
+                        <app-label
+                            for="dob"
+                            :theme="appTheme"
+                        >Date of Birth</app-label>
+                        <text-field
+                            type="text"
+                            :theme="appTheme"
+                            id="dob"
+                            v-model="localCoborrowerIncome.birthDate"
+                            placeholder="MM/DD/YYYY"
+                        />
+                    </div>
+                </fieldset>
+            </div>
 
             <div class="auth-container">
                 <check-box
@@ -108,8 +114,12 @@
                 />
             </div>
 
-            <view-controls @advance-app="submitPage()" @retreat-app="$router.go(-1)" />
-        </form>
+            <view-controls
+                @advance-app="submitPage()"
+                @retreat-app="$router.go(-1)"
+                :theme="appTheme"
+            />
+        </div>
 
         <app-modal
             ref="vimeoModal"
@@ -138,6 +148,8 @@ import income from "@/includes/mixins/application/income";
 import { vueVimeoPlayer } from "vue-vimeo-player";
 import LearnMoreLink from "@/components/LearnMoreLink.vue";
 
+const SECTION_NUMBER = 2;
+
 export default {
     name: "CreditCheck",
     mixins: [income],
@@ -145,28 +157,45 @@ export default {
         "learn-more-link": LearnMoreLink,
         "vimeo-player": vueVimeoPlayer,
     },
+
     data() {
         return {
             vimeoModalShowing: false,
         };
     },
+
     methods: {
         onReady() {
             this.playerReady = true;
         },
+
         play() {
             this.$refs.player.play();
         },
+
         pause() {
             this.$refs.player.pause();
         },
-        submitPage() {
-            if (this.borrower.about.hasCoborrower === true) {
-                this.editSectionProgress(3);
-            } else {
-                this.editSectionProgress(2);
+
+        async submitPage() {
+            if (this.localDataIsPosting !== true) {
+                this.localDataIsPosting = true;
+                await this.postBorrowerIncome(this.localIncome);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.income === null ||
+                    this.sectionProgress.income < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.income = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                if (this.borrower.about.hasCoborrower === true) {
+                    this.$router.push("/income/coborrower-income-history");
+                } else {
+                    this.$router.push("/assets/entry-options");
+                }
             }
-            this.$router.push("/assets/entry-options");
         },
     },
 };
@@ -174,6 +203,11 @@ export default {
 
 <style lang="scss" scoped>
 .creditCheck {
+    .pageWrapper {
+        width: 55rem;
+        margin: 0 auto;
+    }
+
     .learnMore-container {
         margin: 2rem 0 4rem;
         text-align: center;
