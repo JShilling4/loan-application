@@ -8,7 +8,7 @@
                 class="pageWrapper"
             >
                 <p class="pageCopy">
-                    {{ borrowerData.profile.firstName }}, once you've entered at
+                    {{ borrower.profile.firstName }}, once you've entered at
                     least two years of income history you will be able to move onto
                     the next section of the application
                 </p>
@@ -56,8 +56,8 @@
             :is-posting="localDataIsPosting"
             :modal-action="modalAction"
             @close="closeIncomeModal()"
-            :profile="borrowerData.profile"
-            :income="borrowerData.income"
+            :profile="borrower.profile"
+            :income="borrower.income"
             :income-details="selectedIncomeDetails"
             @save-income="saveIncomeDetails($event)"
         />

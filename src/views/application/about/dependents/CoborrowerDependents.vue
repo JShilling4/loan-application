@@ -1,8 +1,9 @@
 <template>
 	<div class="dependents">
-		<h1 class="appHeading">
-			{{ localCoborrowerProfile.firstName }}, do you have any dependents?
-		</h1>
+        <page-heading :theme="appTheme">
+            {{ localCoborrowerProfile.firstName }}, do you have any dependents?
+        </page-heading>
+
 		<div class="viewWrapper">
 			<!-- Has dependents -->
 			<div class="choice-container">
@@ -39,7 +40,7 @@
 				<div class="inline-form-group align-center">
 					<div class="label-container">
 						<app-label
-							class-list="dark"
+							:theme="appTheme"
 							for="numberOfDependents"
 							margin="0 1rem 0 0"
 						>
@@ -49,7 +50,8 @@
 
 					<div class="inline-input-container align-center">
 						<text-field
-							class-list="dark short"
+							class-list="short"
+                            :theme="appTheme"
 							type="number"
 							text-align="center"
 							id="numberOfDependents"
@@ -67,7 +69,7 @@
 				>
 					<div class="label-container">
 						<app-label
-							class-list="dark"
+							:theme="appTheme"
 							:for="`dependent${index + 1}Age`"
 							margin="0 1rem 0 0"
 						>
@@ -77,7 +79,8 @@
 
 					<div class="inline-input-container align-center">
 						<text-field
-							class-list="dark short"
+							class-list="short"
+                            :theme="appTheme"
 							type="number"
 							text-align="center"
 							:id="`dependent${index + 1}Age`"
@@ -91,6 +94,7 @@
 				@advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
 				:local-posting="localDataIsPosting"
+                :theme="appTheme"
 			/>
 		</div>
 	</div>
@@ -99,10 +103,11 @@
 <script>
 import about from "@/includes/mixins/application/about";
 
+const SECTION_NUMBER = 10;
+
 export default {
 	name: "Dependents",
 	mixins: [about],
-	components: {},
 
 	methods: {
 		selectIfHasDependents(choice) {
@@ -128,12 +133,22 @@ export default {
 		},
 
 		async submitPage() {
-			if (this.localDataIsPosting !== true) {
-				this.localDataIsPosting = true;
-				await this.postCoborrowerAbout(this.localCoborrowerAbout);
-				this.editSectionProgress(7);
-				this.$router.push("/about/alimony");
-			}
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postBorrowerAbout(this.localAbout);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+				this.$router.push("/about/coborrower-alimony");
+            }
 		}
 	}
 };

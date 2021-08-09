@@ -21,8 +21,8 @@ export default {
             });
         },
         postSectionProgress({ commit }, payload) {
-            return applicationApi.postSectionProgress(payload).then(() => {
-                commit("SAVE_SECTION_PROGRESS", payload);
+            return applicationApi.postSectionProgress(payload).then((response) => {
+                commit("SAVE_SECTION_PROGRESS", response.data);
             });
         },
     },

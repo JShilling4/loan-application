@@ -11,18 +11,26 @@
 
                 <div class="languageSelector-container">
                     <language-selector :theme="appTheme" />
-
-                    <v-spacer height="1rem" />
-                    <app-button @click="changeTheme()">Theme</app-button>
                 </div>
             </div>
 
             <div class="header-controls">
-                <p
+                <font-awesome-icon
+                    :icon="['fal', appTheme === 'light' ? 'moon' : 'sun']"
+                    :class="['headerIcon', appTheme]"
+                    @click="changeTheme()"
+                />
+
+                <span
                     v-if="auth.loggedIn"
-                    class="logoutTrigger"
+                    :class="['logoutTrigger', appTheme]"
                     @click="onLogOut()"
-                >Log Out</p>
+                >Logout</span>
+
+                <!-- <font-awesome-icon
+                    :icon="['fal', 'cog']"
+                    :class="['headerIcon', appTheme]"
+                /> -->
 
                 <loan-officer-info
                     v-if="loAvatarShouldShow"
@@ -52,14 +60,16 @@ export default {
         },
     },
     computed: {
-        ...mapState(["appTheme", "auth"]),
+        ...mapState(["appTheme", "auth", "borrower"]),
 
         loAvatarShouldShow() {
             if (
                 this.currentView == "application" ||
                 this.currentView == "portal"
             ) {
-                return true;
+                if (this.borrower.about.loanOfficer != null) {
+                    return true;
+                }
             }
             return false;
         },
@@ -101,7 +111,33 @@ header {
         align-items: flex-start;
         flex-wrap: wrap;
         width: 100%;
+
+        .headerIcon, .logoutTrigger {
+            margin-left: 2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            &:hover {
+                color: var(--orange);
+            }
+            &.light {
+                color: var(--blue-green);
+                &:hover {
+                    color: var(--orange);
+                }
+            }
+        }
+
+        .headerIcon {
+            font-size: 3rem;
+            &.fa-sun {
+                font-size: 2.6rem;
+            }
+            &.fa-moon {
+                font-size: 2.2rem;
+            }
+        }
     }
+
     .languageSelector-container {
         margin-top: 2rem;
     }

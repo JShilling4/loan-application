@@ -4,7 +4,6 @@ import store from "@/store";
 // Root
 import Index from "../views/Index.vue";
 // About
-import Veteran from "../views/application/about/Veteran.vue";
 import Coborrower from "../views/application/about/coborrower/Coborrower.vue";
 import CoborrowerInfo from "../views/application/about/coborrower/CoborrowerInfo.vue";
 import CoborrowerAddress from "../views/application/about/coborrower/CoborrowerAddress.vue";
@@ -165,7 +164,10 @@ const routes = [
                     navItem: "about",
                     requiresAuth: true,
                 },
-                component: Veteran,
+                component: () =>
+                    import(
+                        /* webpackChunkName: "Veteran" */ "../views/application/about/Veteran.vue"
+                    ),
             },
             // Coborrower exists
             {

@@ -87,13 +87,13 @@ export default {
         activeSection() {
             return this.sections.find((sec) => sec.isExpanded);
         },
-        borrowerData() {
+        borrower() {
             return this.borrower.borrower;
         },
         dataViewObject() {
             switch(this.activeSection?.title) {
                 case "Profile": {
-                    const { profile, income, about } = this.borrowerData;
+                    const { profile, income, about } = this.borrower;
                     return {
                         "Full Name": `${profile.firstName} ${profile.lastName}`,
                         "Current Address": profile.streetAddress,

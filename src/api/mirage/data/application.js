@@ -149,14 +149,14 @@ export const completedProfile = {
         state2: null,
         zipcode: "43537",
         zipcode2: null,
-        referralSource: "Radio",
-        referralSourceName: null,
-        loanOfficer: "clintmorgan",
     },
 
     borrowerAbout: {
         hasCoborrower: null,
         hasCoborrowerAuthorization: null,
+        referralSource: null,
+        referralSourceName: null,
+        loanOfficer: null,
         isVeteran: null,
         loanType: null,
         hasDependents: null,
@@ -235,4 +235,6 @@ export const completedProfile = {
             race: null,
         },
     },
+
+    coborrower: null,
 };

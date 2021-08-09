@@ -1,6 +1,8 @@
 <template>
     <div class="referral">
-        <h1 class="appHeading">Loan Officer Selection</h1>
+        <page-heading>
+            Loan Officer Selection
+        </page-heading>
 
         <div class="body-wrapper">
             <div class="input-group">
@@ -8,7 +10,7 @@
                 <multi-select
                     :options="sourceOptions"
                     :can-clear="false"
-                    v-model="localProfile.loanOfficer"
+                    v-model="localAbout.loanOfficer"
                 />
             </div>
             <view-controls
@@ -22,6 +24,8 @@
 
 <script>
 import about from "@/includes/mixins/application/about";
+
+const SECTION_NUMBER = 2;
 
 export default {
     name: "Referral",
@@ -50,13 +54,13 @@ export default {
                 // start loader
                 this.localDataIsPosting = true;
                 // post data
-                await this.postBorrowerProfile(this.localProfile);
-                // post progress
+                await this.postBorrowerAbout(this.localAbout);
+                // post progress if newly completed
                 if (
-                    this.sectionProgress.profile === null ||
-                    this.sectionProgress.profile < 4
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
                 ) {
-                    this.localSectionProgress.profile = 4;
+                    this.localSectionProgress.about = SECTION_NUMBER;
                     this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route

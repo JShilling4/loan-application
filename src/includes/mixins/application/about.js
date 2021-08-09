@@ -13,20 +13,32 @@ export default {
         };
     },
     computed: {
-        ...mapState(["borrower", "coborrower", "application", "navigation", "suffixes", "states", "appTheme"]),
+        ...mapState([
+            "borrower",
+            "coborrower",
+            "application",
+            "navigation",
+            "suffixes",
+            "states",
+            "appTheme",
+            "navigation"
+        ]),
         sectionProgress() {
             return this.application.sectionProgress;
         },
-        coborrowerData() {
-            return this.coborrower.coborrower;
+        navSection() {
+            return this.navigation.navigationItems.find((navItem) => navItem.id === "about");
         },
-        coborrowerProfile() {
-            return this.coborrowerData.profile;
+        sectionCount() {
+            return this.navSection.sectionCount;
         },
+        coborrowerSectionCount() {
+            return this.navSection.coborrowerSections
+        }
     },
     watch: {
-        coborrowerProfile() {
-            this.localCoborrowerProfile = this.deepClone(this.coborrowerProfile);
+        coborrower() {
+            this.localCoborrowerProfile = this.deepClone(this.coborrower.profile);
         },
     },
     methods: {
@@ -42,25 +54,9 @@ export default {
 
         syncProfileWithStore() {
             this.localAbout = this.deepClone(this.borrower.about);
-            this.localCoborrowerProfile = this.deepClone(this.coborrowerData.profile);
-            this.localCoborrowerAbout = this.deepClone(this.coborrowerData.about);
+            this.localCoborrowerProfile = this.deepClone(this.coborrower.profile);
+            this.localCoborrowerAbout = this.deepClone(this.coborrower.about);
             this.localSectionProgress = this.deepClone(this.sectionProgress);
-        },
-
-        editSectionProgress(part, config = { force: false }) {
-            const { force } = config;
-            if (part === 1) {
-                if (this.sectionProgress.about === null) {
-                    this.localSectionProgress.about = 1;
-                    this.postSectionProgress(this.sectionProgress);
-                }
-            } else if (force === true) {
-                this.localSectionProgress.about = part;
-                this.postSectionProgress(this.sectionProgress);
-            } else if (this.sectionProgress.about !== null && this.sectionProgress.about < part) {
-                this.localSectionProgress.about = part;
-                this.postSectionProgress(this.sectionProgress);
-            }
         },
     },
     mounted() {

@@ -2,16 +2,14 @@ import { profileApi, aboutApi, propertyApi, incomeApi, assetsApi, identityApi } 
 
 export default {
     state: {
-        coborrower: {
-            profile: {},
-            about: {},
-            property: {},
-            income: {},
-            assets: [],
-            identity: {
-                declarations: {},
-                demographics: {},
-            },
+        profile: {},
+        about: {},
+        property: {},
+        income: {},
+        assets: [],
+        identity: {
+            declarations: {},
+            demographics: {},
         },
     },
 

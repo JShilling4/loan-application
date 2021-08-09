@@ -14,12 +14,6 @@ export default {
     },
     computed: {
         ...mapState(["borrower", "coborrower", "application", "appTheme"]),
-        borrowerData() {
-            return this.borrower.borrower;
-        },
-        coborrowerData() {
-            return this.coborrower.coborrower;
-        },
         sectionProgress() {
             return this.application.sectionProgress;
         },
@@ -36,8 +30,8 @@ export default {
         ]),
 
         syncProfileWithStore() {
-            this.localIdentity = this.deepClone(this.borrowerData.identity);
-            this.localCoborrowerIdentity = this.deepClone(this.coborrowerData.identity);
+            this.localIdentity = this.deepClone(this.borrower.identity);
+            this.localCoborrowerIdentity = this.deepClone(this.coborrower.identity);
             this.localSectionProgress = this.deepClone(this.sectionProgress);
         },
 

@@ -43,6 +43,8 @@
 <script>
 import about from "@/includes/mixins/application/about";
 
+const SECTION_NUMBER = 1;
+
 export default {
     name: "Referral",
     mixins: [about],
@@ -86,14 +88,13 @@ export default {
                 // start loader
                 this.localDataIsPosting = true;
                 // post data
-                await this.postBorrowerProfile(this.localAbout);
-                // post progress
+                await this.postBorrowerAbout(this.localAbout);
+                // post progress if just completed
                 if (
-                    this.sectionProgress.about === null ||
-                    this.sectionProgress.about < 3
+                    this.sectionProgress.about === null
                 ) {
-                    this.localSectionProgress.about = 3;
-                    this.postSectionProgress(this.sectionProgressa);
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route
                 this.$router.push("/about/select-loan-officer");

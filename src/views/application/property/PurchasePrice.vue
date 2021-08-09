@@ -88,13 +88,13 @@ export default {
 
 	computed: {
 		sectionProgress() {
-			if (this.borrowerData.about.hasCoborrower === true) {
-				if (this.borrowerData.property.hasOtherProperties === true) {
+			if (this.borrower.about.hasCoborrower === true) {
+				if (this.borrower.property.hasOtherProperties === true) {
 					return 8;
 				}
 				return 6;
 			}
-			if (this.borrowerData.property.hasOtherProperties === true) {
+			if (this.borrower.property.hasOtherProperties === true) {
 				return 6;
 			}
 			return 5;

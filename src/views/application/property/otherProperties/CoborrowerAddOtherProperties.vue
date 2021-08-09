@@ -7,9 +7,9 @@
 		<transition name="fade">
 			<div v-if="!localDataIsLoading" class="page-wrapper">
 				<app-table
-					v-if="coborrowerData.property.otherProperties !== null"
+					v-if="coborrower.property.otherProperties !== null"
 					:columns="tableColumns"
-					:rows="coborrowerData.property.otherProperties"
+					:rows="coborrower.property.otherProperties"
 					@edit="loadPropertyModal"
 				/>
 
@@ -32,8 +32,8 @@
 			:is-showing="propertyModalShowing"
 			:modal-action="modalAction"
 			@close="closePropertyModal()"
-			:profile="coborrowerData.profile"
-			:property="coborrowerData.property"
+			:profile="coborrower.profile"
+			:property="coborrower.property"
 			:other-property="selectedOtherProperty"
 			@save-property="saveProperty"
 		/>

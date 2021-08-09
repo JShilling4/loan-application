@@ -41,30 +41,30 @@ export default {
         },
 
         SAVE_BORROWER_ABOUT(state, payload) {
-            state.borrower.about = { ...state.borrower.about, ...payload };
+            state.about = { ...state.about, ...payload };
         },
 
         SAVE_BORROWER_PROPERTY(state, payload) {
-            state.borrower.property = {
-                ...state.borrower.property,
+            state.property = {
+                ...state.property,
                 ...payload,
             };
         },
 
         SAVE_BORROWER_INCOME(state, payload) {
-            state.borrower.income = {
-                ...state.borrower.income,
+            state.income = {
+                ...state.income,
                 ...payload,
             };
         },
 
         SAVE_BORROWER_ASSETS(state, payload) {
-            state.borrower.assets = payload;
+            state.assets = payload;
         },
 
         SAVE_BORROWER_IDENTITY(state, payload) {
-            state.borrower.identity = {
-                ...state.borrower.identity,
+            state.identity = {
+                ...state.identity,
                 ...payload,
             };
         },

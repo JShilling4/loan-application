@@ -7,7 +7,7 @@
                 v-if="!localDataIsLoading"
                 class="pageWrapper"
             >
-                <span class="tableHeading">{{ borrowerData.profile.firstName }}'s Assets</span>
+                <span class="tableHeading">{{ borrower.profile.firstName }}'s Assets</span>
                 <transition name="fade">
 
                     <app-table
@@ -44,8 +44,8 @@
             :is-posting="localDataIsPosting"
             :modal-action="modalAction"
             @close="closeAssetModal()"
-            :profile="borrowerData.profile"
-            :assets="borrowerData.assets"
+            :profile="borrower.profile"
+            :assets="borrower.assets"
             :asset="selectedAsset"
             @save-asset="saveAsset($event)"
         />

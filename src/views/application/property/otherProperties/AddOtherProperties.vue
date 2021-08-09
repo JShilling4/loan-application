@@ -7,9 +7,9 @@
 		<transition name="fade">
 			<div v-if="!localDataIsLoading" class="page-wrapper">
 				<app-table
-					v-if="borrowerData.property.otherProperties !== null"
+					v-if="borrower.property.otherProperties !== null"
 					:columns="tableColumns"
-					:rows="borrowerData.property.otherProperties"
+					:rows="borrower.property.otherProperties"
 					@edit="loadPropertyModal"
 				/>
 
@@ -32,8 +32,8 @@
 			:is-showing="propertyModalShowing"
 			:modal-action="modalAction"
 			@close="closePropertyModal()"
-			:profile="borrowerData.profile"
-			:property="borrowerData.property"
+			:profile="borrower.profile"
+			:property="borrower.property"
 			:other-property="selectedOtherProperty"
 			@save-property="saveOtherProperty"
 		/>
@@ -84,7 +84,7 @@ export default {
 
 	computed: {
 		sectionProgress() {
-			if (this.borrowerData.about.hasCoborrower == true) {
+			if (this.borrower.about.hasCoborrower == true) {
 				return 5;
 			}
 			return 4;
@@ -97,7 +97,7 @@ export default {
 			this.editSectionProgress(this.sectionProgress);
 
 			// route to next page
-			if (this.borrowerData.about.hasCoborrower == true) {
+			if (this.borrower.about.hasCoborrower == true) {
 				this.$router.push("/property/add-coborrower-properties");
 			} else {
 				this.$router.push("/property/purchase-info");

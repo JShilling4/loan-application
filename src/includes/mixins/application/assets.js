@@ -18,14 +18,6 @@ export default {
         sectionProgress() {
             return this.application.sectionProgress;
         },
-
-        borrowerData() {
-            return this.borrower.borrower;
-        },
-
-        coborrowerData() {
-            return this.coborrower.coborrower;
-        },
     },
     methods: {
         ...mapActions([
@@ -39,8 +31,8 @@ export default {
         ]),
 
         syncProfileWithStore() {
-            this.localAssets = this.borrowerData.assets;
-            this.localCoborrowerAssets = this.deepClone(this.coborrowerData.assets);
+            this.localAssets = this.borrower.assets;
+            this.localCoborrowerAssets = this.deepClone(this.coborrower.assets);
             this.localSectionProgress = this.deepClone(this.sectionProgress);
         },
 
@@ -70,7 +62,7 @@ export default {
             this.syncProfileWithStore(); // async load data to hydrate
             this.localDataIsLoading = false;
             if (this.$route.name === "assetEntryOptions") {
-                if (this.borrowerData.assets.length > 0) {
+                if (this.borrower.assets.length > 0) {
                     this.$router.replace("/assets/add-assets");
                 } else {
                     this.holdPageLoad = false;

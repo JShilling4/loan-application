@@ -206,13 +206,13 @@ export default {
 
 	computed: {
 		sectionProgress() {
-			if (this.borrowerData.about.hasCoborrower == true) {
-				if (this.borrowerData.property.hasOtherProperties === true) {
+			if (this.borrower.about.hasCoborrower == true) {
+				if (this.borrower.property.hasOtherProperties === true) {
 					return 7;
 				}
 				return 5;
 			}
-			if (this.borrowerData.property.hasOtherProperties === true) {
+			if (this.borrower.property.hasOtherProperties === true) {
 				return 5;
 			}
 			return 4;

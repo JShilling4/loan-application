@@ -8,7 +8,7 @@
                 class="page-wrapper"
             >
                 <p class="pageCopy">
-                    {{ coborrowerData.profile.firstName }}, once you have
+                    {{ coborrower.profile.firstName }}, once you have
                     entered at least two years of residence history you will be
                     able to move on to the next section of the application.
                 </p>
@@ -27,12 +27,12 @@
                 <div class="addButton-container">
                     <add-button
                         :text="
-							coborrowerData.property.currentAddressInfo
+							coborrower.property.currentAddressInfo
 								.moveInDate == null
 								? 'Add Current Address Info'
 								: 'Add Previous Address'"
                         @click="
-							coborrowerData.property.currentAddressInfo
+							coborrower.property.currentAddressInfo
 								.moveInDate == null
 								? loadAddressModal()
 								: loadAddressModal()"
@@ -58,8 +58,8 @@
             :is-posting="localDataIsPosting"
             :modal-action="modalAction"
             @close="closeCurrentAddressModal()"
-            :profile="coborrowerData.profile"
-            :property="coborrowerData.property"
+            :profile="coborrower.profile"
+            :property="coborrower.property"
             @save-property="saveCurrentAddress"
         />
 
@@ -69,8 +69,8 @@
             :is-posting="localDataIsPosting"
             :modal-action="modalAction"
             @close="closePreviousAddressModal()"
-            :profile="coborrowerData.profile"
-            :property="coborrowerData.property"
+            :profile="coborrower.profile"
+            :property="coborrower.property"
             :previous-address="selectedPreviousAddress"
             @save-address="savePreviousAddress"
         />
@@ -129,45 +129,45 @@ export default {
         computedAddressHistory() {
             const addresses = [];
             if (
-                this.coborrowerData.property?.currentAddressInfo?.moveInDate !==
+                this.coborrower.property?.currentAddressInfo?.moveInDate !==
                 null
             ) {
                 const currentAddressObj = {
                     streetAddress:
-                        this.coborrowerData.profile.streetAddress2 !== null
-                            ? this.coborrowerData.profile.streetAddress2
-                            : this.coborrowerData.profile.streetAddress,
+                        this.coborrower.profile.streetAddress2 !== null
+                            ? this.coborrower.profile.streetAddress2
+                            : this.coborrower.profile.streetAddress,
                     apartmentNumber:
-                        this.coborrowerData.profile.aprtmentNumber2 !== null
-                            ? this.coborrowerData.profile.apartmentNumber2
-                            : this.coborrowerData.profile.apartmentNumber,
+                        this.coborrower.profile.aprtmentNumber2 !== null
+                            ? this.coborrower.profile.apartmentNumber2
+                            : this.coborrower.profile.apartmentNumber,
                     city:
-                        this.coborrowerData.profile.city2 !== null
-                            ? this.coborrowerData.profile.city2
-                            : this.coborrowerData.profile.city,
+                        this.coborrower.profile.city2 !== null
+                            ? this.coborrower.profile.city2
+                            : this.coborrower.profile.city,
                     state:
-                        this.coborrowerData.profile.state2 !== null
-                            ? this.coborrowerData.profile.state2
-                            : this.coborrowerData.profile.state,
+                        this.coborrower.profile.state2 !== null
+                            ? this.coborrower.profile.state2
+                            : this.coborrower.profile.state,
                     zipcode:
-                        this.coborrowerData.profile.zipcode2 !== null
-                            ? this.coborrowerData.profile.zipcode2
-                            : this.coborrowerData.profile.zipcode,
+                        this.coborrower.profile.zipcode2 !== null
+                            ? this.coborrower.profile.zipcode2
+                            : this.coborrower.profile.zipcode,
                     moveInDate:
-                        this.coborrowerData.property?.currentAddressInfo
+                        this.coborrower.property?.currentAddressInfo
                             ?.moveInDate,
                     moveOutDate:
-                        this.coborrowerData.property?.currentAddressInfo
+                        this.coborrower.property?.currentAddressInfo
                             ?.moveOutDate,
                 };
                 addresses.push(currentAddressObj);
             }
 
             if (
-                this.coborrowerData.property.addressHistory &&
-                this.coborrowerData.property?.addressHistory !== null
+                this.coborrower.property.addressHistory &&
+                this.coborrower.property?.addressHistory !== null
             ) {
-                this.coborrowerData.property.addressHistory.forEach(
+                this.coborrower.property.addressHistory.forEach(
                     (address) => {
                         addresses.push(address);
                     }
@@ -203,7 +203,7 @@ export default {
                 this.modalAction = "Add";
 
                 if (
-                    this.coborrowerData.property.currentAddressInfo
+                    this.coborrower.property.currentAddressInfo
                         .moveInDate == null
                 ) {
                     this.openCurrentAddressModal();

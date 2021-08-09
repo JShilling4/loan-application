@@ -39,3 +39,7 @@ export const globalDirectives = {
         app.directive("click-outside", clickOutside);
     }
 }
+
+export const constants = {
+
+}

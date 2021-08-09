@@ -49,12 +49,12 @@ export default {
 	computed: {
 		shouldForceSectionCountUpdate() {
 			return (
-				this.borrowerData.property.hasOtherProperties !==
+				this.borrower.property.hasOtherProperties !==
 				this.localProperty.hasOtherProperties
 			);
 		},
         hasCoborrower() {
-            return this.borrowerData.about.hasCoborrower == true;
+            return this.borrower.about.hasCoborrower == true;
         },
 		sectionCount() {
 			if (this.hasCoborrower) {

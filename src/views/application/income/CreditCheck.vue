@@ -18,7 +18,7 @@
 
             <!-- Borrower Inputs -->
             <p class="formCopy">
-                {{ borrowerData.profile.firstName }}, please provide your social
+                {{ borrower.profile.firstName }}, please provide your social
                 security number and date of birth.
             </p>
 
@@ -59,7 +59,7 @@
 
             <!-- Coborrower Inputs -->
             <p class="formCopy">
-                {{ coborrowerData.profile.firstName }}, please provide your
+                {{ coborrower.profile.firstName }}, please provide your
                 social security number and date of birth.
             </p>
 
@@ -161,7 +161,7 @@ export default {
             this.$refs.player.pause();
         },
         submitPage() {
-            if (this.borrowerData.about.hasCoborrower === true) {
+            if (this.borrower.about.hasCoborrower === true) {
                 this.editSectionProgress(3);
             } else {
                 this.editSectionProgress(2);

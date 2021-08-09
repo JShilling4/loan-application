@@ -1,17 +1,19 @@
 <template>
 	<div v-if="localCoborrowerProfile" class="coborrowerInfo">
-		<h1 class="appHeading">Please provide coborrower information.</h1>
+        <page-heading :theme="appTheme">
+            Please provide coborrower information.
+        </page-heading>
 
 		<div class="pageWrapper">
 			<!-- Name Input Group -->
 			<div class="inline-form-group">
 				<!-- First Name -->
 				<div class="input-group">
-					<app-label class-list="dark" for="fname"
+					<app-label :theme="appTheme" for="fname"
 						>First Name</app-label
 					>
 					<text-field
-						class-list="dark"
+						:theme="appTheme"
 						id="fname"
 						type="text"
 						name="FirstName"
@@ -21,11 +23,11 @@
 
 				<!-- Middle Initial -->
 				<div class="input-group short">
-					<app-label class-list="dark" for="middleInitial"
+					<app-label :theme="appTheme" for="middleInitial"
 						>Middle Initial</app-label
 					>
 					<text-field
-						class-list="dark"
+						:theme="appTheme"
 						id="middleInitial"
 						type="text"
 						maxlength="1"
@@ -38,11 +40,11 @@
 			<div class="inline-form-group">
 				<!-- Last Name -->
 				<div class="input-group">
-					<app-label class-list="dark" for="lname"
+					<app-label :theme="appTheme" for="lname"
 						>Last Name</app-label
 					>
 					<text-field
-						class-list="dark"
+						:theme="appTheme"
 						id="lname"
 						type="text"
 						name="LastName"
@@ -64,21 +66,21 @@
 
 			<!-- Email -->
 			<div class="input-group">
-				<app-label class-list="dark">Email Address</app-label>
+				<app-label :theme="appTheme">Email Address</app-label>
 				<text-field
 					type="text"
-					class-list="dark"
+					:theme="appTheme"
 					v-model="localCoborrowerProfile.email"
 				/>
 			</div>
 
 			<!-- Phone -->
 			<div class="input-group">
-				<app-label class-list="dark" for="phone"
+				<app-label :theme="appTheme" for="phone"
 					>Phone Number</app-label
 				>
 				<text-field
-					class-list="dark"
+					:theme="appTheme"
 					id="phone"
 					type="tel"
 					name="Phone"
@@ -89,7 +91,7 @@
 
 			<!-- Marital Status -->
 			<div class="input-group">
-				<app-label class-list="dark" for="maritalStatus"
+				<app-label :theme="appTheme" for="maritalStatus"
 					>Marital Status</app-label
 				>
 				<multi-select
@@ -107,6 +109,7 @@
 				@advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
 				:local-posting="localDataIsPosting"
+                :theme="appTheme"
 			/>
 		</div>
 	</div>
@@ -115,6 +118,8 @@
 <script>
 import about from "@/includes/mixins/application/about";
 
+const SECTION_NUMBER = 8;
+
 export default {
 	name: "CoborrowerInfo",
 	mixins: [about],
@@ -122,12 +127,22 @@ export default {
 
 	methods: {
 		async submitPage() {
-			if (this.localDataIsPosting !== true) {
-				this.localDataIsPosting = true;
-				await this.postCoborrowerProfile(this.localCoborrowerProfile);
-				this.editSectionProgress(3);
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postBorrowerAbout(this.localAbout);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
 				this.$router.push("/about/coborrower/address");
-			}
+            }
 		}
 	}
 };

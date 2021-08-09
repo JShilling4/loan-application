@@ -18,12 +18,6 @@ export default {
         sectionProgress() {
             return this.application.sectionProgress;
         },
-        borrowerData() {
-            return this.borrower.borrower;
-        },
-        coborrowerData() {
-            return this.coborrower.coborrower;
-        },
     },
     methods: {
         ...mapActions([
@@ -36,8 +30,8 @@ export default {
             "editNavigationSectionCount",
         ]),
         syncProfileWithStore() {
-            this.localIncome = this.deepClone(this.borrowerData.income);
-            this.localCoborrowerIncome = this.deepClone(this.coborrowerData.income);
+            this.localIncome = this.deepClone(this.borrower.income);
+            this.localCoborrowerIncome = this.deepClone(this.coborrower.income);
             this.localSectionProgress = this.deepClone(this.sectionProgress);
         },
 

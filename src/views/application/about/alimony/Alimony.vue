@@ -1,6 +1,6 @@
 <template>
     <div class="alimony">
-        <h1 class="appHeading">Alimony/Chid Support</h1>
+        <page-heading>Alimony/Chid Support</page-heading>
 
         <div class="body-wrapper">
             <!-- Pay/Recieve Support -->
@@ -9,7 +9,7 @@
                     class-list="dark"
                     for="payReceiveSupport"
                 >
-                    {{ borrowerData.profile.firstName }}, do you pay or receive alimony
+                    {{ borrower.profile.firstName }}, do you pay or receive alimony
                     or child support?
                 </app-label>
                 <multi-select
@@ -87,6 +87,8 @@
 <script>
 import about from "@/includes/mixins/application/about";
 
+const SECTION_NUMBER = 6;
+
 export default {
     name: "Alimony",
     mixins: [about],
@@ -105,18 +107,21 @@ export default {
     },
     methods: {
         async submitPage() {
-            if (this.localDataIsPosting !== true) {
+            if (this.localDataIsPosting == false) {
+                // start loader
                 this.localDataIsPosting = true;
-
+                // post data
                 await this.postBorrowerAbout(this.localAbout);
-
-                if (this.localAbout.hasCoborrower) {
-                    this.editSectionProgress(8);
-                    this.$router.push("/about/coborrower-alimony");
-                } else {
-                    this.editSectionProgress(4);
-                    this.$router.push("/property/loan-type");
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
                 }
+                // next route
+                this.$router.push("/about/coborrower");
             }
         },
     },

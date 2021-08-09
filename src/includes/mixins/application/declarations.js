@@ -13,12 +13,6 @@ export default {
     },
     computed: {
         ...mapState(["borrower", "coborrower"]),
-        borrowerProfile() {
-            return this.borrowerData.profile;
-        },
-        coborrowerProfile() {
-            return this.coborrowerData.profile;
-        },
     },
 
     methods: {

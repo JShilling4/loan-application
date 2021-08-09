@@ -1,12 +1,15 @@
 <template>
 	<div class="coborrowerPresent">
-		<h1 class="appHeading">Co-borrower Authorization</h1>
+        <page-heading :theme="appTheme">
+            Co-borrower Authorization
+        </page-heading>
+
 		<form class="coborrowerPresentForm">
 			<p class="pageCopy">
 				We will need to collect information about your co-borrower such
 				as income and assets. Do you have access and authorization to
 				provide this information on behalf of
-				{{ coborrowerData.profile.firstName }}?
+				{{ coborrower.profile.firstName }}?
 			</p>
 
 			<div class="control-wrapper">
@@ -40,6 +43,7 @@
 					@advance-app="submitPage()"
                     @retreat-app="$router.go(-1)"
 					:local-posting="localDataIsPosting"
+                    :theme="appTheme"
 				/>
 			</div>
 		</form>
@@ -48,6 +52,8 @@
 
 <script>
 import about from "@/includes/mixins/application/about";
+
+const SECTION_NUMBER = 9;
 
 export default {
 	name: "CoborrowerAuth",
@@ -60,14 +66,22 @@ export default {
 		},
 
 		async submitPage() {
-			if (this.localDataIsPosting !== true) {
-				this.localDataIsPosting = true;
-
-				await this.postBorrowerAbout(this.localAbout);
-
-				this.editSectionProgress(5);
-				this.$router.push("/about/dependents");
-			}
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postBorrowerAbout(this.localAbout);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+				this.$router.push("/about/coborrower-dependents");
+            }
 		}
 	}
 };

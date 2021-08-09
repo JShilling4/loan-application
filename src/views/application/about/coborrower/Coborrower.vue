@@ -1,105 +1,111 @@
 <template>
-	<div class="coborrower">
-		<h1 class="appHeading">Would you like to include a co-borrower?</h1>
+    <div class="coborrower">
+        <page-heading :theme="appTheme">
+            Would you like to include a co-borrower?
+        </page-heading>
 
-		<div class="choice-container">
-			<div class="choice-container">
-				<app-button
-					@click="selectIfHasCoborrower('yes')"
-					:class-list="[
+        <div class="choice-container">
+            <div class="choice-container">
+                <app-button
+                    @click="selectIfHasCoborrower('yes')"
+                    :class-list="[
 						localAbout.hasCoborrower == true
 							? 'teal-fill'
 							: 'white-outline',
 						'choice'
 					]"
-				>
-					Yes
-				</app-button>
+                >
+                    Yes
+                </app-button>
 
-				<app-button
-					@click="selectIfHasCoborrower('no')"
-					:class-list="[
+                <app-button
+                    @click="selectIfHasCoborrower('no')"
+                    :class-list="[
 						localAbout.hasCoborrower == false
 							? 'teal-fill'
 							: 'white-outline',
 						'choice'
 					]"
-				>
-					No
-				</app-button>
-			</div>
-		</div>
+                >
+                    No
+                </app-button>
+            </div>
+        </div>
 
-		<view-controls
-			@advance-app="submitPage()"
+        <view-controls
+            @advance-app="submitPage()"
             @retreat-app="$router.go(-1)"
-			:local-posting="localDataIsPosting"
-		/>
-	</div>
+            :local-posting="localDataIsPosting"
+            :theme="appTheme"
+        />
+    </div>
 </template>
 
 <script>
 import about from "@/includes/mixins/application/about";
 
+const SECTION_NUMBER = 7;
+
 export default {
-	name: "Coborrower",
-	mixins: [about],
-	methods: {
-		selectIfHasCoborrower(choice) {
-			choice == "yes"
-				? (this.localAbout.hasCoborrower = true)
-				: (this.localAbout.hasCoborrower = false);
-		},
-		async submitPage() {
-			if (this.localDataIsPosting !== true) {
-				this.localDataIsPosting = true;
+    name: "Coborrower",
+    mixins: [about],
+    methods: {
+        selectIfHasCoborrower(choice) {
+            choice == "yes"
+                ? (this.localAbout.hasCoborrower = true)
+                : (this.localAbout.hasCoborrower = false);
+        },
+        async submitPage() {
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postBorrowerAbout(this.localAbout);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                if (this.localAbout.hasCoborrower === true) {
+                    this.$router.push("/about/coborrower/info");
+                } else {
+                    // coborrower doesnt exist so remove coborrower questions from section total
+                    const { sectionCount, coborrowerSectionCount } =
+                        this.navSection;
 
-				await this.postBorrowerAbout(this.localAbout);
-
-				const shouldForce =
-					this.borrowerData.about.hasCoborrower !==
-					this.localAbout.hasCoborrower;
-
-				if (this.localAbout.hasCoborrower == true) {
-                    // coborrower exists, so adjust section count to include those questions
-					this.editNavigationSectionCount({
-						section: "about",
-						count: 9
-					});
-					this.editSectionProgress(2, { force: shouldForce });
-					this.$router.push("/about/coborrower/info");
-				} else {
-                    // coborrower doesnt exist, so adjust section count to exclude those questions
-					this.editNavigationSectionCount({
-						section: "about",
-						count: 4
-					});
-					this.editSectionProgress(2, { force: shouldForce });
-					this.$router.push("/about/dependents");
-				}
-			}
-		}
-	}
+                    this.editNavigationSectionCount({
+                        section: "about",
+                        count: sectionCount - coborrowerSectionCount,
+                    });
+                    this.$router.push("/property/loan-type");
+                }
+            }
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 .coborrower {
-	.choice-container {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		width: 600px;
-		margin: 0 auto;
-		.choice {
-			margin: 0 1rem 2rem;
-			width: 20rem;
-		}
-	}
+    .choice-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 600px;
+        margin: 0 auto;
+        .choice {
+            margin: 0 1rem 2rem;
+            width: 20rem;
+        }
+    }
 
-	.button-container {
-		max-width: 420px;
-		margin: 4rem auto 0;
-	}
+    .button-container {
+        max-width: 420px;
+        margin: 4rem auto 0;
+    }
 }
 </style>

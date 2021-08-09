@@ -1,6 +1,8 @@
 <template>
     <div class="coborrowerAlimony">
-        <h1 class="appHeading">Coborrower Alimony/Chid Support</h1>
+        <page-heading :theme="appTheme">
+            Coborrower Alimony/Chid Support
+        </page-heading>
 
         <div class="body-wrapper">
             <!-- Pay/Recieve Support -->
@@ -87,6 +89,8 @@
 <script>
 import about from "@/includes/mixins/application/about";
 
+const SECTION_NUMBER = 11;
+
 export default {
     name: "CoborrowerAlimony",
     mixins: [about],
@@ -105,13 +109,21 @@ export default {
     },
     methods: {
         async submitPage() {
-            if (this.localDataIsPosting !== true) {
+            if (this.localDataIsPosting == false) {
+                // start loader
                 this.localDataIsPosting = true;
-
-                await this.postCoborrowerAbout(this.localCoborrowerAbout);
-
-                this.editSectionProgress(9);
-                this.$router.push("/property/loan-type");
+                // post data
+                await this.postBorrowerAbout(this.localAbout);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+				this.$router.push("/property/loan-type");
             }
         },
     },

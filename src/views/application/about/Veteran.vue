@@ -44,6 +44,8 @@
 <script>
 import about from "@/includes/mixins/application/about";
 
+const SECTION_NUMBER = 3;
+
 export default {
 	name: "Veteran",
 	mixins: [about],
@@ -57,8 +59,16 @@ export default {
 			if (this.localDataIsPosting !== true) {
 				this.localDataIsPosting = true;
 				await this.postBorrowerAbout(this.localAbout);
-				this.editSectionProgress(1);
-				this.$router.push("/about/coborrower");
+				// post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+				this.$router.push("/about/dependents");
 			}
 		}
 	}

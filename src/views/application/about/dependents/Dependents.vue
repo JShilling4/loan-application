@@ -1,8 +1,9 @@
 <template>
     <div class="dependents">
-        <h1 class="appHeading">
-            {{ borrowerData.profile.firstName }}, do you have any dependents?
-        </h1>
+        <page-heading>
+            {{ borrower.profile.firstName }}, do you have any dependents?
+        </page-heading>
+
         <div class="viewWrapper">
             <!-- Has dependents -->
             <div class="choice-container">
@@ -98,10 +99,13 @@
 
 <script>
 import about from "@/includes/mixins/application/about";
+import dependents from "@/includes/mixins/application/dependents";
+
+const SECTION_NUMBER = 4;
 
 export default {
     name: "Dependents",
-    mixins: [about],
+    mixins: [about, dependents],
     components: {},
     methods: {
         selectIfHasDependents(choice) {
@@ -117,8 +121,10 @@ export default {
 
         setDependentAges() {
             this.localAbout.dependentAges = [];
-            if (Number(this.localAbout.numberOfDependents) > 20) {
-                this.localAbout.numberOfDependents = 20;
+            if (
+                Number(this.localAbout.numberOfDependents) > this.MAX_DEPENDENTS
+            ) {
+                this.localAbout.numberOfDependents = this.MAX_DEPENDENTS;
             }
             for (let i = 0; i < this.localAbout.numberOfDependents; i++) {
                 this.localAbout.dependentAges.push("");
@@ -126,18 +132,21 @@ export default {
         },
 
         async submitPage() {
-            if (this.localDataIsPosting !== true) {
+            if (this.localDataIsPosting == false) {
+                // start loader
                 this.localDataIsPosting = true;
-
+                // post data
                 await this.postBorrowerAbout(this.localAbout);
-
-                if (this.localAbout.hasCoborrower) {
-                    this.editSectionProgress(6);
-                    this.$router.push("/about/coborrower-dependents");
-                } else {
-                    this.editSectionProgress(3);
-                    this.$router.push("/about/alimony");
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.about === null ||
+                    this.sectionProgress.about < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
                 }
+                // next route
+                this.$router.push("/about/alimony");
             }
         },
     },
