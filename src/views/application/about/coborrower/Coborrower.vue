@@ -70,7 +70,6 @@ export default {
                     this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route
-                debugger;
                 if (this.localAbout.hasCoborrower === true) {
                     // coborrower exists so add coborrower questions to section total
                     const { sectionCount, coborrowerSections } =

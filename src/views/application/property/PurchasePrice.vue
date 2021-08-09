@@ -107,6 +107,8 @@ export default {
                     this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route
+                // TODO: if has coborrower, go to coborrower routes
+
                 this.$router.push("/income/income-history");
             }
 		}
