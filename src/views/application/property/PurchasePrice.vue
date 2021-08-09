@@ -8,14 +8,14 @@
 			<!-- Purchase price -->
 			<div class="inline-form-group">
 				<div class="label-container">
-					<app-label class-list="dark" for="purchasePrice">
+					<app-label :theme="appTheme" for="purchasePrice">
 						What is your purchase price?
 					</app-label>
 				</div>
 
 				<div class="inline-input-container">
 					<text-field
-						class-list="dark"
+						:theme="appTheme"
 						type="number"
 						id="purchasePrice"
 						:is-currency="true"
@@ -27,14 +27,14 @@
 			<!-- Down payment amount -->
 			<div class="inline-form-group">
 				<div class="label-container">
-					<app-label class-list="dark" for="purchasePrice">
+					<app-label :theme="appTheme" for="purchasePrice">
 						How much will your down payment be?
 					</app-label>
 				</div>
 
 				<div class="inline-input-container">
 					<text-field
-						class-list="dark hasIcon"
+                        :theme="appTheme"
 						type="number"
 						id="purchasePrice"
 						:is-currency="downPaymentType === '$'"
@@ -71,6 +71,7 @@
 				@advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
 				:local-posting="localDataIsPosting"
+                :theme="appTheme"
 			/>
 		</form>
 	</div>
@@ -84,7 +85,7 @@ const SECTION_NUMBER = 5;
 export default {
 	name: "PurchasePrice",
 	mixins: [property],
-	components: {},
+
 	data() {
 		return {
 			downPaymentType: "$"
@@ -97,19 +98,21 @@ export default {
                 // start loader
                 this.localDataIsPosting = true;
                 // post data
-                await this.postBorrowerProperty(this.localAbout);
+                await this.postBorrowerProperty(this.localProperty);
                 // post progress if newly completed
                 if (
-                    this.sectionProgress.about === null ||
-                    this.sectionProgress.about < SECTION_NUMBER
+                    this.sectionProgress.property === null ||
+                    this.sectionProgress.property < SECTION_NUMBER
                 ) {
-                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.localSectionProgress.property = SECTION_NUMBER;
                     this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route
-                // TODO: if has coborrower, go to coborrower routes
-
-                this.$router.push("/income/income-history");
+                if (this.borrower.about.hasCoborrower === true) {
+                    this.$router.push("/property/coborrower-address-history")
+                } else {
+                    this.$router.push("/income/income-history");
+                }
             }
 		}
 	}

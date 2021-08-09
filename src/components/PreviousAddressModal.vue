@@ -153,16 +153,12 @@ export default {
         profile: {
             type: Object,
         },
-        property: {
-            type: Object,
-        },
         previousAddress: {
             type: Object,
         },
     },
     data() {
         return {
-            localProperty: {},
             localPreviousAddress: {},
         };
     },
@@ -170,23 +166,13 @@ export default {
         ...mapState(["states"]),
     },
     watch: {
-        property() {
-            this.localProperty = this.deepClone(this.property);
-        },
         previousAddress() {
             this.localPreviousAddress = this.deepClone(this.previousAddress);
         },
     },
     methods: {
         saveLocalData() {
-            if (this.localProperty.addressHistory === null) {
-                this.localProperty.addressHistory = [this.localPreviousAddress];
-            } else {
-                this.localProperty.addressHistory.push(
-                    this.localPreviousAddress
-                );
-            }
-            this.$emit("save-address", this.localProperty);
+            this.$emit("save-address", this.localPreviousAddress);
         },
     },
 };

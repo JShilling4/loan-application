@@ -75,7 +75,6 @@
             :modal-action="modalAction"
             @close="closePreviousAddressModal()"
             :profile="borrower.profile"
-            :property="borrower.property"
             :previous-address="selectedPreviousAddress"
             @save-address="savePreviousAddress($event)"
         />
@@ -136,8 +135,7 @@ export default {
         computedAddressHistory() {
             const addresses = [];
             if (
-                this.borrower.property?.currentAddressInfo?.moveInDate !==
-                null
+                this.borrower.property?.currentAddressInfo?.moveInDate !== null
             ) {
                 const currentAddressObj = {
                     streetAddress:
@@ -161,11 +159,9 @@ export default {
                             ? this.borrower.profile.zipcode2
                             : this.borrower.profile.zipcode,
                     moveInDate:
-                        this.borrower.property?.currentAddressInfo
-                            ?.moveInDate,
+                        this.borrower.property?.currentAddressInfo?.moveInDate,
                     moveOutDate:
-                        this.borrower.property?.currentAddressInfo
-                            ?.moveOutDate,
+                        this.borrower.property?.currentAddressInfo?.moveOutDate,
                 };
                 addresses.push(currentAddressObj);
             }
@@ -207,8 +203,7 @@ export default {
                 this.modalAction = "Add";
 
                 if (
-                    this.borrower.property.currentAddressInfo.moveInDate ==
-                    null
+                    this.borrower.property.currentAddressInfo.moveInDate == null
                 ) {
                     this.openCurrentAddressModal();
                 } else {
@@ -218,10 +213,10 @@ export default {
             }
         },
 
-        async saveCurrentAddress(address) {
+        async saveCurrentAddress(propertyObj) {
             this.localDataIsPosting = true;
-            this.postBorrowerProperty(address).then(() => {
-                this.localProperty = address;
+            this.postBorrowerProperty(propertyObj).then(() => {
+                this.localProperty = propertyObj;
                 this.currentAddressModalShowing = false;
                 this.localDataIsPosting = false;
             });
@@ -229,8 +224,12 @@ export default {
 
         async savePreviousAddress(address) {
             this.localDataIsPosting = true;
-            this.postBorrowerProperty(address).then(() => {
-                this.localProperty = address;
+            if (this.localProperty.addressHistory === null) {
+                this.localProperty.addressHistory = [address];
+            } else {
+                this.localProperty.addressHistory.push(address);
+            }
+            this.postBorrowerProperty(this.localProperty).then(() => {
                 this.previousAddressModalShowing = false;
                 this.localDataIsPosting = false;
             });
@@ -246,16 +245,16 @@ export default {
                 // start loader
                 this.localDataIsPosting = true;
                 // post data
-                await this.postBorrowerProperty(this.localAbout);
+                await this.postBorrowerProperty(this.localProperty);
                 // post progress if newly completed
                 if (
-                    this.sectionProgress.about === null ||
-                    this.sectionProgress.about < SECTION_NUMBER
+                    this.sectionProgress.property === null ||
+                    this.sectionProgress.property < SECTION_NUMBER
                 ) {
-                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.localSectionProgress.property = SECTION_NUMBER;
                     this.postSectionProgress(this.localSectionProgress);
                 }
-                // next route
+                // next route (progress fork -> purchase -> refinance)
                 this.$router.push("/property/other-properties");
             }
         },

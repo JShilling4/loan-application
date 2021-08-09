@@ -31,7 +31,10 @@
                 </app-button>
             </div>
 
-            <add-other-properties v-if="localProperty.hasOtherProperties == true" />
+            <other-properties-table
+                v-if="localProperty.hasOtherProperties == true"
+                @save-property="saveOtherProperty($event)"
+            />
 
             <view-controls
                 @advance-app="submitPage()"
@@ -44,15 +47,17 @@
 </template>
 
 <script>
+// mixins
 import property from "@/includes/mixins/application/property";
-import AddOtherProperties from "./AddOtherProperties.vue";
+// components
+import OtherPropertiesTable from "@/components/OtherPropertiesTable.vue";
 
 const SECTION_NUMBER = 3;
 
 export default {
     name: "OtherProperties",
     components: {
-        "add-other-properties": AddOtherProperties,
+        "other-properties-table": OtherPropertiesTable,
     },
     mixins: [property],
 
@@ -62,18 +67,31 @@ export default {
                 ? (this.localProperty.hasOtherProperties = true)
                 : (this.localProperty.hasOtherProperties = false);
         },
+
+        saveOtherProperty(otherProperty) {
+            this.localDataIsPosting = true;
+            if (this.localProperty.otherProperties === null) {
+                this.localProperty.otherProperties = [otherProperty];
+            } else {
+                this.localProperty.otherProperties.push(otherProperty);
+            }
+            this.postBorrowerProperty(this.localProperty).then(() => {
+                this.localDataIsPosting = false;
+            });
+        },
+
         async submitPage() {
             if (this.localDataIsPosting == false) {
                 // start loader
                 this.localDataIsPosting = true;
                 // post data
-                await this.postBorrowerProperty(this.localAbout);
+                await this.postBorrowerProperty(this.localProperty);
                 // post progress if newly completed
                 if (
-                    this.sectionProgress.about === null ||
-                    this.sectionProgress.about < SECTION_NUMBER
+                    this.sectionProgress.property === null ||
+                    this.sectionProgress.property < SECTION_NUMBER
                 ) {
-                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.localSectionProgress.property = SECTION_NUMBER;
                     this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route

@@ -206,7 +206,24 @@ export function makeServer() {
                 "/coborrowerProfile",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.coborrowerProfile.update(1, data);
+                    switch (activeApplication) {
+                        case "profile": {
+                            schema.db.completedProfile.update(1, {
+                                coborrowerProfile: data,
+                            });
+                            return data;
+                        }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                coborrowerProfile: data,
+                            });
+                            return data;
+                        }
+                        default: {
+                            schema.db.newApplication.update(1, { coborrowerProfile: data });
+                            return data;
+                        }
+                    }
                 },
                 { timing }
             );
@@ -224,7 +241,24 @@ export function makeServer() {
                 "/borrowerAbout",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.borrowerAbout.update(1, data);
+                    switch (activeApplication) {
+                        case "profile": {
+                            schema.db.completedProfile.update(1, {
+                                borrowerAbout: data,
+                            });
+                            return data;
+                        }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                borrowerAbout: data,
+                            });
+                            return data;
+                        }
+                        default: {
+                            schema.db.newApplication.update(1, { borrowerAbout: data });
+                            return data;
+                        }
+                    }
                 },
                 { timing }
             );
@@ -242,43 +276,94 @@ export function makeServer() {
                 "/coborrowerAbout",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.coborrowerAbout.update(1, data);
+                    switch (activeApplication) {
+                        case "profile": {
+                            schema.db.completedProfile.update(1, {
+                                coborrowerAbout: data,
+                            });
+                            return data;
+                        }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                coborrowerAbout: data,
+                            });
+                            return data;
+                        }
+                        default: {
+                            schema.db.newApplication.update(1, { coborrowerAbout: data });
+                            return data;
+                        }
+                    }
                 },
                 { timing }
             );
 
             //*********************** BORROWER PROPERTY *********************************
-            this.get(
-                "/borrowerProperty",
-                (schema) => {
-                    return schema.db.borrowerProperty[0];
-                },
-                { timing }
-            );
+            // this.get(
+            //     "/borrowerProperty",
+            //     (schema) => {
+            //         return schema.db.borrowerProperty[0];
+            //     },
+            //     { timing }
+            // );
 
             this.post(
                 "/borrowerProperty",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.borrowerProperty.update(1, data);
+                    switch (activeApplication) {
+                        case "profile": {
+                            schema.db.completedProfile.update(1, {
+                                borrowerProperty: data,
+                            });
+                            return data;
+                        }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                borrowerProperty: data,
+                            });
+                            return data;
+                        }
+                        default: {
+                            schema.db.newApplication.update(1, { borrowerProperty: data });
+                            return data;
+                        }
+                    }
                 },
                 { timing }
             );
 
             //*********************** COBORROWER PROPERTY *********************************
-            this.get(
-                "/coborrowerProperty",
-                (schema) => {
-                    return schema.db.coborrowerProperty[0];
-                },
-                { timing }
-            );
+            // this.get(
+            //     "/coborrowerProperty",
+            //     (schema) => {
+            //         return schema.db.coborrowerProperty[0];
+            //     },
+            //     { timing }
+            // );
 
             this.post(
                 "/coborrowerProperty",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.coborrowerProperty.update(1, data);
+                    switch (activeApplication) {
+                        case "profile": {
+                            schema.db.completedProfile.update(1, {
+                                coborrowerProperty: data,
+                            });
+                            return data;
+                        }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                coborrowerProperty: data,
+                            });
+                            return data;
+                        }
+                        default: {
+                            schema.db.newApplication.update(1, { coborrowerProperty: data });
+                            return data;
+                        }
+                    }
                 },
                 { timing }
             );

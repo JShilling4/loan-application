@@ -20,7 +20,8 @@ export default {
             {
                 id: "property",
                 label: "Property",
-                sectionCount: 8,
+                sectionCount: 5,
+                coborrowerSections: 2,
                 destinationUrl: "/property/loan-type",
                 status: "",
             },

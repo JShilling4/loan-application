@@ -57,13 +57,13 @@ export default {
                 // start loader
                 this.localDataIsPosting = true;
                 // post data
-                await this.postBorrowerProperty(this.localAbout);
+                await this.postBorrowerProperty(this.localProperty);
                 // post progress if newly completed
                 if (
-                    this.sectionProgress.about === null ||
-                    this.sectionProgress.about < SECTION_NUMBER
+                    this.sectionProgress.property === null ||
+                    this.sectionProgress.property < SECTION_NUMBER
                 ) {
-                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.localSectionProgress.property = SECTION_NUMBER;
                     this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route (progress fork -> purchase -> refinance)

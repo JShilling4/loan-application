@@ -18,7 +18,6 @@ import Refinance from "../views/application/property/Refinance.vue";
 import AddressHistory from "../views/application/property/addressHistory/AddressHistory.vue";
 import CoborrowerAddressHistory from "../views/application/property/addressHistory/CoborrowerAddressHistory.vue";
 import OtherProperties from "../views/application/property/otherProperties/OtherProperties.vue";
-import AddOtherProperties from "../views/application/property/otherProperties/AddOtherProperties.vue";
 import CoborrowerAddOtherProperties from "../views/application/property/otherProperties/CoborrowerAddOtherProperties.vue";
 import PurchaseInfo from "../views/application/property/PurchaseInfo.vue";
 import PurchasePrice from "../views/application/property/PurchasePrice.vue";
@@ -283,15 +282,6 @@ const routes = [
                 },
                 component: AddressHistory,
             },
-            // Coborrower address history
-            {
-                path: "coborrower-address-history",
-                meta: {
-                    navItem: "property",
-                    requiresAuth: true,
-                },
-                component: CoborrowerAddressHistory,
-            },
             // Other Properties
             {
                 path: "other-properties",
@@ -300,24 +290,6 @@ const routes = [
                     requiresAuth: true,
                 },
                 component: OtherProperties,
-            },
-            // Add Other Properties
-            {
-                path: "add-properties",
-                meta: {
-                    navItem: "property",
-                    requiresAuth: true,
-                },
-                component: AddOtherProperties,
-            },
-            // Coborrower Add Other Properties
-            {
-                path: "add-coborrower-properties",
-                meta: {
-                    navItem: "property",
-                    requiresAuth: true,
-                },
-                component: CoborrowerAddOtherProperties,
             },
             // Purchase Info
             {
@@ -336,6 +308,24 @@ const routes = [
                     requiresAuth: true,
                 },
                 component: PurchasePrice,
+            },
+            // Coborrower address history
+            {
+                path: "coborrower-address-history",
+                meta: {
+                    navItem: "property",
+                    requiresAuth: true,
+                },
+                component: CoborrowerAddressHistory,
+            },
+            // Coborrower Add Other Properties
+            {
+                path: "add-coborrower-properties",
+                meta: {
+                    navItem: "property",
+                    requiresAuth: true,
+                },
+                component: CoborrowerAddOtherProperties,
             },
         ],
     },

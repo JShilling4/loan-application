@@ -71,12 +71,16 @@ export default {
                 }
                 // next route
                 if (this.localAbout.hasCoborrower === true) {
-                    // coborrower exists so add coborrower questions to section total
+                    // coborrower exists so add coborrower questions to section totals
                     const { sectionCount, coborrowerSections } =
                         this.navSection;
 
-                    await this.editNavigationSectionCount({
+                    this.editNavigationSectionCount({
                         section: "about",
+                        count: sectionCount + coborrowerSections,
+                    });
+                    this.editNavigationSectionCount({
+                        section: "property",
                         count: sectionCount + coborrowerSections,
                     });
                     this.$router.push("/about/coborrower/info");

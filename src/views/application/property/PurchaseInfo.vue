@@ -8,7 +8,7 @@
             <!-- Found Home -->
             <div class="inline-form-group">
                 <div class="label-container">
-                    <app-label class-list="dark">
+                    <app-label :theme="appTheme">
                         Have you found a home yet?
                     </app-label>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="inline-form-group">
                     <div class="label-container">
                         <app-label
-                            class-list="dark"
+                            :theme="appTheme"
                             for="propertyLocationCity"
                         >
                             Which city is the property located in?
@@ -51,7 +51,7 @@
 
                     <div class="inline-input-container">
                         <text-field
-                            class-list="dark"
+                            :theme="appTheme"
                             type="text"
                             id="propertyLocationCity"
                             v-model="localProperty.propertyLocationCity"
@@ -62,7 +62,7 @@
                 <!-- Property location state -->
                 <div class="inline-form-group">
                     <div class="label-container">
-                        <app-label class-list="dark">
+                        <app-label :theme="appTheme">
                             Which state is the property located in?
                         </app-label>
                     </div>
@@ -71,6 +71,7 @@
                         <multi-select
                             :options="states"
                             :can-clear="false"
+                            :class="[appTheme]"
                             v-model="localProperty.propertyLocationState"
                         />
                     </div>
@@ -83,7 +84,7 @@
                 <div class="inline-form-group">
                     <div class="label-container">
                         <app-label
-                            class-list="dark"
+                            :theme="appTheme"
                             for="propertyLocationCity"
                         >
                             In which city are you looking to buy?
@@ -92,7 +93,7 @@
 
                     <div class="inline-input-container">
                         <text-field
-                            class-list="dark"
+                            :theme="appTheme"
                             type="text"
                             id="propertyLocationCity"
                             v-model="localProperty.whereLookingCity"
@@ -103,7 +104,7 @@
                 <!-- Property location state -->
                 <div class="inline-form-group">
                     <div class="label-container">
-                        <app-label class-list="dark">
+                        <app-label :theme="appTheme">
                             In which state are you looking to buy?
                         </app-label>
                     </div>
@@ -112,6 +113,7 @@
                         <multi-select
                             :options="states"
                             :can-clear="false"
+                            :class="[appTheme]"
                             v-model="localProperty.whereLookingState"
                         />
                     </div>
@@ -122,7 +124,7 @@
             <div class="inline-form-group">
                 <div class="label-container">
                     <app-label
-                        class-list="dark"
+                        :theme="appTheme"
                         for="propertyUse"
                     >
                         How do you plan to use this property?
@@ -140,6 +142,7 @@
 							{ value: 'notApplicable', label: 'Not Applicable' }
 						]"
                         :can-clear="false"
+                        :class="[appTheme]"
                         v-model="localProperty.propertyUse"
                     />
                 </div>
@@ -148,7 +151,7 @@
             <!-- Real Estate Agent -->
             <div class="inline-form-group">
                 <div class="label-container">
-                    <app-label class-list="dark">
+                    <app-label :theme="appTheme">
                         Are you currently working with a real estate agent?
                     </app-label>
                 </div>
@@ -183,7 +186,7 @@
                 <div class="inline-form-group">
                     <div class="label-container">
                         <app-label
-                            class-list="dark"
+                            :theme="appTheme"
                             for="realEstateAgentName"
                         >
                             Name of Real Estate Agent?
@@ -192,7 +195,7 @@
 
                     <div class="inline-input-container">
                         <text-field
-                            class-list="dark"
+                            :theme="appTheme"
                             type="text"
                             id="realEstateAgentName"
                             v-model="localProperty.realEstateAgentName"
@@ -246,13 +249,13 @@ export default {
                 // start loader
                 this.localDataIsPosting = true;
                 // post data
-                await this.postBorrowerProperty(this.localAbout);
+                await this.postBorrowerProperty(this.localProperty);
                 // post progress if newly completed
                 if (
-                    this.sectionProgress.about === null ||
-                    this.sectionProgress.about < SECTION_NUMBER
+                    this.sectionProgress.property === null ||
+                    this.sectionProgress.property < SECTION_NUMBER
                 ) {
-                    this.localSectionProgress.about = SECTION_NUMBER;
+                    this.localSectionProgress.property = SECTION_NUMBER;
                     this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route

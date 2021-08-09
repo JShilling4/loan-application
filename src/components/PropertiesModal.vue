@@ -232,12 +232,6 @@ export default {
         modalAction: {
             type: String,
         },
-        profile: {
-            type: Object,
-        },
-        property: {
-            type: Object,
-        },
         otherProperty: {
             type: Object,
         },
@@ -245,7 +239,6 @@ export default {
 
     data() {
         return {
-            localProperty: {},
             localOtherProperty: {},
         };
     },
@@ -255,24 +248,13 @@ export default {
     },
 
     watch: {
-        property() {
-            this.localProperty = this.deepClone(this.property);
-        },
-
         otherProperty() {
             this.localOtherProperty = this.deepClone(this.otherProperty);
         },
     },
     methods: {
         saveLocalData() {
-            if (this.localProperty.otherProperties == null) {
-                this.localProperty.otherProperties = [this.localOtherProperty];
-            } else {
-                this.localProperty.otherProperties.push(
-                    this.localOtherProperty
-                );
-            }
-            this.$emit("save-property", this.localProperty);
+            this.$emit("save-property", this.localOtherProperty);
         },
     },
 };

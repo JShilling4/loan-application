@@ -21,10 +21,8 @@
 			:is-showing="propertyModalShowing"
 			:modal-action="modalAction"
 			@close="closePropertyModal()"
-			:profile="borrower.profile"
-			:property="borrower.property"
 			:other-property="selectedOtherProperty"
-			@save-property="saveOtherProperty"
+			@save-property="onSaveOtherProperty($event)"
 		/>
 	</div>
 </template>
@@ -37,8 +35,10 @@ import AddButton from "@/components/AddButton.vue";
 import PropertiesModal from "@/components/PropertiesModal.vue";
 
 export default {
-	name: "addOtherProperties",
+	name: "OtherPropertiesTable",
 	mixins: [property, otherProperties],
+    emits: ['save-property'],
+
 	components: {
 		"app-table": AppTable,
         "add-button": AddButton,
@@ -72,9 +72,9 @@ export default {
 	},
 
 	methods: {
-		saveOtherProperty(otherProperty) {
-			this.postBorrowerProperty(otherProperty);
-			this.propertyModalShowing = false;
+		onSaveOtherProperty(otherProperty) {
+            this.$emit("save-property", otherProperty);
+            this.propertyModalShowing = false;
 		}
 	}
 };
