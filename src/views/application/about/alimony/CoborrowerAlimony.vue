@@ -104,7 +104,7 @@ export default {
         compInputsShouldShow() {
             return (
                 this.localCoborrowerAbout.payOrReceiveSupport !== "NotApplicable" &&
-                this.localCoborrowerAbout.payOrReceiveSupport !== null
+                this.localCoborrowerAbout.payOrReceiveSupport != null
             );
         },
     },

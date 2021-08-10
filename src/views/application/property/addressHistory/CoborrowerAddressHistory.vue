@@ -1,6 +1,8 @@
 <template>
     <div class="coborrowerAddressHistory">
-        <h1 class="appHeading">Co-borrower Address History</h1>
+        <page-heading :theme="appTheme">
+            Coborrower Address History
+        </page-heading>
 
         <transition name="fade">
             <div

@@ -6,6 +6,7 @@ import {
     completedProfile,
     completedAbout,
     completedProperty,
+    completedAbout_cob,
 } from "./data/application";
 
 
@@ -21,6 +22,7 @@ export function makeServer() {
                 newApplication: newApplication,
                 completedProfile: completedProfile,
                 completedAbout: completedAbout,
+                completedAbout_coborrrower: completedAbout_cob,
                 completedProperty: completedProperty,
             });
         },
@@ -44,6 +46,10 @@ export function makeServer() {
                         case "about": {
                             activeApplication = "about";
                             return schema.db.completedAbout[0];
+                        }
+                        case "about_cob": {
+                            activeApplication = "about_cob";
+                            return schema.db.completedAbout_cob[0];
                         }
                         case "property": {
                             activeApplication = "property";
@@ -97,6 +103,13 @@ export function makeServer() {
                             }
                             return "OK";
                         }
+                        case "about_cob": {
+                            if (returnData) {
+                                activeApplication = "about_cob";
+                                return schema.db.completedAbout_cob[0];
+                            }
+                            return "OK";
+                        }
                         case "property": {
                             if (returnData) {
                                 activeApplication = "property";
@@ -146,6 +159,12 @@ export function makeServer() {
                             });
                             return schema.db.completedAbout[0].sectionProgress;
                         }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
+                                sectionProgress: data,
+                            });
+                            return schema.db.completedAbout_cob[0].sectionProgress;
+                        }
                         case "property": {
                             schema.db.completedProperty.update(1, {
                                 sectionProgress: data,
@@ -183,6 +202,12 @@ export function makeServer() {
                         }
                         case "about": {
                             schema.db.completedAbout.update(1, {
+                                borrowerProfile: data,
+                            });
+                            return data;
+                        }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
                                 borrowerProfile: data,
                             });
                             return data;
@@ -228,6 +253,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
+                                coborrowerProfile: data,
+                            });
+                            return data;
+                        }
                         case "property": {
                             schema.db.completedProperty.update(1, {
                                 coborrowerProfile: data,
@@ -265,6 +296,12 @@ export function makeServer() {
                         }
                         case "about": {
                             schema.db.completedAbout.update(1, {
+                                borrowerAbout: data,
+                            });
+                            return data;
+                        }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
                                 borrowerAbout: data,
                             });
                             return data;
@@ -310,6 +347,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
+                                coborrowerAbout: data,
+                            });
+                            return data;
+                        }
                         case "property": {
                             schema.db.completedProperty.update(1, {
                                 coborrowerAbout: data,
@@ -347,6 +390,12 @@ export function makeServer() {
                         }
                         case "about": {
                             schema.db.completedAbout.update(1, {
+                                borrowerProperty: data,
+                            });
+                            return data;
+                        }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
                                 borrowerProperty: data,
                             });
                             return data;
@@ -392,6 +441,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
+                                coborrowerProperty: data,
+                            });
+                            return data;
+                        }
                         case "property": {
                             schema.db.completedProperty.update(1, {
                                 coborrowerProperty: data,
@@ -433,6 +488,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
+                                borrowerIncome: data,
+                            });
+                            return data;
+                        }
                         case "property": {
                             schema.db.completedProperty.update(1, {
                                 borrowerIncome: data,
@@ -440,7 +501,7 @@ export function makeServer() {
                             return data;
                         }
                         default: {
-                            schema.db.newApplication.update(1, { borrowerProperty: data });
+                            schema.db.newApplication.update(1, { borrowerIncome: data });
                             return data;
                         }
                     }
@@ -461,7 +522,36 @@ export function makeServer() {
                 "/coborrowerIncome",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.coborrowerIncome.update(1, data);
+                    switch (activeApplication) {
+                        case "profile": {
+                            schema.db.completedProfile.update(1, {
+                                coborrowerIncome: data,
+                            });
+                            return data;
+                        }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                coborrowerIncome: data,
+                            });
+                            return data;
+                        }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
+                                coborrowerIncome: data,
+                            });
+                            return data;
+                        }
+                        case "property": {
+                            schema.db.completedProperty.update(1, {
+                                coborrowerIncome: data,
+                            });
+                            return data;
+                        }
+                        default: {
+                            schema.db.newApplication.update(1, { coborrowerIncome: data });
+                            return data;
+                        }
+                    }
                 },
                 { timing }
             );
@@ -488,6 +578,12 @@ export function makeServer() {
                         }
                         case "about": {
                             schema.db.completedAbout.update(1, {
+                                borrowerAssets: data,
+                            });
+                            return data;
+                        }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
                                 borrowerAssets: data,
                             });
                             return data;
@@ -520,7 +616,36 @@ export function makeServer() {
                 "/coborrowerAssets",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.coborrowerAssets.update(1, data);
+                    switch (activeApplication) {
+                        case "profile": {
+                            schema.db.completedProfile.update(1, {
+                                coborrowerAssets: data,
+                            });
+                            return data;
+                        }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                coborrowerAssets: data,
+                            });
+                            return data;
+                        }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
+                                coborrowerAssets: data,
+                            });
+                            return data;
+                        }
+                        case "property": {
+                            schema.db.completedProperty.update(1, {
+                                coborrowerAssets: data,
+                            });
+                            return data;
+                        }
+                        default: {
+                            schema.db.newApplication.update(1, { coborrowerAssets: data });
+                            return data;
+                        }
+                    }
                 },
                 { timing }
             );
@@ -547,6 +672,12 @@ export function makeServer() {
                         }
                         case "about": {
                             schema.db.completedAbout.update(1, {
+                                borrowerIdentity: data,
+                            });
+                            return data;
+                        }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
                                 borrowerIdentity: data,
                             });
                             return data;
@@ -579,7 +710,36 @@ export function makeServer() {
                 "/coborrowerIdentity",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.coborrowerIdentity.update(1, data);
+                    switch (activeApplication) {
+                        case "profile": {
+                            schema.db.completedProfile.update(1, {
+                                coborrowerIdentity: data,
+                            });
+                            return data;
+                        }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                coborrowerIdentity: data,
+                            });
+                            return data;
+                        }
+                        case "about_cob": {
+                            schema.db.completedAbout_cob.update(1, {
+                                coborrowerIdentity: data,
+                            });
+                            return data;
+                        }
+                        case "property": {
+                            schema.db.completedProperty.update(1, {
+                                coborrowerIdentity: data,
+                            });
+                            return data;
+                        }
+                        default: {
+                            schema.db.newApplication.update(1, { coborrowerIdentity: data });
+                            return data;
+                        }
+                    }
                 },
                 { timing }
             );
