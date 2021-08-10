@@ -32,7 +32,7 @@ export default {
 
         syncProfileWithStore() {
             this.localAssets = this.borrower.assets;
-            this.localCoborrowerAssets = this.deepClone(this.coborrower.assets);
+            this.localCoborrowerAssets = this.coborrower.assets;
             this.localSectionProgress = this.deepClone(this.sectionProgress);
         },
     },

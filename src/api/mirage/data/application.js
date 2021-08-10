@@ -527,6 +527,8 @@ export const completedAbout_cob = {
         birthDate: null,
         currentWorkYears: null,
     },
+
+    coborrowerAssets: null,
 };
 
 export const completedProperty = {

@@ -1,13 +1,18 @@
 <template>
     <div class="addAssets">
-        <h1 class="appHeading">Add Assets</h1>
+        <page-heading :theme="appTheme">
+            Coborrower Assets
+        </page-heading>
 
         <transition name="fade">
             <div
                 v-if="!localDataIsLoading"
                 class="pageWrapper"
             >
-                <span class="tableHeading">{{ coborrower.profile.firstName }}'s Assets</span>
+                <span
+                    v-if="tableShouldShow"
+                    class="tableHeading"
+                >{{ coborrower.profile.firstName }}'s Assets</span>
                 <transition name="fade">
                     <app-table
                         v-if="tableShouldShow"
@@ -25,6 +30,7 @@
                 <view-controls
                     @advance-app="submitPage()"
                     @retreat-app="$router.go(-1)"
+                    :theme="appTheme"
                 />
             </div>
         </transition>
@@ -58,8 +64,10 @@ import AddButton from "@/components/AddButton.vue";
 import AppTable from "@/components/AppTable.vue";
 import AssetModal from "@/components/AssetModal.vue";
 
+const SECTION_NUMBER = 2;
+
 export default {
-    name: "AddAssets",
+    name: "CoborrowerAddAssets",
     mixins: [assets, addAssets],
     components: {
         "add-button": AddButton,
@@ -99,7 +107,7 @@ export default {
 
     computed: {
         computedAssets() {
-            return this.localAssets !== null ? this.localAssets : null;
+            return this.localCoborrowerAssets != null ? this.localCoborrowerAssets : null;
         },
         tableShouldShow() {
             if (!this.computedAssets) {
@@ -130,9 +138,14 @@ export default {
         },
 
         async saveAsset(asset) {
+            if (this.localCoborrowerAssets === null) {
+                this.localCoborrowerAssets = [asset];
+            } else {
+                this.localCoborrowerAssets.push(asset);
+            }
+
             this.localDataIsPosting = true;
-            this.postCoborrowerAssets(asset).then(() => {
-                this.localAsset = asset;
+            this.postCoborrowerAssets(this.localCoborrowerAssets).then(() => {
                 this.assetModalShowing = false;
                 this.localDataIsPosting = false;
             });
@@ -144,8 +157,7 @@ export default {
         },
 
         submitPage() {
-            this.editSectionProgress(2);
-            this.$router.push("/identity/declarations");
+            this.$router.push("/identity/coborrower-declarations");
         },
     },
 };

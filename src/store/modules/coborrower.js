@@ -49,7 +49,7 @@ export default {
         },
 
         SAVE_COBORROWER_ASSETS(state, payload) {
-            state.assets = state.assets.concat(payload);
+            state.assets = payload;
         },
 
         SAVE_COBORROWER_IDENTITY(state, payload) {

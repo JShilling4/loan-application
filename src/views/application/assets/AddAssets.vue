@@ -1,7 +1,7 @@
 <template>
     <div class="addAssets">
         <page-heading :theme="appTheme">
-            Add Assets
+            Assets
         </page-heading>
 
         <transition name="fade">
@@ -148,7 +148,6 @@ export default {
 
             this.localDataIsPosting = true;
             this.postBorrowerAssets(this.localAssets).then(() => {
-                this.localAsset = asset;
                 this.assetModalShowing = false;
                 this.localDataIsPosting = false;
             });
