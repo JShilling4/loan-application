@@ -19,7 +19,7 @@
             key="3"
         />
 
-        <progress-bar v-if="sectionProgress && currentNavItem !== null" />
+        <progress-bar v-if="sectionProgress && currentNavItem != null" />
 
         <router-view class="child-view" v-slot="{ Component }">
             <transition name="fade" mode="out-in">

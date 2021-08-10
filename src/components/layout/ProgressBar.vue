@@ -1,5 +1,5 @@
 <template>
-	<nav v-if="progress" class="progressBar">
+	<nav class="progressBar">
 		<div v-for="item in navItems" :key="item.label">
 			<nav-item
 				:label="item.label"
