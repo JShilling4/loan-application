@@ -32,9 +32,9 @@ export default {
 // not completed response
 
 // export default {
-// 	creditCheckAuthorized: null,
-// 	incomeHistory: null,
-// 	ssn: null,
-// 	birthDate: null,
-//  currentWorkYears: null,
+//     creditCheckAuthorized: null,
+//     incomeHistory: null,
+//     ssn: null,
+//     birthDate: null,
+//     currentWorkYears: null,
 // };

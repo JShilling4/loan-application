@@ -361,6 +361,7 @@ export const completedAbout = {
 };
 
 export const completedAbout_cob = {
+    token: "about_cob",
     sectionProgress: {
         profile: 1,
         about: 11,
@@ -370,7 +371,7 @@ export const completedAbout_cob = {
         identity: null,
         review: null,
     },
-    token: "about_cob",
+
     borrowerProfile: {
         firstName: "Johnny",
         middleInitial: "C",
@@ -517,6 +518,14 @@ export const completedAbout_cob = {
         addressHistory: null,
         hasOtherProperties: null,
         otherProperties: null,
+    },
+
+    coborrowerIncome: {
+        creditCheckAuthorized: null,
+        incomeHistory: null,
+        ssn: null,
+        birthDate: null,
+        currentWorkYears: null,
     },
 };
 

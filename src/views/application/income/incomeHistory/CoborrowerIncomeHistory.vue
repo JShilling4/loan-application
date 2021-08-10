@@ -1,6 +1,8 @@
 <template>
     <div class="coborrowerIncomeHistory">
-        <h1 class="appHeading">Co-borrower Income History</h1>
+        <page-heading :theme="appTheme">
+            Coborrower Income History
+        </page-heading>
 
         <transition name="fade">
             <div
@@ -36,7 +38,11 @@
                     />
                 </div>
 
-                <view-controls @advance-app="submitPage()" @retreat-app="$router.go(-1)" />
+                <view-controls
+                    @advance-app="submitPage()"
+                    @retreat-app="$router.go(-1)"
+                    :theme="appTheme"
+                />
             </div>
         </transition>
 
@@ -55,7 +61,6 @@
             :modal-action="modalAction"
             @close="closeIncomeModal()"
             :profile="coborrower.profile"
-            :income="coborrower.income"
             :income-details="selectedIncomeDetails"
             @save-income="saveIncomeDetails($event)"
         />
@@ -69,6 +74,8 @@ import AddButton from "@/components/AddButton.vue";
 import AppTable from "@/components/AppTable.vue";
 import IncomeModal from "@/components/IncomeModal.vue";
 
+const SECTION_NUMBER = 3;
+
 export default {
     name: "IncomeHistory",
     mixins: [income, incomeHistory],
@@ -77,6 +84,7 @@ export default {
         "app-table": AppTable,
         "income-modal": IncomeModal,
     },
+
     data() {
         return {
             tableColumns: [
@@ -86,7 +94,7 @@ export default {
                 },
                 {
                     label: "Description",
-                    field: "description",
+                    field: "incomeType",
                 },
                 {
                     label: "Start Date",
@@ -99,16 +107,17 @@ export default {
                 {
                     label: "Edit",
                     field: "edit",
-                    tdClass: "center"
+                    tdClass: "center",
                 },
                 {
                     label: "Delete",
                     field: "delete",
-                    tdClass: "center"
+                    tdClass: "center",
                 },
             ],
         };
     },
+
     computed: {
         computedIncomeHistory() {
             return this.localCoborrowerIncome.incomeHistory !== null
@@ -146,14 +155,42 @@ export default {
             }
         },
 
+        async saveIncomeDetails(income) {
+            this.localDataIsPosting = true;
+
+            if (this.localCoborrowerIncome.incomeHistory == null) {
+                this.localCoborrowerIncome.incomeHistory = [income];
+            } else {
+                this.localCoborrowerIncome.incomeHistory.push(income);
+            }
+
+            this.postBorrowerIncome(this.localCoborrowerIncome).then(() => {
+                this.incomeDetailsModalShowing = false;
+                this.localDataIsPosting = false;
+            });
+        },
+
         removeIncome(income) {
             console.log(income);
             // TODO: delete address
         },
 
-        submitPage() {
-            this.editSectionProgress(3);
-            this.$router.push("/income/credit-check");
+        async submitPage() {
+            if (this.localDataIsPosting !== true) {
+                this.localDataIsPosting = true;
+                await this.postCoborrowerIncome(this.localCoborrowerIncome);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.income === null ||
+                    this.sectionProgress.income < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.income = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                this.$router.push("/assets/entry-options");
+            }
+
         },
     },
 };
