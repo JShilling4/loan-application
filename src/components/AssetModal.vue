@@ -107,32 +107,18 @@ export default {
     },
     data() {
         return {
-            localAssets: [],
             localAsset: {},
         };
     },
-    computed: {},
     watch: {
-        assets() {
-            this.localAssets = this.assets;
-        },
         asset() {
             this.localAsset = this.deepClone(this.asset);
         },
     },
     methods: {
         saveLocalData() {
-            if (this.localAssets === null) {
-                this.localAssets = [this.localAsset];
-            } else {
-                this.localAssets.push(this.localAsset);
-            }
             this.$emit("save-asset", this.localAsset);
         },
-    },
-
-    mounted() {
-        this.localAsset = this.deepClone(this.asset);
     },
 };
 </script>

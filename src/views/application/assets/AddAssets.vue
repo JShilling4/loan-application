@@ -1,13 +1,18 @@
 <template>
     <div class="addAssets">
-        <h1 class="appHeading">Add Assets</h1>
+        <page-heading :theme="appTheme">
+            Add Assets
+        </page-heading>
 
         <transition name="fade">
             <div
                 v-if="!localDataIsLoading"
                 class="pageWrapper"
             >
-                <span class="tableHeading">{{ borrower.profile.firstName }}'s Assets</span>
+                <span
+                    v-if="tableShouldShow"
+                    class="tableHeading"
+                >{{ borrower.profile.firstName }}'s Assets</span>
                 <transition name="fade">
 
                     <app-table
@@ -26,6 +31,8 @@
                 <view-controls
                     @advance-app="submitPage()"
                     @retreat-app="$router.go(-1)"
+                    :local-posting="localDataIsPosting"
+                    :theme="appTheme"
                 />
             </div>
         </transition>
@@ -58,6 +65,8 @@ import addAssets from "@/includes/mixins/application/addAssets";
 import AddButton from "@/components/AddButton.vue";
 import AppTable from "@/components/AppTable.vue";
 import AssetModal from "@/components/AssetModal.vue";
+
+const SECTION_NUMBER = 1;
 
 export default {
     name: "AddAssets",
@@ -131,8 +140,14 @@ export default {
         },
 
         async saveAsset(asset) {
+            if (this.localAssets === null) {
+                this.localAssets = [asset];
+            } else {
+                this.localAssets.push(asset);
+            }
+
             this.localDataIsPosting = true;
-            this.postBorrowerAssets(asset).then(() => {
+            this.postBorrowerAssets(this.localAssets).then(() => {
                 this.localAsset = asset;
                 this.assetModalShowing = false;
                 this.localDataIsPosting = false;
@@ -144,9 +159,29 @@ export default {
             // TODO: delete address
         },
 
-        submitPage() {
-            this.editSectionProgress(1);
-            this.$router.push("/assets/coborrower-add-assets");
+        async submitPage() {
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postBorrowerAssets(this.localAssets);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.assets === null ||
+                    this.sectionProgress.assets < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.assets = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                if (this.borrower.about.hasCoborrower) {
+                    this.$router.push("/assets/coborrower-add-assets");
+                } else {
+                    this.$router.push("/identity/declarations");
+                }
+
+            }
+
         },
     },
 };

@@ -1,6 +1,8 @@
 <template>
     <div v-if="!holdPageLoad" class="assetChoices">
-        <h1 class="appHeading">Assets</h1>
+        <page-heading :theme="appTheme">
+            Assets
+        </page-heading>
 
         <div class="body-wrapper">
             <p class="pageCopy">
