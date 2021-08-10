@@ -69,8 +69,9 @@ export function makeServer() {
                 "/postProfileAndLogin",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    const { email, password, profile } = data;
+                    const { email, password, profile, sectionProgress } = data;
                     schema.db.newApplication.update(1, { borrowerProfile: profile });
+                    schema.db.newApplication.update(1, { sectionProgress: sectionProgress });
                     return schema.db.newApplication[0];
                 },
                 { timing }

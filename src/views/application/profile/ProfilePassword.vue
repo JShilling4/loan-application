@@ -39,12 +39,13 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 import profile from "@/includes/mixins/application/profile";
 
 export default {
     name: "ProfilePassword",
     mixins: [profile],
+
     props: {
         toggleComponent: {
             type: Function,
@@ -56,14 +57,25 @@ export default {
             type: Object,
         },
     },
+
     data() {
         return {
             password: null,
             confirmPassword: null,
             localProfile: {},
+            localSectionProgress: {},
             localDataIsPosting: false,
         };
     },
+
+    computed: {
+        ...mapState(["application"]),
+
+        sectionProgress() {
+            return this.application.sectionProgress;
+        }
+    },
+
     methods: {
         ...mapActions([
             "logIn",
@@ -80,7 +92,8 @@ export default {
                     password: this.password,
                     profile: this.localProfile,
                 }).then(() => {
-                    this.postSectionProgress({ profile: 1 }).then(() => {
+                    this.localSectionProgress.profile = 1;
+                    this.postSectionProgress(this.localSectionProgress).then(() => {
                         this.$router.push("/about/referral");
                     });
                 });
@@ -88,6 +101,7 @@ export default {
         },
     },
     mounted() {
+        this.localSectionProgress = this.deepClone(this.sectionProgress);
         this.localProfile = this.deepClone(this.profile);
     },
 };

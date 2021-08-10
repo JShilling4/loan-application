@@ -1,6 +1,9 @@
 <template>
     <div class="review">
-        <h1 class="appHeading">Let's review your application!</h1>
+        <page-heading :theme="appTheme">
+            Let's review your application!
+        </page-heading>
+
         <div class="pageWrapper">
 
             <div class="review-box">
@@ -82,14 +85,12 @@ export default {
     },
 
     computed: {
-        ...mapState(["borrower", "coborrower"]),
+        ...mapState(["borrower", "coborrower", "appTheme"]),
 
         activeSection() {
             return this.sections.find((sec) => sec.isExpanded);
         },
-        borrower() {
-            return this.borrower.borrower;
-        },
+
         dataViewObject() {
             switch(this.activeSection?.title) {
                 case "Profile": {

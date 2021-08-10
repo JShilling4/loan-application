@@ -137,7 +137,7 @@ export default {
                 // start loader
                 this.localDataIsPosting = true;
                 // post data
-                await this.postBorrowerAbout(this.localAbout);
+                await this.postCoborrowerAbout(this.localCoborrowerAbout);
                 // post progress if newly completed
                 if (
                     this.sectionProgress.about === null ||

@@ -15,37 +15,37 @@ export default {
 
     mutations: {
         SAVE_COBORROWER_PROFILE(state, payload) {
-            state.coborrower.profile = {
-                ...state.coborrower.profile,
+            state.profile = {
+                ...state.profile,
                 ...payload,
             };
         },
 
         SAVE_COBORROWER_ABOUT(state, payload) {
-            state.coborrower.about = { ...state.coborrower.about, ...payload };
+            state.about = { ...state.about, ...payload };
         },
 
         SAVE_COBORROWER_PROPERTY(state, payload) {
-            state.coborrower.property = {
-                ...state.coborrower.property,
+            state.property = {
+                ...state.property,
                 ...payload,
             };
         },
 
         SAVE_COBORROWER_INCOME(state, payload) {
-            state.coborrower.income = {
-                ...state.coborrower.income,
+            state.income = {
+                ...state.income,
                 ...payload,
             };
         },
 
         SAVE_COBORROWER_ASSETS(state, payload) {
-            state.coborrower.assets = state.coborrower.assets.concat(payload);
+            state.assets = state.assets.concat(payload);
         },
 
         SAVE_COBORROWER_IDENTITY(state, payload) {
             state.coborrower.identity = {
-                ...state.coborrower.identity,
+                ...state.identity,
                 ...payload,
             };
         },
