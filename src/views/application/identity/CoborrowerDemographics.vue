@@ -1,6 +1,9 @@
 <template>
     <div class="coborrowerDemographics">
-        <h1 class="appHeading">Coborrower Demographics</h1>
+        <page-heading :theme="appTheme">
+            Coborrower Demographics
+        </page-heading>
+
         <div
             v-if="localCoborrowerIdentity.demographics"
             class="pageWrapper"
@@ -36,7 +39,10 @@
                 @retreat="goToPreviousQuestion()"
             >
                 <!-- Ethnicity -->
-                <div v-if="activeSet === 1" class="input-group">
+                <div
+                    v-if="activeSet === 1"
+                    class="input-group"
+                >
                     <app-label theme="dark">What is your ethnicity?</app-label>
                     <multi-select
                         :options="[
@@ -60,7 +66,10 @@
                 </div>
 
                 <!-- Gender -->
-                <div v-if="activeSet === 2" class="input-group">
+                <div
+                    v-if="activeSet === 2"
+                    class="input-group"
+                >
                     <app-label theme="dark">What is your gender?</app-label>
                     <multi-select
                         :options="[
@@ -84,7 +93,10 @@
                 </div>
 
                 <!-- Race -->
-                <div v-if="activeSet === 3" class="input-group">
+                <div
+                    v-if="activeSet === 3"
+                    class="input-group"
+                >
                     <app-label theme="dark">What is your race?</app-label>
                     <multi-select
                         mode="tags"
@@ -128,6 +140,7 @@
             <view-controls
                 @advance-app="submitPage()"
                 @retreat-app="$router.go(-1)"
+                :theme="appTheme"
             />
         </div>
 
@@ -146,16 +159,30 @@
 import identity from "@/includes/mixins/application/identity";
 import demographics from "@/includes/mixins/application/demographics";
 
+const SECTION_NUMBER = 4;
+
 export default {
     name: "CoborrowerDemographics",
     mixins: [identity, demographics],
-    components: {},
-    data() {
-        return {};
-    },
+
     methods: {
-        submitPage() {
-            this.$router.push("/review");
+        async submitPage() {
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postCoborrowerIdentity(this.localCoborrowerIdentity);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.identity === null ||
+                    this.sectionProgress.identity < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.identity = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                this.$router.push("/review");
+            }
         },
     },
 };
@@ -192,7 +219,8 @@ export default {
     }
 }
 
-.question, label {
+.question,
+label {
     text-align: center;
     color: #fff;
     font-weight: 600;

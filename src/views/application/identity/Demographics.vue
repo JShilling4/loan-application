@@ -3,6 +3,7 @@
         <page-heading :theme="appTheme">
             Demographics
         </page-heading>
+
         <div
             v-if="localIdentity.demographics"
             class="pageWrapper"
@@ -153,10 +154,7 @@ const SECTION_NUMBER = 2;
 export default {
     name: "Demographics",
     mixins: [identity, demographics],
-    components: {},
-    data() {
-        return {};
-    },
+
     methods: {
         async submitPage() {
             if (this.localDataIsPosting == false) {
@@ -178,9 +176,7 @@ export default {
                 } else {
                     this.$router.push("/review");
                 }
-
             }
-
         },
     },
 };

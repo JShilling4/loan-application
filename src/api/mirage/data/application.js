@@ -529,6 +529,37 @@ export const completedAbout_cob = {
     },
 
     coborrowerAssets: null,
+
+    coborrowerIdentity: {
+        declarations: {
+            citizenshipStatus: null,
+            primaryResidence: null,
+            hadOwnershipInterest: null,
+            propertyType: null,
+            howTitleHeld: null,
+            hasRelationToSeller: null,
+            isBorrowingMoney: null,
+            borrowedAmount: null,
+            hasUndisclosedAdditionalLoan: null,
+            hasUndisclosedNewCredit: null,
+            hasadditionalLien: null,
+            hasUndisclosedDebt: null,
+            outstandingJudgements: null,
+            hasDelinquentDebt: null,
+            hasLawsuitLiability: null,
+            hasConveyedTitle: null,
+            hadPreforeclosureOrShortsale: null,
+            hadRecentForeclosure: null,
+            hasDeclaredBankruptcy: null,
+            bankruptciesFiled: null,
+        },
+        demographics: {
+            isOptingOut: false,
+            ethnicity: null,
+            gender: null,
+            race: null,
+        },
+    },
 };
 
 export const completedProperty = {

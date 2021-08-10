@@ -9,7 +9,12 @@ export default {
         assets: [],
         identity: {
             declarations: {},
-            demographics: {},
+            demographics: {
+                willProvideInformation: null,
+                gender: null,
+                ethnicity: null,
+                race: null,
+            },
         },
     },
 
@@ -53,7 +58,7 @@ export default {
         },
 
         SAVE_COBORROWER_IDENTITY(state, payload) {
-            state.coborrower.identity = {
+            state.identity = {
                 ...state.identity,
                 ...payload,
             };

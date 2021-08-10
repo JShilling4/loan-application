@@ -1,6 +1,9 @@
 <template>
     <div class="declarations">
-        <h1 class="appHeading">Coborrower Declarations</h1>
+        <page-heading :theme="appTheme">
+            Coborrower Declarations
+        </page-heading>
+
         <div v-if="localCoborrowerIdentity.declarations" class="pageWrapper">
             <p class="pageCopy">
                 The federal government requires us to ask the following questions.
@@ -565,6 +568,7 @@
             <view-controls
                 @advance-app="submitQuestion()"
                 @retreat-app="goToPreviousPage()"
+                :theme="appTheme"
             />
         </div>
 
@@ -583,18 +587,30 @@
 import identity from "@/includes/mixins/application/identity";
 import declarations from "@/includes/mixins/application/declarations";
 
+const SECTION_NUMBER = 3;
+
 export default {
     name: "CoborrowerDeclarations",
     mixins: [identity, declarations],
-    data() {
-        return {
-            localCoborrowerDeclarations: {},
-        };
-    },
-    computed: {},
+
     methods: {
-        submitQuestion() {
-            this.$router.push("/identity/demographics");
+        async submitQuestion() {
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postCoborrowerIdentity(this.localCoborrowerIdentity);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.identity === null ||
+                    this.sectionProgress.identity < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.identity = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                this.$router.push("/identity/coborrower-demographics");
+            }
         },
     },
 };
