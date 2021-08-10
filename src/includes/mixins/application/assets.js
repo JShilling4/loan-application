@@ -35,28 +35,15 @@ export default {
             this.localCoborrowerAssets = this.deepClone(this.coborrower.assets);
             this.localSectionProgress = this.deepClone(this.sectionProgress);
         },
-
-        editSectionProgress(part, config = { force: false }) {
-            const { force } = config;
-            if (part === 1) {
-                if (this.sectionProgress.assets === null) {
-                    this.localSectionProgress.assets = 1;
-                    this.postSectionProgress(this.localSectionProgress);
-                }
-            } else if (force === true) {
-                this.localSectionProgress.assets = part;
-                this.postSectionProgress(this.localSectionProgress);
-            } else if (this.sectionProgress.assets == null || this.sectionProgress.assets < part) {
-                this.localSectionProgress.assets = part;
-                this.postSectionProgress(this.sectionProgress);
-            }
-        },
     },
     mounted() {
         this.syncProfileWithStore(); // async load data to hydrate
         this.localDataIsLoading = false;
         if (this.$route.name === "assetEntryOptions") {
-            if (this.borrower.assets.length > 0) {
+            if (this.borrower.assets == null) {
+                this.localAssets = [];
+            }
+            if (this.localAssets.length > 0) {
                 this.$router.replace("/assets/add-assets");
             } else {
                 this.holdPageLoad = false;
