@@ -8,12 +8,6 @@ import {
     completedProperty,
 } from "./data/application";
 
-import borrowerIncome from "./data/borrowerIncome";
-import coborrowerIncome from "./data/coborrowerIncome";
-import borrowerAssets from "./data/borrowerAssets";
-import coborrowerAssets from "./data/coborrowerAssets";
-import borrowerIdentity from "./data/borrowerIdentity";
-import coborrowerIdentity from "./data/coborrowerIdentity";
 
 // export function makeServer({ environment = "development" } = {}) {
 export function makeServer() {
@@ -24,12 +18,6 @@ export function makeServer() {
 
         seeds(server) {
             server.db.loadData({
-                borrowerIncome: borrowerIncome,
-                coborrowerIncome: coborrowerIncome,
-                borrowerAssets: borrowerAssets,
-                coborrowerAssets: coborrowerAssets,
-                borrowerIdentity: borrowerIdentity,
-                coborrowerIdentity: coborrowerIdentity,
                 newApplication: newApplication,
                 completedProfile: completedProfile,
                 completedAbout: completedAbout,
@@ -490,7 +478,30 @@ export function makeServer() {
                 "/borrowerAssets",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.borrowerAssets.update(1, data);
+                    switch (activeApplication) {
+                        case "profile": {
+                            schema.db.completedProfile.update(1, {
+                                borrowerAssets: data,
+                            });
+                            return data;
+                        }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                borrowerAssets: data,
+                            });
+                            return data;
+                        }
+                        case "property": {
+                            schema.db.completedProperty.update(1, {
+                                borrowerAssets: data,
+                            });
+                            return data;
+                        }
+                        default: {
+                            schema.db.newApplication.update(1, { borrowerAssets: data });
+                            return data;
+                        }
+                    }
                 },
                 { timing }
             );

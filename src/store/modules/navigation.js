@@ -36,7 +36,8 @@ export default {
             {
                 id: "assets",
                 label: "Assets",
-                sectionCount: 2,
+                sectionCount: 1,
+                coborrowerSections: 1,
                 destinationUrl: "/assets",
                 status: "",
             },

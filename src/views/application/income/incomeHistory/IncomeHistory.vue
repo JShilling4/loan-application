@@ -33,8 +33,9 @@
 
                 <!-- Current Work Years -->
                 <div class="inline-group">
-                    <app-label class-list="dark">{{ $t('formLabels.currentWorkYears') }}</app-label>
+                    <app-label :theme="appTheme">{{ $t('formLabels.currentWorkYears') }}</app-label>
                     <text-field
+                        :theme="appTheme"
                         v-model="localIncome.currentWorkYears"
                         text-align="center"
                     />
@@ -43,6 +44,8 @@
                 <view-controls
                     @advance-app="submitPage()"
                     @retreat-app="$router.go(-1)"
+                    :local-posting="localDataIsPosting"
+                    :theme="appTheme"
                 />
             </div>
         </transition>
@@ -95,7 +98,7 @@ export default {
                 },
                 {
                     label: "Description",
-                    field: "description",
+                    field: "incomeType",
                 },
                 {
                     label: "Start Date",

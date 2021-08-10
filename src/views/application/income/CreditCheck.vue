@@ -94,6 +94,7 @@
                             type="text"
                             :theme="appTheme"
                             id="dob"
+                            name="birthdate"
                             v-model="localCoborrowerIncome.birthDate"
                             placeholder="MM/DD/YYYY"
                         />
