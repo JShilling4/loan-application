@@ -22,7 +22,7 @@ export function makeServer() {
                 newApplication: newApplication,
                 completedProfile: completedProfile,
                 completedAbout: completedAbout,
-                completedAbout_coborrrower: completedAbout_cob,
+                completedAbout_cob: completedAbout_cob,
                 completedProperty: completedProperty,
             });
         },

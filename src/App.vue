@@ -105,10 +105,8 @@ export default {
         ]),
     },
     mounted() {
-        // DATA NEEDED TO LOAD PAGE
-        // this.fetchSectionProgress();
-        // this.fetchBorrowerProfile();
-        // this.updateCoborrowerProfile();
+        // determine section progress based on data
+
     },
 };
 </script>

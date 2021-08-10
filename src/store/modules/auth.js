@@ -18,7 +18,7 @@ export default {
             localStorage.removeItem("lb");
             state.token = null;
             state.loggedIn = false;
-        }
+        },
     },
 
     actions: {
@@ -27,6 +27,11 @@ export default {
                 .login(credentials)
                 .then((response) => {
                     commit("SAVE_BORROWER_DATA", response.data);
+                    commit("SAVE_COBORROWER_DATA", response.data);
+                    commit(
+                        "SET_APP_LOAD_SECTION_COUNTS",
+                        response.data.borrowerAbout.hasCoborrower
+                    );
                     commit("SAVE_SECTION_PROGRESS", response.data.sectionProgress);
                     commit("SAVE_TOKEN", response.data.token);
                     commit("SET_LOGGED_IN", true);
@@ -46,17 +51,20 @@ export default {
 
         // Validates the current user's token and refreshes it
         // with new data from the API.
-        validateToken({ commit, state }) {
+        validateToken({ commit, dispatch, state }) {
             if (!state.token) return Promise.resolve(null);
             const returnData = state.loggedIn ? false : true;
             // console.log(`token = ${state.token}`)
             return accountApi
                 .validateToken({ token: state.token, returnData })
                 .then((response) => {
-                    const { data } = response;
-                    if (data !== "OK") {
-                        commit("SAVE_BORROWER_DATA", data);
-                        commit("SAVE_SECTION_PROGRESS", data.sectionProgress);
+                    if (response.data !== "OK") {
+                        commit("SAVE_BORROWER_DATA", response.data);
+                        commit(
+                            "SET_APP_LOAD_SECTION_COUNTS",
+                            response.data.borrowerAbout.hasCoborrower
+                        );
+                        commit("SAVE_SECTION_PROGRESS", response.data.sectionProgress);
                         commit("SET_LOGGED_IN", true);
                         return true;
                     }

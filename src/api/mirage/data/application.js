@@ -370,7 +370,7 @@ export const completedAbout_cob = {
         identity: null,
         review: null,
     },
-    token: "about_coborrower",
+    token: "about_cob",
     borrowerProfile: {
         firstName: "Johnny",
         middleInitial: "C",
@@ -392,7 +392,7 @@ export const completedAbout_cob = {
     },
 
     borrowerAbout: {
-        hasCoborrower: false,
+        hasCoborrower: true,
         hasCoborrowerAuthorization: null,
         referralSource: "Radio",
         referralSourceName: null,
@@ -503,6 +503,20 @@ export const completedAbout_cob = {
         payOrReceiveSupport: "Pay",
         supportType: "ChildSupport",
         supportAmount: "750",
+    },
+
+    coborrowerProperty: {
+        currentAddressInfo: {
+            moveInDate: null,
+            moveOutDate: "Present",
+            propertyOwner: null,
+            propertyPlan: null,
+            propertyValue: null,
+            monthlyRent: null,
+        },
+        addressHistory: null,
+        hasOtherProperties: null,
+        otherProperties: null,
     },
 };
 

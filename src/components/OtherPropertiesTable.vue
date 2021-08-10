@@ -3,9 +3,9 @@
 		<transition name="fade">
 			<div v-if="!localDataIsLoading" class="table-wrapper">
 				<app-table
-					v-if="borrower.property.otherProperties !== null"
+					v-if="otherProperties !== null"
 					:columns="tableColumns"
-					:rows="borrower.property.otherProperties"
+					:rows="otherProperties"
 					@edit="loadPropertyModal"
 				/>
 
@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import property from "@/includes/mixins/application/property";
 import otherProperties from "@/includes/mixins/application/otherProperties";
 import AppTable from "@/components/AppTable.vue";
 import AddButton from "@/components/AddButton.vue";
@@ -36,8 +35,17 @@ import PropertiesModal from "@/components/PropertiesModal.vue";
 
 export default {
 	name: "OtherPropertiesTable",
-	mixins: [property, otherProperties],
     emits: ['save-property'],
+    mixins: [otherProperties],
+
+    props: {
+        otherProperties: {
+            type: Array,
+        },
+        localDataIsLoading: {
+            type: Boolean,
+        }
+    },
 
 	components: {
 		"app-table": AppTable,

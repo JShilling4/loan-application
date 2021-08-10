@@ -140,6 +140,7 @@ export default {
     name: "PreviousAddressModal",
     components: {},
     mixins: [deepClone],
+
     props: {
         isShowing: {
             type: Boolean,
@@ -157,19 +158,23 @@ export default {
             type: Object,
         },
     },
+
     data() {
         return {
             localPreviousAddress: {},
         };
     },
+
     computed: {
         ...mapState(["states"]),
     },
+
     watch: {
         previousAddress() {
             this.localPreviousAddress = this.deepClone(this.previousAddress);
         },
     },
+
     methods: {
         saveLocalData() {
             this.$emit("save-address", this.localPreviousAddress);

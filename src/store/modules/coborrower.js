@@ -14,6 +14,15 @@ export default {
     },
 
     mutations: {
+        SAVE_BORROWER_DATA(state, payload) {
+            state.profile = payload.coborrowerProfile;
+            state.about = payload.coborrowerAbout;
+            state.property = payload.coborrowerProperty;
+            state.income = payload.coborrowerIncome;
+            state.assets = payload.coborrowerAssets;
+            state.identity = payload.coborrowerIdentity;
+        },
+
         SAVE_COBORROWER_PROFILE(state, payload) {
             state.profile = {
                 ...state.profile,

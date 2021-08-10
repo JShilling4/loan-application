@@ -72,9 +72,8 @@
             :modal-action="modalAction"
             @close="closePreviousAddressModal()"
             :profile="coborrower.profile"
-            :property="coborrower.property"
             :previous-address="selectedPreviousAddress"
-            @save-address="savePreviousAddress"
+            @save-address="savePreviousAddress($event)"
         />
     </div>
 </template>
@@ -87,6 +86,8 @@ import AppTable from "@/components/AppTable.vue";
 import AddButton from "@/components/AddButton.vue";
 import CurrentAddressModal from "@/components/CurrentAddressModal.vue";
 import PreviousAddressModal from "@/components/PreviousAddressModal.vue";
+
+const SECTION_NUMBER = 6;
 
 export default {
     name: "CoborrowerAddressHistory",
@@ -130,8 +131,9 @@ export default {
     computed: {
         computedAddressHistory() {
             const addresses = [];
+
             if (
-                this.coborrower.property?.currentAddressInfo?.moveInDate !==
+                this.coborrower.property?.currentAddressInfo?.moveInDate !=
                 null
             ) {
                 const currentAddressObj = {
@@ -166,8 +168,7 @@ export default {
             }
 
             if (
-                this.coborrower.property.addressHistory &&
-                this.coborrower.property?.addressHistory !== null
+                this.coborrower.property?.addressHistory != null
             ) {
                 this.coborrower.property.addressHistory.forEach(
                     (address) => {
@@ -215,9 +216,10 @@ export default {
             }
         },
 
-        saveCurrentAddress(address) {
+        saveCurrentAddress(propertyObj) {
             this.localDataIsPosting = true;
-            this.postCoborrowerProperty(address).then(() => {
+            this.postCoborrowerProperty(propertyObj).then(() => {
+                this.localCoborrowerProperty = propertyObj;
                 this.currentAddressModalShowing = false;
                 this.localDataIsPosting = false;
             });
@@ -225,15 +227,35 @@ export default {
 
         savePreviousAddress(address) {
             this.localDataIsPosting = true;
-            this.postCoborrowerProperty(address).then(() => {
+            if (this.localCoborrowerProperty.addressHistory == null) {
+                this.localCoborrowerProperty.addressHistory = [address];
+            } else {
+                this.localCoborrowerProperty.addressHistory.push(address);
+            }
+            this.postCoborrowerProperty(this.localCoborrowerProperty).then(() => {
                 this.previousAddressModalShowing = false;
                 this.localDataIsPosting = false;
             });
         },
 
-        submitPage() {
-            this.editSectionProgress(3);
-            this.$router.push("/property/other-properties");
+        async submitPage() {
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postCoborrowerProperty(this.localCoborrowerProperty);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.property === null ||
+                    this.sectionProgress.property < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.property = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                this.$router.push("/property/coborrower-properties");
+            }
+
         },
     },
 };

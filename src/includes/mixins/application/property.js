@@ -44,13 +44,5 @@ export default {
 	mounted() {
 		this.syncProfileWithStore(); // load data immediately if present in store
         this.localDataIsLoading = false;
-		// Promise.all([
-		// 	this.updateBorrowerProperty(),
-		// 	this.fetchBorrowerAbout(),
-		// 	this.updateCoborrowerProperty()
-		// ]).then(() => {
-		// 	this.syncProfileWithStore(); // async load data to hydrate
-		// 	this.localDataIsLoading = false;
-		// });
 	}
 };

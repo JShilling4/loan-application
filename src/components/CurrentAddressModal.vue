@@ -346,8 +346,10 @@ export default {
             this.$emit("save-property", this.localProperty);
         },
     },
+
     mounted() {
         this.localProperty = this.deepClone(this.property);
+        this.localProfile = this.deepClone(this.profile);
     },
 };
 </script>

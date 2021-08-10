@@ -1,14 +1,14 @@
 <template>
-    <div class="otherProperties">
+    <div class="coborrowerProperties">
         <page-heading :theme="appTheme">
-            Do you own other properties?
+            Coborrower Other Properties
         </page-heading>
 
         <div class="choice-container">
             <app-button
                 @click="selectIfHasOtherProperties('yes')"
                 :class-list="[
-						localProperty.hasOtherProperties == true
+						localCoborrowerProperty.hasOtherProperties == true
 							? 'teal-fill'
 							: 'white-outline',
 						'choice'
@@ -20,7 +20,7 @@
             <app-button
                 @click="selectIfHasOtherProperties('no')"
                 :class-list="[
-						localProperty.hasOtherProperties == false
+						localCoborrowerProperty.hasOtherProperties == false
 							? 'teal-fill'
 							: 'white-outline',
 						'choice'
@@ -31,8 +31,9 @@
         </div>
 
         <other-properties-table
-            v-if="localProperty.hasOtherProperties == true"
-            :other-properties="localProperty.otherProperties"
+            v-if="localCoborrowerProperty.hasOtherProperties == true"
+            :other-properties="localCoborrowerProperty.otherProperties"
+            :local-data-is-loading="localDataIsLoading"
             @save-property="saveOtherProperty($event)"
         />
 
@@ -46,35 +47,55 @@
 </template>
 
 <script>
-// mixins
 import property from "@/includes/mixins/application/property";
-// components
+import otherProperties from "@/includes/mixins/application/otherProperties";
 import OtherPropertiesTable from "@/components/OtherPropertiesTable.vue";
 
-const SECTION_NUMBER = 3;
+const SECTION_NUMBER = 7;
 
 export default {
-    name: "OtherProperties",
+    name: "CoborrowerOtherProperties",
+    mixins: [property, otherProperties],
     components: {
         "other-properties-table": OtherPropertiesTable,
     },
-    mixins: [property],
-
+    data() {
+        return {
+            tableColumns: [
+                {
+                    label: "Address",
+                    field: "streetAddress",
+                },
+                {
+                    label: "Current Use",
+                    field: "currentUse",
+                },
+                {
+                    label: "Edit",
+                    field: "edit",
+                },
+                {
+                    label: "Delete",
+                    field: "delete",
+                },
+            ],
+        };
+    },
     methods: {
         selectIfHasOtherProperties(choice) {
             choice == "yes"
-                ? (this.localProperty.hasOtherProperties = true)
-                : (this.localProperty.hasOtherProperties = false);
+                ? (this.localCoborrowerProperty.hasOtherProperties = true)
+                : (this.localCoborrowerProperty.hasOtherProperties = false);
         },
 
         saveOtherProperty(otherProperty) {
             this.localDataIsPosting = true;
-            if (this.localProperty.otherProperties === null) {
-                this.localProperty.otherProperties = [otherProperty];
+            if (this.localCoborrowerProperty.otherProperties === null) {
+                this.localCoborrowerProperty.otherProperties = [otherProperty];
             } else {
-                this.localProperty.otherProperties.push(otherProperty);
+                this.localCoborrowerProperty.otherProperties.push(otherProperty);
             }
-            this.postBorrowerProperty(this.localProperty).then(() => {
+            this.postCoborrowerProperty(this.localCoborrowerProperty).then(() => {
                 this.localDataIsPosting = false;
             });
         },
@@ -84,7 +105,7 @@ export default {
                 // start loader
                 this.localDataIsPosting = true;
                 // post data
-                await this.postBorrowerProperty(this.localProperty);
+                await this.postCoborrowerProperty(this.localCoborrowerProperty);
                 // post progress if newly completed
                 if (
                     this.sectionProgress.property === null ||
@@ -94,7 +115,7 @@ export default {
                     this.postSectionProgress(this.localSectionProgress);
                 }
                 // next route
-                this.$router.push("/property/purchase-info");
+                this.$router.push("/income/income-history");
             }
         },
     },
@@ -102,7 +123,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.otherProperties {
+.coborrowerProperties {
     .choice-container {
         display: flex;
         flex-wrap: wrap;

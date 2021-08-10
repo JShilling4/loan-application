@@ -65,6 +65,13 @@ export default {
             const { section, count } = payload;
             state.navigationItems.find((navItem) => navItem.id == section).sectionCount = count;
         },
+        SET_APP_LOAD_SECTION_COUNTS(state, hasCoborrower) {
+            if (hasCoborrower === true) {
+                state.navigationItems.forEach((navItem) => {
+                    navItem.sectionCount = navItem.sectionCount + navItem.coborrowerSections;
+                });
+            }
+        }
     },
 
     actions: {

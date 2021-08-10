@@ -18,7 +18,7 @@ import Refinance from "../views/application/property/Refinance.vue";
 import AddressHistory from "../views/application/property/addressHistory/AddressHistory.vue";
 import CoborrowerAddressHistory from "../views/application/property/addressHistory/CoborrowerAddressHistory.vue";
 import OtherProperties from "../views/application/property/otherProperties/OtherProperties.vue";
-import CoborrowerAddOtherProperties from "../views/application/property/otherProperties/CoborrowerAddOtherProperties.vue";
+import CoborrowerOtherProperties from "../views/application/property/otherProperties/CoborrowerOtherProperties.vue";
 import PurchaseInfo from "../views/application/property/PurchaseInfo.vue";
 import PurchasePrice from "../views/application/property/PurchasePrice.vue";
 // Income
@@ -318,14 +318,14 @@ const routes = [
                 },
                 component: CoborrowerAddressHistory,
             },
-            // Coborrower Add Other Properties
+            // Coborrower Other Properties
             {
-                path: "add-coborrower-properties",
+                path: "coborrower-properties",
                 meta: {
                     navItem: "property",
                     requiresAuth: true,
                 },
-                component: CoborrowerAddOtherProperties,
+                component: CoborrowerOtherProperties,
             },
         ],
     },
