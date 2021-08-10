@@ -537,7 +537,30 @@ export function makeServer() {
                 "/borrowerIdentity",
                 (schema, request) => {
                     const data = JSON.parse(request.requestBody);
-                    return schema.db.borrowerIdentity.update(1, data);
+                    switch (activeApplication) {
+                        case "profile": {
+                            schema.db.completedProfile.update(1, {
+                                borrowerIdentity: data,
+                            });
+                            return data;
+                        }
+                        case "about": {
+                            schema.db.completedAbout.update(1, {
+                                borrowerIdentity: data,
+                            });
+                            return data;
+                        }
+                        case "property": {
+                            schema.db.completedProperty.update(1, {
+                                borrowerIdentity: data,
+                            });
+                            return data;
+                        }
+                        default: {
+                            schema.db.newApplication.update(1, { borrowerIdentity: data });
+                            return data;
+                        }
+                    }
                 },
                 { timing }
             );

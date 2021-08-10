@@ -6,7 +6,7 @@ export const accountApi = {
         return axios.post("/api/login", payload);
     },
     postProfileAndLogin(payload) {
-        return axios.post("/api/postProfileAndLogin", payload)
+        return axios.post("/api/postProfileAndLogin", payload);
     },
 
     validateToken(payload) {
@@ -29,7 +29,6 @@ export const profileApi = {
         // return axios.post("/api/graphql", {
         //     query: `{
         //         borrowerProfiles(queryString: "${queryString}", employees: "${employees}"){
-
         //         }
         //     }`,
         // });
@@ -111,5 +110,11 @@ export const identityApi = {
     },
     fetchCoborrowerIdentity() {
         return axios.get("/api/coborrowerIdentity");
+    },
+    postBorrowerIdentity(payload) {
+        return axios.post("/api/borrowerIdentity", payload);
+    },
+    postCoborrowerIdentity(payload) {
+        return axios.post("/api/coborrowerIdentity", payload);
     },
 };

@@ -348,7 +348,7 @@ export const completedAbout = {
             bankruptciesFiled: null,
         },
         demographics: {
-            isOptingOut: null,
+            isOptingOut: false,
             ethnicity: null,
             gender: null,
             race: null,
@@ -523,7 +523,7 @@ export const completedProperty = {
             bankruptciesFiled: null,
         },
         demographics: {
-            isOptingOut: null,
+            isOptingOut: false,
             ethnicity: null,
             gender: null,
             race: null,

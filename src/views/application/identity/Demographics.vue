@@ -1,6 +1,8 @@
 <template>
     <div class="demographics">
-        <h1 class="appHeading">Borrower Demographics</h1>
+        <page-heading :theme="appTheme">
+            Demographics
+        </page-heading>
         <div
             v-if="localIdentity.demographics"
             class="pageWrapper"
@@ -146,6 +148,8 @@
 import identity from "@/includes/mixins/application/identity";
 import demographics from "@/includes/mixins/application/demographics";
 
+const SECTION_NUMBER = 2;
+
 export default {
     name: "Demographics",
     mixins: [identity, demographics],
@@ -154,8 +158,29 @@ export default {
         return {};
     },
     methods: {
-        submitPage() {
-            this.$router.push("/identity/coborrower-demographics");
+        async submitPage() {
+            if (this.localDataIsPosting == false) {
+                // start loader
+                this.localDataIsPosting = true;
+                // post data
+                await this.postBorrowerIdentity(this.localIdentity);
+                // post progress if newly completed
+                if (
+                    this.sectionProgress.identity === null ||
+                    this.sectionProgress.identity < SECTION_NUMBER
+                ) {
+                    this.localSectionProgress.identity = SECTION_NUMBER;
+                    this.postSectionProgress(this.localSectionProgress);
+                }
+                // next route
+                if (this.borrower.about.hasCoborrower === true) {
+                    this.$router.push("/identity/coborrower-declarations");
+                } else {
+                    this.$router.push("/review");
+                }
+
+            }
+
         },
     },
 };

@@ -44,14 +44,16 @@ export default {
             {
                 id: "identity",
                 label: "Identity",
-                sectionCount: 4,
+                sectionCount: 2,
+                coborrowerSections: 2,
                 destinationUrl: "/identity/declarations",
                 status: "",
             },
             {
                 id: "review",
                 label: "Review",
-                sectionCount: 3,
+                sectionCount: 1,
+                coborrowerSections: 0,
                 destinationUrl: "/review",
                 status: "",
             },

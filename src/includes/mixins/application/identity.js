@@ -34,31 +34,9 @@ export default {
             this.localCoborrowerIdentity = this.deepClone(this.coborrower.identity);
             this.localSectionProgress = this.deepClone(this.sectionProgress);
         },
-
-        editSectionProgress(part, config = { force: false }) {
-            const { force } = config;
-            if (part === 1) {
-                if (this.sectionProgress.identity === null) {
-                    this.localSectionProgress.identity = 1;
-                    this.postSectionProgress(this.localSectionProgress);
-                }
-            } else if (force === true) {
-                this.localSectionProgress.identity = part;
-                this.postSectionProgress(this.localSectionProgress);
-            } else if (
-                this.sectionProgress.identity == null ||
-                this.sectionProgress.identity < part
-            ) {
-                this.localSectionProgress.identity = part;
-                this.postSectionProgress(this.localSectionProgress);
-            }
-        },
     },
     mounted() {
-        // this.syncProfileWithStore(); // load data immediately if present in store
-        Promise.all([this.updateBorrowerIdentity(), this.updateCoborrowerIdentity()]).then(() => {
-            this.syncProfileWithStore(); // async load data to hydrate
-            this.localDataIsLoading = false;
-        });
+        this.syncProfileWithStore(); // async load data to hydrate
+        this.localDataIsLoading = false;
     },
 };
