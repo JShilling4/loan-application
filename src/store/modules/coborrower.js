@@ -19,7 +19,7 @@ export default {
     },
 
     mutations: {
-        SAVE_BORROWER_DATA(state, payload) {
+        SAVE_COBORROWER_DATA(state, payload) {
             state.profile = payload.coborrowerProfile;
             state.about = payload.coborrowerAbout;
             state.property = payload.coborrowerProperty;

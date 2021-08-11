@@ -21,7 +21,8 @@ import {
     faCog,
     faUserCircle,
     faMoon,
-    faSun
+    faSun,
+    faPen
 } from "@fortawesome/pro-light-svg-icons";
 import {
     faDollarSign,
@@ -57,7 +58,8 @@ export default {
             faCog,
             faUserCircle,
             faMoon,
-            faSun
+            faSun,
+            faPen
         );
 
         app.component("font-awesome-icon", FontAwesomeIcon);

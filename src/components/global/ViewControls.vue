@@ -67,7 +67,8 @@ export default {
 
 <style lang="scss" scoped>
 .button-container {
-	margin-top: 5rem;
+	margin: 5rem auto 0 auto;
+    max-width: 400px;
 	button:first-child {
 		margin-bottom: 1.5rem;
 	}

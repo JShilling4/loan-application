@@ -7,7 +7,7 @@
         <div class="pageWrapper">
 
             <div class="review-box">
-                <section-container
+                <review-section
                     v-for="(section, index) in sections"
                     :is-expanded="section.isExpanded"
                     :title="section.title"
@@ -17,7 +17,7 @@
                 />
 
                 <transition name="data-fade">
-                    <section-data
+                    <review-section-data
                         :show="dataIsShowing"
                         :activeSection="activeSection"
                         :data="dataViewObject"
@@ -38,14 +38,14 @@
 <script>
 import { mapState } from "vuex";
 import ReviewSection from "@/components/ReviewSection.vue";
-import SectionDataReview from "@/components/SectionDataReview.vue";
+import ReviewSectionData from "@/components/ReviewSectionData.vue";
 
 export default {
     name: "Review",
 
     components: {
-        "section-container": ReviewSection,
-        "section-data": SectionDataReview,
+        "review-section": ReviewSection,
+        "review-section-data": ReviewSectionData,
     },
 
     data() {
@@ -55,30 +55,37 @@ export default {
                 {
                     title: "Profile",
                     isExpanded: false,
+                    editUrl: "/profile"
+                },
+                {
+                    title: "Addresses",
+                    isExpanded: false,
+                    editUrl: "/property/address-history"
                 },
                 {
                     title: "Property",
                     isExpanded: false,
+                    editUrl: "/property"
                 },
                 {
                     title: "Income",
                     isExpanded: false,
+                    editUrl: "/income/income-history"
                 },
                 {
                     title: "Assets",
                     isExpanded: false,
-                },
-                {
-                    title: "Declarations",
-                    isExpanded: false,
+                    editUrl: "/assets/add-assets"
                 },
                 {
                     title: "Demographics",
                     isExpanded: false,
+                    editUrl: "/identity/demographics"
                 },
                 {
                     title: "Notes",
                     isExpanded: false,
+                    editUrl: null,
                 },
             ],
         };
@@ -92,33 +99,192 @@ export default {
         },
 
         dataViewObject() {
-            switch(this.activeSection?.title) {
+            const { profile, income, about, property, assets, identity } = this.borrower;
+            switch (this.activeSection?.title) {
                 case "Profile": {
-                    const { profile, income, about } = this.borrower;
-                    return {
-                        "Full Name": `${profile.firstName} ${profile.lastName}`,
-                        "Current Address": profile.streetAddress,
-                        "Email": profile.email,
-                        "Telephone": profile.phone,
-                        "DOB": income.birthDate,
-                        "Marital Status": profile.maritalStatus,
-                        "Number of Dependents": about.numberOfDependents,
-                        "Dependent Ages": about.dependentAges
-                    }
+                    return `
+                        <div class="line">
+                            <span class="key">Full Name</span>:
+                            <span class="value">${profile.firstName} ${profile.lastName}</span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Current Address</span>:
+                            <span class="value">
+                                ${profile.streetAddress} ${profile.city}, ${profile.state} ${profile.zipcode}
+                            </span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Email</span>:
+                            <span class="value">${profile.email}</span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Telephone</span>:
+                            <span class="value">${profile.phone}</span>
+                        </div>
+                        <div class="line">
+                            <span class="key">DOB</span>:
+                            <span class="value">${income.birthDate}</span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Marital Status</span>:
+                            <span class="value">${profile.maritalStatus}</span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Number of Dependents</span>:
+                            <span class="value">${about.numberOfDependents}</span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Dependent Ages</span>:
+                            <span class="value">${about.dependentAges}</span>
+                        </div>
+                    `;
+                }
+                case "Addresses": {
+                    return `
+                        <div class="line">
+                            <span class="key">Current Address</span>:
+                            <p class="value">
+                                ${profile.streetAddress} ${profile.city}, ${profile.state} ${profile.zipcode}
+                            </p>
+                        </div>
+                        ${
+                            property.addressHistory.map((address) => {
+                                return `
+                                    <div class="line">
+                                        <span class="key">Previous Address</span>
+                                        <p class="value">
+                                            ${address.streetAddress} ${profile.city}, ${profile.state} ${profile.zipcode}
+                                        </p>
+                                    </div>
+                                `
+                            }).join("")
+                        }
+                    `;
                 }
                 case "Property": {
-                    return {
-                        "Homeownership Goal": "",
-                        "Primary Residence": "",
-                        "Property Location": "",
-                        "Real Estate Agent": "",
-                        "Purchase Price": "",
-                        "Down Payment": ""
-                    }
+                    return `
+                        <div class="line">
+                            <span class="key">Homeownership Goal</span>:
+                            <span class="value loanType">${property.loanType}</span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Primary Residence</span>:
+                            <span class="value">${property.propertyUse === 'primary' ? 'Yes' : 'No'}</span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Property Location</span>:
+                            <span class="value">
+                                ${property.propertyLocationCity}, ${property.propertyLocationState}
+                            </span>
+                        </div>
+                        ${
+                            property.realEstateAgentName != null
+                                ?
+                                    `
+                                        <div class="line">
+                                            <span class="key">Real Estate Agent</span>:
+                                            <span class="value">${property.realEstateAgentName}</span>
+                                        </div>
+                                    `
+                                :   ""
+                        }
+
+                        <div class="line">
+                            <span class="key">Purchase Price</span>:
+                            <span class="value">$${property.purchasePrice}</span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Down Payment</span>:
+                            <span class="value">$${property.downPaymentAmount}</span>
+                        </div>
+                    `;
                 }
-                default: return {};
+                case "Income": {
+                    return `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Income Type</th>
+                                    <th>Employer Name</th>
+                                    <th>Monthly Income</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${
+                                    income.incomeHistory.map((incomeObj) => {
+                                        return `
+                                            <tr>
+                                                <td>${incomeObj.incomeType}</td>
+                                                <td>${incomeObj.employerName || "N/A"}</td>
+                                                <td class="amount">$${incomeObj.monthlyIncome || incomeObj.monthlySalary}</td>
+                                            </tr>
+                                        `
+                                    }).join("")
+                                }
+                            </tbody>
+                        </table>
+                    `;
+                }
+                case "Assets": {
+                    return `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Institution Name</th>
+                                    <th>Account Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${
+                                    assets.map((asset) => {
+                                        return `
+                                            <tr>
+                                                <td>${asset.institutionName}</td>
+                                                <td>${asset.assetType}</td>
+                                            </tr>
+                                        `
+                                    }).join("")
+                                }
+                            </tbody>
+                        </table>
+                    `;
+                }
+                case "Demographics": {
+                    return `
+                        <div class="line">
+                            <span class="key">Ethnicity</span>:
+                            <span class="value">${identity.demographics.ethnicity}</span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Gender</span>:
+                            <span class="value">
+                                ${identity.demographics.gender}
+                            </span>
+                        </div>
+                        <div class="line">
+                            <span class="key">Race</span>:
+                            <span class="value">
+                                ${
+                                    identity.demographics.race.map((race, index) => {
+                                        return `${race}${index < identity.demographics.race.length-1 ? ", " : ""}`
+                                    }).join("")
+                                }
+                            </span>
+                        </div>
+                    `;
+                }
+                case "Notes": {
+                    return `
+                        <label class="notesHeading" for="appNotes">
+                            What else should we know about your application?
+                        </label>
+                        <textarea name="appNotes" id="appNotes" class="notesTextArea"></textarea>
+                    `;
+                }
+                default:
+                    return {};
             }
-        }
+        },
     },
 
     methods: {
@@ -163,4 +329,6 @@ export default {
 .data-fade-leave-active {
     opacity: 0 !important;
 }
+
+
 </style>

@@ -69,7 +69,7 @@ export function makeServer() {
                             );
                         }
                         default: {
-                            return schema.db.data;
+                            return schema.db.newApplication[0];
                         }
                     }
                 },

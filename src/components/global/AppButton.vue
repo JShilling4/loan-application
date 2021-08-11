@@ -81,6 +81,10 @@ export default {
         },
         theme: {
             type: String,
+        },
+        height: {
+            type: String,
+            default: "var(--input-height)"
         }
     },
     data() {
@@ -90,6 +94,7 @@ export default {
                 padding: this.padding,
                 fontSize: this.fontSize,
                 width: this.width,
+                height: this.height
             },
         };
     },
@@ -103,7 +108,6 @@ button {
     transition: color 0.3s, background-color 0.3s, border-color 0.3s;
     cursor: pointer;
     font-weight: bold;
-    height: var(--input-height);
     width: 100%;
     font-size: 16px;
     letter-spacing: 0.75px;

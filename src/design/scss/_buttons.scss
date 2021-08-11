@@ -66,12 +66,12 @@
     }
 }
 .teal-outline {
-    color: var(--teal-dark);
+    color: var(--teal);
     background-color: transparent;
-    border: 1px solid var(--teal-dark);
+    border: 1px solid var(--teal);
     &:hover {
         color: #fff;
-        background-color: var(--teal-dark);
+        background-color: var(--teal);
     }
 }
 
