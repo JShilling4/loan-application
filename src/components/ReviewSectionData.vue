@@ -1,9 +1,9 @@
 <template>
     <div
         v-if="show"
-        class="data-view"
+        class="dataview"
     >
-        <div class="heading-container">
+        <div v-if="activeSection" class="heading-container">
             <h3 class="headingText">{{ activeSection.title }}</h3>
             <app-button
                 v-if="activeSection.editUrl != null"
@@ -44,15 +44,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.data-view {
+.dataview {
     position: absolute;
     background-color: #fff;
     top: 0;
     z-index: 100;
-    left: 15rem;
+    left: 150px;
     height: 100%;
-    width: calc(100% - 15rem);
+    width: calc(100% - 148px);
     padding: 1rem 2rem;
+    border-top-right-radius: var(--app-border-radius);
+    border-bottom-right-radius: var(--app-border-radius);
+    &.coborrower {
+        height: 33rem;
+        border-bottom-left-radius: var(--app-border-radius);
+    }
     .heading-container {
         display: flex;
         margin-bottom: 3rem;

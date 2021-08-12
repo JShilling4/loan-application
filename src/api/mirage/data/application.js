@@ -1061,7 +1061,7 @@ export const completedIdentity_cob = {
         ],
         ssn: "XXX-XX-0000",
         birthDate: "12/12/1980",
-        currentWorkYears: 8,
+        currentWorkYears: "8",
     },
     borrowerAssets: [
         {
