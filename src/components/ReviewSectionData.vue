@@ -71,7 +71,7 @@ export default {
         }
     }
     .data-container {
-        height: 22rem;
+        height: 23rem;
         overflow-y: auto;
     }
 

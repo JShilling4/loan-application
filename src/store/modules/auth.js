@@ -47,6 +47,7 @@ export default {
             commit("LOG_OUT");
             commit("RESET_BORROWER_DATA");
             commit("RESET_SECTION_PROGRESS");
+            commit("RESET_SECTION_COUNTS");
         },
 
         // Validates the current user's token and refreshes it

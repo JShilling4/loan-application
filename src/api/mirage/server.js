@@ -7,7 +7,8 @@ import {
     completedAbout,
     completedProperty,
     completedAbout_cob,
-    completedIdentity
+    completedIdentity,
+    completedIdentity_cob
 } from "./data/application";
 
 
@@ -26,6 +27,7 @@ export function makeServer() {
                 completedAbout_cob: completedAbout_cob,
                 completedProperty: completedProperty,
                 completedIdentity: completedIdentity,
+                completedIdentity_cob: completedIdentity_cob,
             });
         },
 
@@ -60,6 +62,10 @@ export function makeServer() {
                         case "identity": {
                             activeApplication = "identity";
                             return schema.db.completedIdentity[0];
+                        }
+                        case "identity_cob": {
+                            activeApplication = "identity_cob";
+                            return schema.db.completedIdentity_cob[0];
                         }
                         case "error400": {
                             return new Response(
@@ -130,6 +136,13 @@ export function makeServer() {
                             }
                             return "OK";
                         }
+                        case "identity_cob": {
+                            if (returnData) {
+                                activeApplication = "identity_cob";
+                                return schema.db.completedIdentity_cob[0];
+                            }
+                            return "OK";
+                        }
                         case "error400": {
                             return new Response(
                                 400,
@@ -190,6 +203,12 @@ export function makeServer() {
                             });
                             return schema.db.completedIdentity[0].sectionProgress;
                         }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
+                                sectionProgress: data,
+                            });
+                            return schema.db.completedIdentity_cob[0].sectionProgress;
+                        }
                         default: {
                             schema.db.newApplication.update(1, { sectionProgress: data });
                             return schema.db.newApplication[0].sectionProgress;
@@ -239,6 +258,12 @@ export function makeServer() {
                         }
                         case "identity": {
                             schema.db.completedIdentity.update(1, {
+                                borrowerProfile: data,
+                            });
+                            return data;
+                        }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
                                 borrowerProfile: data,
                             });
                             return data;
@@ -296,6 +321,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
+                                coborrowerProfile: data,
+                            });
+                            return data;
+                        }
                         default: {
                             schema.db.newApplication.update(1, { coborrowerProfile: data });
                             return data;
@@ -345,6 +376,12 @@ export function makeServer() {
                         }
                         case "identity": {
                             schema.db.completedIdentity.update(1, {
+                                borrowerAbout: data,
+                            });
+                            return data;
+                        }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
                                 borrowerAbout: data,
                             });
                             return data;
@@ -402,6 +439,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
+                                coborrowerAbout: data,
+                            });
+                            return data;
+                        }
                         default: {
                             schema.db.newApplication.update(1, { coborrowerAbout: data });
                             return data;
@@ -449,8 +492,8 @@ export function makeServer() {
                             });
                             return data;
                         }
-                        case "identity": {
-                            schema.db.completedIdentity.update(1, {
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
                                 borrowerProperty: data,
                             });
                             return data;
@@ -508,6 +551,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
+                                coborrowerProperty: data,
+                            });
+                            return data;
+                        }
                         default: {
                             schema.db.newApplication.update(1, { coborrowerProperty: data });
                             return data;
@@ -555,8 +604,8 @@ export function makeServer() {
                             });
                             return data;
                         }
-                        case "identity": {
-                            schema.db.completedIdentity.update(1, {
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
                                 borrowerIncome: data,
                             });
                             return data;
@@ -614,6 +663,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
+                                coborrowerIncome: data,
+                            });
+                            return data;
+                        }
                         default: {
                             schema.db.newApplication.update(1, { coborrowerIncome: data });
                             return data;
@@ -663,6 +718,12 @@ export function makeServer() {
                         }
                         case "identity": {
                             schema.db.completedIdentity.update(1, {
+                                borrowerAssets: data,
+                            });
+                            return data;
+                        }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
                                 borrowerAssets: data,
                             });
                             return data;
@@ -720,6 +781,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
+                                coborrowerAssets: data,
+                            });
+                            return data;
+                        }
                         default: {
                             schema.db.newApplication.update(1, { coborrowerAssets: data });
                             return data;
@@ -773,6 +840,12 @@ export function makeServer() {
                             });
                             return data;
                         }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
+                                borrowerIdentity: data,
+                            });
+                            return data;
+                        }
                         default: {
                             schema.db.newApplication.update(1, { borrowerIdentity: data });
                             return data;
@@ -822,6 +895,12 @@ export function makeServer() {
                         }
                         case "identity": {
                             schema.db.completedIdentity.update(1, {
+                                coborrowerIdentity: data,
+                            });
+                            return data;
+                        }
+                        case "identity_cob": {
+                            schema.db.completedIdentity_cob.update(1, {
                                 coborrowerIdentity: data,
                             });
                             return data;

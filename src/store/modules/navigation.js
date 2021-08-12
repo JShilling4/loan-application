@@ -6,6 +6,7 @@ export default {
                 label: "Profile",
                 destinationUrl: "/profile",
                 sectionCount: 1,
+                borrowerSections: 1,
                 coborrowerSections: 0,
                 status: "active",
             },
@@ -13,6 +14,7 @@ export default {
                 id: "about",
                 label: "About",
                 sectionCount: 6,
+                borrowerSections: 6,
                 coborrowerSections: 5,
                 destinationUrl: "/about/referral",
                 status: "",
@@ -21,6 +23,7 @@ export default {
                 id: "property",
                 label: "Property",
                 sectionCount: 5,
+                borrowerSections: 5,
                 coborrowerSections: 2,
                 destinationUrl: "/property/loan-type",
                 status: "",
@@ -29,6 +32,7 @@ export default {
                 id: "income",
                 label: "Income",
                 sectionCount: 2,
+                borrowerSections: 2,
                 coborrowerSections: 1,
                 destinationUrl: "/income/income-history",
                 status: "",
@@ -37,6 +41,7 @@ export default {
                 id: "assets",
                 label: "Assets",
                 sectionCount: 1,
+                borrowerSections: 1,
                 coborrowerSections: 1,
                 destinationUrl: "/assets",
                 status: "",
@@ -45,6 +50,7 @@ export default {
                 id: "identity",
                 label: "Identity",
                 sectionCount: 2,
+                borrowerSections: 2,
                 coborrowerSections: 2,
                 destinationUrl: "/identity/declarations",
                 status: "",
@@ -53,6 +59,7 @@ export default {
                 id: "review",
                 label: "Review",
                 sectionCount: 1,
+                borrowerSections: 1,
                 coborrowerSections: 0,
                 destinationUrl: "/review",
                 status: "",
@@ -68,10 +75,15 @@ export default {
         SET_APP_LOAD_SECTION_COUNTS(state, hasCoborrower) {
             if (hasCoborrower === true) {
                 state.navigationItems.forEach((navItem) => {
-                    navItem.sectionCount = navItem.sectionCount + navItem.coborrowerSections;
+                    navItem.sectionCount = navItem.borrowerSections + navItem.coborrowerSections;
                 });
             }
-        }
+        },
+        RESET_SECTION_COUNTS(state) {
+            state.navigationItems.forEach((navItem) => {
+                navItem.sectionCount = navItem.borrowerSections;
+            });
+        },
     },
 
     actions: {

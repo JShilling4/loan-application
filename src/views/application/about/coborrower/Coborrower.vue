@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import about from "@/includes/mixins/application/about";
 
 const SECTION_NUMBER = 6;
@@ -50,6 +51,8 @@ export default {
     name: "Coborrower",
     mixins: [about],
     methods: {
+        ...mapMutations(["SET_APP_LOAD_SECTION_COUNTS"]),
+
         selectIfHasCoborrower(choice) {
             choice == "yes"
                 ? (this.localAbout.hasCoborrower = true)
@@ -72,17 +75,7 @@ export default {
                 // next route
                 if (this.localAbout.hasCoborrower === true) {
                     // coborrower exists so add coborrower questions to section totals
-                    const { sectionCount, coborrowerSections } =
-                        this.navSection;
-
-                    this.editNavigationSectionCount({
-                        section: "about",
-                        count: sectionCount + coborrowerSections,
-                    });
-                    this.editNavigationSectionCount({
-                        section: "property",
-                        count: sectionCount + coborrowerSections,
-                    });
+                    this.SET_APP_LOAD_SECTION_COUNTS(true);
                     this.$router.push("/about/coborrower/info");
                 } else {
                     this.$router.push("/property/loan-type");

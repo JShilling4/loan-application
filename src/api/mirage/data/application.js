@@ -36,7 +36,6 @@ export const newApplication = {
         referralSourceName: null,
         loanOfficer: null,
     },
-
     borrowerAbout: {
         hasCoborrower: null,
         hasCoborrowerAuthorization: null,
@@ -49,7 +48,6 @@ export const newApplication = {
         supportType: null,
         supportAmount: null,
     },
-
     borrowerProperty: {
         loanType: null,
         currentAddressInfo: {
@@ -77,7 +75,6 @@ export const newApplication = {
         purchasePrice: null,
         downPaymentAmount: null,
     },
-
     borrowerIncome: {
         creditCheckAuthorized: null,
         incomeHistory: null,
@@ -85,9 +82,7 @@ export const newApplication = {
         birthDate: null,
         currentWorkYears: null,
     },
-
     borrowerAssets: null,
-
     borrowerIdentity: {
         declarations: {
             citizenshipStatus: null,
@@ -150,7 +145,6 @@ export const completedProfile = {
         zipcode: "43537",
         zipcode2: null,
     },
-
     borrowerAbout: {
         hasCoborrower: null,
         hasCoborrowerAuthorization: null,
@@ -166,7 +160,6 @@ export const completedProfile = {
         supportType: null,
         supportAmount: null,
     },
-
     borrowerProperty: {
         loanType: null,
         currentAddressInfo: {
@@ -194,7 +187,6 @@ export const completedProfile = {
         purchasePrice: null,
         downPaymentAmount: null,
     },
-
     borrowerIncome: {
         creditCheckAuthorized: null,
         incomeHistory: null,
@@ -202,9 +194,7 @@ export const completedProfile = {
         birthDate: null,
         currentWorkYears: null,
     },
-
     borrowerAssets: null,
-
     borrowerIdentity: {
         declarations: {
             citizenshipStatus: null,
@@ -235,7 +225,6 @@ export const completedProfile = {
             race: null,
         },
     },
-
     coborrower: null,
 };
 
@@ -269,7 +258,6 @@ export const completedAbout = {
         zipcode: "43537",
         zipcode2: null,
     },
-
     borrowerAbout: {
         hasCoborrower: false,
         hasCoborrowerAuthorization: null,
@@ -285,7 +273,6 @@ export const completedAbout = {
         supportType: null,
         supportAmount: null,
     },
-
     borrowerProperty: {
         loanType: null,
         currentAddressInfo: {
@@ -313,7 +300,6 @@ export const completedAbout = {
         purchasePrice: null,
         downPaymentAmount: null,
     },
-
     borrowerIncome: {
         creditCheckAuthorized: null,
         incomeHistory: null,
@@ -321,9 +307,7 @@ export const completedAbout = {
         birthDate: null,
         currentWorkYears: null,
     },
-
     borrowerAssets: null,
-
     borrowerIdentity: {
         declarations: {
             citizenshipStatus: null,
@@ -354,9 +338,7 @@ export const completedAbout = {
             race: null,
         },
     },
-
     coborrowerProfile: null,
-
     coborrowerAbout: null,
 };
 
@@ -371,7 +353,6 @@ export const completedAbout_cob = {
         identity: null,
         review: null,
     },
-
     borrowerProfile: {
         firstName: "Johnny",
         middleInitial: "C",
@@ -391,7 +372,6 @@ export const completedAbout_cob = {
         zipcode: "43537",
         zipcode2: null,
     },
-
     borrowerAbout: {
         hasCoborrower: true,
         hasCoborrowerAuthorization: null,
@@ -407,7 +387,6 @@ export const completedAbout_cob = {
         supportType: null,
         supportAmount: null,
     },
-
     borrowerProperty: {
         loanType: null,
         currentAddressInfo: {
@@ -435,7 +414,6 @@ export const completedAbout_cob = {
         purchasePrice: null,
         downPaymentAmount: null,
     },
-
     borrowerIncome: {
         creditCheckAuthorized: null,
         incomeHistory: null,
@@ -443,9 +421,7 @@ export const completedAbout_cob = {
         birthDate: null,
         currentWorkYears: null,
     },
-
     borrowerAssets: null,
-
     borrowerIdentity: {
         declarations: {
             citizenshipStatus: null,
@@ -476,7 +452,6 @@ export const completedAbout_cob = {
             race: null,
         },
     },
-
     coborrowerProfile: {
         firstName: "Susie",
         middleInitial: null,
@@ -496,7 +471,6 @@ export const completedAbout_cob = {
         zipcode: "43537",
         zipcode2: null,
     },
-
     coborrowerAbout: {
         hasDependents: true,
         numberOfDependents: "1",
@@ -505,7 +479,6 @@ export const completedAbout_cob = {
         supportType: "ChildSupport",
         supportAmount: "750",
     },
-
     coborrowerProperty: {
         currentAddressInfo: {
             moveInDate: null,
@@ -519,7 +492,6 @@ export const completedAbout_cob = {
         hasOtherProperties: null,
         otherProperties: null,
     },
-
     coborrowerIncome: {
         creditCheckAuthorized: null,
         incomeHistory: null,
@@ -527,9 +499,7 @@ export const completedAbout_cob = {
         birthDate: null,
         currentWorkYears: null,
     },
-
     coborrowerAssets: null,
-
     coborrowerIdentity: {
         declarations: {
             citizenshipStatus: null,
@@ -592,7 +562,6 @@ export const completedProperty = {
         zipcode: "43537",
         zipcode2: null,
     },
-
     borrowerAbout: {
         hasCoborrower: false,
         hasCoborrowerAuthorization: null,
@@ -608,7 +577,6 @@ export const completedProperty = {
         supportType: null,
         supportAmount: null,
     },
-
     borrowerProperty: {
         loanType: "purchase",
         currentAddressInfo: {
@@ -665,7 +633,6 @@ export const completedProperty = {
         purchasePrice: "180000",
         downPaymentAmount: "15000",
     },
-
     borrowerIncome: {
         creditCheckAuthorized: null,
         incomeHistory: null,
@@ -673,9 +640,7 @@ export const completedProperty = {
         birthDate: null,
         currentWorkYears: null,
     },
-
     borrowerAssets: null,
-
     borrowerIdentity: {
         declarations: {
             citizenshipStatus: null,
@@ -738,7 +703,6 @@ export const completedIdentity = {
         zipcode: "43537",
         zipcode2: null,
     },
-
     borrowerAbout: {
         hasCoborrower: false,
         hasCoborrowerAuthorization: null,
@@ -754,7 +718,6 @@ export const completedIdentity = {
         supportType: null,
         supportAmount: null,
     },
-
     borrowerProperty: {
         loanType: "purchase",
         currentAddressInfo: {
@@ -811,7 +774,6 @@ export const completedIdentity = {
         purchasePrice: "180000",
         downPaymentAmount: "15000",
     },
-
     borrowerIncome: {
         creditCheckAuthorized: null,
         incomeHistory: [
@@ -883,7 +845,6 @@ export const completedIdentity = {
         birthDate: "12/12/1980",
         currentWorkYears: 8,
     },
-
     borrowerAssets: [
         {
             assetType: "Savings",
@@ -898,7 +859,6 @@ export const completedIdentity = {
             accountNumber: "1254525",
         },
     ],
-
     borrowerIdentity: {
         declarations: {
             citizenshipStatus: "U.S. Citizen",
@@ -926,6 +886,353 @@ export const completedIdentity = {
             isOptingOut: false,
             ethnicity: "Not Hispanic or Latino",
             gender: "Male",
+            race: ["White"],
+        },
+    },
+};
+
+export const completedIdentity_cob = {
+    token: "identity_cob",
+    sectionProgress: {
+        profile: 1,
+        about: 11,
+        property: 7,
+        income: 3,
+        assets: 2,
+        identity: 4,
+        review: null,
+    },
+    borrowerProfile: {
+        firstName: "Johnny",
+        middleInitial: "C",
+        lastName: "Lately",
+        suffix: null,
+        email: "johnnyC@email.com",
+        phone: "5555555555",
+        maritalStatus: "Single",
+        streetAddress: "401 E First St",
+        streetAddress2: null,
+        apartmentNumber: null,
+        apartmentNumber2: null,
+        city: "South Whitley",
+        city2: null,
+        state: "IN",
+        state2: null,
+        zipcode: "43537",
+        zipcode2: null,
+    },
+    borrowerAbout: {
+        hasCoborrower: true,
+        hasCoborrowerAuthorization: true,
+        referralSource: "Radio",
+        referralSourceName: null,
+        loanOfficer: null,
+        isVeteran: true,
+        loanType: "purchase",
+        hasDependents: true,
+        numberOfDependents: "2",
+        dependentAges: ["4", "6"],
+        payOrReceiveSupport: "NotApplicable",
+        supportType: null,
+        supportAmount: null,
+    },
+    borrowerProperty: {
+        loanType: "purchase",
+        currentAddressInfo: {
+            moveInDate: "12/2018",
+            moveOutDate: "Present",
+            propertyOwner: "Yes",
+            propertyPlan: "primary",
+            propertyValue: "185000",
+            monthlyRent: null,
+        },
+        addressHistory: [
+            {
+                streetAddress: "123 East St",
+                aprtmentNumber: null,
+                city: "Warsaw",
+                state: "IN",
+                zipcode: "46580",
+                moveInDate: "01/2015",
+                moveOutDate: "04/2018",
+                propertyOwner: "Yes",
+            },
+            {
+                streetAddress: "1405 Alabaster Blvd",
+                aprtmentNumber: null,
+                city: "Columbia City",
+                state: "IN",
+                zipcode: "46580",
+                moveInDate: "01/2015",
+                moveOutDate: "04/2018",
+                propertyOwner: "No",
+            },
+        ],
+        hasOtherProperties: true,
+        otherProperties: [
+            {
+                streetAddress: "1212 Vincent Ave, Nappanee IN, 45580",
+                currentUse: "Primary",
+                mortgageType: "Conventional",
+                propertyPlan: "Refinance",
+                approximateValue: "180000",
+            },
+        ],
+        foundHome: "Yes",
+        propertyPlan: "Primary",
+        cashOut: "Yes",
+        includeTaxesAndInsurance: "Yes",
+        propertyLocationCity: "Warsaw",
+        propertyLocationState: "IN",
+        whereLookingCity: null,
+        whereLookingState: null,
+        propertyUse: "primary",
+        hasRealEstateAgent: "Yes",
+        realEstateAgentName: "Robert Plant",
+        purchasePrice: "180000",
+        downPaymentAmount: "15000",
+    },
+    borrowerIncome: {
+        creditCheckAuthorized: null,
+        incomeHistory: [
+            {
+                incomeType: "Employed",
+                employerName: "TestEmployer1",
+                description: "TestEmployer1 - Office Administrator",
+                jobTitle: "Office Administrator",
+                employerAddress: "401 E 1st St",
+                employerCity: "South Whitley",
+                employerState: "IN",
+                employerZipcode: "43174",
+                employerPhone: "555-555-5555",
+                currentOrPriorEmployer: "Current",
+                startDate: "01/2016",
+                endDate: "Present",
+                compensationType: ["salary", "commission"],
+                monthlySalary: "4500",
+                hourlyPayRate: null,
+                averageWeeklyHours: null,
+                monthlyCommission: "400",
+                monthlyBonus: null,
+                monthlyIncome: null,
+            },
+            {
+                incomeType: "Self Employed",
+                employerName: "John Smith",
+                description: "John Smith - Contractor",
+                jobTitle: "Contractor",
+                employerAddress: null,
+                employerCity: "Warsaw",
+                employerState: "IN",
+                employerZipcode: "43174",
+                employerPhone: "555-555-5555",
+                currentOrPriorEmployer: "Prior",
+                startDate: "01/2016",
+                endDate: "02/2017",
+                compensationType: [],
+                monthlySalary: null,
+                hourlyPayRate: null,
+                averageWeeklyHours: null,
+                monthlyCommission: null,
+                monthlyBonus: null,
+                monthlyIncome: "4500",
+            },
+            {
+                incomeType: "Social Security",
+                employerName: null,
+                description: "Social Security - Monthly Income",
+                jobTitle: null,
+                employerAddress: null,
+                employerCity: null,
+                employerState: null,
+                employerZipcode: null,
+                employerPhone: null,
+                currentOrPriorEmployer: null,
+                startDate: "01/2016",
+                endDate: null,
+                compensationType: [],
+                monthlySalary: null,
+                hourlyPayRate: null,
+                averageWeeklyHours: null,
+                monthlyCommission: null,
+                monthlyBonus: null,
+                monthlyIncome: "5500",
+            },
+        ],
+        ssn: "XXX-XX-0000",
+        birthDate: "12/12/1980",
+        currentWorkYears: 8,
+    },
+    borrowerAssets: [
+        {
+            assetType: "Savings",
+            institutionName: "Test Bank",
+            cashValue: "80000",
+            accountNumber: "1254523",
+        },
+        {
+            assetType: "Checking",
+            institutionName: "Test Bank",
+            cashValue: "240000",
+            accountNumber: "1254525",
+        },
+    ],
+    borrowerIdentity: {
+        declarations: {
+            citizenshipStatus: "U.S. Citizen",
+            primaryResidence: "Yes",
+            hadOwnershipInterest: "Yes",
+            propertyType: "Primary Residence",
+            howTitleHeld: "Sole Ownership",
+            hasRelationToSeller: "No",
+            isBorrowingMoney: "Yes",
+            borrowedAmount: "55000",
+            hasUndisclosedAdditionalLoan: "No",
+            hasUndisclosedNewCredit: "No",
+            hasadditionalLien: "No",
+            hasUndisclosedDebt: "No",
+            outstandingJudgements: "No",
+            hasDelinquentDebt: "No",
+            hasLawsuitLiability: "No",
+            hasConveyedTitle: "No",
+            hadPreforeclosureOrShortsale: "No",
+            hadRecentForeclosure: "No",
+            hasDeclaredBankruptcy: "Yes",
+            bankruptciesFiled: [],
+        },
+        demographics: {
+            isOptingOut: false,
+            ethnicity: "Not Hispanic or Latino",
+            gender: "Male",
+            race: ["White"],
+        },
+    },
+    coborrowerProfile: {
+        firstName: "Susie",
+        middleInitial: null,
+        lastName: "Queue",
+        suffix: "MD",
+        email: "susieQ@email.com",
+        phone: "4444444444",
+        maritalStatus: "Married",
+        streetAddress: "501 S First St",
+        streetAddress2: null,
+        apartmentNumber: null,
+        apartmentNumber2: null,
+        city: "South Whitley",
+        city2: null,
+        state: "IN",
+        state2: null,
+        zipcode: "43537",
+        zipcode2: null,
+    },
+    coborrowerAbout: {
+        hasDependents: true,
+        numberOfDependents: "1",
+        dependentAges: ["12"],
+        payOrReceiveSupport: "Pay",
+        supportType: "ChildSupport",
+        supportAmount: "750",
+    },
+    coborrowerProperty: {
+        hasOtherProperties: true,
+        currentAddressInfo: {
+            moveInDate: "02/2015",
+            moveOutDate: "Present",
+            propertyOwner: "Yes",
+            propertyPlan: "Primary",
+            propertyValue: "210000",
+            monthlyRent: null,
+        },
+        addressHistory: [
+            {
+                streetAddress: "123 East St, Warsaw IN, 46580",
+                moveInDate: "01/2015",
+                moveOutDate: "04/2018",
+            },
+            {
+                streetAddress: "1405 Alabaster Blvd, Columbia City IN, 46580",
+                moveInDate: "01/2015",
+                moveOutDate: "04/2018",
+            },
+        ],
+        otherProperties: [
+            {
+                streetAddress: "18 Another Rd, Leesburg IN, 45550",
+                currentUse: "Investment Property",
+            },
+        ],
+    },
+    coborrowerIncome: {
+        creditCheckAuthorized: null,
+        incomeHistory: [
+            {
+                incomeType: "Employed",
+                employerName: "TestEmployer1",
+                description: "TestEmployer1 - Office Administrator",
+                jobTitle: "Office Administrator",
+                employerAddress: "401 E 1st St",
+                employerCity: "South Whitley",
+                employerState: "IN",
+                employerZipcode: "43174",
+                employerPhone: "555-555-5555",
+                currentOrPriorEmployer: "Current",
+                startDate: "01/2016",
+                endDate: "Present",
+                compensationType: ["salary", "commission"],
+                monthlySalary: "4500",
+                hourlyPayRate: null,
+                averageWeeklyHours: null,
+                monthlyCommission: "400",
+                monthlyBonus: null,
+                monthlyIncome: null,
+            },
+        ],
+        ssn: "XXX-XX-1111",
+        birthDate: "04/05/1978",
+        currentWorkYears: "12",
+    },
+    coborrowerAssets: [
+        {
+            assetType: "Savings",
+            institutionName: "Test Bank",
+            cashValue: "80000",
+            accountNumber: "1254523",
+        },
+        {
+            assetType: "Checking",
+            institutionName: "Test Bank",
+            cashValue: "240000",
+            accountNumber: "1254525",
+        },
+    ],
+    coborrowerIdentity: {
+        declarations: {
+            citizenshipStatus: "U.S. Citizen",
+            primaryResidence: "Yes",
+            hadOwnershipInterest: "Yes",
+            propertyType: "Primary Residence",
+            howTitleHeld: "Sole Ownership",
+            hasRelationToSeller: "No",
+            isBorrowingMoney: "Yes",
+            borrowedAmount: "55000",
+            hasUndisclosedAdditionalLoan: "No",
+            hasUndisclosedNewCredit: "No",
+            hasadditionalLien: "No",
+            hasUndisclosedDebt: "No",
+            outstandingJudgements: "No",
+            hasDelinquentDebt: "No",
+            hasLawsuitLiability: "No",
+            hasConveyedTitle: "No",
+            hadPreforeclosureOrShortsale: "No",
+            hadRecentForeclosure: "No",
+            hasDeclaredBankruptcy: "Yes",
+            bankruptciesFiled: [],
+        },
+        demographics: {
+            isOptingOut: false,
+            ethnicity: "Not Hispanic or Latino",
+            gender: "Female",
             race: ["White"],
         },
     },
