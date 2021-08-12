@@ -29,14 +29,14 @@
                 <!-- SSN -->
                 <div class="input-group">
                     <app-label
-                        for="ssn"
+                        for="borrowerssn"
                         :theme="appTheme"
                     >
                         Social Security Number
                     </app-label>
                     <text-field
                         type="text"
-                        id="ssn"
+                        id="borrowerssn"
                         :theme="appTheme"
                         v-model="localIncome.ssn"
                         placeholder="###-##-####"
@@ -71,14 +71,14 @@
                     <!-- SSN -->
                     <div class="input-group">
                         <app-label
-                            for="ssn"
+                            for="coborrowerssn"
                             :theme="appTheme"
                         >
                             Social Security Number
                         </app-label>
                         <text-field
                             type="text"
-                            id="ssn"
+                            id="coborrowerssn"
                             :theme="appTheme"
                             v-model="localCoborrowerIncome.ssn"
                             placeholder="###-##-####"

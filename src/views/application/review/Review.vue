@@ -8,12 +8,12 @@
 
             <div class="review-box">
                 <review-section
-                    v-for="(section, index) in sections"
+                    v-for="(section, index) in borrowerSections"
                     :is-expanded="section.isExpanded"
                     :title="section.title"
                     :key="section.name"
-                    @click="toggleSection(section)"
-                    :class="{ last: index === sections.length - 1 }"
+                    @click="toggleBorrowerSection(section)"
+                    :class="{ last: index === borrowerSections.length - 1 }"
                 />
 
                 <transition name="data-fade">
@@ -51,7 +51,44 @@ export default {
     data() {
         return {
             dataIsShowing: false,
-            sections: [
+            borrowerSections: [
+                {
+                    title: "Profile",
+                    isExpanded: false,
+                    editUrl: "/profile"
+                },
+                {
+                    title: "Addresses",
+                    isExpanded: false,
+                    editUrl: "/property/address-history"
+                },
+                {
+                    title: "Property",
+                    isExpanded: false,
+                    editUrl: "/property"
+                },
+                {
+                    title: "Income",
+                    isExpanded: false,
+                    editUrl: "/income/income-history"
+                },
+                {
+                    title: "Assets",
+                    isExpanded: false,
+                    editUrl: "/assets/add-assets"
+                },
+                {
+                    title: "Demographics",
+                    isExpanded: false,
+                    editUrl: "/identity/demographics"
+                },
+                {
+                    title: "Notes",
+                    isExpanded: false,
+                    editUrl: null,
+                },
+            ],
+            coborrowerSections: [
                 {
                     title: "Profile",
                     isExpanded: false,
@@ -95,7 +132,7 @@ export default {
         ...mapState(["borrower", "coborrower", "appTheme"]),
 
         activeSection() {
-            return this.sections.find((sec) => sec.isExpanded);
+            return this.borrowerSections.find((sec) => sec.isExpanded);
         },
 
         dataViewObject() {
@@ -288,8 +325,8 @@ export default {
     },
 
     methods: {
-        toggleSection(clickedSection) {
-            this.sections.forEach((sec) => {
+        toggleBorrowerSection(clickedSection) {
+            this.borrowerSections.forEach((sec) => {
                 sec.isExpanded = false;
             });
             clickedSection.isExpanded = !clickedSection.isExpanded;

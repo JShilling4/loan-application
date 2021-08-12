@@ -61,6 +61,7 @@ export default {
                 .then((response) => {
                     if (response.data !== "OK") {
                         commit("SAVE_BORROWER_DATA", response.data);
+                        commit("SAVE_COBORROWER_DATA", response.data);
                         commit(
                             "SET_APP_LOAD_SECTION_COUNTS",
                             response.data.borrowerAbout.hasCoborrower
