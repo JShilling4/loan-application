@@ -96,7 +96,9 @@ export default {
 
     &.light {
         .percentageComplete {
-            color: var(--blue-green);
+            /* color: #fff; */
+            color: var(--gray-ui);
+            /* color: var(--blue-green); */
             .icon {
                 color: var(--teal-hc);
             }
@@ -104,7 +106,8 @@ export default {
 
         .dot-container {
             .dot {
-                border: 1px solid var(--blue-green);
+                /* border: 1px solid var(--blue-green); */
+                border: 1px solid #fff;
                 .icon {
                     color: var(--teal-dark);
                 }
@@ -112,15 +115,17 @@ export default {
         }
 
         .label {
-            color: var(--blue-green);
+            /* color: var(--blue-green); */
+            color: #fff;
         }
 
         &:hover {
             .dot {
-                border-color: var(--blue-green);
+                /* border-color: var(--blue-green); */
+                border-color: var(--teal);
             }
             .label {
-                color: var(--blue-green);
+                color: var(--teal);
             }
         }
 
@@ -135,7 +140,8 @@ export default {
                 }
             }
             .label {
-                color: var(--blue-green);
+                /* color: var(--blue-green); */
+                color: #fff;
                 font-weight: 600;
             }
         }
@@ -144,7 +150,8 @@ export default {
             background-color: transparent;
             .percentageComplete {
                 // margin-right: 6px;
-                color: var(--blue-green);
+                /* color: var(--blue-green); */
+                color: var(--gray-ui);
                 font-weight: 500;
             }
             .dot {

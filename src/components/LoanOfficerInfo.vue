@@ -31,6 +31,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+    margin-left: 2rem;
 	.avatar {
 		border-radius: 50%;
 		margin-bottom: 5px;

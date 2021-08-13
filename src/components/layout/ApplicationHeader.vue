@@ -6,12 +6,8 @@
                     class="logo"
                     :src="computedLogo"
                     alt="ruoff logo"
-                    @click="$router.push('/')"
                 />
 
-                <div class="languageSelector-container">
-                    <language-selector :theme="appTheme" />
-                </div>
             </div>
 
             <div class="header-controls">
@@ -21,16 +17,25 @@
                     @click="changeTheme()"
                 />
 
-                <span
+                <div
                     v-if="auth.loggedIn"
-                    :class="['logoutTrigger', appTheme]"
-                    @click="onLogOut()"
-                >Logout</span>
+                    class="menu-container"
+                >
+                    <font-awesome-icon
+                        :icon="['fal', 'user-circle']"
+                        :class="['headerIcon', appTheme]"
+                        @click.stop="userMenuShowing = !userMenuShowing"
+                    />
 
-                <!-- <font-awesome-icon
-                    :icon="['fal', 'cog']"
-                    :class="['headerIcon', appTheme]"
-                /> -->
+                    <transition name="slide-down">
+                        <user-menu
+                            v-if="userMenuShowing"
+                            @close="userMenuShowing = false"
+                            :theme="appTheme"
+                            @logout="onLogOut()"
+                        />
+                    </transition>
+                </div>
 
                 <loan-officer-info
                     v-if="loAvatarShouldShow"
@@ -45,20 +50,28 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import LanguageSelector from "@/components/LanguageSelector.vue";
 import LoanOfficerInfo from "@/components/LoanOfficerInfo.vue";
+import UserMenu from "@/components/layout/UserMenu.vue";
 
 export default {
     name: "ApplicationHeader",
     components: {
         "loan-officer-info": LoanOfficerInfo,
-        "language-selector": LanguageSelector,
+        "user-menu": UserMenu,
     },
+
     props: {
         currentView: {
             type: String,
         },
     },
+
+    data() {
+        return {
+            userMenuShowing: false,
+        };
+    },
+
     computed: {
         ...mapState(["appTheme", "auth", "borrower"]),
 
@@ -74,10 +87,10 @@ export default {
             return false;
         },
         computedLogo() {
-            if (this.appTheme === "dark") {
-                return "https://webresources.ruoff.com/logo-horizontal-white-nmls/png/160/0";
+            if (this.appTheme === "light") {
+                return "https://webresources.ruoff.com/logo-horizontal-color-nmls/png/160/0";
             }
-            return "https://webresources.ruoff.com/logo-horizontal-color-nmls/png/160/0";
+            return "https://webresources.ruoff.com/logo-horizontal-white-nmls/png/160/0";
         },
     },
     methods: {
@@ -88,6 +101,7 @@ export default {
         },
 
         onLogOut() {
+            this.userMenuShowing = false;
             this.logOut();
             this.$router.push("/login");
         },
@@ -111,35 +125,36 @@ header {
         align-items: flex-start;
         flex-wrap: wrap;
         width: 100%;
+    }
 
-        .headerIcon, .logoutTrigger {
-            margin-left: 2rem;
-            cursor: pointer;
-            transition: color 0.3s;
+    .headerIcon,
+    .logoutTrigger {
+        margin-left: 2rem;
+        cursor: pointer;
+        transition: color 0.3s;
+        &:hover {
+            color: var(--orange);
+        }
+        &.light {
+            color: var(--blue-green);
             &:hover {
                 color: var(--orange);
-            }
-            &.light {
-                color: var(--blue-green);
-                &:hover {
-                    color: var(--orange);
-                }
-            }
-        }
-
-        .headerIcon {
-            font-size: 3rem;
-            &.fa-sun {
-                font-size: 2.6rem;
-            }
-            &.fa-moon {
-                font-size: 2.2rem;
             }
         }
     }
 
-    .languageSelector-container {
-        margin-top: 2rem;
+    .menu-container {
+        position: relative;
+    }
+
+    .headerIcon {
+        font-size: 3rem;
+        &.fa-sun {
+            font-size: 2.6rem;
+        }
+        &.fa-moon {
+            font-size: 2.2rem;
+        }
     }
 
     .header-controls {

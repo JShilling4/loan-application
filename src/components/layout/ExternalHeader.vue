@@ -3,6 +3,7 @@
         <div class="topBar">
             <div class="logo-container">
                 <img
+                    v-if="$route.name === 'Index'"
                     class="logo"
                     src="https://webresources.ruoff.com/logo-horizontal-color-nmls/png/160/0"
                     alt="ruoff logo"
@@ -11,7 +12,7 @@
             </div>
 
             <div class="languageSelector-container">
-                <language-selector />
+                <language-selector v-if="$route.name === 'Index'" />
             </div>
         </div>
     </header>

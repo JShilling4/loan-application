@@ -291,4 +291,18 @@ fieldset {
 .fade-leave-active {
     opacity: 0 !important;
 }
+
+.slide-down-enter-active,
+.slide-down-leave-active {
+    transition-duration: 0.3s;
+    transition-property: transform, opacity;
+    transition-timing-function: ease;
+    transform-origin: top;
+}
+
+.slide-down-enter-from,
+.slide-down-leave-active {
+    transform: scaleY(0);
+    opacity: 0;
+}
 </style>

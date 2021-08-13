@@ -3,7 +3,7 @@
         :class="['languageSelector', { light: theme === 'light' || appTheme === 'light', inline: isInline }]"
         v-click-outside="closeDropdown"
     >
-        <span class="label">{{ $t('global.preferredLanguage') }}</span>
+        <span v-if="includeLabel" class="label">{{ $t('global.preferredLanguage') }}</span>
         <div
             class="selected-container"
             @click="showDropdown = !showDropdown"
@@ -43,6 +43,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        includeLabel: {
+            type: Boolean,
+            default: true,
+        }
     },
     data() {
         return {
