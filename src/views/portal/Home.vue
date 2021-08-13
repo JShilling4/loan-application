@@ -41,7 +41,7 @@ import { mapState } from "vuex";
 import LanguageSelector from "@/components/LanguageSelector.vue";
 import MilestoneTimeline from "@/components/portal/MilestoneTimeline.vue";
 import ContrastToggle from "@/components/portal/ContrastToggle.vue";
-import PortalFooter from "@/components/layout/PortalFooter.vue";
+import PortalFooter from "@/components/portal/layout/PortalFooter.vue";
 import ProfileCard from "@/components/portal/ProfileCard.vue";
 import TodoListCard from "@/components/portal/TodoListCard.vue";
 import LoanHistoryCard from "@/components/portal/LoanHistoryCard.vue";

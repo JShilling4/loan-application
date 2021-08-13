@@ -86,20 +86,17 @@ export default {
         ...mapActions(["logIn"]),
 
         postCredentials() {
-            if (this.devBypass) {
-                if (this.credentials.password == "portal") {
+            this.logIn(this.credentials).then((response) => {
+                console.log(response);
+                if (response.sectionProgress) {
+                    this.$router.push("/profile");
+                }
+                if (response.token.includes("portal")) {
                     this.$router.push("/portal");
                 }
-            } else {
-                this.logIn(this.credentials).then((response) => {
-                    if (response.sectionProgress) {
-                        this.$router.push("/profile");
-                    }
-                });
-            }
+            });
         },
     },
-    mounted() {},
 };
 </script>
 

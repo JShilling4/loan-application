@@ -68,7 +68,7 @@
                                     class="icon"
                                 />
                             </div>
-                            <a class="signOut item">
+                            <a class="signOut item" @click.prevent="onLogOut()">
                                 <font-awesome-icon
                                     :icon="['fas', 'sign-out-alt']"
                                     class="icon"
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-
+import { mapActions } from "vuex";
 
 export default {
     name: "PortalHeader",
@@ -105,6 +105,15 @@ export default {
             return false;
         },
     },
+
+    methods: {
+        ...mapActions(["logOut"]),
+
+        onLogOut() {
+            this.logOut();
+            this.$router.push("/login");
+        }
+    }
 };
 </script>
 

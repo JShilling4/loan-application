@@ -40,7 +40,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import ApplicationHeader from "@/components/layout/ApplicationHeader.vue";
-import PortalHeader from "@/components/layout/PortalHeader.vue";
+import PortalHeader from "@/components/portal/layout/PortalHeader.vue";
 import ExternalHeader from "@/components/layout/ExternalHeader.vue";
 import ProgressBar from "@/components/layout/ProgressBar.vue";
 

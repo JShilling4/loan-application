@@ -8,8 +8,9 @@ import {
     completedProperty,
     completedAbout_cob,
     completedIdentity,
-    completedIdentity_cob
+    completedIdentity_cob,
 } from "./data/application";
+import { portal } from "./data/portal";
 
 
 // export function makeServer({ environment = "development" } = {}) {
@@ -28,12 +29,14 @@ export function makeServer() {
                 completedProperty: completedProperty,
                 completedIdentity: completedIdentity,
                 completedIdentity_cob: completedIdentity_cob,
+                portal: portal,
             });
         },
 
         routes() {
             this.namespace = "api";
             let activeApplication = "new";
+            let activePortal = "portalDefault";
 
             //************************** ACCOUNT **************************
             // login
@@ -66,6 +69,10 @@ export function makeServer() {
                         case "identity_cob": {
                             activeApplication = "identity_cob";
                             return schema.db.completedIdentity_cob[0];
+                        }
+                        case "portal": {
+                            activePortal = "portal";
+                            return schema.db.portal[0];
                         }
                         case "error400": {
                             return new Response(
@@ -142,6 +149,9 @@ export function makeServer() {
                                 return schema.db.completedIdentity_cob[0];
                             }
                             return "OK";
+                        }
+                        case "portal": {
+                            return schema.db.portal[0];
                         }
                         case "error400": {
                             return new Response(
