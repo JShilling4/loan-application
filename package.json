@@ -20,7 +20,7 @@
         "@fortawesome/pro-regular-svg-icons": "^5.15.4",
         "@fortawesome/vue-fontawesome": "^3.0.0-4",
         "@vueform/multiselect": "^2.1.0",
-        "axios": "^0.21.1",
+        "axios": "^0.21.2",
         "core-js": "^3.16.0",
         "vee-validate": "^3.4.5",
         "vue": "^3.1.5",
